@@ -8,6 +8,6 @@ namespace BLL
 {
     public class Class1
     {
-		//stuff
+		// more stuff
     }
 }
