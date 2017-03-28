@@ -1,47 +1,46 @@
 ﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using BLL;
 using WCF;
 using Model;
 
 namespace Testing
 {
+    [TestClass]
     public class TestClassOne
     {
         static BLL.Class1 controller = null;
-    public static void setUpBeforeClass() 
+
+        [TestMethod]
+        public static void setUpBeforeClass()
         {
             try
             {
                 controller = new BLL.Class1();
-            } catch
+            }
+            catch
             {
                 throw new Exception();
             }
         }
 
-    public static void tearDownAfterClass()
+        [TestMethod]
+        public static void tearDownAfterClass()
         {
             try
             {
                 controller = null;
-            } catch
+            }
+            catch
             {
                 throw new Exception();
             }
-}
+        }
 
-    public void setUp()
+        [TestMethod]
+        public void setUp()
         {
-            try
-            {
-                //do nothing
-            } catch
-            {
-                throw new Exception();
-    }
-}
-    public void tearDown()
-    {
             try
             {
                 //do nothing
@@ -52,6 +51,20 @@ namespace Testing
             }
         }
 
+        [TestMethod]
+        public void tearDown()
+        {
+            try
+            {
+                //do nothing
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [TestMethod]
         public void TestFail()
         {
             try
@@ -64,6 +77,7 @@ namespace Testing
             }
         }
 
+        [TestMethod]
         public void TestSucceed()
         {
             try
@@ -75,5 +89,5 @@ namespace Testing
                 throw new Exception();
             }
         }
-}
+    }
 }
