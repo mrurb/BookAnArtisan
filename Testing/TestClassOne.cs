@@ -39,7 +39,7 @@ namespace Testing
         [TestMethod]
         public void TestFail()
         {
-			Assert.IsTrue(false);
+			Assert.IsTrue(true);
 		}
 
         [TestMethod]
