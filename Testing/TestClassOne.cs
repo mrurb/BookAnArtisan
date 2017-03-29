@@ -69,7 +69,7 @@ namespace Testing
         {
             try
             {
-                //do nothing
+                TestFail();
             }
             catch
             {
@@ -82,7 +82,7 @@ namespace Testing
         {
             try
             {
-                //do nothing
+                TestSucceed();
             }
             catch
             {
