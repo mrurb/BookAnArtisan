@@ -10,10 +10,10 @@ namespace Testing
     [TestClass]
     public class TestClassOne
     {
-        static BLL.Class1 controller = null;
+		BLL.Class1 controller = null;
 
         [TestMethod]
-        public static void setUpBeforeClass()
+        public void setUpBeforeClass()
         {
             try
             {
@@ -26,7 +26,7 @@ namespace Testing
         }
 
         [TestMethod]
-        public static void tearDownAfterClass()
+        public void tearDownAfterClass()
         {
             try
             {
