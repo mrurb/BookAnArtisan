@@ -24,7 +24,7 @@ namespace Testing
         [TestMethod]
         public void TestSearchByTag(string input_tag)
         {
-            List<Project> results = pc.search_by_tag(input_tag);
+            List<Project> results = pc.SearchByTag(input_tag);
             Assert.AreNotEqual(0, results.ToArray().Length);
         }
 
@@ -36,7 +36,7 @@ namespace Testing
          [TestMethod]
          public void TestSearchProjectName(string pname)
         {
-            List<Project> results = pc.search_by_project_name(pname);
+            List<Project> results = pc.SearchByProjectName(pname);
             Assert.AreNotEqual(0, results.ToArray().Length);
         }
 
@@ -48,7 +48,7 @@ namespace Testing
          [TestMethod]
          public void TestSearchProjectStatus(bool status)
         {
-            List<Project> results = pc.search_by_project_status(status);
+            List<Project> results = pc.SearchByProjectStatus(status);
             Assert.AreNotEqual(0, results.ToArray().Length);
         }
 
@@ -60,7 +60,7 @@ namespace Testing
          [TestMethod]
         public void TestSearchProjectArtisan(Artisan art)
         {
-            List<Project> results = pc.search_by_project_user(art);
+            List<Project> results = pc.SearchByProjectUser(art);
             Assert.AreNotEqual(0, results.ToArray().Length);
         }
 
@@ -72,7 +72,7 @@ namespace Testing
         [TestMethod]
         public void TestSearchProjectClient(Client client)
         {
-            List<Project> results = pc.search_by_project_user(client);
+            List<Project> results = pc.SearchByProjectUser(client);
             Assert.AreNotEqual(0, results.ToArray().Length);
         }
 
@@ -84,7 +84,7 @@ namespace Testing
         [TestMethod]
         public void TestSearchProjectClientAddress(string address)
         {
-            List<Project> results = pc.search_by_project_address(address);
+            List<Project> results = pc.SearchByProjectAddress(address);
             Assert.AreNotEqual(0, results.ToArray().Length);
         }
     }

@@ -42,7 +42,10 @@ namespace DAL
                     SqlDataReader datareader = sqlcmd.ExecuteReader();
                     while (datareader.Read())
                     {
-                        results.Add(new Project(datareader["id"], datareader["tag"], datareader["description"], datareader["client"], datareader["artisan"], datareader["address"]));
+                        User client = (User)datareader["client"];
+                        User artisan = (User)datareader["artisan"];                                         // TODO make users generic
+                        List < string > tags = datareader["tag"];                                           // TODO how to retrieve tags? how are they stored?
+                        results.Add(new Project((string)datareader["id"], tags, (string)datareader["description"], client, artisan, (string)datareader["address"]));
                     }
                 }
                 catch (Exception)
