@@ -54,25 +54,13 @@ namespace Testing
 
         /*
          *  Created (10/04-17)
-         * Test: only project artisan
+         * Test: only project user
          * Success: Something was found. 
          */
          [TestMethod]
-        public void TestSearchProjectArtisan(Artisan art)
+        public void TestSearchProjectUser(User art)
         {
             List<Project> results = pc.SearchByProjectUser(art);
-            Assert.AreNotEqual(0, results.ToArray().Length);
-        }
-
-        /*
-         *  Created (10/04-17)
-         * Test: only project client
-         * Success: Something was found. 
-         */
-        [TestMethod]
-        public void TestSearchProjectClient(Client client)
-        {
-            List<Project> results = pc.SearchByProjectUser(client);
             Assert.AreNotEqual(0, results.ToArray().Length);
         }
 

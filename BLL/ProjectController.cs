@@ -23,14 +23,7 @@ namespace BLL
 
         public List<Project> SearchByProjectUser(User user)
         {
-            if(user is Client)
-            {
-                return dba.SearchByProjectClient(user);
-            }
-            else
-            {
-                return dba.SearchByProjectArtisan(user);
-            }
+            return dba.SearchByProjectUser(user);
         }
 
         public List<Project> SearchByProjectAddress(string address)

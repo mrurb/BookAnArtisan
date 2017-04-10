@@ -13,17 +13,12 @@ namespace DAL
 
         //chapter 21
 
-        public List<Project> SearchByProjectArtisan(User user)
+        public List<Project> SearchByProjectUser(User user)
         {
             throw new NotImplementedException();
         }
 
         public List<Project> SearchByTag(string search_tag)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Project> SearchByProjectClient(User user)
         {
             throw new NotImplementedException();
         }
