@@ -13,18 +13,18 @@ namespace WCF
     public interface IProjectSearch
     {
         [OperationContract]
-        IList<Project> search_by_tag(string search_tag);
+        IList<Project> SearchByTag(string search_tag);
 
         [OperationContract]
-        IList<Project> search_by_project_name(string pname);
+        IList<Project> SearchByProjectName(string pname);
 
         [OperationContract]
-        IList<Project> search_by_project_status(bool status);
+        IList<Project> SearchByProjectStatus(bool status);
 
         [OperationContract]
-        IList<Project> search_by_project_user(User user);
+        IList<Project> SearchByProjectUser(User user);
 
         [OperationContract]
-        IList<Project> search_by_project_address(string address);
+        IList<Project> SearchByProjectAddress(string address);
     }
 }

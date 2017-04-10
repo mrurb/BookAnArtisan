@@ -15,29 +15,29 @@ namespace WCF
     {
         ProjectController pc = new ProjectController();
 
-        public IList<Project> search_by_tag(string search_tag)
+        public IList<Project> SearchByTag(string search_tag)
         {
-            return pc.search_by_tag(search_tag);
+            return pc.SearchByTag(search_tag);
         }
 
-        public IList<Project> search_by_project_address(string address)
+        public IList<Project> SearchByProjectAddress(string address)
         {
-            return pc.search_by_address(address);
+            return pc.SearchByProjectAddress(address);
         }
 
-        public IList<Project> search_by_project_name(string pname)
+        public IList<Project> SearchByProjectStatus(bool status)
         {
-            return pc.search_by_project_name(pname);
+            return pc.SearchByProjectStatus(status);
         }
 
-        public IList<Project> search_by_project_status(bool status)
+        public IList<Project> SearchByProjectUser(User user)
         {
-            return pc.search_by_project_status(status);
+            return pc.SearchByProjectUser(user);
         }
 
-        public IList<Project> search_by_project_user(User user)
+        public IList<Project> SearchByProjectName(string pname)
         {
-            return pc.search_by_project_user(user);
+            return pc.SearchByProjectName(pname);
         }
     }
 }

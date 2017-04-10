@@ -16,13 +16,13 @@ namespace Testing
     public class Search
     {
         ProjectController pc = new ProjectController();
-        string input_tag = "Kitchen";
+        string input_tag = "Kitchen"; // TODO : add stuff here
         /*
          * Test: Only input tags. Tested with simple tag initially. Created (10/04-17)
          * Success: Something was found.
          */
         [TestMethod]
-        public void TestMethod1(string input_tag)
+        public void TestSearchByTag(string input_tag)
         {
             List<Project> results = pc.search_by_tag(input_tag);
             Assert.AreNotEqual(0, results.ToArray().Length);
@@ -34,7 +34,7 @@ namespace Testing
          * Success: Something was found.
          */
          [TestMethod]
-         public void Test_Search_Project_Name(string pname)
+         public void TestSearchProjectName(string pname)
         {
             List<Project> results = pc.search_by_project_name(pname);
             Assert.AreNotEqual(0, results.ToArray().Length);
@@ -46,7 +46,7 @@ namespace Testing
          * Success: Something was found.
          */
          [TestMethod]
-         public void Test_Search_Project_Status(bool status)
+         public void TestSearchProjectStatus(bool status)
         {
             List<Project> results = pc.search_by_project_status(status);
             Assert.AreNotEqual(0, results.ToArray().Length);
@@ -58,7 +58,7 @@ namespace Testing
          * Success: Something was found. 
          */
          [TestMethod]
-        public void Test_Search_Project_Artisan(Artisan art)
+        public void TestSearchProjectArtisan(Artisan art)
         {
             List<Project> results = pc.search_by_project_user(art);
             Assert.AreNotEqual(0, results.ToArray().Length);
@@ -70,7 +70,7 @@ namespace Testing
          * Success: Something was found. 
          */
         [TestMethod]
-        public void Test_Search_Project_Client(Client client)
+        public void TestSearchProjectClient(Client client)
         {
             List<Project> results = pc.search_by_project_user(client);
             Assert.AreNotEqual(0, results.ToArray().Length);
@@ -82,7 +82,7 @@ namespace Testing
          * Success: Something was found. 
          */
         [TestMethod]
-        public void Test_Search_Project_Client_Address(string address)
+        public void TestSearchProjectClientAddress(string address)
         {
             List<Project> results = pc.search_by_project_address(address);
             Assert.AreNotEqual(0, results.ToArray().Length);

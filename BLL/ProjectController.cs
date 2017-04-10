@@ -4,39 +4,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using DAL;
 
 namespace BLL
 {
     public class ProjectController
     {
-        public List<Project> search_by_tag(string search_tag)
+        DBAccess dba = new DBAccess();
+        public List<Project> SearchByTag(string search_tag)
         {
-            throw new NotImplementedException();
+            return dba.SearchByTag(search_tag);
         }
 
-        public List<Project> search_by_address(string address)
+        public List<Project> SearchByProjectStatus(bool status)
         {
-            throw new NotImplementedException();
+            return dba.SearchByProjectStatus(status);
         }
 
-        public List<Project> search_by_project_name(string pname)
+        public List<Project> SearchByProjectUser(User user)
         {
-            throw new NotImplementedException();
+            if(user is Client)
+            {
+                return dba.SearchByProjectClient(user);
+            }
+            else
+            {
+                return dba.SearchByProjectArtisan(user);
+            }
         }
 
-        public List<Project> search_by_project_status(bool status)
+        public List<Project> SearchByProjectAddress(string address)
         {
-            throw new NotImplementedException();
+            return dba.SearchByProjectAddress(address);
         }
 
-        public List<Project> search_by_project_user(User user)
+        public List<Project> SearchByProjectName(string pname)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<Project> search_by_project_address(string address)
-        {
-            throw new NotImplementedException();
+            return dba.SearchByProjectName(pname);
         }
     }
 }

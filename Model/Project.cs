@@ -8,5 +8,10 @@ namespace Model
 {
     public class Project
     {
+
+        public Project(string id, List<string> tags, string description, User client, User artisan, string address)
+        {
+
+        }
     }
 }
