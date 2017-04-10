@@ -61,10 +61,15 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ProjectSearch.svc" />
     <Content Include="Service1.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IProjectSearch.cs" />
+    <Compile Include="ProjectSearch.svc.cs">
+      <DependentUpon>ProjectSearch.svc</DependentUpon>
+    </Compile>
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>
@@ -86,6 +91,10 @@
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{1a916dc1-d42f-4fb2-bc89-3fc9fe5e8fb0}</Project>
       <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{2c7e3ccf-934f-4155-ad57-079248802050}</Project>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
