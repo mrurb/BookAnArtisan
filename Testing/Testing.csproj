@@ -71,8 +71,8 @@
       <Project>{2c7e3ccf-934f-4155-ad57-079248802050}</Project>
       <Name>Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WCF\WCF.csproj">
-      <Project>{5e606b34-877f-4980-9a0e-f2ce40e680a8}</Project>
+    <ProjectReference Include="..\WCF2\WCF.csproj">
+      <Project>{c5eae54e-300a-4a27-bc39-8140a2ac9b0c}</Project>
       <Name>WCF</Name>
     </ProjectReference>
   </ItemGroup>
