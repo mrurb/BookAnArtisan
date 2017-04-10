@@ -66,10 +66,10 @@ namespace Testing
 
         [TestMethod]
         public void TestFail()
-        {
+        { 
             try
             {
-                TestFail();
+                Assert.IsTrue(false);
             }
             catch
             {
@@ -82,7 +82,7 @@ namespace Testing
         {
             try
             {
-                TestSucceed();
+                Assert.IsTrue(true);
             }
             catch
             {
