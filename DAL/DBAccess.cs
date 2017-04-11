@@ -56,8 +56,7 @@ namespace DAL
 					}
                     foreach (Project p in results)
                     {
-                        List<string> tags = GetTagsForProject(p.id);
-                        p.tags = tags;
+                        p.tags = GetTagsForProject(p.id);
                     }
                 }
 				catch (Exception)

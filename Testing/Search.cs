@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BLL;
 using Model;
-
+using WCF;
 namespace Testing
 {
     /*
@@ -15,17 +15,22 @@ namespace Testing
     [TestClass]
     public class Search
     {
-        ProjectController pc = new ProjectController();
+        ProjectSearch ps = new ProjectSearch();
         string input_tag = "Kitchen"; // TODO : add stuff here
+        string pname = "asdasdadasdasdsad";
+        bool status = true;
+        User art = new User("1", "Laurids Andersen", "lauridsandersen2013@gmail.com", "12345678", "1234", "østre allé 58");
+        string address = "østre allé 58";
         /*
          * Test: Only input tags. Tested with simple tag initially. Created (10/04-17)
          * Success: Something was found.
          */
         [TestMethod]
-        public void TestSearchByTag(string input_tag)
+        public void TestSearchByTag()
         {
-            List<Project> results = pc.SearchByTag(input_tag);
-            Assert.AreNotEqual(0, results.ToArray().Length);
+            IList<Project> results = ps.SearchByTag(input_tag);
+            List<Project> resultsList = (List<Project>)results;
+            Assert.AreNotEqual(0, resultsList.ToArray().Length);
         }
 
         /*
@@ -34,10 +39,11 @@ namespace Testing
          * Success: Something was found.
          */
          [TestMethod]
-         public void TestSearchProjectName(string pname)
+         public void TestSearchProjectName()
         {
-            List<Project> results = pc.SearchByProjectName(pname);
-            Assert.AreNotEqual(0, results.ToArray().Length);
+            IList<Project> results = ps.SearchByProjectName(pname);
+            List<Project> resultsList = (List<Project>)results;
+            Assert.AreNotEqual(0, resultsList.ToArray().Length);
         }
 
         /*
@@ -46,10 +52,11 @@ namespace Testing
          * Success: Something was found.
          */
          [TestMethod]
-         public void TestSearchProjectStatus(bool status)
+         public void TestSearchProjectStatus()
         {
-            List<Project> results = pc.SearchByProjectStatus(status);
-            Assert.AreNotEqual(0, results.ToArray().Length);
+            IList<Project> results = ps.SearchByProjectStatus(status);
+            List<Project> resultsList = (List<Project>)results;
+            Assert.AreNotEqual(0, resultsList.ToArray().Length);
         }
 
         /*
@@ -58,10 +65,11 @@ namespace Testing
          * Success: Something was found. 
          */
          [TestMethod]
-        public void TestSearchProjectUser(User art)
+        public void TestSearchProjectUser()
         {
-            List<Project> results = pc.SearchByProjectUser(art);
-            Assert.AreNotEqual(0, results.ToArray().Length);
+            IList<Project> results = ps.SearchByProjectUser(art);
+            List<Project> resultsList = (List<Project>)results;
+            Assert.AreNotEqual(0, resultsList.ToArray().Length);
         }
 
         /*
@@ -70,10 +78,11 @@ namespace Testing
          * Success: Something was found. 
          */
         [TestMethod]
-        public void TestSearchProjectClientAddress(string address)
+        public void TestSearchProjectClientAddress()
         {
-            List<Project> results = pc.SearchByProjectAddress(address);
-            Assert.AreNotEqual(0, results.ToArray().Length);
+            IList<Project> results = ps.SearchByProjectAddress(address);
+            List<Project> resultsList = (List<Project>)results;
+            Assert.AreNotEqual(0, resultsList.ToArray().Length);
         }
     }
 }
