@@ -5,14 +5,43 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace DAL
 {
 	public class DBAccess
 	{
+        string connectionstring = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
+        //chapter 21        TODO API ????
 
-		//chapter 21
+        public bool DBConnectionTest()
+        {
+            string query = "SELECT * FROM dbo.AspNetUsers WHERE EmailConfirmed = @id";
+            string result = "";
 
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand sqlcommand = new SqlCommand(query, con))
+                {
+                    try
+                    {
+                        sqlcommand.Parameters.Add(new SqlParameter("@id", false));
+                        con.Open();
+                        SqlDataReader reader = sqlcommand.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            result = reader.GetValue(1).ToString();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception();
+                    }
+                }
+            }
+            return true;
+        }
+        
 		public List<Project> SearchByProjectUser(User user)
 		{
 			throw new NotImplementedException();
@@ -23,109 +52,53 @@ namespace DAL
 			throw new NotImplementedException();
 		}
 
-		public List<Project> SearchByProjectAddress(string address)
+		public List<Project> SearchByProjectAddress(string searchparam) // hvor meget behøver vi at hente ud? overvej 1-* relationer. may need multiple sql requests
 		{
 			List<Project> results = new List<Project>();
             List<User> artisans = new List<User>();
             User client = null;
+            string query = "SELECT * FROM projects JOIN Project_status ON Projects.Project_status_ID=project_status.ID JOIN Project_tags ON Project_tags.Project_ID = Projects.ID JOIN Tags ON Tags.ID = Project_tags.Tag_ID JOIN Project_users ON Project_users.Project_ID = Projects.ID JOIN Users ON Project_users.Users_ID = Users.ID WHERE	street_name LIKE '%@address%' OR name LIKE '%@name%' OR project_status.name LIKE '%@status%';";
 
-            string query = "SELECT * FROM projects WHERE address = @address";
-			SqlParameter sqlparams = new SqlParameter("@address", System.Data.SqlDbType.NVarChar);
-			sqlparams.Value = address;
-			using (SqlConnection con = new SqlConnection("CONNECTIONSTRING GOES HERE"))                     // TODO fix (find in config)
-			{
-				SqlCommand sqlcmd = new SqlCommand(query, con);
-				try
-				{
-					SqlDataReader datareader = sqlcmd.ExecuteReader();
-					while (datareader.Read())
-					{
-                        List<User> users = GetUserForProject((string)datareader["client"], (string)datareader["artisan"]);
-                        foreach (User user in users)
-                        {
-                            if(user.companyname != null)
-                            {
-                                artisans.Add(user);
-                            }
-                            else
-                            {
-                                client = user;
-                            }
-                        }
-						results.Add(new Project((string)datareader["id"], null, (string)datareader["description"], client, artisans, (string)datareader["address"]));
-					}
-                    foreach (Project p in results)
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand sqlcommand = new SqlCommand(query, con))
+                {
+                    try
                     {
-                        p.tags = GetTagsForProject(p.id);
+                        sqlcommand.Parameters.Add(new SqlParameter("@address", searchparam));
+                        sqlcommand.Parameters.Add(new SqlParameter("@name", searchparam));
+                        sqlcommand.Parameters.Add(new SqlParameter("@status", searchparam));
+                        con.Open();
+                        SqlDataReader datareader = sqlcommand.ExecuteReader();
+                        while (datareader.Read())
+                        {
+                            //make user modals and loop over them // ud a while loop????? hmm nej måske ikke.. hvordan ser mine rækker ud? check joins .......
+                            client = new User(datareader["Users.ID"].ToString(), datareader["Users.First_Name"].ToString(), datareader["Users.Last_Name"].ToString(), datareader["Users.Email"].ToString(), datareader["Users.Password"].ToString(), datareader["Users.Phone"].ToString(), datareader["Users.Address"].ToString());
+                            // are you a client or an artisan??? ^
+                            //create the artisans also.... v
+                            foreach (User user in users)        //need this?
+                            {
+                                if (user.companyname != null)
+                                {
+                                    artisans.Add(user);
+                                }
+                                else
+                                {
+                                    client = user;
+                                }
+                            }
+                            results.Add(new Project((string)datareader["id"], null, (string)datareader["description"], client, artisans, (string)datareader["address"]));
+                            results = null;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception();
                     }
                 }
-				catch (Exception)
-				{
-					throw new Exception();
-				}
-			}
+            }
 			return results;
 		}
-
-        private List<string> GetTagsForProject(string id)
-        {
-            List<string> tags = new List<string>();
-            string query = "SELECT * FROM tags WHERE projectid = @id";                                          // check name "projectid"
-            SqlParameter sqlparamsclient = new SqlParameter("@id", System.Data.SqlDbType.NVarChar);
-            sqlparamsclient.Value = id;
-            using(SqlConnection con = new SqlConnection("CONNECTION STRING GOES HERE"))                         // TODO FIX
-            {
-                SqlCommand sqlcommand = new SqlCommand(query, con);
-                try
-                {
-                    SqlDataReader reader = sqlcommand.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        tags.Add((string)reader["name"]);
-                    }
-                }
-                catch (Exception)
-                {
-                    throw new Exception();
-                }
-            }
-
-            return tags;
-        }
-
-        private List<User> GetUserForProject(string clientid, string artisanid)
-        {
-            List<User> users = new List<User>();
-            string query = "SELECT * FROM users WHERE id = @clientid OR id = @artisanid";
-            SqlParameter sqlparamsclient = new SqlParameter("@clientid", System.Data.SqlDbType.NVarChar);
-            sqlparamsclient.Value = clientid;
-            SqlParameter sqlparamsartisan = new SqlParameter("@artisanid", System.Data.SqlDbType.NVarChar);
-            sqlparamsartisan.Value = artisanid;
-            using(SqlConnection con = new SqlConnection("CONNECTION STRING GOES HERE"))                             // TODO FIX
-            {
-                SqlCommand sqlcommand = new SqlCommand(query, con);
-                try
-                {
-                    SqlDataReader reader = sqlcommand.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        User u = new User((string)reader["id"], (string)reader["name"], (string)reader["email"], (string)reader["password"], (string)reader["PhoneNumber"], (string)reader["address"]);
-                        users.Add(u);
-                        if (reader["CompanyName"] != null)
-                        {
-                            u.companyname = (string)reader["CompanyName"];
-                            u.profession = (string)reader["profession"];
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    throw new Exception();
-                }
-            }
-        
-            return users;
-        }
 
         public List<Project> SearchByProjectStatus(bool status)
 		{

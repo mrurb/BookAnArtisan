@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BLL;
 using Model;
+using DAL;
 using WCF;
 namespace Testing
 {
@@ -21,6 +22,18 @@ namespace Testing
         bool status = true;
         User art = new User("1", "Laurids Andersen", "lauridsandersen2013@gmail.com", "12345678", "1234", "østre allé 58");
         string address = "østre allé 58";
+
+        /*
+         * Created (10/04-17)
+         * Test of connection to database. Success if there is a connection.
+         */
+        [TestMethod]
+        public void TestDBCon()
+        {
+            DBAccess dba = new DBAccess();
+            bool worked = dba.DBConnectionTest();
+            Assert.AreEqual(true, worked);
+        }
         /*
          * Test: Only input tags. Tested with simple tag initially. Created (10/04-17)
          * Success: Something was found.
