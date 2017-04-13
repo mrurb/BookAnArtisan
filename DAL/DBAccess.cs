@@ -52,13 +52,23 @@ namespace DAL
 			throw new NotImplementedException();
 		}
 
-		public List<Project> SearchByProjectAddress(string searchparam) // hvor meget behøver vi at hente ud? overvej 1-* relationer. may need multiple sql requests
+
+        /*
+         * A function that searches through projects and tries to find a project that
+         * matches based on either project name, project address or status of the project
+         * Note: the returned projects is a "quick view" only! 
+         * There are no tags, artisans or clients appended!
+         * @params takes a string as a search parameter
+         * @return list of projects
+         * @throws generic exception.
+         */
+		public List<Project> SearchByProjectAddress(string searchparam)
 		{
 			List<Project> results = new List<Project>();
-            List<User> artisans = new List<User>();
+            List<User> artisans = null;
             User client = null;
-            string query = "SELECT * FROM projects JOIN Project_status ON Projects.Project_status_ID=project_status.ID JOIN Project_tags ON Project_tags.Project_ID = Projects.ID JOIN Tags ON Tags.ID = Project_tags.Tag_ID JOIN Project_users ON Project_users.Project_ID = Projects.ID JOIN Users ON Project_users.Users_ID = Users.ID WHERE	street_name LIKE '%@address%' OR name LIKE '%@name%' OR project_status.name LIKE '%@status%';";
-
+            List<string> tags = null;
+            string query = "SELECT * FROM projects JOIN Project_status ON Projects.Project_status_ID=project_status.ID WHERE street_name LIKE '%asd%' OR projects.name LIKE '%myproject%' OR project_status.name LIKE '%done%';";
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 using (SqlCommand sqlcommand = new SqlCommand(query, con))
@@ -72,23 +82,9 @@ namespace DAL
                         SqlDataReader datareader = sqlcommand.ExecuteReader();
                         while (datareader.Read())
                         {
-                            //make user modals and loop over them // ud a while loop????? hmm nej måske ikke.. hvordan ser mine rækker ud? check joins .......
-                            client = new User(datareader["Users.ID"].ToString(), datareader["Users.First_Name"].ToString(), datareader["Users.Last_Name"].ToString(), datareader["Users.Email"].ToString(), datareader["Users.Password"].ToString(), datareader["Users.Phone"].ToString(), datareader["Users.Address"].ToString());
-                            // are you a client or an artisan??? ^
-                            //create the artisans also.... v
-                            foreach (User user in users)        //need this?
-                            {
-                                if (user.companyname != null)
-                                {
-                                    artisans.Add(user);
-                                }
-                                else
-                                {
-                                    client = user;
-                                }
-                            }
-                            results.Add(new Project((string)datareader["id"], null, (string)datareader["description"], client, artisans, (string)datareader["address"]));
-                            results = null;
+                            Project p = new Project(datareader["id"].ToString(), tags, datareader["Project_description"].ToString(), client, artisans, datareader["street_name"].ToString());
+                            int i;
+                            results.Add(p);
                         }
                     }
                     catch (Exception)
@@ -98,16 +94,6 @@ namespace DAL
                 }
             }
 			return results;
-		}
-
-        public List<Project> SearchByProjectStatus(bool status)
-		{
-			throw new NotImplementedException();
-		}
-
-		public List<Project> SearchByProjectName(string pname)
-		{
-			throw new NotImplementedException();
 		}
 	}
 }

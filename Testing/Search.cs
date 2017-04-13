@@ -18,10 +18,9 @@ namespace Testing
     {
         ProjectSearch ps = new ProjectSearch();
         string input_tag = "Kitchen"; // TODO : add stuff here
-        string pname = "asdasdadasdasdsad";
-        bool status = true;
-        User art = new User("1", "Laurids Andersen", "lauridsandersen2013@gmail.com", "12345678", "1234", "østre allé 58");
-        string address = "østre allé 58";
+        string pname = "stuff";
+        User art = new User("1", "Laurids", "Andersen", "lauridsandersen2013@gmail.com", "12345678", "1234", "østre allé 58");
+        string address = "stuff 21";
 
         /*
          * Created (10/04-17)
@@ -42,32 +41,6 @@ namespace Testing
         public void TestSearchByTag()
         {
             IList<Project> results = ps.SearchByTag(input_tag);
-            List<Project> resultsList = (List<Project>)results;
-            Assert.AreNotEqual(0, resultsList.ToArray().Length);
-        }
-
-        /*
-         * Created (10/04-17) 
-         * Test: only project name. Tested with standard input name initially.
-         * Success: Something was found.
-         */
-         [TestMethod]
-         public void TestSearchProjectName()
-        {
-            IList<Project> results = ps.SearchByProjectName(pname);
-            List<Project> resultsList = (List<Project>)results;
-            Assert.AreNotEqual(0, resultsList.ToArray().Length);
-        }
-
-        /*
-         * Created (10/04-17)
-         * Test: only project status
-         * Success: Something was found.
-         */
-         [TestMethod]
-         public void TestSearchProjectStatus()
-        {
-            IList<Project> results = ps.SearchByProjectStatus(status);
             List<Project> resultsList = (List<Project>)results;
             Assert.AreNotEqual(0, resultsList.ToArray().Length);
         }
