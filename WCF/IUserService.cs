@@ -13,7 +13,7 @@ namespace WCF
     public interface IUserService
     {
         [OperationContract]
-        User CreateUser();
+        User CreateUser(User user);
 
         [OperationContract]
         User GetUser(string id);

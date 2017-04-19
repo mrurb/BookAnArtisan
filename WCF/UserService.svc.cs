@@ -12,9 +12,9 @@ namespace WCF
     // NOTE: In order to launch WCF Test Client for testing this service, please select UserService.svc or UserService.svc.cs at the Solution Explorer and start debugging.
     public class UserService : IUserService
     {
-        public User CreateUser()
+        public User CreateUser(User user)
         {
-            return new User { Email = "kdawkdwk@akdkwa.od"};
+            return user;
         }
 
         public Boolean DeleteUser(string id)

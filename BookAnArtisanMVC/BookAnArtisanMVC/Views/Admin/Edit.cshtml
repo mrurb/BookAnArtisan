@@ -1,10 +1,10 @@
 ﻿@model BookAnArtisanMVC.UserServiceReference.User
 
 @{
-    ViewBag.Title = "EditUser";
+    ViewBag.Title = "Edit";
 }
 
-<h2>EditUser</h2>
+<h2>Edit</h2>
 
 
 @using (Html.BeginForm())
@@ -46,6 +46,8 @@
                 @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        @Html.HiddenFor(model => model.ID)
 
         <div class="form-group">
             @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })

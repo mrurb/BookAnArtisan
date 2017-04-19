@@ -33,5 +33,11 @@ namespace BookAnArtisanMVC.Controllers
             uCl.DeleteUser(id);
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult Create()
+        {
+            return View(uCl.CreateUser());
+        }
     }
 }
