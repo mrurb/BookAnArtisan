@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace BookAnArtisanMVC.Controllers
 {
 
-    public class AdminController : Controller
+    public class UsersController : Controller
     {
         UserServiceReference.UserServiceClient uCl = new UserServiceReference.UserServiceClient();
 
@@ -16,16 +16,17 @@ namespace BookAnArtisanMVC.Controllers
             return View(uCl.GetUsers());
         }
 
-        public ActionResult EditUser(string id)
+        public ActionResult Edit(string id)
         {
             return View(uCl.GetUser(id));
         }
 
-        public ActionResult DeleteUser(string id)
+        public ActionResult Delete(string id)
         {
             return View(uCl.GetUser(id));
         }
 
+        
         [HttpPost, ActionName("DeleteUser")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
@@ -37,7 +38,31 @@ namespace BookAnArtisanMVC.Controllers
 
         public ActionResult Create()
         {
-            return View(uCl.CreateUser());
+            
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(UserServiceReference.User user)
+        {
+            if(ModelState.IsValid)
+            {
+                uCl.CreateUser(user);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(user);
+            }
+
+            
+        }
+
+
+        public ActionResult Details(string id)
+        {
+            return View(uCl.GetUser(id));
         }
     }
 }

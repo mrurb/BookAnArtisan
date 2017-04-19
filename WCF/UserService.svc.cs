@@ -24,20 +24,20 @@ namespace WCF
 
         public User GetUser(string id)
         {
-            return new User { Email = "bollocks@bs.dhw"};
+            return new User { ID = "ikdaokodk209k2", Email = "bollocks@bs.dhw" };
         }
 
         public List<User> GetUsers()
         {
             List<User> List = new List<User>();
-            List.Add(new User { ID= "akdpawkdaokdoakdw2321", Email = "fucking@whatever.ev"});
-            List.Add(new User { ID="kaoowdk2ke2ojea2", Email = "kwdakdwka" });
+            List.Add(new User { ID = "akdpawkdaokdoakdw2321", Email = "fucking@whatever.ev" });
+            List.Add(new User { ID = "kaoowdk2ke2ojea2", Email = "kwdakdwka" });
             return List;
         }
 
         public User UpdateUser(User user)
         {
-            return new User { Email = "adadaw"};
+            return new User { Email = "adadaw" };
         }
     }
 }

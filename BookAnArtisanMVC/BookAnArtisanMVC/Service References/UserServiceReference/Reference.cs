@@ -159,10 +159,10 @@ namespace BookAnArtisanMVC.UserServiceReference {
     public interface IUserService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/CreateUser", ReplyAction="http://tempuri.org/IUserService/CreateUserResponse")]
-        BookAnArtisanMVC.UserServiceReference.User CreateUser();
+        BookAnArtisanMVC.UserServiceReference.User CreateUser(BookAnArtisanMVC.UserServiceReference.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/CreateUser", ReplyAction="http://tempuri.org/IUserService/CreateUserResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> CreateUserAsync();
+        System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> CreateUserAsync(BookAnArtisanMVC.UserServiceReference.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUser", ReplyAction="http://tempuri.org/IUserService/GetUserResponse")]
         BookAnArtisanMVC.UserServiceReference.User GetUser(string id);
@@ -216,12 +216,12 @@ namespace BookAnArtisanMVC.UserServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public BookAnArtisanMVC.UserServiceReference.User CreateUser() {
-            return base.Channel.CreateUser();
+        public BookAnArtisanMVC.UserServiceReference.User CreateUser(BookAnArtisanMVC.UserServiceReference.User user) {
+            return base.Channel.CreateUser(user);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> CreateUserAsync() {
-            return base.Channel.CreateUserAsync();
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> CreateUserAsync(BookAnArtisanMVC.UserServiceReference.User user) {
+            return base.Channel.CreateUserAsync(user);
         }
         
         public BookAnArtisanMVC.UserServiceReference.User GetUser(string id) {
