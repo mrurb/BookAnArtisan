@@ -15,8 +15,8 @@ namespace DAL
         public Project Create(Project t)
         {
             // We should work out a more centralized way to obtain a connection to the database.
-            string connectionString = "Data Source=aur.dk; Database=apacta; User Id=datamatikerne; Password=A6stvHkW;";
-            //string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
+            //string connectionString = "Data Source=aur.dk; Database=apacta; User Id=datamatikerne; Password=A6stvHkW;";
+            string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
 
             string sql = "INSERT INTO Projects VALUES(@Name, @Created_by_ID, @Contact_ID, @Project_status_ID, @Project_description, @Street_Name, @Start_time, @Created, @Modified, @Deleted) SELECT SCOPE_IDENTITY()";
 
@@ -44,15 +44,38 @@ namespace DAL
                     connection.Open();
                     // Add exceptionhandling
                     t.ID = Convert.ToInt32(command.ExecuteScalar());
+                    
                 }   
             }
 
             return t;
         }
 
-        public Project Delete(int id)
+        public Project Delete(Project t)
         {
-            throw new NotImplementedException();
+            // We should work out a more centralized way to obtain a connection to the database.
+            string connectionString = "Data Source=aur.dk; Database=apacta; User Id=datamatikerne; Password=A6stvHkW;";
+            //string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
+            // For reasons
+            int bitRepresentationOfBool = Convert.ToInt32(true);
+
+            string sql = "UPDATE Projects SET Deleted = @toDelete WHERE id = @id";
+
+            SqlParameter boolParameter = new SqlParameter { ParameterName = "@toDelete", Value = bitRepresentationOfBool, SqlDbType = SqlDbType.Bit };
+            SqlParameter idParameter = new SqlParameter { ParameterName = "@id", Value = t.ID, SqlDbType = SqlDbType.Int };
+
+            using(SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using(SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.Add(boolParameter);
+                    command.Parameters.Add(idParameter);
+                    command.Connection.Open();
+                    t.Deleted = 0 < command.ExecuteNonQuery();
+                }
+            }
+
+            return t;
         }
 
         public Project Read(int id)

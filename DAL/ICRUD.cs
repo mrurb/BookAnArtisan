@@ -12,6 +12,6 @@ namespace DAL
         T Create(T t);
         T Read(int id);
         T Update(T t);
-        T Delete(int id);
+        T Delete(T t);
     }
 }
