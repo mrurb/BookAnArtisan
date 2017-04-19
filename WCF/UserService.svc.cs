@@ -17,7 +17,7 @@ namespace WCF
             return new User { Email = "kdawkdwk@akdkwa.od"};
         }
 
-        public Boolean DeleteUser(User user)
+        public Boolean DeleteUser(int id)
         {
             return true;
         }

@@ -26,7 +26,7 @@ namespace WCF
         List<User> GetUsers();
 
         [OperationContract]
-        Boolean DeleteUser(User user);
+        Boolean DeleteUser(int id);
 
     }
 }
