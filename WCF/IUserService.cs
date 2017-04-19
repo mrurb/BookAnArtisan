@@ -16,7 +16,7 @@ namespace WCF
         User CreateUser();
 
         [OperationContract]
-        User GetUser(int ID);
+        User GetUser(string id);
 
         [OperationContract]
         User UpdateUser(User user);
@@ -26,7 +26,7 @@ namespace WCF
         List<User> GetUsers();
 
         [OperationContract]
-        Boolean DeleteUser(int id);
+        Boolean DeleteUser(string id);
 
     }
 }

@@ -16,15 +16,22 @@ namespace BookAnArtisanMVC.Controllers
             return View(uCl.GetUsers());
         }
 
-        public ActionResult EditUser(int id)
+        public ActionResult EditUser(string id)
         {
             return View(uCl.GetUser(id));
         }
 
-        public ActionResult DeleteUser(int id)
+        public ActionResult DeleteUser(string id)
         {
-            return View(uCl.DeleteUser(id));
+            return View(uCl.GetUser(id));
         }
 
+        [HttpPost, ActionName("DeleteUser")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            uCl.DeleteUser(id);
+            return RedirectToAction("Index");
+        }
     }
 }

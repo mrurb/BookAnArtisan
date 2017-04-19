@@ -17,12 +17,12 @@ namespace WCF
             return new User { Email = "kdawkdwk@akdkwa.od"};
         }
 
-        public Boolean DeleteUser(int id)
+        public Boolean DeleteUser(string id)
         {
             return true;
         }
 
-        public User GetUser(int ID)
+        public User GetUser(string id)
         {
             return new User { Email = "bollocks@bs.dhw"};
         }
@@ -30,8 +30,8 @@ namespace WCF
         public List<User> GetUsers()
         {
             List<User> List = new List<User>();
-            List.Add(new User { Email = "fucking@whatever.ev"});
-            List.Add(new User { Email = "kwdakdwka" });
+            List.Add(new User { ID= "akdpawkdaokdoakdw2321", Email = "fucking@whatever.ev"});
+            List.Add(new User { ID="kaoowdk2ke2ojea2", Email = "kwdakdwka" });
             return List;
         }
 

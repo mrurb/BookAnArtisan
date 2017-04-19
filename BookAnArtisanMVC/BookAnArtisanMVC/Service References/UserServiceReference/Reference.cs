@@ -35,6 +35,9 @@ namespace BookAnArtisanMVC.UserServiceReference {
         private string FirstNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string LastNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -103,6 +106,19 @@ namespace BookAnArtisanMVC.UserServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDField, value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string LastName {
             get {
                 return this.LastNameField;
@@ -149,10 +165,10 @@ namespace BookAnArtisanMVC.UserServiceReference {
         System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> CreateUserAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUser", ReplyAction="http://tempuri.org/IUserService/GetUserResponse")]
-        BookAnArtisanMVC.UserServiceReference.User GetUser(int ID);
+        BookAnArtisanMVC.UserServiceReference.User GetUser(string id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUser", ReplyAction="http://tempuri.org/IUserService/GetUserResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> GetUserAsync(int ID);
+        System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> GetUserAsync(string id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
         BookAnArtisanMVC.UserServiceReference.User UpdateUser(BookAnArtisanMVC.UserServiceReference.User user);
@@ -167,10 +183,10 @@ namespace BookAnArtisanMVC.UserServiceReference {
         System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User[]> GetUsersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
-        bool DeleteUser(int id);
+        bool DeleteUser(string id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
-        System.Threading.Tasks.Task<bool> DeleteUserAsync(int id);
+        System.Threading.Tasks.Task<bool> DeleteUserAsync(string id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -208,12 +224,12 @@ namespace BookAnArtisanMVC.UserServiceReference {
             return base.Channel.CreateUserAsync();
         }
         
-        public BookAnArtisanMVC.UserServiceReference.User GetUser(int ID) {
-            return base.Channel.GetUser(ID);
+        public BookAnArtisanMVC.UserServiceReference.User GetUser(string id) {
+            return base.Channel.GetUser(id);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> GetUserAsync(int ID) {
-            return base.Channel.GetUserAsync(ID);
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> GetUserAsync(string id) {
+            return base.Channel.GetUserAsync(id);
         }
         
         public BookAnArtisanMVC.UserServiceReference.User UpdateUser(BookAnArtisanMVC.UserServiceReference.User user) {
@@ -232,11 +248,11 @@ namespace BookAnArtisanMVC.UserServiceReference {
             return base.Channel.GetUsersAsync();
         }
         
-        public bool DeleteUser(int id) {
+        public bool DeleteUser(string id) {
             return base.Channel.DeleteUser(id);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteUserAsync(int id) {
+        public System.Threading.Tasks.Task<bool> DeleteUserAsync(string id) {
             return base.Channel.DeleteUserAsync(id);
         }
     }
