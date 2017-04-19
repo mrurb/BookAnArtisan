@@ -167,10 +167,10 @@ namespace BookAnArtisanMVC.UserServiceReference {
         System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User[]> GetUsersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
-        bool DeleteUser(BookAnArtisanMVC.UserServiceReference.User user);
+        bool DeleteUser(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
-        System.Threading.Tasks.Task<bool> DeleteUserAsync(BookAnArtisanMVC.UserServiceReference.User user);
+        System.Threading.Tasks.Task<bool> DeleteUserAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -232,12 +232,12 @@ namespace BookAnArtisanMVC.UserServiceReference {
             return base.Channel.GetUsersAsync();
         }
         
-        public bool DeleteUser(BookAnArtisanMVC.UserServiceReference.User user) {
-            return base.Channel.DeleteUser(user);
+        public bool DeleteUser(int id) {
+            return base.Channel.DeleteUser(id);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteUserAsync(BookAnArtisanMVC.UserServiceReference.User user) {
-            return base.Channel.DeleteUserAsync(user);
+        public System.Threading.Tasks.Task<bool> DeleteUserAsync(int id) {
+            return base.Channel.DeleteUserAsync(id);
         }
     }
 }

@@ -18,8 +18,12 @@ namespace BookAnArtisanMVC.Controllers
 
         public ActionResult EditUser(int id)
         {
-            
             return View(uCl.GetUser(id));
+        }
+
+        public ActionResult DeleteUser(int id)
+        {
+            return View(uCl.DeleteUser(id));
         }
 
     }
