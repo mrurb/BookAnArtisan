@@ -115,7 +115,7 @@ namespace DAL
                 {
                     command.Parameters.AddRange(arrayOfParameters);
                     command.Connection.Open();
-                    // Add exceptionhandling
+                    // Add exceptionhandling 
                     command.ExecuteNonQuery();
                 }
             }
