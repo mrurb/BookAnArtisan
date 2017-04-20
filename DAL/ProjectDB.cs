@@ -12,7 +12,7 @@ namespace DAL
 {
     public class ProjectDB : IDataAccess<Project>
     {
-        public Project Create(Project t)
+        public Project Create(Project project)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
 
@@ -20,16 +20,16 @@ namespace DAL
 
             SqlParameter[] arrayOfParameters =
             {
-                new SqlParameter { ParameterName = "@Name", Value = t.Name, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Created_by_ID", Value = t.Created_by_ID, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Contact_ID", Value = t.Contact_ID, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Project_status_ID", Value = t.Project_status_ID, SqlDbType = SqlDbType.Int },
-                new SqlParameter { ParameterName = "@Project_description", Value = t.Project_description, SqlDbType = SqlDbType.Text },
-                new SqlParameter { ParameterName = "@Street_Name", Value = t.Street_Name, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Start_time", Value = t.Start_time, SqlDbType = SqlDbType.DateTime },
-                new SqlParameter { ParameterName = "@Created", Value = t.Created, SqlDbType = SqlDbType.DateTime },
-                new SqlParameter { ParameterName = "@Modified", Value = t.Modified, SqlDbType = SqlDbType.DateTime },
-                new SqlParameter { ParameterName = "@Deleted", Value = Convert.ToInt32(t.Deleted), SqlDbType = SqlDbType.Bit }
+                new SqlParameter { ParameterName = "@Name", Value = project.Name, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Created_by_ID", Value = project.Created_by_ID, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Contact_ID", Value = project.Contact_ID, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Project_status_ID", Value = project.Project_status_ID, SqlDbType = SqlDbType.Int },
+                new SqlParameter { ParameterName = "@Project_description", Value = project.Project_description, SqlDbType = SqlDbType.Text },
+                new SqlParameter { ParameterName = "@Street_Name", Value = project.Street_Name, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Start_time", Value = project.Start_time, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@Created", Value = project.Created, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@Modified", Value = project.Modified, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@Deleted", Value = Convert.ToInt32(project.Deleted), SqlDbType = SqlDbType.Bit }
             };
             
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -39,20 +39,19 @@ namespace DAL
                     command.Parameters.AddRange(arrayOfParameters);
                     command.Connection.Open();
                     // Add exceptionhandling
-                    t.ID = Convert.ToInt32(command.ExecuteScalar());
-                    
+                    project.Id = Convert.ToInt32(command.ExecuteScalar());
                 }   
             }
-            return t;
+            return project;
         }
 
         public Project Read(Project project)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
 
-            string sql = "SELECT * FROM Projects WHERE ID = @id";
+            string sql = "SELECT * FROM Projects WHERE ID = @Id";
 
-            SqlParameter idParameter = new SqlParameter { ParameterName = "@id", SqlValue = project.ID, SqlDbType = SqlDbType.Int };
+            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = project.Id, SqlDbType = SqlDbType.Int };
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -65,19 +64,31 @@ namespace DAL
                     {
                         if (reader.HasRows)
                         {
+                            int IdCol = reader.GetOrdinal("ID");
+                            int NameCol = reader.GetOrdinal("Name");
+                            int Created_by_IDCol = reader.GetOrdinal("Created_by_ID");
+                            int Contact_IDCol = reader.GetOrdinal("Contact_ID");
+                            int Project_status_IDCol = reader.GetOrdinal("Project_status_ID");
+                            int Project_DescriptionCol = reader.GetOrdinal("Project_description");
+                            int Street_NameCol = reader.GetOrdinal("Street_Name");
+                            int Start_timeCol = reader.GetOrdinal("Start_time");
+                            int CreatedCol = reader.GetOrdinal("Created");
+                            int ModifiedCol = reader.GetOrdinal("Modified");
+                            int DeletedCol = reader.GetOrdinal("Deleted");
+
                             if (reader.Read())
                             {
-                                project.ID = reader.GetInt32(reader.GetOrdinal("Id"));
-                                project.Name = reader.GetString(reader.GetOrdinal("Name"));
-                                project.Created_by_ID = reader.GetString(reader.GetOrdinal("Created_by_ID"));
-                                project.Contact_ID = reader.GetString(reader.GetOrdinal("Contact_ID"));
-                                project.Project_status_ID = reader.GetInt32(reader.GetOrdinal("Project_status_ID"));
-                                project.Project_description = reader.GetString(reader.GetOrdinal("Project_description"));
-                                project.Street_Name = reader.GetString(reader.GetOrdinal("Street_Name"));
-                                project.Start_time = reader.GetDateTime(reader.GetOrdinal("Start_time"));
-                                project.Created = reader.GetDateTime(reader.GetOrdinal("Created"));
-                                project.Modified = reader.GetDateTime(reader.GetOrdinal("Modified"));
-                                project.Deleted = reader.GetBoolean(reader.GetOrdinal("Deleted"));
+                                project.Id = GetDataSafe<int>(reader, IdCol, reader.GetInt32);
+                                project.Name = GetDataSafe<string>(reader, NameCol, reader.GetString);
+                                project.Created_by_ID = GetDataSafe<string>(reader, Created_by_IDCol, reader.GetString);
+                                project.Contact_ID = GetDataSafe<string>(reader, Contact_IDCol, reader.GetString);
+                                project.Project_status_ID = GetDataSafe<int>(reader, Project_status_IDCol, reader.GetInt32);
+                                project.Project_description = GetDataSafe<string>(reader, Project_DescriptionCol, reader.GetString);
+                                project.Street_Name = GetDataSafe<string>(reader, Street_NameCol, reader.GetString);
+                                project.Start_time = GetDataSafe<DateTime>(reader, Start_timeCol, reader.GetDateTime);
+                                project.Created = GetDataSafe<DateTime>(reader, CreatedCol, reader.GetDateTime);
+                                project.Modified = GetDataSafe<DateTime>(reader, ModifiedCol, reader.GetDateTime);
+                                project.Deleted = GetDataSafe<bool>(reader, DeletedCol, reader.GetBoolean);
                             }
                         }
                     }    
@@ -86,25 +97,25 @@ namespace DAL
             return project;
         }
 
-        public Project Update(Project t)
+        public Project Update(Project project)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
 
-            string sql = "UPDATE Projects SET Name = @Name, Created_by_ID = @Created_by_ID, Contact_ID = @Contact_ID, Project_status_ID = @Project_status_ID, Project_description = @Project_description, Street_Name = @Street_Name, Start_time = @Start_time, Created = @Created, Modified = @Modified, Deleted = @Deleted WHERE id = @id";
+            string sql = "UPDATE Projects SET Name = @Name, Created_by_ID = @Created_by_ID, Contact_ID = @Contact_ID, Project_status_ID = @Project_status_ID, Project_description = @Project_description, Street_Name = @Street_Name, Start_time = @Start_time, Created = @Created, Modified = @Modified, Deleted = @Deleted WHERE ID = @Id";
 
             SqlParameter[] arrayOfParameters =
             {
-                new SqlParameter { ParameterName = "@id", SqlValue = t.ID, SqlDbType = SqlDbType.Int },
-                new SqlParameter { ParameterName = "@Name", SqlValue = t.Name, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Created_by_ID", SqlValue = t.Created_by_ID, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Contact_ID", SqlValue = t.Contact_ID, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Project_status_ID", SqlValue = t.Project_status_ID, SqlDbType = SqlDbType.Int },
-                new SqlParameter { ParameterName = "@Project_description", SqlValue = t.Project_description, SqlDbType = SqlDbType.Text },
-                new SqlParameter { ParameterName = "@Street_Name", SqlValue = t.Street_Name, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Start_time", SqlValue = t.Start_time, SqlDbType = SqlDbType.DateTime },
-                new SqlParameter { ParameterName = "@Created", SqlValue = t.Created, SqlDbType = SqlDbType.DateTime },
-                new SqlParameter { ParameterName = "@Modified", SqlValue = t.Modified, SqlDbType = SqlDbType.DateTime },
-                new SqlParameter { ParameterName = "@Deleted", SqlValue = Convert.ToInt32(t.Deleted), SqlDbType = SqlDbType.Bit }
+                new SqlParameter { ParameterName = "@Id", SqlValue = project.Id, SqlDbType = SqlDbType.Int },
+                new SqlParameter { ParameterName = "@Name", SqlValue = project.Name, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Created_by_ID", SqlValue = project.Created_by_ID, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Contact_ID", SqlValue = project.Contact_ID, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Project_status_ID", SqlValue = project.Project_status_ID, SqlDbType = SqlDbType.Int },
+                new SqlParameter { ParameterName = "@Project_description", SqlValue = project.Project_description, SqlDbType = SqlDbType.Text },
+                new SqlParameter { ParameterName = "@Street_Name", SqlValue = project.Street_Name, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Start_time", SqlValue = project.Start_time, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@Created", SqlValue = project.Created, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@Modified", SqlValue = project.Modified, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@Deleted", SqlValue = Convert.ToInt32(project.Deleted), SqlDbType = SqlDbType.Bit }
             };
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -117,21 +128,19 @@ namespace DAL
                     command.ExecuteNonQuery();
                 }
             }
-            return t;
+            return project;
         }
 
-        public Project Delete(Project t)
+        public Project Delete(Project project)
         {
-            // We should work out a more centralized way to obtain a connection to the database.
-            string connectionString = "Data Source=aur.dk; Database=apacta; User Id=datamatikerne; Password=A6stvHkW;";
-            //string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
-            // For reasons
+            string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
+
             int bitRepresentationOfBool = Convert.ToInt32(true);
 
-            string sql = "UPDATE Projects SET Deleted = @Deleted WHERE id = @id";
+            string sql = "UPDATE Projects SET Deleted = @Deleted WHERE ID = @Id";
 
             SqlParameter boolParameter = new SqlParameter { ParameterName = "@Deleted", SqlValue = bitRepresentationOfBool, SqlDbType = SqlDbType.Bit };
-            SqlParameter idParameter = new SqlParameter { ParameterName = "@id", SqlValue = t.ID, SqlDbType = SqlDbType.Int };
+            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = project.Id, SqlDbType = SqlDbType.Int };
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -140,11 +149,11 @@ namespace DAL
                     command.Parameters.Add(boolParameter);
                     command.Parameters.Add(idParameter);
                     command.Connection.Open();
-                    t.Deleted = 0 < command.ExecuteNonQuery();
+                    project.Deleted = 0 < command.ExecuteNonQuery();
                 }
             }
 
-            return t;
+            return project;
         }
 
         public List<Project> ReadAll()
@@ -165,21 +174,33 @@ namespace DAL
                     {
                         if (reader.HasRows)
                         {
+                            int IdCol = reader.GetOrdinal("ID");
+                            int NameCol = reader.GetOrdinal("Name");
+                            int Created_by_IDCol = reader.GetOrdinal("Created_by_ID");
+                            int Contact_IDCol = reader.GetOrdinal("Contact_ID");
+                            int Project_status_IDCol = reader.GetOrdinal("Project_status_ID");
+                            int Project_DescriptionCol = reader.GetOrdinal("Project_description");
+                            int Street_NameCol = reader.GetOrdinal("Street_Name");
+                            int Start_timeCol = reader.GetOrdinal("Start_time");
+                            int CreatedCol = reader.GetOrdinal("Created");
+                            int ModifiedCol = reader.GetOrdinal("Modified");
+                            int DeletedCol = reader.GetOrdinal("Deleted");
+
                             while (reader.Read())
                             {
                                 projects.Add(new Project
                                 {
-                                    ID = reader.GetInt32(reader.GetOrdinal("Id")),
-                                    Name = reader.GetString(reader.GetOrdinal("Name")),
-                                    Created_by_ID = reader.GetString(reader.GetOrdinal("Created_by_ID")),
-                                    Contact_ID = reader.GetString(reader.GetOrdinal("Contact_ID")),
-                                    Project_status_ID = reader.GetInt32(reader.GetOrdinal("Project_status_ID")),
-                                    Project_description = reader.GetString(reader.GetOrdinal("Project_description")),
-                                    Street_Name = reader.GetString(reader.GetOrdinal("Street_Name")),
-                                    Start_time = reader.GetDateTime(reader.GetOrdinal("Start_time")),
-                                    Created = reader.GetDateTime(reader.GetOrdinal("Created")),
-                                    Modified = reader.GetDateTime(reader.GetOrdinal("Modified")),
-                                    Deleted = reader.GetBoolean(reader.GetOrdinal("Deleted")),
+                                    Id = GetDataSafe<int>(reader, IdCol, reader.GetInt32),
+                                    Name = GetDataSafe<string>(reader, NameCol, reader.GetString),
+                                    Created_by_ID = GetDataSafe<string>(reader, Created_by_IDCol, reader.GetString),
+                                    Contact_ID = GetDataSafe<string>(reader, Contact_IDCol, reader.GetString),
+                                    Project_status_ID = GetDataSafe<int>(reader, Project_status_IDCol, reader.GetInt32),
+                                    Project_description = GetDataSafe<string>(reader, Project_DescriptionCol, reader.GetString),
+                                    Street_Name = GetDataSafe<string>(reader, Street_NameCol, reader.GetString),
+                                    Start_time = GetDataSafe<DateTime>(reader, Start_timeCol, reader.GetDateTime),
+                                    Created = GetDataSafe<DateTime>(reader, CreatedCol, reader.GetDateTime),
+                                    Modified = GetDataSafe<DateTime>(reader, ModifiedCol, reader.GetDateTime),
+                                    Deleted = GetDataSafe<bool>(reader, DeletedCol, reader.GetBoolean),
                                 });
                             }
                         }
@@ -187,6 +208,15 @@ namespace DAL
                 }
             }
             return projects;
+        }
+
+        public T GetDataSafe<T>(SqlDataReader reader, int columnIndex, Func<int, T> getData)
+        {
+            if (!reader.IsDBNull(columnIndex))
+            {
+                return getData(columnIndex);
+            }
+            return default(T);
         }
     }
 }

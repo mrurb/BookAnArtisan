@@ -23,6 +23,9 @@ namespace BookAnArtisanMVC.UserServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AccessFailedCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string AddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -32,16 +35,43 @@ namespace BookAnArtisanMVC.UserServiceReference {
         private string EmailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool EmailConfirmedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string FirstNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string IDField;
+        private string IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string LastNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool LockoutEnabledField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime LockoutEndDateUtcField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordHashField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PhoneField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool PhoneNumberConfirmedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SecurityStampField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool TwoFactorEnabledField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -50,6 +80,19 @@ namespace BookAnArtisanMVC.UserServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AccessFailedCount {
+            get {
+                return this.AccessFailedCountField;
+            }
+            set {
+                if ((this.AccessFailedCountField.Equals(value) != true)) {
+                    this.AccessFailedCountField = value;
+                    this.RaisePropertyChanged("AccessFailedCount");
+                }
             }
         }
         
@@ -93,6 +136,19 @@ namespace BookAnArtisanMVC.UserServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool EmailConfirmed {
+            get {
+                return this.EmailConfirmedField;
+            }
+            set {
+                if ((this.EmailConfirmedField.Equals(value) != true)) {
+                    this.EmailConfirmedField = value;
+                    this.RaisePropertyChanged("EmailConfirmed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string FirstName {
             get {
                 return this.FirstNameField;
@@ -106,14 +162,14 @@ namespace BookAnArtisanMVC.UserServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ID {
+        public string Id {
             get {
-                return this.IDField;
+                return this.IdField;
             }
             set {
-                if ((object.ReferenceEquals(this.IDField, value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
+                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
                 }
             }
         }
@@ -132,6 +188,45 @@ namespace BookAnArtisanMVC.UserServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool LockoutEnabled {
+            get {
+                return this.LockoutEnabledField;
+            }
+            set {
+                if ((this.LockoutEnabledField.Equals(value) != true)) {
+                    this.LockoutEnabledField = value;
+                    this.RaisePropertyChanged("LockoutEnabled");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime LockoutEndDateUtc {
+            get {
+                return this.LockoutEndDateUtcField;
+            }
+            set {
+                if ((this.LockoutEndDateUtcField.Equals(value) != true)) {
+                    this.LockoutEndDateUtcField = value;
+                    this.RaisePropertyChanged("LockoutEndDateUtc");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PasswordHash {
+            get {
+                return this.PasswordHashField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordHashField, value) != true)) {
+                    this.PasswordHashField = value;
+                    this.RaisePropertyChanged("PasswordHash");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Phone {
             get {
                 return this.PhoneField;
@@ -140,6 +235,71 @@ namespace BookAnArtisanMVC.UserServiceReference {
                 if ((object.ReferenceEquals(this.PhoneField, value) != true)) {
                     this.PhoneField = value;
                     this.RaisePropertyChanged("Phone");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PhoneNumber {
+            get {
+                return this.PhoneNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneNumberField, value) != true)) {
+                    this.PhoneNumberField = value;
+                    this.RaisePropertyChanged("PhoneNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool PhoneNumberConfirmed {
+            get {
+                return this.PhoneNumberConfirmedField;
+            }
+            set {
+                if ((this.PhoneNumberConfirmedField.Equals(value) != true)) {
+                    this.PhoneNumberConfirmedField = value;
+                    this.RaisePropertyChanged("PhoneNumberConfirmed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SecurityStamp {
+            get {
+                return this.SecurityStampField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SecurityStampField, value) != true)) {
+                    this.SecurityStampField = value;
+                    this.RaisePropertyChanged("SecurityStamp");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool TwoFactorEnabled {
+            get {
+                return this.TwoFactorEnabledField;
+            }
+            set {
+                if ((this.TwoFactorEnabledField.Equals(value) != true)) {
+                    this.TwoFactorEnabledField = value;
+                    this.RaisePropertyChanged("TwoFactorEnabled");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
                 }
             }
         }

@@ -10,10 +10,10 @@ namespace BLL
 {
     public class ProjectController : IController<Project>
     {
-        public Project Create(Project t)
+        public Project Create(Project project)
         {
             ProjectDB db = new ProjectDB();
-            return db.Create(t);
+            return db.Create(project);
         }
 
         public Project Read(Project project)
@@ -22,16 +22,16 @@ namespace BLL
             return db.Read(project);
         }
 
-        public Project Update(Project t)
+        public Project Update(Project project)
         {
             ProjectDB db = new ProjectDB();
-            return db.Update(t);
+            return db.Update(project);
         }
 
-        public Project Delete(Project t)
+        public Project Delete(Project project)
         {
             ProjectDB db = new ProjectDB();
-            return db.Delete(t);
+            return db.Delete(project);
         }
 
         public List<Project> ReadAll()

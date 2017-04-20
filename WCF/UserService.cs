@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using BLL;
 
 namespace WCF
 {
@@ -11,30 +12,32 @@ namespace WCF
     {
         public User Create(User user)
         {
-            return user;
+            UserController userController = new UserController();
+            return userController.Create(user);
         }
 
         public User Read(User user)
         {
-            return new User { ID = "ikdaokodk209k2", Email = "bollocks@bs.dhw" };
+            UserController userController = new UserController();
+            return userController.Read(user);
         }
 
         public User Update(User user)
         {
-            return new User { Email = "adadaw" };
+            UserController userController = new UserController();
+            return userController.Update(user);
         }
 
-        public User Delete(User t)
+        public User Delete(User user)
         {
-            throw new NotImplementedException();
+            UserController userController = new UserController();
+            return userController.Delete(user);
         }
 
         public List<User> ReadAll()
         {
-            List<User> List = new List<User>();
-            List.Add(new User { ID = "akdpawkdaokdoakdw2321", Email = "fucking@whatever.ev" });
-            List.Add(new User { ID = "kaoowdk2ke2ojea2", Email = "kwdakdwka" });
-            return List;
+            UserController userController = new UserController();
+            return userController.ReadAll();
         }     
     }
 }

@@ -16,7 +16,7 @@ namespace Testing
             testProject = new Project()
             {
                 // Below ID is set only for testing whether it changes when created in DB.
-                ID = 20,
+                Id = 20,
                 Name = "Test",
                 Created_by_ID = "f93e4146-0ef5-45fb-8088-d1150e91dea3",
                 Contact_ID = "f93e4146-0ef5-45fb-8088-d1150e91dea3",
@@ -38,17 +38,16 @@ namespace Testing
         [TestMethod]
         public void TestCreate()
         {
-            int earlierID = testProject.ID;
-            int returnedID = db.Create(testProject).ID;
+            int earlierID = testProject.Id;
+            int returnedID = db.Create(testProject).Id;
             Assert.AreNotEqual(earlierID, returnedID);
-            testProject.ID = returnedID;
+            testProject.Id = returnedID;
         }
 
         [TestMethod]
         public void TestRead()
         {
-            TestCreate();
-            Assert.IsTrue(testProject.Equals(db.Read(testProject)));
+            Assert.AreEqual(testProject, db.Read(testProject));
         }
 
         [TestMethod]
@@ -64,5 +63,11 @@ namespace Testing
             Assert.IsTrue(db.Delete(testProject).Deleted);
         }
         #endregion
+
+        [TestMethod]
+        public void TestReadAll()
+        {
+            Assert.IsTrue(0 < db.ReadAll().Count);
+        }
     }
 }

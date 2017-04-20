@@ -8,7 +8,7 @@ namespace Model
 {
     public class Project
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Created_by_ID { get; set; }
         public string Contact_ID { get; set; }
@@ -26,7 +26,7 @@ namespace Model
         {
             Project other = obj as Project;      
 
-            if (this.ID != other.ID ||
+            if (this.Id != other.Id ||
                 !this.Name.Equals(other.Name) ||
                 !this.Created_by_ID.Equals(other.Created_by_ID) ||
                 !this.Contact_ID.Equals(other.Contact_ID) ||
