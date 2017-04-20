@@ -10,7 +10,7 @@ using System.Data;
 
 namespace DAL
 {
-    public class ProjectDB : ICRUD<Project>
+    public class ProjectDB : IDataAccess<Project>
     {
         public Project Create(Project t)
         {

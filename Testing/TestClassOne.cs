@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using BLL;
 using WCF;
 using Model;
@@ -10,8 +9,6 @@ namespace Testing
     [TestClass]
     public class TestClassOne
     {
-		BLL.Class1 controller = null;
-
         [TestMethod]
         public void setUpBeforeClass()
         {

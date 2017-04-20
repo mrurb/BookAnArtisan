@@ -21,6 +21,7 @@ namespace Model
         public bool Deleted { get; set; }
 
         // override object.Equals
+        // The purpose is that when testing it makes sense to compare with the .Equals method, hence requiring this method.
         public override bool Equals(object obj)
         {
             Project other = obj as Project;      
@@ -41,6 +42,11 @@ namespace Model
             }
 
             return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

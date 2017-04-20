@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public interface ICRUD<T>
+    // The purpose of this interface, is to keep a consistence between all types of data access classes.
+    public interface IDataAccess<T>
     {
+        // Implementing CRUD as a starting point.
         T Create(T t);
         T Read(int id);
         T Update(T t);

@@ -55,7 +55,7 @@
   <ItemGroup>
     <Compile Include="TestClassOne.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestProject.cs" />
+    <Compile Include="TestingDAL\TestProject.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
@@ -71,12 +71,16 @@
       <Name>Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\WCF\WCF.csproj">
-      <Project>{5e606b34-877f-4980-9a0e-f2ce40e680a8}</Project>
+      <Project>{75762366-0537-4db1-a432-c3c3e83c144b}</Project>
       <Name>WCF</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TestingBLL\" />
+    <Folder Include="TestingWCF\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
