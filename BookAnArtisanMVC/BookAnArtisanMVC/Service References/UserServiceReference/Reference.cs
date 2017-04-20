@@ -158,35 +158,35 @@ namespace BookAnArtisanMVC.UserServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UserServiceReference.IUserService")]
     public interface IUserService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/CreateUser", ReplyAction="http://tempuri.org/IUserService/CreateUserResponse")]
-        BookAnArtisanMVC.UserServiceReference.User CreateUser(BookAnArtisanMVC.UserServiceReference.User user);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/Create", ReplyAction="http://tempuri.org/IServiceOf_User/CreateResponse")]
+        BookAnArtisanMVC.UserServiceReference.User Create(BookAnArtisanMVC.UserServiceReference.User t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/CreateUser", ReplyAction="http://tempuri.org/IUserService/CreateUserResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> CreateUserAsync(BookAnArtisanMVC.UserServiceReference.User user);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/Create", ReplyAction="http://tempuri.org/IServiceOf_User/CreateResponse")]
+        System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> CreateAsync(BookAnArtisanMVC.UserServiceReference.User t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUser", ReplyAction="http://tempuri.org/IUserService/GetUserResponse")]
-        BookAnArtisanMVC.UserServiceReference.User GetUser(string id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/Read", ReplyAction="http://tempuri.org/IServiceOf_User/ReadResponse")]
+        BookAnArtisanMVC.UserServiceReference.User Read(BookAnArtisanMVC.UserServiceReference.User t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUser", ReplyAction="http://tempuri.org/IUserService/GetUserResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> GetUserAsync(string id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/Read", ReplyAction="http://tempuri.org/IServiceOf_User/ReadResponse")]
+        System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> ReadAsync(BookAnArtisanMVC.UserServiceReference.User t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
-        BookAnArtisanMVC.UserServiceReference.User UpdateUser(BookAnArtisanMVC.UserServiceReference.User user);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/Update", ReplyAction="http://tempuri.org/IServiceOf_User/UpdateResponse")]
+        BookAnArtisanMVC.UserServiceReference.User Update(BookAnArtisanMVC.UserServiceReference.User t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> UpdateUserAsync(BookAnArtisanMVC.UserServiceReference.User user);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/Update", ReplyAction="http://tempuri.org/IServiceOf_User/UpdateResponse")]
+        System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> UpdateAsync(BookAnArtisanMVC.UserServiceReference.User t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUsers", ReplyAction="http://tempuri.org/IUserService/GetUsersResponse")]
-        BookAnArtisanMVC.UserServiceReference.User[] GetUsers();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/Delete", ReplyAction="http://tempuri.org/IServiceOf_User/DeleteResponse")]
+        BookAnArtisanMVC.UserServiceReference.User Delete(BookAnArtisanMVC.UserServiceReference.User t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUsers", ReplyAction="http://tempuri.org/IUserService/GetUsersResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User[]> GetUsersAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/Delete", ReplyAction="http://tempuri.org/IServiceOf_User/DeleteResponse")]
+        System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> DeleteAsync(BookAnArtisanMVC.UserServiceReference.User t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
-        bool DeleteUser(string id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_User/ReadAllResponse")]
+        BookAnArtisanMVC.UserServiceReference.User[] ReadAll();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
-        System.Threading.Tasks.Task<bool> DeleteUserAsync(string id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_User/ReadAllResponse")]
+        System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User[]> ReadAllAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -216,44 +216,44 @@ namespace BookAnArtisanMVC.UserServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public BookAnArtisanMVC.UserServiceReference.User CreateUser(BookAnArtisanMVC.UserServiceReference.User user) {
-            return base.Channel.CreateUser(user);
+        public BookAnArtisanMVC.UserServiceReference.User Create(BookAnArtisanMVC.UserServiceReference.User t) {
+            return base.Channel.Create(t);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> CreateUserAsync(BookAnArtisanMVC.UserServiceReference.User user) {
-            return base.Channel.CreateUserAsync(user);
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> CreateAsync(BookAnArtisanMVC.UserServiceReference.User t) {
+            return base.Channel.CreateAsync(t);
         }
         
-        public BookAnArtisanMVC.UserServiceReference.User GetUser(string id) {
-            return base.Channel.GetUser(id);
+        public BookAnArtisanMVC.UserServiceReference.User Read(BookAnArtisanMVC.UserServiceReference.User t) {
+            return base.Channel.Read(t);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> GetUserAsync(string id) {
-            return base.Channel.GetUserAsync(id);
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> ReadAsync(BookAnArtisanMVC.UserServiceReference.User t) {
+            return base.Channel.ReadAsync(t);
         }
         
-        public BookAnArtisanMVC.UserServiceReference.User UpdateUser(BookAnArtisanMVC.UserServiceReference.User user) {
-            return base.Channel.UpdateUser(user);
+        public BookAnArtisanMVC.UserServiceReference.User Update(BookAnArtisanMVC.UserServiceReference.User t) {
+            return base.Channel.Update(t);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> UpdateUserAsync(BookAnArtisanMVC.UserServiceReference.User user) {
-            return base.Channel.UpdateUserAsync(user);
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> UpdateAsync(BookAnArtisanMVC.UserServiceReference.User t) {
+            return base.Channel.UpdateAsync(t);
         }
         
-        public BookAnArtisanMVC.UserServiceReference.User[] GetUsers() {
-            return base.Channel.GetUsers();
+        public BookAnArtisanMVC.UserServiceReference.User Delete(BookAnArtisanMVC.UserServiceReference.User t) {
+            return base.Channel.Delete(t);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User[]> GetUsersAsync() {
-            return base.Channel.GetUsersAsync();
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> DeleteAsync(BookAnArtisanMVC.UserServiceReference.User t) {
+            return base.Channel.DeleteAsync(t);
         }
         
-        public bool DeleteUser(string id) {
-            return base.Channel.DeleteUser(id);
+        public BookAnArtisanMVC.UserServiceReference.User[] ReadAll() {
+            return base.Channel.ReadAll();
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteUserAsync(string id) {
-            return base.Channel.DeleteUserAsync(id);
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User[]> ReadAllAsync() {
+            return base.Channel.ReadAllAsync();
         }
     }
 }

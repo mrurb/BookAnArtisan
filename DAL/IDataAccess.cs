@@ -12,8 +12,9 @@ namespace DAL
     {
         // Implementing CRUD as a starting point.
         T Create(T t);
-        T Read(int id);
+        T Read(T t);
         T Update(T t);
         T Delete(T t);
+        List<T> ReadAll();
     }
 }

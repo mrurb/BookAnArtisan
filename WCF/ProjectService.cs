@@ -15,10 +15,10 @@ namespace WCF
             return projectController.Create(t);
         }
 
-        public Project Read(int id)
+        public Project Read(Project project)
         {
             ProjectController projectController = new ProjectController();
-            return projectController.Read(id);
+            return projectController.Read(project);
         }
 
         public Project Update(Project t)
@@ -31,6 +31,12 @@ namespace WCF
         {
             ProjectController projectController = new ProjectController();
             return projectController.Delete(t);
+        }
+
+        public List<Project> ReadAll()
+        {
+            ProjectController projectController = new ProjectController();
+            return projectController.ReadAll();
         }
     }
 }

@@ -16,10 +16,10 @@ namespace BLL
             return db.Create(t);
         }
 
-        public Project Read(int id)
+        public Project Read(Project project)
         {
             ProjectDB db = new ProjectDB();
-            return db.Read(id);
+            return db.Read(project);
         }
 
         public Project Update(Project t)
@@ -32,6 +32,12 @@ namespace BLL
         {
             ProjectDB db = new ProjectDB();
             return db.Delete(t);
+        }
+
+        public List<Project> ReadAll()
+        {
+            ProjectDB db = new ProjectDB();
+            return db.ReadAll();
         }
     }
 }

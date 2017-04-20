@@ -16,10 +16,13 @@ namespace WCF
         [OperationContract]
         T Create(T t);
         [OperationContract]
-        T Read(int id);
+        T Read(T t);
         [OperationContract]
         T Update(T t);
         [OperationContract]
         T Delete(T t);
+        // Implementing ReadAll
+        [OperationContract]
+        List<T> ReadAll();
     }
 }

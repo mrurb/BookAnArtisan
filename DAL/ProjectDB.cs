@@ -46,15 +46,13 @@ namespace DAL
             return t;
         }
 
-        public Project Read(int id)
+        public Project Read(Project project)
         {
-            Project project = new Project();
-
             string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
 
             string sql = "SELECT * FROM Projects WHERE ID = @id";
 
-            SqlParameter idParameter = new SqlParameter { ParameterName = "@id", SqlValue = id, SqlDbType = SqlDbType.Int };
+            SqlParameter idParameter = new SqlParameter { ParameterName = "@id", SqlValue = project.ID, SqlDbType = SqlDbType.Int };
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -147,6 +145,48 @@ namespace DAL
             }
 
             return t;
+        }
+
+        public List<Project> ReadAll()
+        {
+            List<Project> projects = new List<Project>();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
+
+            string sql = "SELECT * FROM Projects";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Connection.Open();
+                    // Add exceptionhandling
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                projects.Add(new Project
+                                {
+                                    ID = reader.GetInt32(reader.GetOrdinal("Id")),
+                                    Name = reader.GetString(reader.GetOrdinal("Name")),
+                                    Created_by_ID = reader.GetString(reader.GetOrdinal("Created_by_ID")),
+                                    Contact_ID = reader.GetString(reader.GetOrdinal("Contact_ID")),
+                                    Project_status_ID = reader.GetInt32(reader.GetOrdinal("Project_status_ID")),
+                                    Project_description = reader.GetString(reader.GetOrdinal("Project_description")),
+                                    Street_Name = reader.GetString(reader.GetOrdinal("Street_Name")),
+                                    Start_time = reader.GetDateTime(reader.GetOrdinal("Start_time")),
+                                    Created = reader.GetDateTime(reader.GetOrdinal("Created")),
+                                    Modified = reader.GetDateTime(reader.GetOrdinal("Modified")),
+                                    Deleted = reader.GetBoolean(reader.GetOrdinal("Deleted")),
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            return projects;
         }
     }
 }

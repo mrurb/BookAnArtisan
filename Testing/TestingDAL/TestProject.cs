@@ -48,7 +48,7 @@ namespace Testing
         public void TestRead()
         {
             TestCreate();
-            Assert.IsTrue(testProject.Equals(db.Read(testProject.ID)));
+            Assert.IsTrue(testProject.Equals(db.Read(testProject)));
         }
 
         [TestMethod]

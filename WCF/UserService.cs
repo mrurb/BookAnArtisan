@@ -14,7 +14,7 @@ namespace WCF
             return user;
         }
 
-        public User Read(int id)
+        public User Read(User user)
         {
             return new User { ID = "ikdaokodk209k2", Email = "bollocks@bs.dhw" };
         }
