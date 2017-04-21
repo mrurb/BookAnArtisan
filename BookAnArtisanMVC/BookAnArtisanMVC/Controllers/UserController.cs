@@ -17,7 +17,12 @@ namespace BookAnArtisanMVC.Controllers
             return View(uCl.ReadAll());
         }
 
-        public ActionResult Edit(User user)
+		public ActionResult List(int page)
+		{
+			return View(uCl.ReadAll());
+		}
+
+		public ActionResult Edit(User user)
         {
             return View(uCl.Read(user));
         }
@@ -69,5 +74,6 @@ namespace BookAnArtisanMVC.Controllers
         {
             return View(uCl.Read(user));
         }
-    }
+
+	}
 }
