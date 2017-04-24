@@ -9,17 +9,40 @@ namespace BookAnArtisanMVC.Controllers
 {
     public class ProjectsController : Controller
     {
-        ProjectServiceClient pCl = new ProjectServiceClient();
+        //ProjectServiceClient pCl = new ProjectServiceClient();
 
         // GET: Project
         public ActionResult Index()
         {
-            return View(pCl.ReadAll());
+            ProjectServiceClient pCl = new ProjectServiceClient();
+            try
+            {
+                var data = pCl.ReadAll();
+                pCl.Close();
+                return View(data);
+            }
+            catch (Exception)
+            {
+                pCl.Abort();
+                throw;
+            }
+            
         }
 
         public ActionResult Details(Project project)
         {
-            return View(pCl.Read(project));
+            ProjectServiceClient pCl = new ProjectServiceClient();
+            try
+            {
+                var data = pCl.Read(project);
+                pCl.Close();
+                return View(data);
+            }
+            catch (Exception)
+            {
+                pCl.Abort();
+                throw;
+            }
         }
 
         public ActionResult Create()
@@ -31,6 +54,7 @@ namespace BookAnArtisanMVC.Controllers
         [HttpPost]
         public ActionResult Create(Project project)
         {
+            ProjectServiceClient pCl = new ProjectServiceClient();
             try
             {
                 // TODO: Add insert logic here
@@ -46,13 +70,25 @@ namespace BookAnArtisanMVC.Controllers
         // GET: Project/Edit/5
         public ActionResult Edit(Project project)
         {
-            return View(pCl.Read(project));
+            ProjectServiceClient pCl = new ProjectServiceClient();
+            try
+            {
+                var data = pCl.Read(project);
+                pCl.Close();
+                return View(data);
+            }
+            catch (Exception)
+            {
+                pCl.Abort();
+                throw;
+            }
         }
 
         // POST: Project/Edit/5
         [HttpPost, ActionName("Edit")]
         public ActionResult EditConfirmed(Project project)
         {
+            ProjectServiceClient pCl = new ProjectServiceClient();
             try
             {
                 // TODO: Add update logic here
@@ -68,13 +104,25 @@ namespace BookAnArtisanMVC.Controllers
         // GET: Project/Delete/5
         public ActionResult Delete(Project project)
         {
-            return View(pCl.Read(project));
+            ProjectServiceClient pCl = new ProjectServiceClient();
+            try
+            {
+                var data = pCl.Delete(project);
+                pCl.Close();
+                return View(data);
+            }
+            catch (Exception)
+            {
+                pCl.Abort();
+                throw;
+            }
         }
 
         // POST: Project/Delete/5
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(Project project)
         {
+            ProjectServiceClient pCl = new ProjectServiceClient();
             try
             {
                 // TODO: Add delete logic here

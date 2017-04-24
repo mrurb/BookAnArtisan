@@ -35,7 +35,7 @@ namespace BookAnArtisanMVC.ProjectServiceReference {
         private bool DeletedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
+        private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime ModifiedField;
@@ -118,14 +118,14 @@ namespace BookAnArtisanMVC.ProjectServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
+        public int Id {
             get {
-                return this.IDField;
+                return this.IdField;
             }
             set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
                 }
             }
         }
