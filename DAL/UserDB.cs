@@ -12,10 +12,14 @@ namespace DAL
 {
     public class UserDB : IDataAccess<User>
     {
+        private string connectionString;
+        public UserDB()
+        {
+            connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
+        }
+
         public User Create(User user)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
-
             int EmailConfirmed = Convert.ToInt32(user.EmailConfirmed);
             int PhoneNumberConfirmed = Convert.ToInt32(user.PhoneNumberConfirmed);
             int TwoFactorEnabled = Convert.ToInt32(user.TwoFactorEnabled);
@@ -63,8 +67,6 @@ namespace DAL
 
         public User Read(User user)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
-
             string sql = "SELECT * FROM AspNetUsers WHERE ID = @Id";
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = user.Id, SqlDbType = SqlDbType.NVarChar };
@@ -127,8 +129,6 @@ namespace DAL
 
         public User Update(User user)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
-
             int EmailConfirmed = Convert.ToInt32(user.EmailConfirmed);
             int PhoneNumberConfirmed = Convert.ToInt32(user.PhoneNumberConfirmed);
             int TwoFactorEnabled = Convert.ToInt32(user.TwoFactorEnabled);
@@ -164,7 +164,11 @@ namespace DAL
                     command.Parameters.AddRange(arrayOfParameters);
                     command.Connection.Open();
                     // Add exceptionhandling 
-                    command.ExecuteNonQuery();
+                    int affectedRows = command.ExecuteNonQuery();
+                    if (!(0 < affectedRows))
+                    {
+                        throw new System.Exception("No rows affected. Update failed - Does the object exist beforehand in the database?");
+                    }
                 }
             }
             return user;
@@ -172,8 +176,6 @@ namespace DAL
 
         public User Delete(User user)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
-
             int bitRepresentationOfBool = Convert.ToInt32(true);
 
             string sql = "DELETE FROM AspNetUsers WHERE ID = @Id";
@@ -186,7 +188,11 @@ namespace DAL
                 {
                     command.Parameters.Add(idParameter);
                     command.Connection.Open();
-                    command.ExecuteNonQuery();
+                    int affectedRows = command.ExecuteNonQuery();
+                    if (!(0 < affectedRows))
+                    {
+                        throw new System.Exception("No rows affected. Update failed - Does the object exist beforehand in the database?");
+                    }
                 }
             }
 

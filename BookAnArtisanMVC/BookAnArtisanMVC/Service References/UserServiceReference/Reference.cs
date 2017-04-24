@@ -343,10 +343,10 @@ namespace BookAnArtisanMVC.UserServiceReference {
         System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> DeleteAsync(BookAnArtisanMVC.UserServiceReference.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_User/ReadAllResponse")]
-        BookAnArtisanMVC.UserServiceReference.User[] ReadAll();
+        System.Collections.Generic.List<BookAnArtisanMVC.UserServiceReference.User> ReadAll();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_User/ReadAllResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User[]> ReadAllAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.UserServiceReference.User>> ReadAllAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -408,11 +408,11 @@ namespace BookAnArtisanMVC.UserServiceReference {
             return base.Channel.DeleteAsync(t);
         }
         
-        public BookAnArtisanMVC.UserServiceReference.User[] ReadAll() {
+        public System.Collections.Generic.List<BookAnArtisanMVC.UserServiceReference.User> ReadAll() {
             return base.Channel.ReadAll();
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User[]> ReadAllAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.UserServiceReference.User>> ReadAllAsync() {
             return base.Channel.ReadAllAsync();
         }
     }
