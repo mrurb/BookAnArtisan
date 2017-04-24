@@ -8,7 +8,7 @@ using BookAnArtisanMVC.UserServiceReference;
 namespace BookAnArtisanMVC.Controllers
 {
 
-    public class UserController : Controller
+    public class UsersController : Controller
     {
         UserServiceClient uCl = new UserServiceClient();
 

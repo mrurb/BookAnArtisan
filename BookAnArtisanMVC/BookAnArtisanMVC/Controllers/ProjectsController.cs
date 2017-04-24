@@ -7,7 +7,7 @@ using BookAnArtisanMVC.ProjectServiceReference;
 
 namespace BookAnArtisanMVC.Controllers
 {
-    public class ProjectController : Controller
+    public class ProjectsController : Controller
     {
         ProjectServiceClient pCl = new ProjectServiceClient();
 
