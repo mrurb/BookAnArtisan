@@ -29,7 +29,7 @@ namespace Testing
         [TestMethod]
         public void TestDBCon()
         {
-            DBAccess dba = new DBAccess();
+            SearchDB dba = new SearchDB();
             bool worked = dba.DBConnectionTest();
             Assert.AreEqual(true, worked);
         }
@@ -68,7 +68,21 @@ namespace Testing
         {
             IList<Project> results = ps.SearchByProjectAddress(address);
             List<Project> resultsList = (List<Project>)results;
+            Console.WriteLine(resultsList.ToString());
             Assert.AreNotEqual(0, resultsList.ToArray().Length);
+        }
+
+        /*
+         * Created (24/04-17)
+         * Test: Ensure the correct object is taken from the DB
+         * Success: The *correct* object was returned
+         */
+         [TestMethod]
+         public void TestSearchIntegrationTest()
+        {
+            IList<Project> results = ps.SearchByProjectAddress(address);
+            List<Project> resultsList = (List<Project>)results;
+            Assert.AreEqual(address, resultsList[0].address);
         }
     }
 }

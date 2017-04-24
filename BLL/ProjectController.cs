@@ -10,7 +10,7 @@ namespace BLL
 {
     public class ProjectController
     {
-        DBAccess dba = new DBAccess();
+        SearchDB dba = new SearchDB();
         public List<Project> SearchByTag(string search_tag)
         {
             return dba.SearchByTag(search_tag);
