@@ -9,20 +9,10 @@
 <div>
     <h4>Change your account settings</h4>
     <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.F, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Contact_ID, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Contact_ID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
     <dl class="dl-horizontal">
         
         <dt>First Name:</dt>
-        <dd>@Html.TextBox(User.Identity.Name)</dd>
+        <dd>@Html.TextBox(HttpContext.Current.User.Identity.Name)</dd>
         <dt>Last Name:</dt>
         <dd>@Html.TextBox(User.Identity.Name)</dd>
         <dt>Password:</dt>

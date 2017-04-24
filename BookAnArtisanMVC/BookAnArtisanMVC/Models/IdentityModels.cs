@@ -23,7 +23,7 @@ namespace BookAnArtisanMVC.Models
             // Add custom user claims here
             userIdentity.AddClaims(new[]
             {
-                new Claim(ClaimTypes.Name, FirstName),
+                new Claim(ClaimTypes.GivenName, FirstName),
                 new Claim(ClaimTypes.Surname, LastName),
                 new Claim(ClaimTypes.HomePhone, Phone),
                 new Claim(ClaimTypes.StreetAddress, Address)
