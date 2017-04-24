@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using Model;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
 
 namespace DAL
 {
 	public class SearchDB
 	{
-        string connectionstring = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
+        static string connectionstring = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
         //chapter 21        TODO API ????
 
         public bool DBConnectionTest()
@@ -58,7 +59,7 @@ namespace DAL
             List<User> artisans = new List<User>();
             User client = null;
             List<string> tags = new List<string>();
-            tags[0] = search_tag;
+            tags.Add(search_tag);
             string query = "SELECT * FROM projects JOIN Project_tags ON Projects.ID=project_tags.Project_ID JOIN Tags ON Project_tags.Tag_ID = Tags.ID WHERE Tags.Name LIKE '%@tag%'";
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -68,11 +69,13 @@ namespace DAL
                     {
                         sqlcommand.Parameters.Add(new SqlParameter("@tag", search_tag));
                         con.Open();
-                        SqlDataReader datareader = sqlcommand.ExecuteReader();
-                        while (datareader.Read())
+                        using (SqlDataReader datareader = sqlcommand.ExecuteReader())
                         {
-                            Project p = new Project(datareader["id"].ToString(), tags, datareader["Project_description"].ToString(), client, artisans, datareader["street_name"].ToString());
-                            results.Add(p);
+                            while (datareader.Read())
+                            {
+                                Project p = new Project(datareader["id"].ToString(), tags, datareader["Project_description"].ToString(), client, artisans, datareader["street_name"].ToString());
+                                results.Add(p);
+                            }
                         }
                     }
                     catch (Exception)
@@ -83,7 +86,7 @@ namespace DAL
             }
             foreach (Project item in results)
             {
-                AppendTags(item);
+                //AppendTags(item);
             }
             return results;
         }
@@ -103,7 +106,7 @@ namespace DAL
                 {
                     try
                     {
-                        sqlcommand.Parameters.AddWithValue("@projectid", p.id);
+                        sqlcommand.Parameters.Add(new SqlParameter("@projectid", p.id));
                         con.Open();
                         SqlDataReader reader = sqlcommand.ExecuteReader();
                         while (reader.Read())
@@ -137,21 +140,26 @@ namespace DAL
             User client = null;
             List<string> tags = new List<string>();
             string query = "SELECT * FROM projects JOIN Project_status ON Projects.Project_status_ID=project_status.ID WHERE street_name LIKE '%@address%' OR projects.name LIKE '%@name%' OR project_status.name LIKE '%@status%';";
+            SqlParameter addressParameter = new SqlParameter { ParameterName = "@address", SqlValue = searchparam, SqlDbType = SqlDbType.NVarChar };
+            SqlParameter nameParameter = new SqlParameter { ParameterName = "@name", SqlValue = searchparam, SqlDbType = SqlDbType.NVarChar };
+            SqlParameter statusParameter = new SqlParameter { ParameterName = "@status", SqlValue = searchparam, SqlDbType = SqlDbType.NVarChar };
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 using (SqlCommand sqlcommand = new SqlCommand(query, con))
                 {
                     try
                     {
-                        sqlcommand.Parameters.Add(new SqlParameter("@address", searchparam));
-                        sqlcommand.Parameters.Add(new SqlParameter("@name", searchparam));
-                        sqlcommand.Parameters.Add(new SqlParameter("@status", searchparam));
+                        sqlcommand.Parameters.Add(addressParameter);
+                        sqlcommand.Parameters.Add(nameParameter);
+                        sqlcommand.Parameters.Add(statusParameter);
                         con.Open();
-                        SqlDataReader datareader = sqlcommand.ExecuteReader();
-                        while (datareader.Read())
+                        using (SqlDataReader datareader = sqlcommand.ExecuteReader())
                         {
-                            Project p = new Project(datareader["id"].ToString(), tags, datareader["Project_description"].ToString(), client, artisans, datareader["street_name"].ToString());
-                            results.Add(p);
+                            while (datareader.Read())
+                            {
+                                Project p = new Project(datareader["id"].ToString(), tags, datareader["Project_description"].ToString(), client, artisans, datareader["street_name"].ToString());
+                                results.Add(p);
+                            }
                         }
                     }
                     catch (Exception)

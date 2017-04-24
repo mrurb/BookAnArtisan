@@ -17,10 +17,10 @@ namespace Testing
     public class Search
     {
         ProjectSearch ps = new ProjectSearch();
-        string input_tag = "Kitchen"; // TODO : add stuff here
+        string input_tag = "VVS";
         string pname = "stuff";
         User art = new User("1", "Laurids", "Andersen", "lauridsandersen2013@gmail.com", "12345678", "1234", "østre allé 58");
-        string address = "stuff 21";
+        string address = "stuf";
 
         /*
          * Created (10/04-17)
@@ -68,7 +68,6 @@ namespace Testing
         {
             IList<Project> results = ps.SearchByProjectAddress(address);
             List<Project> resultsList = (List<Project>)results;
-            Console.WriteLine(resultsList.ToString());
             Assert.AreNotEqual(0, resultsList.ToArray().Length);
         }
 
