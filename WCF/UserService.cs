@@ -38,6 +38,12 @@ namespace WCF
         {
             UserController userController = new UserController();
             return userController.ReadAll();
-        }     
+        }
+        
+        public List<User> ReadPage(int pageIndex, int pageSize)
+        {
+            UserController userController = new UserController();
+            return userController.ReadAll();
+        }
     }
 }

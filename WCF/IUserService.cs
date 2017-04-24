@@ -12,6 +12,7 @@ namespace WCF
     [ServiceContract]
     public interface IUserService : IService<User>
     {
-        
+        [OperationContract]
+        List<User> ReadPage(int pageIndex, int pageSize);
     }
 }

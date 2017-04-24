@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BookAnArtisanMVC.UserServiceReference;
+using X.PagedList;
 
 namespace BookAnArtisanMVC.Controllers
 {
@@ -16,8 +17,20 @@ namespace BookAnArtisanMVC.Controllers
         {
             return View(uCl.ReadAll());
         }
+		public ActionResult List(int? page)
+		{
+			var pageIndex = page ?? 1;
+			var pageSize = 10;
 
-        public ActionResult Edit(User user)
+			var usersPage = uCl.UsersPage(pageIndex, pageSize);
+			var usersAsIPagedList = new StaticPagedList<User>(usersPage.users, pageIndex, pageSize, usersPage.totalUserCount);
+
+			ViewBag.OnePageOfUsers = usersAsIPagedList;
+
+			return View();
+		}
+
+		public ActionResult Edit(User user)
         {
             return View(uCl.Read(user));
         }
