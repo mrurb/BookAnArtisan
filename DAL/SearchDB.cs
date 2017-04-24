@@ -139,7 +139,7 @@ namespace DAL
             List<User> artisans = new List<User>();
             User client = null;
             List<string> tags = new List<string>();
-            string query = "SELECT * FROM projects JOIN Project_status ON Projects.Project_status_ID=project_status.ID WHERE street_name LIKE '%@address%' OR projects.name LIKE '%@name%' OR project_status.name LIKE '%@status%';";
+            string query = "SELECT * FROM projects JOIN Project_status ON Projects.Project_status_ID=project_status.ID WHERE projects.street_name LIKE '%@address%' OR projects.name LIKE '%@name%' OR project_status.name LIKE '%@status%';";
             SqlParameter addressParameter = new SqlParameter { ParameterName = "@address", SqlValue = searchparam, SqlDbType = SqlDbType.NVarChar };
             SqlParameter nameParameter = new SqlParameter { ParameterName = "@name", SqlValue = searchparam, SqlDbType = SqlDbType.NVarChar };
             SqlParameter statusParameter = new SqlParameter { ParameterName = "@status", SqlValue = searchparam, SqlDbType = SqlDbType.NVarChar };

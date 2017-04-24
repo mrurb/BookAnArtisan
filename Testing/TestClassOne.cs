@@ -10,6 +10,7 @@ namespace Testing
     public class TestClassOne
     {
 		BLL.Class1 controller = null;
+        bool avalue = false;
 
         [TestMethod]
         public void setUpBeforeClass()
@@ -68,7 +69,7 @@ namespace Testing
         { 
             try
             {
-                Assert.IsTrue(false);
+                Assert.AreEqual(false, avalue);
             }
             catch
             {
