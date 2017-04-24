@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DAL;
 using Model;
+using System.Collections.Generic;
 
 namespace Testing
 {
@@ -68,6 +69,12 @@ namespace Testing
         public void TestReadAll()
         {
             Assert.IsTrue(0 < db.ReadAll().Count);
+            List<Project> list = db.ReadAll();
+            foreach(Project p in list)
+            {
+                Assert.IsFalse(0 == p.Id);
+            }
+            
         }
     }
 }

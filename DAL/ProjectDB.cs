@@ -12,24 +12,28 @@ namespace DAL
 {
     public class ProjectDB : IDataAccess<Project>
     {
+        private string connectionString;
+        public ProjectDB()
+        {
+            connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
+        }
+
         public Project Create(Project project)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
-
             string sql = "INSERT INTO Projects VALUES(@Name, @Created_by_ID, @Contact_ID, @Project_status_ID, @Project_description, @Street_Name, @Start_time, @Created, @Modified, @Deleted) SELECT SCOPE_IDENTITY()";
 
             SqlParameter[] arrayOfParameters =
             {
-                new SqlParameter { ParameterName = "@Name", Value = project.Name, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Created_by_ID", Value = project.Created_by_ID, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Contact_ID", Value = project.Contact_ID, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Project_status_ID", Value = project.Project_status_ID, SqlDbType = SqlDbType.Int },
-                new SqlParameter { ParameterName = "@Project_description", Value = project.Project_description, SqlDbType = SqlDbType.Text },
-                new SqlParameter { ParameterName = "@Street_Name", Value = project.Street_Name, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Start_time", Value = project.Start_time, SqlDbType = SqlDbType.DateTime },
-                new SqlParameter { ParameterName = "@Created", Value = project.Created, SqlDbType = SqlDbType.DateTime },
-                new SqlParameter { ParameterName = "@Modified", Value = project.Modified, SqlDbType = SqlDbType.DateTime },
-                new SqlParameter { ParameterName = "@Deleted", Value = Convert.ToInt32(project.Deleted), SqlDbType = SqlDbType.Bit }
+                new SqlParameter { ParameterName = "@Name", SqlValue = project.Name, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Created_by_ID", SqlValue = project.Created_by_ID, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Contact_ID", SqlValue = project.Contact_ID, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Project_status_ID", SqlValue = project.Project_status_ID, SqlDbType = SqlDbType.Int },
+                new SqlParameter { ParameterName = "@Project_description", SqlValue = project.Project_description, SqlDbType = SqlDbType.Text },
+                new SqlParameter { ParameterName = "@Street_Name", SqlValue = project.Street_Name, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Start_time", SqlValue = project.Start_time, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@Created", SqlValue = project.Created, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@Modified", SqlValue = project.Modified, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@Deleted", SqlValue = Convert.ToInt32(project.Deleted), SqlDbType = SqlDbType.Bit }
             };
             
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -47,8 +51,6 @@ namespace DAL
 
         public Project Read(Project project)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
-
             string sql = "SELECT * FROM Projects WHERE ID = @Id";
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = project.Id, SqlDbType = SqlDbType.Int };
@@ -99,8 +101,6 @@ namespace DAL
 
         public Project Update(Project project)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
-
             string sql = "UPDATE Projects SET Name = @Name, Created_by_ID = @Created_by_ID, Contact_ID = @Contact_ID, Project_status_ID = @Project_status_ID, Project_description = @Project_description, Street_Name = @Street_Name, Start_time = @Start_time, Created = @Created, Modified = @Modified, Deleted = @Deleted WHERE ID = @Id";
 
             SqlParameter[] arrayOfParameters =
@@ -125,16 +125,19 @@ namespace DAL
                     command.Parameters.AddRange(arrayOfParameters);
                     command.Connection.Open();
                     // Add exceptionhandling 
-                    command.ExecuteNonQuery();
+                    int affectedRows = command.ExecuteNonQuery();
+                    if (!(0 < affectedRows))
+                    {
+                        throw new System.Exception("No rows affected. Update failed - Does the object exist beforehand in the database?");
+                    }
                 }
             }
             return project;
         }
 
+        //Actually deletes the object because there's currently no 'Deleted' bit in DB.
         public Project Delete(Project project)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
-
             int bitRepresentationOfBool = Convert.ToInt32(true);
 
             string sql = "UPDATE Projects SET Deleted = @Deleted WHERE ID = @Id";
@@ -159,9 +162,7 @@ namespace DAL
         public List<Project> ReadAll()
         {
             List<Project> projects = new List<Project>();
-
-            string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
-
+            
             string sql = "SELECT * FROM Projects";
 
             using (SqlConnection connection = new SqlConnection(connectionString))

@@ -35,7 +35,7 @@ namespace BookAnArtisanMVC.ProjectServiceReference {
         private bool DeletedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
+        private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime ModifiedField;
@@ -118,14 +118,14 @@ namespace BookAnArtisanMVC.ProjectServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
+        public int Id {
             get {
-                return this.IDField;
+                return this.IdField;
             }
             set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
                 }
             }
         }
@@ -247,10 +247,10 @@ namespace BookAnArtisanMVC.ProjectServiceReference {
         System.Threading.Tasks.Task<BookAnArtisanMVC.ProjectServiceReference.Project> DeleteAsync(BookAnArtisanMVC.ProjectServiceReference.Project t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Project/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_Project/ReadAllResponse")]
-        BookAnArtisanMVC.ProjectServiceReference.Project[] ReadAll();
+        System.Collections.Generic.List<BookAnArtisanMVC.ProjectServiceReference.Project> ReadAll();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Project/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_Project/ReadAllResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.ProjectServiceReference.Project[]> ReadAllAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ProjectServiceReference.Project>> ReadAllAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -312,11 +312,11 @@ namespace BookAnArtisanMVC.ProjectServiceReference {
             return base.Channel.DeleteAsync(t);
         }
         
-        public BookAnArtisanMVC.ProjectServiceReference.Project[] ReadAll() {
+        public System.Collections.Generic.List<BookAnArtisanMVC.ProjectServiceReference.Project> ReadAll() {
             return base.Channel.ReadAll();
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.ProjectServiceReference.Project[]> ReadAllAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ProjectServiceReference.Project>> ReadAllAsync() {
             return base.Channel.ReadAllAsync();
         }
     }

@@ -1,23 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Model
 {
+    [DataContract]
     public class Project
     {
+        [DataMember]
         public int Id { get; set; }
+        [DataMember]
         public string Name { get; set; }
+        [DataMember]
         public string Created_by_ID { get; set; }
+        [DataMember]
         public string Contact_ID { get; set; }
+        [DataMember]
         public int Project_status_ID { get; set; }
+        [DataMember]
         public string Project_description { get; set; }
+        [DataMember]
         public string Street_Name { get; set; }
+        [DataMember]
         public DateTime Start_time { get; set; }
+        [DataMember]
         public DateTime Created { get; set; }
+        [DataMember]
         public DateTime Modified { get; set; }
+        [DataMember]
         public bool Deleted { get; set; }
 
         // override object.Equals
