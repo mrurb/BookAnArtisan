@@ -10,23 +10,23 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class RoleDB : IDataAccess<Role>
+    public class StatusDB : IDataAccess<Status>
     {
         private string connectionString;
 
-        public RoleDB()
+        public StatusDB()
         {
             connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
         }
 
-        public Role Create(Role role)
+        public Status Create(Status status)
         {
-            string sql = "INSERT INTO AspNetRoles VALUES ID = @Id, Name = @Name";
+            string sql = "INSERT INTO Project_status VALUES ID = @Id, Name = @Name SELECT SCOPE_IDENTITY()";
 
             SqlParameter[] arrayOfParameters =
             {
-                new SqlParameter { ParameterName = "@Id", SqlValue = role.Id, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Name", SqlValue = role.Name, SqlDbType = SqlDbType.NVarChar }
+                new SqlParameter { ParameterName = "@Id", SqlValue = status.Id, SqlDbType = SqlDbType.Int },
+                new SqlParameter { ParameterName = "@Name", SqlValue = status.Name, SqlDbType = SqlDbType.NVarChar }
             };
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -35,18 +35,17 @@ namespace DAL
                 {
                     command.Parameters.AddRange(arrayOfParameters);
                     command.Connection.Open();
-                    role.Id = Convert.ToString(command.ExecuteScalar());
+                    status.Id = Convert.ToInt32(command.ExecuteScalar());
                 }
             }
 
-            return role;
+            return status;
         }
-
-        public Role Read(Role role)
+        public Status Read(Status status)
         {
-            string sql = "SELECT Name FROM AspNetRoles WHERE ID = @Id";
+            string sql = "SELECT Name FROM Project_status WHERE ID = @Id";
 
-            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = role.Id, SqlDbType = SqlDbType.NVarChar };
+            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = status.Id, SqlDbType = SqlDbType.Int };
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -59,30 +58,29 @@ namespace DAL
                     {
                         int NameCol = reader.GetOrdinal("Name");
 
-                        if(reader.Read())
+                        if (reader.Read())
                         {
-                            role.Name = reader.GetString(NameCol);
+                            status.Name = reader.GetString(NameCol);
                         }
                     }
                 }
             }
 
-            return role;
+            return status;
         }
-
-        public Role Update(Role role)
+        public Status Update(Status status)
         {
-            string sql = "UPDATE AspNetRoles SET Name = @Name WHERE ID = @Id";
+            string sql = "UPDATE Project_status SET Name = @Name WHERE ID = @Id";
 
             SqlParameter[] arrayOfParameters =
             {
-                new SqlParameter { ParameterName = "@Id", SqlValue = role.Name, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Name" , SqlValue = role.Name, SqlDbType = SqlDbType.NVarChar}
+                new SqlParameter { ParameterName = "@Id", SqlValue = status.Name, SqlDbType = SqlDbType.Int },
+                new SqlParameter { ParameterName = "@Name" , SqlValue = status.Name, SqlDbType = SqlDbType.NVarChar}
             };
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using(SqlCommand command = new SqlCommand(sql, connection))
+                using (SqlCommand command = new SqlCommand(sql, connection))
                 {
                     command.Parameters.AddRange(arrayOfParameters);
                     command.Connection.Open();
@@ -93,13 +91,14 @@ namespace DAL
                     }
                 }
             }
-            return role;
+            return status;
         }
-        public Role Delete(Role role)
-        {
-            string sql = "DELETE FROM AspNetRoles WHERE Id = @Id";
 
-            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = role.Id, SqlDbType = SqlDbType.NVarChar };
+        public Status Delete(Status status)
+        {
+            string sql = "DELETE FROM Project_status WHERE Id = @Id";
+
+            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = status.Id, SqlDbType = SqlDbType.NVarChar };
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -115,14 +114,14 @@ namespace DAL
                 }
             }
 
-            return role;
+            return status;
         }
 
-        public List<Role> ReadAll()
+        public List<Status> ReadAll()
         {
-            List<Role> roles = new List<Role>();
+            List<Status> status = new List<Status>();
 
-            string sql = "SELECT * FROM AspNetRoles";
+            string sql = "SELECT * FROM Project_status";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -130,24 +129,24 @@ namespace DAL
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        if(reader.HasRows)
+                        if (reader.HasRows)
                         {
                             int IdCol = reader.GetOrdinal("ID");
                             int NameCol = reader.GetOrdinal("Name");
 
                             while (reader.Read())
                             {
-                                roles.Add(new Role
+                                status.Add(new Status
                                 {
-                                    Id = reader.GetString(IdCol),
+                                    Id = reader.GetInt32(IdCol),
                                     Name = reader.GetString(NameCol)
                                 });
                             }
                         }
                     }
-                } 
+                }
             }
-            return roles;
+            return status;
         }
     }
 }

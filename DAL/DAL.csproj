@@ -45,6 +45,8 @@
     <Compile Include="ProjectDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleDB.cs" />
+    <Compile Include="StatusDB.cs" />
+    <Compile Include="TagDB.cs" />
     <Compile Include="UserDB.cs" />
   </ItemGroup>
   <ItemGroup>

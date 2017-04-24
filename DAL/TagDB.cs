@@ -10,23 +10,23 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class RoleDB : IDataAccess<Role>
+    public class TagDB : IDataAccess<Tag>
     {
         private string connectionString;
 
-        public RoleDB()
+        public TagDB()
         {
             connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
         }
 
-        public Role Create(Role role)
+        public Tag Create(Tag tag)
         {
-            string sql = "INSERT INTO AspNetRoles VALUES ID = @Id, Name = @Name";
+            string sql = "INSERT INTO Tags VALUES ID = @Id, Name = @Name SELECT";
 
             SqlParameter[] arrayOfParameters =
             {
-                new SqlParameter { ParameterName = "@Id", SqlValue = role.Id, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Name", SqlValue = role.Name, SqlDbType = SqlDbType.NVarChar }
+                new SqlParameter { ParameterName = "@Id", SqlValue = tag.Id, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Name", SqlValue = tag.Name, SqlDbType = SqlDbType.NVarChar }
             };
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -35,18 +35,20 @@ namespace DAL
                 {
                     command.Parameters.AddRange(arrayOfParameters);
                     command.Connection.Open();
-                    role.Id = Convert.ToString(command.ExecuteScalar());
+                    tag.Id = Convert.ToString(command.ExecuteScalar());
                 }
             }
 
-            return role;
+            return tag;
         }
 
-        public Role Read(Role role)
-        {
-            string sql = "SELECT Name FROM AspNetRoles WHERE ID = @Id";
+        
 
-            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = role.Id, SqlDbType = SqlDbType.NVarChar };
+        public Tag Read(Tag tag)
+        {
+            string sql = "SELECT Name FROM Tags WHERE ID = @Id";
+
+            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = tag.Id, SqlDbType = SqlDbType.NVarChar };
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -59,30 +61,30 @@ namespace DAL
                     {
                         int NameCol = reader.GetOrdinal("Name");
 
-                        if(reader.Read())
+                        if (reader.Read())
                         {
-                            role.Name = reader.GetString(NameCol);
+                            tag.Name = reader.GetString(NameCol);
                         }
                     }
                 }
             }
 
-            return role;
+            return tag;
         }
 
-        public Role Update(Role role)
+        public Tag Update(Tag tag)
         {
-            string sql = "UPDATE AspNetRoles SET Name = @Name WHERE ID = @Id";
+            string sql = "UPDATE Tags SET Name = @Name WHERE ID = @Id";
 
             SqlParameter[] arrayOfParameters =
             {
-                new SqlParameter { ParameterName = "@Id", SqlValue = role.Name, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Name" , SqlValue = role.Name, SqlDbType = SqlDbType.NVarChar}
+                new SqlParameter { ParameterName = "@Id", SqlValue = tag.Name, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Name" , SqlValue = tag.Name, SqlDbType = SqlDbType.NVarChar}
             };
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using(SqlCommand command = new SqlCommand(sql, connection))
+                using (SqlCommand command = new SqlCommand(sql, connection))
                 {
                     command.Parameters.AddRange(arrayOfParameters);
                     command.Connection.Open();
@@ -93,13 +95,13 @@ namespace DAL
                     }
                 }
             }
-            return role;
+            return tag;
         }
-        public Role Delete(Role role)
+        public Tag Delete(Tag tag)
         {
-            string sql = "DELETE FROM AspNetRoles WHERE Id = @Id";
+            string sql = "DELETE FROM Tags WHERE Id = @Id";
 
-            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = role.Id, SqlDbType = SqlDbType.NVarChar };
+            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = tag.Id, SqlDbType = SqlDbType.NVarChar };
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -115,12 +117,12 @@ namespace DAL
                 }
             }
 
-            return role;
+            return tag;
         }
 
-        public List<Role> ReadAll()
+        public List<Tag> ReadAll()
         {
-            List<Role> roles = new List<Role>();
+            List<Tag> tags = new List<Tag>();
 
             string sql = "SELECT * FROM AspNetRoles";
 
@@ -130,14 +132,14 @@ namespace DAL
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        if(reader.HasRows)
+                        if (reader.HasRows)
                         {
                             int IdCol = reader.GetOrdinal("ID");
                             int NameCol = reader.GetOrdinal("Name");
 
                             while (reader.Read())
                             {
-                                roles.Add(new Role
+                                tags.Add(new Tag
                                 {
                                     Id = reader.GetString(IdCol),
                                     Name = reader.GetString(NameCol)
@@ -145,9 +147,9 @@ namespace DAL
                             }
                         }
                     }
-                } 
+                }
             }
-            return roles;
+            return tags;
         }
     }
 }
