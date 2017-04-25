@@ -15,7 +15,7 @@ namespace DAL
         private string connectionString;
         public UserDB()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
         }
 
         public User Create(User user)

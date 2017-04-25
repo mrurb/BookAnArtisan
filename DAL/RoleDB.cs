@@ -16,7 +16,7 @@ namespace DAL
 
         public RoleDB()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
         }
 
         public Role Create(Role role)
