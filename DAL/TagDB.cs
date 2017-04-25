@@ -16,7 +16,7 @@ namespace DAL
 
         public TagDB()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
         }
 
         public Tag Create(Tag tag)

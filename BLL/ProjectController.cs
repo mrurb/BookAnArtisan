@@ -10,42 +10,37 @@ namespace BLL
 {
     public class ProjectController : IController<Project>
     {
+        ProjectDB db = new ProjectDB();
+        SearchDB dba = new SearchDB();
         public Project Create(Project project)
         {
-            ProjectDB db = new ProjectDB();
             return db.Create(project);
         }
 
         public Project Read(Project project)
         {
-            ProjectDB db = new ProjectDB();
             return db.Read(project);
         }
 
         public Project Update(Project project)
         {
-            ProjectDB db = new ProjectDB();
             return db.Update(project);
         }
 
         public Project Delete(Project project)
         {
-            ProjectDB db = new ProjectDB();
             return db.Delete(project);
         }
 
         public List<Project> ReadAll()
         {
-            ProjectDB db = new ProjectDB();
             return db.ReadAll();
         }
-        SearchDB dba = new SearchDB();
         public List<Project> SearchByTag(string search_tag)
         {
             return dba.SearchByTag(search_tag);
         }
-
-
+        
         public List<Project> SearchByProjectUser(User user)
         {
             return dba.SearchByProjectUser(user);
