@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BLL;
 using WCF;
@@ -9,6 +9,7 @@ namespace Testing
     [TestClass]
     public class TestClassOne
     {
+
 		BLL.Class1 controller = null;
         bool avalue = false;
 

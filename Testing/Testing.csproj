@@ -53,10 +53,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="somelib.cs" />
     <Compile Include="TestClassOne.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Search.cs" />
+    <Compile Include="TestingDAL\TestProject.cs" />
+    <Compile Include="TestingDAL\TestRole.cs" />
+    <Compile Include="TestingDAL\TestStatus.cs" />
+    <Compile Include="TestingDAL\TestUsers.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
@@ -71,8 +73,8 @@
       <Project>{2c7e3ccf-934f-4155-ad57-079248802050}</Project>
       <Name>Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WCF2\WCF.csproj">
-      <Project>{c5eae54e-300a-4a27-bc39-8140a2ac9b0c}</Project>
+    <ProjectReference Include="..\WCF\WCF.csproj">
+      <Project>{75762366-0537-4db1-a432-c3c3e83c144b}</Project>
       <Name>WCF</Name>
     </ProjectReference>
   </ItemGroup>
@@ -86,6 +88,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>App.config</DependentUpon>
     </None>
+    <Folder Include="TestingBLL\" />
+    <Folder Include="TestingWCF\" />
+    <None Include="App.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
