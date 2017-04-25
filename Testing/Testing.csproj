@@ -79,11 +79,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Web.Debug.config">
+      <DependentUpon>App.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>App.config</DependentUpon>
+    </None>
     <Folder Include="TestingBLL\" />
     <Folder Include="TestingWCF\" />
+    <None Include="App.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

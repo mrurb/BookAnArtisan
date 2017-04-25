@@ -16,15 +16,9 @@ namespace WCF
         IList<Project> SearchByTag(string search_tag);
 
         [OperationContract]
-        IList<Project> SearchByProjectName(string pname);
-
-        [OperationContract]
-        IList<Project> SearchByProjectStatus(bool status);
-
-        [OperationContract]
         IList<Project> SearchByProjectUser(User user);
 
         [OperationContract]
-        IList<Project> SearchByProjectAddress(string address);
+        IList<Project> SearchByProjectAddress(string searchparam);
     }
 }

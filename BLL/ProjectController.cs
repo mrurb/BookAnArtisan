@@ -53,16 +53,12 @@ namespace BLL
 {
     public class ProjectController
     {
-        DBAccess dba = new DBAccess();
+        SearchDB dba = new SearchDB();
         public List<Project> SearchByTag(string search_tag)
         {
             return dba.SearchByTag(search_tag);
         }
 
-        public List<Project> SearchByProjectStatus(bool status)
-        {
-            return dba.SearchByProjectStatus(status);
-        }
 
         public List<Project> SearchByProjectUser(User user)
         {
@@ -72,11 +68,6 @@ namespace BLL
         public List<Project> SearchByProjectAddress(string address)
         {
             return dba.SearchByProjectAddress(address);
-        }
-
-        public List<Project> SearchByProjectName(string pname)
-        {
-            return dba.SearchByProjectName(pname);
         }
     }
 }

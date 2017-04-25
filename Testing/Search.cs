@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BLL;
 using Model;
+using DAL;
 using WCF;
 namespace Testing
 {
@@ -16,11 +17,22 @@ namespace Testing
     public class Search
     {
         ProjectSearch ps = new ProjectSearch();
-        string input_tag = "Kitchen"; // TODO : add stuff here
-        string pname = "asdasdadasdasdsad";
-        bool status = true;
-        User art = new User("1", "Laurids Andersen", "lauridsandersen2013@gmail.com", "12345678", "1234", "østre allé 58");
-        string address = "østre allé 58";
+        string input_tag = "VVS";
+        string pname = "stuff";
+        User art = new User("1", "Laurids", "Andersen", "lauridsandersen2013@gmail.com", "12345678", "1234", "østre allé 58");
+        string address = "stuf";
+
+        /*
+         * Created (10/04-17)
+         * Test of connection to database. Success if there is a connection.
+         */
+        [TestMethod]
+        public void TestDBCon()
+        {
+            SearchDB dba = new SearchDB();
+            bool worked = dba.DBConnectionTest();
+            Assert.AreEqual(true, worked);
+        }
         /*
          * Test: Only input tags. Tested with simple tag initially. Created (10/04-17)
          * Success: Something was found.
@@ -29,32 +41,6 @@ namespace Testing
         public void TestSearchByTag()
         {
             IList<Project> results = ps.SearchByTag(input_tag);
-            List<Project> resultsList = (List<Project>)results;
-            Assert.AreNotEqual(0, resultsList.ToArray().Length);
-        }
-
-        /*
-         * Created (10/04-17) 
-         * Test: only project name. Tested with standard input name initially.
-         * Success: Something was found.
-         */
-         [TestMethod]
-         public void TestSearchProjectName()
-        {
-            IList<Project> results = ps.SearchByProjectName(pname);
-            List<Project> resultsList = (List<Project>)results;
-            Assert.AreNotEqual(0, resultsList.ToArray().Length);
-        }
-
-        /*
-         * Created (10/04-17)
-         * Test: only project status
-         * Success: Something was found.
-         */
-         [TestMethod]
-         public void TestSearchProjectStatus()
-        {
-            IList<Project> results = ps.SearchByProjectStatus(status);
             List<Project> resultsList = (List<Project>)results;
             Assert.AreNotEqual(0, resultsList.ToArray().Length);
         }
@@ -83,6 +69,19 @@ namespace Testing
             IList<Project> results = ps.SearchByProjectAddress(address);
             List<Project> resultsList = (List<Project>)results;
             Assert.AreNotEqual(0, resultsList.ToArray().Length);
+        }
+
+        /*
+         * Created (24/04-17)
+         * Test: Ensure the correct object is taken from the DB
+         * Success: The *correct* object was returned
+         */
+         [TestMethod]
+         public void TestSearchIntegrationTest()
+        {
+            IList<Project> results = ps.SearchByProjectAddress(address);
+            List<Project> resultsList = (List<Project>)results;
+            Assert.AreEqual(address, resultsList[0].address);
         }
     }
 }

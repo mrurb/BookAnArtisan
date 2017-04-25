@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +9,17 @@ namespace Model
 {
     public class User
     {
+
+        public User(string id, string first_name, string last_name, string email, string password, string phonenumber, string address)
+        {
+            this.id = id;
+            this.first_name = first_name;
+            this.email = email;
+            this.password = password;
+            this.phonenumber = phonenumber;
+            this.address = address;
+            this.last_name = last_name;
+        }
         public string Id { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
