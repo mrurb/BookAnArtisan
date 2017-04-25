@@ -106,7 +106,7 @@ namespace DAL
                 {
                     try
                     {
-                        sqlcommand.Parameters.Add(new SqlParameter("@projectid", p.id));
+                        sqlcommand.Parameters.Add(new SqlParameter("@projectid", p.Id));
                         con.Open();
                         SqlDataReader reader = sqlcommand.ExecuteReader();
                         while (reader.Read())

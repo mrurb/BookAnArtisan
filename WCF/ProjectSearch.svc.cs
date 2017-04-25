@@ -24,20 +24,9 @@ namespace WCF
         {
             return pc.SearchByProjectAddress(address);
         }
-
-        public IList<Project> SearchByProjectStatus(bool status)
-        {
-            return pc.SearchByProjectStatus(status);
-        }
-
         public IList<Project> SearchByProjectUser(User user)
         {
             return pc.SearchByProjectUser(user);
-        }
-
-        public IList<Project> SearchByProjectName(string pname)
-        {
-            return pc.SearchByProjectName(pname);
         }
     }
 }

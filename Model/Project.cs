@@ -40,7 +40,7 @@ namespace Model
 
         public Project(string id, List<string> tags, string description, User client, List<User> artisans, string address)
         {
-            this.Id = id;
+            this.Id = Convert.ToInt32(id);
             this.tags = tags;
             this.description = description;
             this.client = client;

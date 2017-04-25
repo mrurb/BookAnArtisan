@@ -45,7 +45,6 @@ namespace DAL
                 new SqlParameter { ParameterName = "@UserName", SqlValue = user.UserName, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@FirstName", SqlValue = user.FirstName, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@LastName", SqlValue = user.LastName, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Phone", SqlValue = user.Phone, SqlDbType = SqlDbType.NVarChar},
                 new SqlParameter { ParameterName = "@Address", SqlValue = user.Address, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@ApiKey", SqlValue = user.ApiKey, SqlDbType = SqlDbType.NVarChar },
             };
@@ -116,7 +115,6 @@ namespace DAL
                                 user.UserName = GetDataSafe<string>(reader, UserNameCol, reader.GetString);
                                 user.FirstName = GetDataSafe<string>(reader, FirstNameCol, reader.GetString);
                                 user.LastName = GetDataSafe<string>(reader, LastNameCol, reader.GetString);
-                                user.Phone = GetDataSafe<string>(reader, PhoneCol, reader.GetString);
                                 user.Address = GetDataSafe<string>(reader, AddressCol, reader.GetString);
                                 user.ApiKey = GetDataSafe<string>(reader, ApiKeyCol, reader.GetString);
                             }
@@ -152,7 +150,6 @@ namespace DAL
                 new SqlParameter { ParameterName = "@UserName", SqlValue = user.UserName, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@FirstName", SqlValue = user.FirstName, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@LastName", SqlValue = user.LastName, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Phone", SqlValue = user.Phone, SqlDbType = SqlDbType.NVarChar},
                 new SqlParameter { ParameterName = "@Address", SqlValue = user.Address, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@ApiKey", SqlValue = user.ApiKey, SqlDbType = SqlDbType.NVarChar },
             };
@@ -238,25 +235,15 @@ namespace DAL
                             while (reader.Read())
                             {
                                 users.Add(new User
-                                {
-                                    Id = GetDataSafe<string>(reader, IdCol, reader.GetString),
-                                    Email = GetDataSafe<string>(reader, EmailCol, reader.GetString),
-                                    EmailConfirmed = GetDataSafe<bool>(reader, EmailConfirmedCol, reader.GetBoolean),
-                                    PasswordHash = GetDataSafe<string>(reader, PasswordHashCol, reader.GetString),
-                                    SecurityStamp = GetDataSafe<string>(reader, SecurityStampCol, reader.GetString),
-                                    PhoneNumber = GetDataSafe<string>(reader, PhoneNumberCol, reader.GetString),
-                                    PhoneNumberConfirmed = GetDataSafe<bool>(reader, PhoneNumberConfirmedCol, reader.GetBoolean),
-                                    TwoFactorEnabled = GetDataSafe<bool>(reader, TwoFactorEnabledCol, reader.GetBoolean),
-                                    LockoutEndDateUtc = GetDataSafe<DateTime>(reader, LockoutEndDateUtcCol, reader.GetDateTime),
-                                    LockoutEnabled = GetDataSafe<bool>(reader, LockoutEnabledCol, reader.GetBoolean),
-                                    AccessFailedCount = GetDataSafe<int>(reader, AccessFailedCountCol, reader.GetInt32),
-                                    UserName = GetDataSafe<string>(reader, UserNameCol, reader.GetString),
-                                    FirstName = GetDataSafe<string>(reader, FirstNameCol, reader.GetString),
-                                    LastName = GetDataSafe<string>(reader, LastNameCol, reader.GetString),
-                                    Phone = GetDataSafe<string>(reader, PhoneCol, reader.GetString),
-                                    Address = GetDataSafe<string>(reader, AddressCol, reader.GetString),
-                                    ApiKey = GetDataSafe<string>(reader, ApiKeyCol, reader.GetString),
-                                });
+                                (
+                                    GetDataSafe<string>(reader, IdCol, reader.GetString),
+                                    GetDataSafe<string>(reader, FirstNameCol, reader.GetString),
+                                    GetDataSafe<string>(reader, LastNameCol, reader.GetString),
+                                    GetDataSafe<string>(reader, EmailCol, reader.GetString),
+                                    GetDataSafe<string>(reader, PasswordHashCol, reader.GetString),
+                                    GetDataSafe<string>(reader, PhoneNumberCol, reader.GetString),
+                                    GetDataSafe<string>(reader, AddressCol, reader.GetString)
+                                ));
                             }
                         }
                     }

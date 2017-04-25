@@ -30,7 +30,6 @@ namespace Testing.TestingDAL
                 UserName = "pwnMaster",
                 FirstName = "John",
                 LastName = "Doe",
-                Phone = "12345678",
                 Address = "Downing Street",
                 ApiKey = "apistuff",
                 

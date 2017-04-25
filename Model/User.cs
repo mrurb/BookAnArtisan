@@ -10,16 +10,6 @@ namespace Model
     public class User
     {
 
-        public User(string id, string first_name, string last_name, string email, string password, string phonenumber, string address)
-        {
-            this.id = id;
-            this.first_name = first_name;
-            this.email = email;
-            this.password = password;
-            this.phonenumber = phonenumber;
-            this.address = address;
-            this.last_name = last_name;
-        }
         public string Id { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
@@ -35,11 +25,23 @@ namespace Model
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        // I'm aware phonenumber is listed twice. TO FIX!
-        public string Phone { get; set; }
         public string Address { get; set; }
         public string ApiKey { get; set; }
-        
+        public User(string id, string first_name, string last_name, string email, string password, string phonenumber, string address)
+        {
+            this.Id = id;
+            this.FirstName = first_name;
+            this.Email = email;
+            this.PasswordHash = password;
+            this.PhoneNumber = phonenumber;
+            this.Address = address;
+            this.LastName = last_name;
+        }
+
+        public User()
+        {
+            //empty constructor
+        }
 
         public override bool Equals(object obj)
         {
@@ -59,7 +61,6 @@ namespace Model
                 !this.UserName.Equals(other.UserName) ||
                 !this.FirstName.Equals(other.FirstName) ||
                 !this.LastName.Equals(other.LastName) ||
-                !this.Phone.Equals(other.Phone) ||
                 !this.Address.Equals(other.Address) ||
                 !this.ApiKey.Equals(other.ApiKey)
                 )
