@@ -39,20 +39,6 @@ namespace BLL
             ProjectDB db = new ProjectDB();
             return db.ReadAll();
         }
-    }
-}
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Model;
-using DAL;
-
-namespace BLL
-{
-    public class ProjectController
-    {
         SearchDB dba = new SearchDB();
         public List<Project> SearchByTag(string search_tag)
         {
@@ -71,3 +57,4 @@ namespace BLL
         }
     }
 }
+
