@@ -21,11 +21,10 @@ namespace DAL
 
         public Status Create(Status status)
         {
-            string sql = "INSERT INTO Project_status VALUES ID = @Id, Name = @Name SELECT SCOPE_IDENTITY()";
+            string sql = "INSERT INTO Project_status VALUES(@Name) SELECT SCOPE_IDENTITY()";
 
             SqlParameter[] arrayOfParameters =
             {
-                new SqlParameter { ParameterName = "@Id", SqlValue = status.Id, SqlDbType = SqlDbType.Int },
                 new SqlParameter { ParameterName = "@Name", SqlValue = status.Name, SqlDbType = SqlDbType.NVarChar }
             };
 
@@ -74,7 +73,7 @@ namespace DAL
 
             SqlParameter[] arrayOfParameters =
             {
-                new SqlParameter { ParameterName = "@Id", SqlValue = status.Name, SqlDbType = SqlDbType.Int },
+                new SqlParameter { ParameterName = "@Id", SqlValue = status.Id, SqlDbType = SqlDbType.Int },
                 new SqlParameter { ParameterName = "@Name" , SqlValue = status.Name, SqlDbType = SqlDbType.NVarChar}
             };
 
@@ -87,7 +86,7 @@ namespace DAL
                     int affectedRows = command.ExecuteNonQuery();
                     if (!(0 < affectedRows))
                     {
-                        throw new System.Exception("No rows affected. Update failed - Does the object exist beforehand in the database?");
+                        throw new System.Exception("No rows affected");
                     }
                 }
             }
@@ -96,7 +95,7 @@ namespace DAL
 
         public Status Delete(Status status)
         {
-            string sql = "DELETE FROM Project_status WHERE Id = @Id";
+            string sql = "DELETE FROM Project_status WHERE ID = @Id";
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = status.Id, SqlDbType = SqlDbType.NVarChar };
 
@@ -127,11 +126,13 @@ namespace DAL
             {
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
+                    command.Connection.Open();
+
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
                         {
-                            int IdCol = reader.GetOrdinal("ID");
+                            int IdCol = reader.GetOrdinal("Id");
                             int NameCol = reader.GetOrdinal("Name");
 
                             while (reader.Read())

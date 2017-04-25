@@ -99,7 +99,7 @@ namespace DAL
         }
         public Tag Delete(Tag tag)
         {
-            string sql = "DELETE FROM Tags WHERE Id = @Id";
+            string sql = "DELETE FROM Tags WHERE ID = @Id";
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = tag.Id, SqlDbType = SqlDbType.NVarChar };
 

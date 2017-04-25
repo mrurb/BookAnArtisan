@@ -21,7 +21,7 @@ namespace DAL
 
         public Role Create(Role role)
         {
-            string sql = "INSERT INTO AspNetRoles VALUES ID = @Id, Name = @Name";
+            string sql = "INSERT INTO AspNetRoles VALUES(@Id, @Name)";
 
             SqlParameter[] arrayOfParameters =
             {
@@ -44,7 +44,7 @@ namespace DAL
 
         public Role Read(Role role)
         {
-            string sql = "SELECT Name FROM AspNetRoles WHERE ID = @Id";
+            string sql = "SELECT Name FROM AspNetRoles WHERE Id = @Id";
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = role.Id, SqlDbType = SqlDbType.NVarChar };
 
@@ -72,7 +72,7 @@ namespace DAL
 
         public Role Update(Role role)
         {
-            string sql = "UPDATE AspNetRoles SET Name = @Name WHERE ID = @Id";
+            string sql = "UPDATE AspNetRoles SET Name = @Name WHERE Id = @Id";
 
             SqlParameter[] arrayOfParameters =
             {
@@ -89,7 +89,7 @@ namespace DAL
                     int affectedRows = command.ExecuteNonQuery();
                     if (!(0 < affectedRows))
                     {
-                        throw new System.Exception("No rows affected. Update failed - Does the object exist beforehand in the database?");
+                        throw new System.Exception("No rows affected");
                     }
                 }
             }
@@ -128,11 +128,13 @@ namespace DAL
             {
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
+                    command.Connection.Open();
+
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if(reader.HasRows)
                         {
-                            int IdCol = reader.GetOrdinal("ID");
+                            int IdCol = reader.GetOrdinal("Id");
                             int NameCol = reader.GetOrdinal("Name");
 
                             while (reader.Read())

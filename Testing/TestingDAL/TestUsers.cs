@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 using DAL;
+using System.Collections.Generic;
 
 namespace Testing.TestingDAL
 {
@@ -69,6 +70,11 @@ namespace Testing.TestingDAL
         public void TestReadAll()
         {
             Assert.IsTrue(0 < db.ReadAll().Count);
+            List<User> list = db.ReadAll();
+            foreach (User u in list)
+            {
+                Assert.IsTrue(u.Id.Length > 0);
+            }
         }
     }
 }
