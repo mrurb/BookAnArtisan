@@ -24,7 +24,7 @@ namespace BookAnArtisanMVC.Controllers
             catch (Exception)
             {
                 pCl.Abort();
-                throw;
+                throw new Exception();
             }
             
         }
