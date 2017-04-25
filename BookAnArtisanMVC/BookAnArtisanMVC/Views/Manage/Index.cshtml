@@ -4,7 +4,7 @@
 }
 
 <h2>@ViewBag.Title.</h2>
-
+@* Probably just copy-paste users/edit.cshtml page. Then edit to match needs, like password change and less access to some properties. *@
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
     <h4>Change your account settings</h4>
@@ -12,9 +12,9 @@
     <dl class="dl-horizontal">
         
         <dt>First Name:</dt>
-        <dd>@Html.TextBox(HttpContext.Current.User.Identity.Name)</dd>
+        <dd>@Html.TextBox("")</dd>
         <dt>Last Name:</dt>
-        <dd>@Html.TextBox(User.Identity.Name)</dd>
+        <dd>@Html.TextBox("")</dd>
         <dt>Password:</dt>
         <dd>
             [
