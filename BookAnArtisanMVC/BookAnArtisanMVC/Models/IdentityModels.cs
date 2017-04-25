@@ -21,13 +21,13 @@ namespace BookAnArtisanMVC.Models
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
-            userIdentity.AddClaims(new[]
-            {
-                new Claim(ClaimTypes.GivenName, FirstName),
-                new Claim(ClaimTypes.Surname, LastName),
-                new Claim(ClaimTypes.HomePhone, Phone),
-                new Claim(ClaimTypes.StreetAddress, Address)
-            });
+            //userIdentity.AddClaims(new[]
+            //{
+            //    new Claim("MyApp:FirstName", FirstName),
+            //    new Claim("MyApp:LastName", LastName),
+            //    new Claim("MyApp:Phone", Phone),
+            //    new Claim("MyApp:Address", Address)
+            //});
             return userIdentity;
         }
     }
