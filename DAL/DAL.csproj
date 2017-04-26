@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MeetingDB.cs" />
     <Compile Include="SearchDB.cs" />
     <Compile Include="IDataAccess.cs" />
     <Compile Include="ProjectDB.cs" />

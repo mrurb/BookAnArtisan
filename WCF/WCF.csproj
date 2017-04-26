@@ -47,6 +47,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMeetingService.cs" />
     <Compile Include="IProjectSearch.cs" />
     <Compile Include="IProjectService.cs" />
     <Compile Include="IRoleService.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="IStatusService.cs" />
     <Compile Include="ITagService.cs" />
     <Compile Include="IUserService.cs" />
+    <Compile Include="MeetingService.cs" />
     <Compile Include="ProjectSearch.cs" />
     <Compile Include="ProjectService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
