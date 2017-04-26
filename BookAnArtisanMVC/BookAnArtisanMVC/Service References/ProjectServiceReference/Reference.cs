@@ -241,10 +241,10 @@ namespace BookAnArtisanMVC.ProjectServiceReference {
         System.Threading.Tasks.Task<BookAnArtisanMVC.ProjectServiceReference.Project> UpdateAsync(BookAnArtisanMVC.ProjectServiceReference.Project t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Project/Delete", ReplyAction="http://tempuri.org/IServiceOf_Project/DeleteResponse")]
-        BookAnArtisanMVC.ProjectServiceReference.Project Delete(BookAnArtisanMVC.ProjectServiceReference.Project t);
+        bool Delete(BookAnArtisanMVC.ProjectServiceReference.Project t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Project/Delete", ReplyAction="http://tempuri.org/IServiceOf_Project/DeleteResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.ProjectServiceReference.Project> DeleteAsync(BookAnArtisanMVC.ProjectServiceReference.Project t);
+        System.Threading.Tasks.Task<bool> DeleteAsync(BookAnArtisanMVC.ProjectServiceReference.Project t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Project/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_Project/ReadAllResponse")]
         System.Collections.Generic.List<BookAnArtisanMVC.ProjectServiceReference.Project> ReadAll();
@@ -304,11 +304,11 @@ namespace BookAnArtisanMVC.ProjectServiceReference {
             return base.Channel.UpdateAsync(t);
         }
         
-        public BookAnArtisanMVC.ProjectServiceReference.Project Delete(BookAnArtisanMVC.ProjectServiceReference.Project t) {
+        public bool Delete(BookAnArtisanMVC.ProjectServiceReference.Project t) {
             return base.Channel.Delete(t);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.ProjectServiceReference.Project> DeleteAsync(BookAnArtisanMVC.ProjectServiceReference.Project t) {
+        public System.Threading.Tasks.Task<bool> DeleteAsync(BookAnArtisanMVC.ProjectServiceReference.Project t) {
             return base.Channel.DeleteAsync(t);
         }
         

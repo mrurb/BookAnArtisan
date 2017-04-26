@@ -64,17 +64,101 @@ namespace DAL
 
         public Meeting Read(Meeting t)
         {
-            throw new NotImplementedException();
+            string sql = "SELECT * FROM AspNetUsers WHERE ID = @Id"; // search by ID, see below.
+
+            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = t.Id, SqlDbType = SqlDbType.NVarChar };
+
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.Add(idParameter);
+                    command.Connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            int IdCol = reader.GetOrdinal("ID"); // probably don't want ID at all... but how to search then boss?
+                            int TitleCol = reader.GetOrdinal("Title");
+                            int StartTimeCol = reader.GetOrdinal("StartTime");
+                            int EndTimeCol = reader.GetOrdinal("EndTime");
+                            int DescCol = reader.GetOrdinal("Description");
+                            int CreatedByIDCol = reader.GetOrdinal("CreatedByID");
+                            int ContactIDCol = reader.GetOrdinal("ContactID");
+
+                            if (reader.Read())
+                            {
+                                t.Id = GetDataSafe(reader, IdCol, reader.GetInt32);
+                                t.Title = GetDataSafe(reader, TitleCol, reader.GetString);
+                                t.StartTime = (DateTime)GetDataSafe(reader, StartTimeCol, reader.GetSqlDateTime); // Needed explicit cast because wat?
+                                t.EndTime = (DateTime)GetDataSafe(reader, EndTimeCol, reader.GetSqlDateTime);
+                                t.Description = GetDataSafe(reader, DescCol, reader.GetString);
+                                t.CreatedById = GetDataSafe(reader, CreatedByIDCol, reader.GetString);
+                                t.ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString);
+
+                            }
+                        }
+                    }
+                }
+            }
+            return t;
         }
 
         public List<Meeting> ReadAll()
         {
-            throw new NotImplementedException();
+            List<Meeting> users = new List<Meeting>();
+
+            string sql = "SELECT * FROM Meeting";
+
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            int IdCol = reader.GetOrdinal("ID");
+                            int TitleCol = reader.GetOrdinal("Title");
+                            int StartTimeCol = reader.GetOrdinal("StartTime");
+                            int EndTimeCol = reader.GetOrdinal("EndTime");
+                            int DescCol = reader.GetOrdinal("Description");
+                            int CreatedByIDCol = reader.GetOrdinal("CreatedByID");
+                            int ContactIDCol = reader.GetOrdinal("ContactID");
+
+                            while (reader.Read())
+                            {
+                                users.Add(new Meeting
+                                {
+                                    Id = GetDataSafe(reader, IdCol, reader.GetInt32),
+                                    Title = GetDataSafe(reader, TitleCol, reader.GetString),
+                                    StartTime = (DateTime)GetDataSafe(reader, StartTimeCol, reader.GetSqlDateTime),
+                                    EndTime = (DateTime)GetDataSafe(reader, EndTimeCol, reader.GetSqlDateTime),
+                                    Description = GetDataSafe(reader, DescCol, reader.GetString),
+                                    CreatedById = GetDataSafe(reader, CreatedByIDCol, reader.GetString),
+                                    ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString)
+                                }));
+                            }
+                        }
+                    }
+                }
+            }
+            return users;
         }
 
         public Meeting Update(Meeting t)
         {
             throw new NotImplementedException();
+        }
+
+        public T GetDataSafe<T>(SqlDataReader reader, int columnIndex, Func<int, T> getData)
+        {
+            if (!reader.IsDBNull(columnIndex))
+            {
+                return getData(columnIndex);
+            }
+            return default(T);
         }
     }
 }

@@ -13,7 +13,6 @@
       <xs:element minOccurs="0" name="LockoutEnabled" type="xs:boolean" />
       <xs:element minOccurs="0" name="LockoutEndDateUtc" type="xs:dateTime" />
       <xs:element minOccurs="0" name="PasswordHash" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PhoneNumberConfirmed" type="xs:boolean" />
       <xs:element minOccurs="0" name="SecurityStamp" nillable="true" type="xs:string" />
