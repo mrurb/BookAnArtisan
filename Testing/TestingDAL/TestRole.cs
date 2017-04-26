@@ -12,8 +12,8 @@ namespace Testing.TestingDAL
     [TestClass]
     public class TestRole
     {
-        private Role testRole;
-        private RoleDB db;
+        static private Role testRole;
+        static private RoleDB db;
 
         public TestRole()
         {
@@ -21,7 +21,7 @@ namespace Testing.TestingDAL
         }
         #region setups and teardowns
         [ClassInitialize]
-        public void setUpBeforeClass()
+        public static void setUpBeforeClass(TestContext tc)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace Testing.TestingDAL
         }
 
         [ClassCleanup]
-        public void tearDownAfterClass()
+        public static void tearDownAfterClass()
         {
             try
             {

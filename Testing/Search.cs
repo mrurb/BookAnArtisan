@@ -18,14 +18,14 @@ namespace Testing
     [TestClass]
     public class Search
     {
-        ProjectSearch ps;
-        string input_tag;
-        string pname;
-        string address;
-        User art;
+        static ProjectSearch ps;
+        static string input_tag;
+        static string pname;
+        static string address;
+        static User art;
 
         [ClassInitialize]
-        public void setUpBeforeClass()
+        public static void setUpBeforeClass(TestContext tc)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace Testing
         }
 
         [ClassCleanup]
-        public void tearDownAfterClass()
+        public static void tearDownAfterClass()
         {
             try
             {

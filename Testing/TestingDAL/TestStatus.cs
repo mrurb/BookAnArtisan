@@ -12,8 +12,8 @@ namespace Testing.TestingDAL
     [TestClass]
     public class TestStatus
     {
-        private Status testStatus;
-        private StatusDB db;
+        static private Status testStatus;
+        static private StatusDB db;
 
         public TestStatus()
         {
@@ -21,7 +21,7 @@ namespace Testing.TestingDAL
         }
         #region setups + teardowns
         [ClassInitialize]
-        public void setUpBeforeClass()
+        public static void setUpBeforeClass(TestContext tc)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace Testing.TestingDAL
         }
 
         [ClassCleanup]
-        public void tearDownAfterClass()
+        public static void tearDownAfterClass()
         {
             try
             {

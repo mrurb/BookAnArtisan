@@ -9,8 +9,8 @@ namespace Testing
     [TestClass]
     public class TestProject
     {
-        private Project testProject;
-        private ProjectDB db;
+        static private Project testProject;
+        static private ProjectDB db;
 
         public TestProject()
         {
@@ -19,7 +19,7 @@ namespace Testing
 
         #region setups + teardowns
         [ClassInitialize]
-        public void setUpBeforeClass()
+        public static void setUpBeforeClass(TestContext tc)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace Testing
             }
         }
         [ClassCleanup]
-        public void tearDownAfterClass()
+        public static void tearDownAfterClass()
         {
             try
             {

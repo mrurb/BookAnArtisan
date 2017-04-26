@@ -9,8 +9,8 @@ namespace Testing.TestingDAL
     [TestClass]
     public class TestUsers
     {
-        private User testUser;
-        private UserDB db;
+        static private User testUser;
+        static private UserDB db;
 
         public TestUsers()
         {
@@ -19,7 +19,7 @@ namespace Testing.TestingDAL
 
         #region setups and teardowns
         [ClassInitialize]
-        public void setUpBeforeClass()
+        public static void setUpBeforeClass(TestContext tc)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace Testing.TestingDAL
         }
 
         [ClassCleanup]
-        public void tearDownAfterClass()
+        public static  void tearDownAfterClass()
         {
             try
             {
