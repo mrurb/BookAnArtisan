@@ -84,7 +84,7 @@ namespace DAL
                     command.Parameters.AddRange(arrayOfParameters);
                     command.Connection.Open();
                     int affectedRows = command.ExecuteNonQuery();
-                    if (!(0 < affectedRows))
+                    if (affectedRows < 1)
                     {
                         throw new System.Exception("No rows affected");
                     }
@@ -106,7 +106,7 @@ namespace DAL
                     command.Parameters.Add(idParameter);
                     command.Connection.Open();
                     int affectedRows = command.ExecuteNonQuery();
-                    if (!(0 < affectedRows))
+                    if (affectedRows < 1)
                     {
                         throw new System.Exception("No rows affected. Delete failed - Does the object exist beforehand in the database?");
                     }

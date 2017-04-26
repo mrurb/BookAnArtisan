@@ -91,7 +91,8 @@ namespace Testing.TestingDAL
         public void TestUpdateRole()
         {
             testRole.Name = "User";
-            Assert.AreEqual("User", db.Update(testRole).Name);
+            db.Update(testRole); 
+            Assert.AreEqual(testRole.Name, db.Read(testRole).Name); 
         }
 
         [TestMethod]

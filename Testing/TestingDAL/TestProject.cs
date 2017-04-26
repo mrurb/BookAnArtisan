@@ -85,7 +85,7 @@ namespace Testing
         #endregion
         #region DALTesting
         [TestMethod]
-        public void TestCreate()
+        public void TestCreateProject()
         {
             int earlierID = testProject.Id;
             int returnedID = db.Create(testProject).Id;
@@ -94,27 +94,27 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestRead()
+        public void TestReadProject()
         {
             Assert.AreEqual(testProject, db.Read(testProject));
         }
 
         [TestMethod]
-        public void TestUpdate()
+        public void TestUpdateProject()
         {
             testProject.Street_Name = "New street";
             Assert.IsTrue("New street".Equals(db.Update(testProject).Street_Name));
         }
 
         [TestMethod]
-        public void TestDelete()
+        public void TestDeleteProject()
         {
             Assert.IsTrue(db.Delete(testProject).Deleted);
         }
         #endregion
 
         [TestMethod]
-        public void TestReadAll()
+        public void TestReadAllProject()
         {
             Assert.IsTrue(0 < db.ReadAll().Count);
             List<Project> list = db.ReadAll();

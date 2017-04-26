@@ -132,22 +132,12 @@ namespace DAL
             int TwoFactorEnabled = Convert.ToInt32(user.TwoFactorEnabled);
             int LockoutEnabled = Convert.ToInt32(user.LockoutEnabled);
 
-            string sql = "UPDATE AspNetUsers SET FirstName = @FirstName, LastName = @LastName, Phone = @Phone, Address = @Address, ApiKey = @ApiKey, Email = @Email WHERE ID = @Id";
+            string sql = "UPDATE AspNetUsers SET FirstName = @FirstName, LastName = @LastName, Address = @Address, ApiKey = @ApiKey, Email = @Email WHERE ID = @Id";
 
             SqlParameter[] arrayOfParameters =
             {
                 new SqlParameter { ParameterName = "@Id", SqlValue = user.Id, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@Email", SqlValue = user.Email, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@EmailConfirmed", SqlValue = EmailConfirmed, SqlDbType = SqlDbType.Bit },
-                new SqlParameter { ParameterName = "@PasswordHash", SqlValue = user.PasswordHash, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@SecurityStamp", SqlValue = user.SecurityStamp, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@PhoneNumber", SqlValue = user.PhoneNumber, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@PhoneNumberConfirmed", SqlValue = PhoneNumberConfirmed, SqlDbType = SqlDbType.Bit },
-                new SqlParameter { ParameterName = "@TwoFactorEnabled", SqlValue = TwoFactorEnabled, SqlDbType = SqlDbType.Bit },
-                new SqlParameter { ParameterName = "@LockoutEndDateUtc", SqlValue = user.LockoutEndDateUtc, SqlDbType = SqlDbType.DateTime },
-                new SqlParameter { ParameterName = "@LockoutEnabled", SqlValue = LockoutEnabled, SqlDbType = SqlDbType.Bit },
-                new SqlParameter { ParameterName = "@AccessFailedCount", SqlValue = user.AccessFailedCount, SqlDbType = SqlDbType.Int },
-                new SqlParameter { ParameterName = "@UserName", SqlValue = user.UserName, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@FirstName", SqlValue = user.FirstName, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@LastName", SqlValue = user.LastName, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@Address", SqlValue = user.Address, SqlDbType = SqlDbType.NVarChar },
@@ -162,7 +152,7 @@ namespace DAL
                     command.Connection.Open();
                     // Add exceptionhandling 
                     int affectedRows = command.ExecuteNonQuery();
-                    if (!(0 < affectedRows))
+                    if (affectedRows < 1)
                     {
                         throw new System.Exception("No rows affected. Update failed - Does the object exist beforehand in the database?");
                     }
@@ -175,7 +165,7 @@ namespace DAL
         {
             int bitRepresentationOfBool = Convert.ToInt32(true);
 
-            string sql = "DELETE FROM AspNetUsers WHERE ID = @Id";
+            string sql = "UPDATE AspNetUsers SET Deleted = 1 WHERE ID = @Id";
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = user.Id, SqlDbType = SqlDbType.NVarChar };
 
@@ -186,7 +176,7 @@ namespace DAL
                     command.Parameters.Add(idParameter);
                     command.Connection.Open();
                     int affectedRows = command.ExecuteNonQuery();
-                    if (!(0 < affectedRows))
+                    if (affectedRows < 1)
                     {
                         throw new System.Exception("No rows affected. Update failed - Does the object exist beforehand in the database?");
                     }
@@ -199,8 +189,6 @@ namespace DAL
         public List<User> ReadAll()
         {
             List<User> users = new List<User>();
-
-            string connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
 
             string sql = "SELECT * FROM AspNetUsers";
 

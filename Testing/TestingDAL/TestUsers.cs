@@ -52,7 +52,7 @@ namespace Testing.TestingDAL
             {
                 testUser = new User
                 {
-                    Id = "f93e4146-0ef5-45fb-8088-d1150e91dea4",
+                    Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3",
                     Email = "stuff@stuff.com",
                     EmailConfirmed = true,
                     PasswordHash = "badpasswordhash",
@@ -93,39 +93,50 @@ namespace Testing.TestingDAL
         #endregion
         #region DALTesting
         [TestMethod]
-        public void TestCreate()
+        public void TestCreateUsers()
         {
             Assert.IsNotNull(db.Create(testUser));
         }
 
         [TestMethod]
-        public void TestRead()
+        public void TestReadUsers()
         {
             Assert.AreEqual(testUser, db.Read(testUser));
         }
 
         [TestMethod]
-        public void TestUpdate()
+        public void TestUpdateUsers()
         {
             testUser.Address = "New street";
-            Assert.AreEqual("New street", db.Update(testUser).Address);
+            db.Update(testUser);
+            Assert.AreEqual(testUser.Address, db.Read(testUser).Address);
         }
 
         [TestMethod]
-        public void TestDelete()
+        public void TestDeleteUsers()
         {
             Assert.AreEqual(testUser, db.Delete(testUser));
         }
         #endregion
 
         [TestMethod]
-        public void TestReadAll()
+        public void TestReadAllUsers()
         {
-            Assert.IsTrue(0 < db.ReadAll().Count);
             List<User> list = db.ReadAll();
-            foreach (User u in list)
+            if (list.Count > 0)
             {
-                Assert.IsTrue(u.Id.Length > 0);
+                foreach (User u in list)
+                {
+                    if (u.Id.Length == 0)
+                    {
+                        Assert.IsTrue(false); //if we get here, the test fails
+                    }
+                }
+                Assert.IsTrue(true); //if we get here, the test succeeded
+            }
+            else
+            {
+                Assert.IsTrue(false); //if we get here, the test fails
             }
         }
     }

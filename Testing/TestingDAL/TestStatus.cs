@@ -53,7 +53,7 @@ namespace Testing.TestingDAL
             try
             {
                 db = new StatusDB();
-                testStatus = new Status { Id = 1, Name = "OK" };
+                testStatus = new Status { Id = 2, Name = "OK" };
             }
             catch
             {
@@ -76,32 +76,33 @@ namespace Testing.TestingDAL
         }
         #endregion
         [TestMethod]
-        public void TestCreate()
+        public void TestCreateStatus()
         {
             Assert.IsNotNull(db.Create(testStatus));
         }
 
         [TestMethod]
-        public void TestRead()
+        public void TestReadStatus()
         {
             Assert.AreEqual(testStatus, db.Read(testStatus));
         }
 
         [TestMethod]
-        public void TestUpdate()
+        public void TestUpdateStatus()
         {
             testStatus.Name = "New name";
-            Assert.AreEqual("New name", db.Update(testStatus).Name);
+            db.Update(testStatus);
+            Assert.AreEqual(testStatus.Name, db.Read(testStatus).Name);
         }
 
         [TestMethod]
-        public void TestDelete()
+        public void TestDeleteStatus()
         {
             Assert.AreEqual(testStatus, db.Delete(testStatus));
         }
 
         [TestMethod]
-        public void TestReadAll()
+        public void TestReadAllStatus()
         {
             Assert.IsTrue(0 < db.ReadAll().Count);
             List<Status> list = db.ReadAll();
