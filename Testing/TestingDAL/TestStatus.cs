@@ -12,15 +12,69 @@ namespace Testing.TestingDAL
     [TestClass]
     public class TestStatus
     {
-        private Status testStatus;
-        private StatusDB db;
+        static private Status testStatus;
+        static private StatusDB db;
 
         public TestStatus()
         {
-            testStatus = new Status { Id = 1, Name = "OK" };
-            db = new StatusDB();
+            // do nothing?
+        }
+        #region setups + teardowns
+        [ClassInitialize]
+        public static void setUpBeforeClass(TestContext tc)
+        {
+            try
+            {
+                // nothing?
+            }
+            catch
+            {
+                throw new Exception();
+            }
         }
 
+        [ClassCleanup]
+        public static void tearDownAfterClass()
+        {
+            try
+            {
+                db = null;
+                testStatus = null;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [TestInitialize]
+        public void setUp()
+        {
+            try
+            {
+                db = new StatusDB();
+                testStatus = new Status { Id = 1, Name = "OK" };
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [TestCleanup]
+        public void tearDown()
+        {
+            try
+            {
+                db = null;
+                testStatus = null;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+        #endregion
         [TestMethod]
         public void TestCreate()
         {

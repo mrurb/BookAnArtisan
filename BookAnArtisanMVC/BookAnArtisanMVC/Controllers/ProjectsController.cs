@@ -24,7 +24,8 @@ namespace BookAnArtisanMVC.Controllers
             catch (Exception)
             {
                 pCl.Abort();
-                throw new Exception();
+                return View("NoResponseFromServer");
+                //return new HttpStatusCodeResult(404, "Item Not Found");
             }
             
         }

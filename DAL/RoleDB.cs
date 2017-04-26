@@ -16,7 +16,7 @@ namespace DAL
 
         public RoleDB()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
         }
 
         public Role Create(Role role)
@@ -36,6 +36,10 @@ namespace DAL
                     command.Parameters.AddRange(arrayOfParameters);
                     command.Connection.Open();
                     role.Id = Convert.ToString(command.ExecuteScalar());
+                    if (role.Id == null || role.Id == "0")
+                    {
+                        throw new Exception();
+                    }
                 }
             }
 

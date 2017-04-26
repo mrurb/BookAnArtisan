@@ -9,32 +9,80 @@ namespace Testing
     [TestClass]
     public class TestProject
     {
-        private Project testProject;
-        private ProjectDB db;
+        static private Project testProject;
+        static private ProjectDB db;
 
         public TestProject()
         {
-            testProject = new Project()
-            {
-                // Below ID is set only for testing whether it changes when created in DB.
-                Id = 20,
-                Name = "Test",
-                Created_by_ID = "f93e4146-0ef5-45fb-8088-d1150e91dea3",
-                Contact_ID = "f93e4146-0ef5-45fb-8088-d1150e91dea3",
-                Project_status_ID = 1,
-                Project_description = "Something",
-                Street_Name = "Test street",
-                Start_time = new DateTime(2017, 04, 19, 17, 09, 21, 0),
-                Created = new DateTime(2017, 04, 19, 17, 09, 21, 0),
-                Modified = new DateTime(2017, 04, 19, 17, 09, 21, 0),
-                Deleted = false
-            };
-
-            db = new ProjectDB();
+            // do nothing?
         }
 
-        
-
+        #region setups + teardowns
+        [ClassInitialize]
+        public static void setUpBeforeClass(TestContext tc)
+        {
+            try
+            {
+                //nothing
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+        [ClassCleanup]
+        public static void tearDownAfterClass()
+        {
+            try
+            {
+                db = null;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+        [TestInitialize]
+        public void setUp()
+        {
+            try
+            {
+                testProject = new Project()
+                {
+                    // Below ID is set only for testing whether it changes when created in DB.
+                    Id = 20,
+                    Name = "Test",
+                    Created_by_ID = "f93e4146-0ef5-45fb-8088-d1150e91dea3",
+                    Contact_ID = "f93e4146-0ef5-45fb-8088-d1150e91dea3",
+                    Project_status_ID = 1,
+                    Project_description = "Something",
+                    Street_Name = "Test street",
+                    Start_time = new DateTime(2017, 04, 19, 17, 09, 21, 0),
+                    Created = new DateTime(2017, 04, 19, 17, 09, 21, 0),
+                    Modified = new DateTime(2017, 04, 19, 17, 09, 21, 0),
+                    Deleted = false
+                };
+                db = new ProjectDB();
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+        [TestCleanup]
+        public void tearDown()
+        {
+            try
+            {
+                testProject = null;
+                db = null;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+        #endregion
         #region DALTesting
         [TestMethod]
         public void TestCreate()

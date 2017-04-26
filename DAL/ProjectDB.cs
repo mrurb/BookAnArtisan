@@ -15,7 +15,7 @@ namespace DAL
         private string connectionString;
         public ProjectDB()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["testConnection"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
         }
 
         public Project Create(Project project)
