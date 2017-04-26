@@ -109,7 +109,8 @@ namespace Testing
         [TestMethod]
         public void TestDeleteProject()
         {
-            Assert.IsTrue(db.Delete(testProject).Deleted);
+            db.Delete(testProject);
+            Assert.IsTrue(db.Read(testProject).Deleted);
         }
         #endregion
 

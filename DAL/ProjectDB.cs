@@ -136,7 +136,7 @@ namespace DAL
         }
 
         //Actually deletes the object because there's currently no 'Deleted' bit in DB.
-        public Project Delete(Project project)
+        public bool Delete(Project project)
         {
             int bitRepresentationOfBool = Convert.ToInt32(true);
 
@@ -152,11 +152,15 @@ namespace DAL
                     command.Parameters.Add(boolParameter);
                     command.Parameters.Add(idParameter);
                     command.Connection.Open();
-                    project.Deleted = 0 < command.ExecuteNonQuery();
+                    int affectedrows = command.ExecuteNonQuery();
+                    if (affectedrows < 1)
+                    {
+                        return false;
+                    }
                 }
             }
 
-            return project;
+            return true;
         }
 
         public List<Project> ReadAll()

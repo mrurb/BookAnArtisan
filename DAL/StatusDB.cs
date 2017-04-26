@@ -21,6 +21,7 @@ namespace DAL
 
         public Status Create(Status status)
         {
+            //check if it exist ....????
             string sql = "INSERT INTO Project_status VALUES(@Name) SELECT SCOPE_IDENTITY()";
 
             SqlParameter[] arrayOfParameters =
@@ -93,10 +94,9 @@ namespace DAL
             return status;
         }
 
-        public Status Delete(Status status)
+        public bool Delete(Status status)
         {
             string sql = "DELETE FROM Project_status WHERE ID = @Id";
-
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = status.Id, SqlDbType = SqlDbType.NVarChar };
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -108,12 +108,12 @@ namespace DAL
                     int affectedRows = command.ExecuteNonQuery();
                     if (affectedRows < 1)
                     {
-                        throw new System.Exception("No rows affected. Delete failed - Does the object exist beforehand in the database?");
+                        return false;
                     }
                 }
             }
 
-            return status;
+            return true;
         }
 
         public List<Status> ReadAll()

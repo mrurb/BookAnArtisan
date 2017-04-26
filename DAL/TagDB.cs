@@ -97,7 +97,7 @@ namespace DAL
             }
             return tag;
         }
-        public Tag Delete(Tag tag)
+        public bool Delete(Tag tag)
         {
             string sql = "DELETE FROM Tags WHERE ID = @Id";
 
@@ -112,12 +112,12 @@ namespace DAL
                     int affectedRows = command.ExecuteNonQuery();
                     if (affectedRows < 1)
                     {
-                        throw new System.Exception("No rows affected. Delete failed - Does the object exist beforehand in the database?");
+                        return false;
                     }
                 }
             }
 
-            return tag;
+            return true;
         }
 
         public List<Tag> ReadAll()

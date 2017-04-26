@@ -98,7 +98,7 @@ namespace Testing.TestingDAL
         [TestMethod]
         public void TestDeleteRole()
         {
-            Assert.AreEqual(testRole, db.Delete(testRole));
+            Assert.IsTrue(db.Delete(testRole));
         }
 
         [TestMethod]

@@ -10,32 +10,28 @@ namespace BLL
 {
     public class UserController : IController<User>
     {
+        UserDB db = new UserDB();
         public User Create(User user)
         {
-            UserDB db = new UserDB();
             return db.Create(user);
         }
 
         public User Read(User user)
         {
-            UserDB db = new UserDB();
             return db.Read(user);
         }
 
         public User Update(User user)
         {
-            UserDB db = new UserDB();
             return db.Update(user);
         }
-        public User Delete(User user)
+        public bool Delete(User user)
         {
-            UserDB db = new UserDB();
             return db.Delete(user);
         }
 
         public List<User> ReadAll()
         {
-            UserDB db = new UserDB();
             return db.ReadAll();
         }
     }

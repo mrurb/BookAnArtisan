@@ -10,31 +10,27 @@ namespace BLL
 {
     public class TagController : IController<Tag>
     {
+        TagDB db = new TagDB();
         public Tag Create(Tag tag)
         {
-            TagDB db = new TagDB();
             return db.Create(tag);
         }
 
         public Tag Read(Tag tag)
         {
-            TagDB db = new TagDB();
             return db.Read(tag);
         }
         public Tag Update(Tag tag)
         {
-            TagDB db = new TagDB();
             return db.Update(tag);
         }
-        public Tag Delete(Tag tag)
+        public bool Delete(Tag tag)
         {
-            TagDB db = new TagDB();
             return db.Delete(tag);
         }
 
         public List<Tag> ReadAll()
         {
-            TagDB db = new TagDB();
             return db.ReadAll();
         }
 

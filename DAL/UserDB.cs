@@ -161,7 +161,7 @@ namespace DAL
             return user;
         }
 
-        public User Delete(User user)
+        public bool Delete(User user)
         {
             int bitRepresentationOfBool = Convert.ToInt32(true);
 
@@ -173,17 +173,24 @@ namespace DAL
             {
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
-                    command.Parameters.Add(idParameter);
-                    command.Connection.Open();
-                    int affectedRows = command.ExecuteNonQuery();
-                    if (affectedRows < 1)
+                    try
                     {
-                        throw new System.Exception("No rows affected. Update failed - Does the object exist beforehand in the database?");
+                        command.Parameters.Add(idParameter);
+                        command.Connection.Open();
+                        int affectedRows = command.ExecuteNonQuery();
+                        if (affectedRows < 1)
+                        {
+                            return false;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception();
                     }
                 }
             }
 
-            return user;
+            return true;
         }
 
         public List<User> ReadAll()

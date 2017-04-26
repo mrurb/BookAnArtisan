@@ -9,33 +9,29 @@ namespace WCF
 {
     public class ProjectService : IProjectService
     {
+        ProjectController projectController = new ProjectController();
         public Project Create(Project t)
         {
-            ProjectController projectController = new ProjectController();
             return projectController.Create(t);
         }
 
         public Project Read(Project project)
         {
-            ProjectController projectController = new ProjectController();
             return projectController.Read(project);
         }
 
         public Project Update(Project t)
         {
-            ProjectController projectController = new ProjectController();
             return projectController.Update(t);
         }
 
-        public Project Delete(Project t)
+        public bool Delete(Project t)
         {
-            ProjectController projectController = new ProjectController();
             return projectController.Delete(t);
         }
 
         public List<Project> ReadAll()
         {
-            ProjectController projectController = new ProjectController();
             return projectController.ReadAll();
         }
     }

@@ -20,7 +20,7 @@ namespace WCF
         [OperationContract]
         T Update(T t);
         [OperationContract]
-        T Delete(T t);
+        bool Delete(T t);
         // Implementing ReadAll
         [OperationContract]
         List<T> ReadAll();

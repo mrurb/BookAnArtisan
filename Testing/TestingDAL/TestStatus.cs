@@ -98,7 +98,7 @@ namespace Testing.TestingDAL
         [TestMethod]
         public void TestDeleteStatus()
         {
-            Assert.AreEqual(testStatus, db.Delete(testStatus));
+            Assert.IsTrue(db.Delete(testStatus));
         }
 
         [TestMethod]
