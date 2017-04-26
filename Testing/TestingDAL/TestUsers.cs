@@ -14,30 +14,83 @@ namespace Testing.TestingDAL
 
         public TestUsers()
         {
-            testUser = new User
-            {
-                Id = "f93e4146-0ef5-45fb-8088-d1150e91dea4",
-                Email = "stuff@stuff.com",
-                EmailConfirmed = true,
-                PasswordHash = "badpasswordhash",
-                SecurityStamp = "stamp",
-                PhoneNumber = "87654321",
-                PhoneNumberConfirmed = true,
-                TwoFactorEnabled = false,
-                LockoutEndDateUtc = DateTime.Today,
-                LockoutEnabled = false,
-                AccessFailedCount = 3,
-                UserName = "pwnMaster",
-                FirstName = "John",
-                LastName = "Doe",
-                Address = "Downing Street",
-                ApiKey = "apistuff",
-                
-            };
-
-            db = new UserDB();
+            //do nothing?
         }
 
+        #region setups and teardowns
+        [ClassInitialize]
+        public void setUpBeforeClass()
+        {
+            try
+            {
+                //nothing
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [ClassCleanup]
+        public void tearDownAfterClass()
+        {
+            try
+            {
+                db = null;
+                testUser = null;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [TestInitialize]
+        public void setUp()
+        {
+            try
+            {
+                testUser = new User
+                {
+                    Id = "f93e4146-0ef5-45fb-8088-d1150e91dea4",
+                    Email = "stuff@stuff.com",
+                    EmailConfirmed = true,
+                    PasswordHash = "badpasswordhash",
+                    SecurityStamp = "stamp",
+                    PhoneNumber = "87654321",
+                    PhoneNumberConfirmed = true,
+                    TwoFactorEnabled = false,
+                    LockoutEndDateUtc = DateTime.Today,
+                    LockoutEnabled = false,
+                    AccessFailedCount = 3,
+                    UserName = "pwnMaster",
+                    FirstName = "John",
+                    LastName = "Doe",
+                    Address = "Downing Street",
+                    ApiKey = "apistuff",
+                };
+                db = new UserDB();
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [TestCleanup]
+        public void tearDown()
+        {
+            try
+            {
+                db = null;
+                testUser = null;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+        #endregion
         #region DALTesting
         [TestMethod]
         public void TestCreate()

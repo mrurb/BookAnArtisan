@@ -14,14 +14,72 @@ namespace Testing
      * Tag, project name, project status, artisan, client and address of client/project.
      */
 
+
     [TestClass]
     public class Search
     {
-        ProjectSearch ps = new ProjectSearch();
-        string input_tag = "VVS";
-        string pname = "stuff";
-        User art = new User("1", "Laurids", "Andersen", "lauridsandersen2013@gmail.com", "12345678", "1234", "østre allé 58");
-        string address = "stuf";
+        ProjectSearch ps;
+        string input_tag;
+        string pname;
+        string address;
+        User art;
+
+        [ClassInitialize]
+        public void setUpBeforeClass()
+        {
+            try
+            {
+                input_tag = "VVS";
+                pname = "stuff";
+                art = new User("1", "Laurids", "Andersen", "lauridsandersen2013@gmail.com", "12345678", "1234", "østre allé 58");
+                address = "stuf";
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [ClassCleanup]
+        public void tearDownAfterClass()
+        {
+            try
+            {
+                ps = null;
+                art = null;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [TestInitialize]
+        public void setUp()
+        {
+            try
+            {
+                ps = new ProjectSearch();
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [TestCleanup]
+        public void tearDown()
+        {
+            try
+            {
+                ps = null;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
 
         /*
          * Created (10/04-17)

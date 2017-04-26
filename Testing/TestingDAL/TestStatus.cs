@@ -17,10 +17,64 @@ namespace Testing.TestingDAL
 
         public TestStatus()
         {
-            testStatus = new Status { Id = 1, Name = "OK" };
-            db = new StatusDB();
+            // do nothing?
+        }
+        #region setups + teardowns
+        [ClassInitialize]
+        public void setUpBeforeClass()
+        {
+            try
+            {
+                // nothing?
+            }
+            catch
+            {
+                throw new Exception();
+            }
         }
 
+        [ClassCleanup]
+        public void tearDownAfterClass()
+        {
+            try
+            {
+                db = null;
+                testStatus = null;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [TestInitialize]
+        public void setUp()
+        {
+            try
+            {
+                db = new StatusDB();
+                testStatus = new Status { Id = 1, Name = "OK" };
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        [TestCleanup]
+        public void tearDown()
+        {
+            try
+            {
+                db = null;
+                testStatus = null;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+        #endregion
         [TestMethod]
         public void TestCreate()
         {
