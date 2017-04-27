@@ -33,7 +33,7 @@ namespace BookAnArtisanMVC.Controllers
             return View(uCl.Read(user));
         }
 
-        
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(User user)
@@ -51,7 +51,7 @@ namespace BookAnArtisanMVC.Controllers
         [HttpPost]
         public ActionResult Create(User user)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 uCl.Create(user);
 
@@ -62,7 +62,7 @@ namespace BookAnArtisanMVC.Controllers
                 return View(user);
             }
 
-            
+
         }
 
         public ActionResult Details(User user)
