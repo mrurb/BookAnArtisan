@@ -12,7 +12,7 @@ namespace Testing
 {
 
     [TestClass]
-    class MeetingTest
+    public class MeetingTest
     {
         MeetingService ms;
         Meeting m;
