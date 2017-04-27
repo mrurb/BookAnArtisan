@@ -13,7 +13,7 @@ namespace DAL
 	public class SearchDB
 	{
 		static string connectionstring = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
-		//chapter 21        TODO API ????
+		//chapter 21
 
 		public bool DBConnectionTest()
 		{
@@ -139,7 +139,7 @@ namespace DAL
 			List<User> artisans = new List<User>();
 			User client = null;
 			List<string> tags = new List<string>();
-			string query = "SELECT * FROM projects JOIN Project_status ON Projects.Project_status_ID=project_status.ID WHERE projects.street_name LIKE @address OR projects.name LIKE @name OR project_status.name LIKE @status;";
+			string query = "SELECT * FROM projects JOIN Project_status ON Projects.Project_status_ID=project_status.ID JOIN AspNetUsers ON AspNetUsers.Id = projects.Created_by_ID OR AspNetUsers.Id = Projects.Contact_ID WHERE projects.street_name LIKE @address OR projects.name LIKE @name OR project_status.name LIKE @status;";
 			SqlParameter[] arrayofparams =
 			{
 				new SqlParameter { ParameterName = "@address", SqlValue = "%" + searchparam + "%", SqlDbType = SqlDbType.NVarChar },
@@ -159,8 +159,11 @@ namespace DAL
 						{
 							while (datareader.Read())
 							{
-								Project p = new Project(datareader["id"].ToString(), tags, datareader["Project_description"].ToString(), client, artisans, datareader["street_name"].ToString());
+								Project p = new Project(datareader["project.id"].ToString(), tags, datareader["Project_description"].ToString(), client, artisans, datareader["street_name"].ToString());
 								results.Add(p);
+								//needs to be better query. TODO
+								p.Created_by_ID = datareader["AspNetUser.FirstName"].ToString() + datareader["AspNetUser.LastName"].ToString();
+								p.Contact_ID = datareader["AspNetUser.FirstName"].ToString() + datareader["AspNetUser.LastName"].ToString();
 							}
 						}
 					}
