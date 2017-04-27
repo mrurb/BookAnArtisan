@@ -108,7 +108,7 @@ namespace DAL
         {
             List<Meeting> users = new List<Meeting>();
 
-            string sql = "SELECT * FROM Meeting";
+            string sql = "SELECT StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID FROM Meeting JOIN AspNetUsers User1 ON Meeting.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meeting.ContactID = User2.Id;";
 
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
@@ -119,25 +119,27 @@ namespace DAL
                     {
                         if (reader.HasRows)
                         {
-                            int IdCol = reader.GetOrdinal("ID");
                             int TitleCol = reader.GetOrdinal("Title");
                             int StartTimeCol = reader.GetOrdinal("StartTime");
                             int EndTimeCol = reader.GetOrdinal("EndTime");
                             int DescCol = reader.GetOrdinal("Description");
                             int CreatedByIDCol = reader.GetOrdinal("CreatedByID");
+                            int CreatedByNameCol = reader.GetOrdinal("CreatedBy");
                             int ContactIDCol = reader.GetOrdinal("ContactID");
+                            int ContactCol = reader.GetOrdinal("Contact");
 
                             while (reader.Read())
                             {
                                 users.Add(new Meeting
                                 {
-                                    Id = GetDataSafe(reader, IdCol, reader.GetInt32),
                                     Title = GetDataSafe(reader, TitleCol, reader.GetString),
                                     StartTime = (DateTime)GetDataSafe(reader, StartTimeCol, reader.GetSqlDateTime),
                                     EndTime = (DateTime)GetDataSafe(reader, EndTimeCol, reader.GetSqlDateTime),
                                     Description = GetDataSafe(reader, DescCol, reader.GetString),
                                     CreatedById = GetDataSafe(reader, CreatedByIDCol, reader.GetString),
-                                    ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString)
+                                    CreatedBy = GetDataSafe(reader, CreatedByNameCol, reader.GetString),
+                                    ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString),
+                                    Contact = GetDataSafe(reader, ContactCol, reader.GetString)
                                 });
                             }
                         }
