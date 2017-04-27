@@ -15,5 +15,10 @@ namespace Model
         public int Id { get; set; }
         public string CreatedById { get; set; }
         public string ContactId { get; set; }
+
+        public string CreatedBy { get; set; }
+        public string Contact { get; set; }
+
+        public List<User> AppendedUsers { get; set; }
     }
 }

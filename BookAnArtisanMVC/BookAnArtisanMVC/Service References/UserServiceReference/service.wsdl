@@ -37,6 +37,12 @@
   <wsdl:message name="IUserService_ReadAll_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReadAllResponse" />
   </wsdl:message>
+  <wsdl:message name="IUserService_SearchByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchByName" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_SearchByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchByNameResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUserService">
     <wsdl:operation name="Create">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_User/Create" message="tns:IUserService_Create_InputMessage" />
@@ -57,6 +63,10 @@
     <wsdl:operation name="ReadAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_User/ReadAll" message="tns:IUserService_ReadAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_User/ReadAllResponse" message="tns:IUserService_ReadAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/SearchByName" message="tns:IUserService_SearchByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/SearchByNameResponse" message="tns:IUserService_SearchByName_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IUserService" type="tns:IUserService">
@@ -99,6 +109,15 @@
     </wsdl:operation>
     <wsdl:operation name="ReadAll">
       <soap:operation soapAction="http://tempuri.org/IServiceOf_User/ReadAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchByName">
+      <soap:operation soapAction="http://tempuri.org/IUserService/SearchByName" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

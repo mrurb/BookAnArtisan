@@ -20,7 +20,6 @@ namespace Testing
     {
         static ProjectSearch ps;
         static string input_tag;
-        static string pname;
         static string address;
         static User art;
 
@@ -30,7 +29,6 @@ namespace Testing
             try
             {
                 input_tag = "VVS";
-                pname = "stuff";
                 art = new User("1", "Laurids", "Andersen", "lauridsandersen2013@gmail.com", "12345678", "1234", "østre allé 58");
                 address = "stuf";
             }
@@ -101,7 +99,8 @@ namespace Testing
         {
             IList<Project> results = ps.SearchByTag(input_tag);
             List<Project> resultsList = (List<Project>)results;
-            Assert.AreNotEqual(0, resultsList.ToArray().Length);
+            Project[] parray = resultsList.ToArray();
+            Assert.AreNotEqual(0, parray[0].tags.Count);
         }
 
         /*
@@ -140,7 +139,7 @@ namespace Testing
         {
             IList<Project> results = ps.SearchByProjectAddress(address);
             List<Project> resultsList = (List<Project>)results;
-            Assert.AreEqual(address, resultsList[0].address);
+            Assert.AreEqual("stuff 123", resultsList[0].address);
         }
     }
 }

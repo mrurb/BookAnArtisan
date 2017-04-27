@@ -34,5 +34,10 @@ namespace BLL
         {
             return db.ReadAll();
         }
+
+        public IList<User> SearchByName(string name)
+        {
+            return db.SearchByName(name);
+        }
     }
 }

@@ -34,5 +34,10 @@ namespace BLL
         {
             return mdb.Update(t);
         }
+
+        public Meeting AddUserToMeeting(Meeting m, User u)
+        {
+            return mdb.AddUserToMeeting(m, u);
+        }
     }
 }

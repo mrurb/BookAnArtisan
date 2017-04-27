@@ -69,4 +69,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SearchByName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchByNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="SearchByNameResult" nillable="true" type="q9:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

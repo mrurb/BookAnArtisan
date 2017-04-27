@@ -3,86 +3,128 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BookAnArtisanMVC.MeetingServiceReference;
 
 namespace BookAnArtisanMVC.Controllers
 {
     public class MeetingsController : Controller
     {
-        // GET: Meetings
+        MeetingServiceClient pCl = new MeetingServiceClient();
+
+        // GET: Project
         public ActionResult Index()
         {
-            return View();
+            try
+            {
+                var data = pCl.ReadAll();
+                pCl.Close();
+                return View(data);
+            }
+            catch (Exception)
+            {
+                pCl.Abort();
+                return new HttpStatusCodeResult(404, "Item Not Found");
+            }
+
         }
 
-        // GET: Meetings/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Meeting meeting)
         {
-            return View();
+            try
+            {
+                var data = pCl.Read(meeting);
+                pCl.Close();
+                return View(data);
+            }
+            catch (Exception)
+            {
+                pCl.Abort();
+                throw;
+            }
         }
 
-        // GET: Meetings/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Meetings/Create
+        // POST: Project/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Meeting meeting)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                pCl.Create(meeting);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(meeting);
             }
         }
 
-        // GET: Meetings/Edit/5
-        public ActionResult Edit(int id)
+        // GET: Project/Edit/5
+        public ActionResult Edit(Meeting meeting)
         {
-            return View();
+            try
+            {
+                var data = pCl.Read(meeting);
+                pCl.Close();
+                return View(data);
+            }
+            catch (Exception)
+            {
+                pCl.Abort();
+                throw;
+            }
         }
 
-        // POST: Meetings/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        // POST: Project/Edit/5
+        [HttpPost, ActionName("Edit")]
+        public ActionResult EditConfirmed(Meeting meeting)
         {
             try
             {
                 // TODO: Add update logic here
-
+                pCl.Update(meeting);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(meeting);
             }
         }
 
-        // GET: Meetings/Delete/5
-        public ActionResult Delete(int id)
+        // GET: Project/Delete/5
+        public ActionResult Delete(Meeting meeting)
         {
-            return View();
+            try
+            {
+                var data = pCl.Delete(meeting);
+                pCl.Close();
+                return View(data);
+            }
+            catch (Exception)
+            {
+                pCl.Abort();
+                throw;
+            }
         }
 
-        // POST: Meetings/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        // POST: Project/Delete/5
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(Meeting meeting)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                pCl.Delete(meeting);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(meeting);
             }
         }
     }

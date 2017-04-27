@@ -59,7 +59,24 @@ namespace DAL
 
         public bool Delete(Meeting t)
         {
-            throw new NotImplementedException();
+            string sql = "UPDATE Meeting SET Deleted = 1 WHERE ID = @Id";
+
+            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = t.Id, SqlDbType = SqlDbType.NVarChar };
+
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.Add(idParameter);
+                    command.Connection.Open();
+                    int rowsaffected = command.ExecuteNonQuery();
+                    if (rowsaffected < 1)
+                    {
+                        throw new Exception();
+                    }
+                }
+            }
+            return true;
         }
 
         public Meeting Read(Meeting t)
@@ -108,7 +125,7 @@ namespace DAL
         {
             List<Meeting> users = new List<Meeting>();
 
-            string sql = "SELECT * FROM Meeting";
+            string sql = "SELECT StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID FROM Meeting JOIN AspNetUsers User1 ON Meeting.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meeting.ContactID = User2.Id;";
 
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
@@ -119,25 +136,27 @@ namespace DAL
                     {
                         if (reader.HasRows)
                         {
-                            int IdCol = reader.GetOrdinal("ID");
                             int TitleCol = reader.GetOrdinal("Title");
                             int StartTimeCol = reader.GetOrdinal("StartTime");
                             int EndTimeCol = reader.GetOrdinal("EndTime");
                             int DescCol = reader.GetOrdinal("Description");
                             int CreatedByIDCol = reader.GetOrdinal("CreatedByID");
+                            int CreatedByNameCol = reader.GetOrdinal("CreatedBy");
                             int ContactIDCol = reader.GetOrdinal("ContactID");
+                            int ContactCol = reader.GetOrdinal("Contact");
 
                             while (reader.Read())
                             {
                                 users.Add(new Meeting
                                 {
-                                    Id = GetDataSafe(reader, IdCol, reader.GetInt32),
                                     Title = GetDataSafe(reader, TitleCol, reader.GetString),
                                     StartTime = (DateTime)GetDataSafe(reader, StartTimeCol, reader.GetSqlDateTime),
                                     EndTime = (DateTime)GetDataSafe(reader, EndTimeCol, reader.GetSqlDateTime),
                                     Description = GetDataSafe(reader, DescCol, reader.GetString),
                                     CreatedById = GetDataSafe(reader, CreatedByIDCol, reader.GetString),
-                                    ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString)
+                                    CreatedBy = GetDataSafe(reader, CreatedByNameCol, reader.GetString),
+                                    ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString),
+                                    Contact = GetDataSafe(reader, ContactCol, reader.GetString)
                                 });
                             }
                         }
@@ -147,7 +166,60 @@ namespace DAL
             return users;
         }
 
+        public Meeting AddUserToMeeting(Meeting m, User u)
+        {
+            string sql = "INSERT INTO Meeting_Users VALUES(@MeetingID, @UserID);";
+
+            SqlParameter[] arrayofparams =
+            {
+            new SqlParameter { ParameterName = "@UserID", SqlValue = u.Id, SqlDbType = SqlDbType.NVarChar },
+            new SqlParameter { ParameterName = "@MeetingID", SqlValue = m.Id, SqlDbType = SqlDbType.NVarChar },
+            };
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddRange(arrayofparams);
+                    command.Connection.Open();
+                    int rowsaffected = command.ExecuteNonQuery();
+                    if (rowsaffected < 1)
+                    {
+                        throw new Exception();
+                    }
+                }
+            }
+            return m;
+        }
+
         public Meeting Update(Meeting t)
+        {
+            string sql = "UPDATE Meeting SET Title = @title, Description = @description, StartTime = @starttime, EndTime = @endtime, CreatedByID = @createdbyid, ContactID = @contactid WHERE ID = @id";
+            SqlParameter[] sqlparams =
+            {
+                new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int },
+                new SqlParameter { ParameterName = "@title", SqlValue = t.Title, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@description", SqlValue = t.Description, SqlDbType = SqlDbType.Text },
+                new SqlParameter { ParameterName = "@starttime", SqlValue = t.StartTime, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@endtime", SqlValue = t.EndTime, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@createdbyid", SqlValue = t.CreatedById, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@contactid", SqlValue = t.ContactId, SqlDbType = SqlDbType.NVarChar },
+            };
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Connection.Open();
+                    int rowsaffected = command.ExecuteNonQuery();
+                    if (rowsaffected < 1)
+                    {
+                        throw new Exception();
+                    }
+                }
+            }
+            return t;
+        }
+
+        public Meeting ReadDetails(Meeting m)
         {
             throw new NotImplementedException();
         }

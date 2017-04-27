@@ -12,6 +12,7 @@ namespace WCF
     [ServiceContract]
     public interface IUserService : IService<User>
     {
-        
+        [OperationContract]
+        IList<User> SearchByName(string name);
     }
 }

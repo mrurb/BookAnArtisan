@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 using BLL;
 using WCF;
 using Model;
+using DAL;
 
 namespace Testing
 {
 
     [TestClass]
-    class MeetingTest
+    public class MeetingTest
     {
         MeetingService ms;
         Meeting m;
@@ -51,7 +52,7 @@ namespace Testing
                 ms = new MeetingService();
                 m = new Meeting() {
                     Title = "Generic Title!",
-                    Id = 123123123,
+                    Id = 1,
                     Description = "my descriptions!!",
                     StartTime = DateTime.Now,
                     EndTime = DateTime.Now};
@@ -110,7 +111,28 @@ namespace Testing
         [TestMethod]
         public void TestReadAllMeeting()
         {
+            Assert.IsTrue(false);
             // TODO
+        }
+
+        [TestMethod]
+        public void TestAddUserToMeeting()
+        {
+            User u = new User()
+            {
+                Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3"
+            };
+            ms.AddUserToMeeting(m, u);
+            MeetingDB mdb = new MeetingDB();
+            Meeting m2 = mdb.ReadDetails(m);
+            foreach (User u1 in m2.AppendedUsers)
+            {
+                if (!(u.Id == u1.Id))
+                {
+                    Assert.IsTrue(false);
+                }
+            }
+            Assert.IsTrue(true);
         }
     }
     

@@ -190,6 +190,11 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\MeetingServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ProjectServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -241,9 +246,29 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Service References\MeetingServiceReference\BookAnArtisanMVC.MeetingServiceReference.Meeting.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\MeetingServiceReference\item.disco" />
+    <None Include="Service References\MeetingServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\MeetingServiceReference\configuration.svcinfo" />
+    <None Include="Service References\MeetingServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Service References\ProjectServiceReference\BookAnArtisanMVC.ProjectServiceReference.Project.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\MeetingServiceReference\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MeetingServiceReference\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MeetingServiceReference\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MeetingServiceReference\MeetingService.wsdl" />
     <None Include="Service References\ProjectServiceReference\configuration91.svcinfo" />
     <None Include="Service References\ProjectServiceReference\configuration.svcinfo" />
     <None Include="Service References\ProjectServiceReference\Reference.svcmap">
@@ -324,11 +349,12 @@
     <Content Include="Views\Projects\Edit.cshtml" />
     <Content Include="Views\Projects\Delete.cshtml" />
     <Content Include="Views\Shared\NoResponseFromServer.cshtml" />
+    <Content Include="Views\Meetings\Create.cshtml" />
+    <Content Include="Views\Meetings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Admin\Users\" />
-    <Folder Include="Views\Meetings\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -338,6 +364,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\MeetingServiceReference\" />
     <WCFMetadataStorage Include="Service References\ProjectServiceReference\" />
     <WCFMetadataStorage Include="Service References\UserServiceReference\" />
   </ItemGroup>
