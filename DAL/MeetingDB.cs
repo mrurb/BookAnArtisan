@@ -179,6 +179,11 @@ namespace DAL
             throw new NotImplementedException();
         }
 
+        public Meeting ReadDetails(Meeting m)
+        {
+            throw new NotImplementedException();
+        }
+
         public T GetDataSafe<T>(SqlDataReader reader, int columnIndex, Func<int, T> getData)
         {
             if (!reader.IsDBNull(columnIndex))
