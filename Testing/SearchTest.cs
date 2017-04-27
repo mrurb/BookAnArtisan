@@ -16,7 +16,7 @@ namespace Testing
 
 
     [TestClass]
-    public class Search
+    public class SearchTest
     {
         static ProjectSearch ps;
         static string input_tag;
@@ -99,7 +99,8 @@ namespace Testing
         {
             IList<Project> results = ps.SearchByTag(input_tag);
             List<Project> resultsList = (List<Project>)results;
-            Assert.AreNotEqual(0, resultsList.ToArray().Length);
+            Project[] parray = resultsList.ToArray();
+            Assert.AreNotEqual(0, parray[0].tags.Count);
         }
 
         /*
@@ -138,7 +139,7 @@ namespace Testing
         {
             IList<Project> results = ps.SearchByProjectAddress(address);
             List<Project> resultsList = (List<Project>)results;
-            Assert.AreEqual(address, resultsList[0].address);
+            Assert.AreEqual("stuff 123", resultsList[0].address);
         }
     }
 }

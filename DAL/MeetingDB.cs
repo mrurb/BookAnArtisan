@@ -59,7 +59,24 @@ namespace DAL
 
         public bool Delete(Meeting t)
         {
-            throw new NotImplementedException();
+            string sql = "UPDATE Meeting SET Deleted = 1 WHERE ID = @Id";
+
+            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = t.Id, SqlDbType = SqlDbType.NVarChar };
+
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.Add(idParameter);
+                    command.Connection.Open();
+                    int rowsaffected = command.ExecuteNonQuery();
+                    if (rowsaffected < 1)
+                    {
+                        throw new Exception();
+                    }
+                }
+            }
+            return true;
         }
 
         public Meeting Read(Meeting t)
@@ -175,6 +192,34 @@ namespace DAL
         }
 
         public Meeting Update(Meeting t)
+        {
+            string sql = "UPDATE Meeting SET Title = @title, Description = @description, StartTime = @starttime, EndTime = @endtime, CreatedByID = @createdbyid, ContactID = @contactid WHERE ID = @id";
+            SqlParameter[] sqlparams =
+            {
+                new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int },
+                new SqlParameter { ParameterName = "@title", SqlValue = t.Title, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@description", SqlValue = t.Description, SqlDbType = SqlDbType.Text },
+                new SqlParameter { ParameterName = "@starttime", SqlValue = t.StartTime, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@endtime", SqlValue = t.EndTime, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@createdbyid", SqlValue = t.CreatedById, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@contactid", SqlValue = t.ContactId, SqlDbType = SqlDbType.NVarChar },
+            };
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Connection.Open();
+                    int rowsaffected = command.ExecuteNonQuery();
+                    if (rowsaffected < 1)
+                    {
+                        throw new Exception();
+                    }
+                }
+            }
+            return t;
+        }
+
+        public Meeting ReadDetails(Meeting m)
         {
             throw new NotImplementedException();
         }

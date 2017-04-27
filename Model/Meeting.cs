@@ -18,5 +18,7 @@ namespace Model
 
         public string CreatedBy { get; set; }
         public string Contact { get; set; }
+
+        public List<User> AppendedUsers { get; set; }
     }
 }
