@@ -59,7 +59,24 @@ namespace DAL
 
         public bool Delete(Meeting t)
         {
-            throw new NotImplementedException();
+            string sql = "UPDATE Meeting SET Deleted = 1 WHERE ID = @Id";
+
+            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = t.Id, SqlDbType = SqlDbType.NVarChar };
+
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.Add(idParameter);
+                    command.Connection.Open();
+                    int rowsaffected = command.ExecuteNonQuery();
+                    if (rowsaffected < 1)
+                    {
+                        throw new Exception();
+                    }
+                }
+            }
+            return true;
         }
 
         public Meeting Read(Meeting t)
