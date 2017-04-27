@@ -62,7 +62,49 @@ namespace DAL
             return user;
         }
 
+        public IList<User> SearchByName(string name)
+        {
+            IList<User> list = new List<User>();
 
+            string sql = "SELECT ID, FirstName, LastName, UserName FROM AspNetUsers WHERE FirstName LIKE '%' + @name + '%' OR LastName LIKE '%' + @name + '%' OR UserName LIKE '%' + @name + '%'";
+
+            SqlParameter searchParams = new SqlParameter { ParameterName = "@name", SqlValue = name, SqlDbType = SqlDbType.NVarChar };
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, conn))
+                {
+                    command.Parameters.Add(searchParams);
+                    command.Connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            int IdCol = reader.GetOrdinal("ID");
+                            int FirstNameCol = reader.GetOrdinal("FirstName");
+                            int LastNameCol = reader.GetOrdinal("LastName");
+                            int UserNameCol = reader.GetOrdinal("UserName");
+
+                            while (reader.Read())
+                            {
+                                list.Add(
+                                    new User
+                                    {
+                                        Id = GetDataSafe(reader, IdCol, reader.GetString),
+                                        FirstName = GetDataSafe(reader, FirstNameCol, reader.GetString),
+                                        LastName = GetDataSafe(reader, LastNameCol, reader.GetString),
+                                        UserName = GetDataSafe(reader, UserNameCol, reader.GetString)
+                                    }
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
 
         public User Read(User user)
         {

@@ -34,6 +34,11 @@ namespace WCF
         public List<User> ReadAll()
         {
             return userController.ReadAll();
-        }     
+        }
+
+        public IList<User> SearchByName(string name)
+        {
+            return userController.SearchByName(name);
+        }
     }
 }

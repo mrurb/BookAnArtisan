@@ -331,6 +331,12 @@ namespace BookAnArtisanMVC.UserServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_User/ReadAllResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.UserServiceReference.User>> ReadAllAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/SearchByName", ReplyAction="http://tempuri.org/IUserService/SearchByNameResponse")]
+        System.Collections.Generic.List<BookAnArtisanMVC.UserServiceReference.User> SearchByName(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/SearchByName", ReplyAction="http://tempuri.org/IUserService/SearchByNameResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.UserServiceReference.User>> SearchByNameAsync(string name);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -398,6 +404,14 @@ namespace BookAnArtisanMVC.UserServiceReference {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.UserServiceReference.User>> ReadAllAsync() {
             return base.Channel.ReadAllAsync();
+        }
+        
+        public System.Collections.Generic.List<BookAnArtisanMVC.UserServiceReference.User> SearchByName(string name) {
+            return base.Channel.SearchByName(name);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.UserServiceReference.User>> SearchByNameAsync(string name) {
+            return base.Channel.SearchByNameAsync(name);
         }
     }
 }
