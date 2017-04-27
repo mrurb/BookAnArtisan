@@ -112,6 +112,24 @@ namespace Testing
         {
             // TODO
         }
+
+        [TestMethod]
+        public void TestAddUserToMeeting()
+        {
+            User u = new User()
+            {
+                Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3"
+            }; // dont need anything else, really..
+            ms.AddUserToMeeting(m, u);
+            if (u.Id == ms.Read(m).ContactId || u.Id == ms.Read(m).CreatedById)
+            {
+                Assert.IsTrue(true);
+            }
+            else
+            {
+                Assert.IsTrue(false);
+            }
+        }
     }
     
 }

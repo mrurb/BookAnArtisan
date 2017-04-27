@@ -11,6 +11,7 @@ namespace WCF
     [ServiceContract]
     interface IMeetingService : IService<Meeting>
     {
-
+        [OperationContract]
+        Meeting AddUserToMeeting(Meeting m, User u);
     }
 }
