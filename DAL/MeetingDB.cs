@@ -138,7 +138,7 @@ namespace DAL
                                     Description = GetDataSafe(reader, DescCol, reader.GetString),
                                     CreatedById = GetDataSafe(reader, CreatedByIDCol, reader.GetString),
                                     ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString)
-                                }));
+                                });
                             }
                         }
                     }
