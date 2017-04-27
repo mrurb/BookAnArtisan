@@ -35,5 +35,10 @@ namespace WCF
         {
             return mc.Update(t);
         }
+
+        public Meeting AddUserToMeeting(Meeting m, User u)
+        {
+            return mc.AddUserToMeeting(m, u);
+        }
     }
 }

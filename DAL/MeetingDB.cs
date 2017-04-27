@@ -149,6 +149,31 @@ namespace DAL
             return users;
         }
 
+        public Meeting AddUserToMeeting(Meeting m, User u)
+        {
+            string sql = "INSERT INTO Meeting_Users VALUES(@MeetingID, @UserID);";
+
+            SqlParameter[] arrayofparams =
+            {
+            new SqlParameter { ParameterName = "@UserID", SqlValue = u.Id, SqlDbType = SqlDbType.NVarChar },
+            new SqlParameter { ParameterName = "@MeetingID", SqlValue = m.Id, SqlDbType = SqlDbType.NVarChar },
+            };
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddRange(arrayofparams);
+                    command.Connection.Open();
+                    int rowsaffected = command.ExecuteNonQuery();
+                    if (rowsaffected < 1)
+                    {
+                        throw new Exception();
+                    }
+                }
+            }
+            return m;
+        }
+
         public Meeting Update(Meeting t)
         {
             throw new NotImplementedException();
