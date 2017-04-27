@@ -64,6 +64,9 @@ namespace DAL
 
         public IList<User> SearchByName(string name)
         {
+            if (name == null) {
+                return new List<User>();
+            }
             IList<User> list = new List<User>();
 
             string sql = "SELECT ID, FirstName, LastName, UserName FROM AspNetUsers WHERE FirstName LIKE '%' + @name + '%' OR LastName LIKE '%' + @name + '%' OR UserName LIKE '%' + @name + '%'";

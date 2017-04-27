@@ -16,7 +16,7 @@ namespace Testing
 
 
     [TestClass]
-    public class Search
+    public class SearchTest
     {
         static ProjectSearch ps;
         static string input_tag;
