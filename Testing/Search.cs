@@ -20,7 +20,6 @@ namespace Testing
     {
         static ProjectSearch ps;
         static string input_tag;
-        static string pname;
         static string address;
         static User art;
 
@@ -30,7 +29,6 @@ namespace Testing
             try
             {
                 input_tag = "VVS";
-                pname = "stuff";
                 art = new User("1", "Laurids", "Andersen", "lauridsandersen2013@gmail.com", "12345678", "1234", "østre allé 58");
                 address = "stuf";
             }

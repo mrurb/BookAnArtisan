@@ -69,5 +69,11 @@ namespace BookAnArtisanMVC.Controllers
         {
             return View(uCl.Read(user));
         }
+
+        [HttpPost]
+        public JsonResult SearchByName(string name)
+        {
+            return Json(uCl.SearchByName(name), JsonRequestBehavior.AllowGet);
+        }
     }
 }
