@@ -19,7 +19,7 @@ namespace Model
         [DataMember]
         public DateTime EndTime { get; set; }
         [DataMember]
-        public int Id { get; set; }
+        public string Id { get; set; }
         [DataMember]
         public string CreatedById { get; set; }
         [DataMember]
