@@ -39,5 +39,10 @@ namespace BLL
         {
             return mdb.AddUserToMeeting(m, u);
         }
+
+        public List<Meeting> ReadAllForUser(User user)
+        {
+            return mdb.ReadAllForUser(user);
+        }
     }
 }

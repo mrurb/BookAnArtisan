@@ -40,5 +40,10 @@ namespace WCF
         {
             return mc.AddUserToMeeting(m, u);
         }
+
+        public List<Meeting> ReadAllForUser(User user)
+        {
+            return mc.ReadAllForUser(user);
+        }
     }
 }

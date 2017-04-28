@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 using DAL;
 using System.Collections.Generic;
+using WCF;
 
 namespace Testing.TestingDAL
 {
@@ -11,6 +12,7 @@ namespace Testing.TestingDAL
     {
         static private User testUser;
         static private UserDB db;
+        static private MeetingService ms;
 
         public TestUsers()
         {
@@ -70,6 +72,7 @@ namespace Testing.TestingDAL
                     ApiKey = "apistuff",
                 };
                 db = new UserDB();
+                ms = new MeetingService();
             }
             catch
             {
@@ -138,6 +141,20 @@ namespace Testing.TestingDAL
             {
                 Assert.IsTrue(false); //if we get here, the test fails
             }
+        }
+
+        [TestMethod]
+        public void TestReadAllMeetingsForUser()
+        {
+
+            List<Meeting> list = ms.ReadAllForUser(u);
+            Assert.IsNotNull(list);
+            if (list.Count == 0)
+            {
+                Assert.IsTrue(false);
+            }
+            // Success
+            Assert.IsTrue(true);
         }
     }
 }

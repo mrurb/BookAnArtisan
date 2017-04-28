@@ -94,7 +94,7 @@ namespace Testing
         [TestMethod]
         public void TestUpdateMeeting()
         {
-            m.Title = "someothertitle";
+            m.Title = $"last tested: {DateTime.Now}";
             ms.Update(m);
             Meeting m1 = ms.Read(m);
             Assert.AreEqual(m, m1);

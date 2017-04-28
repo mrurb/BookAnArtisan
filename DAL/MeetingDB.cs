@@ -57,6 +57,11 @@ namespace DAL
             return t;
         }
 
+        public List<Meeting> ReadAllForUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Delete(Meeting t)
         {
             string sql = "UPDATE Meeting SET Deleted = 1 WHERE ID = @Id";
@@ -193,7 +198,7 @@ namespace DAL
 
         public Meeting Update(Meeting t)
         {
-            string sql = "UPDATE Meeting SET Title = @title, Description = @description, StartTime = @starttime, EndTime = @endtime, CreatedByID = @createdbyid, ContactID = @contactid WHERE ID = @id";
+            string sql = "UPDATE Meeting SET Title = @title, Description = @description, StartTime = @starttime, EndTime = @endtime, CreatedByID = @createdbyid, ContactID = @contactid, Deleted = @deleted WHERE ID = @id";
             SqlParameter[] sqlparams =
             {
                 new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int },
