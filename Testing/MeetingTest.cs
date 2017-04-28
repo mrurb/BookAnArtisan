@@ -50,12 +50,17 @@ namespace Testing
             try
             {
                 ms = new MeetingService();
-                m = new Meeting() {
+                m = new Meeting()
+                {
                     Title = "Generic Title!",
                     Id = 1,
                     Description = "my descriptions!!",
                     StartTime = DateTime.Now,
-                    EndTime = DateTime.Now};
+                    EndTime = DateTime.Now,
+                    CreatedById = "2083af25-f483-4a02-a62b-71c198147c84",
+                    ContactId = "2083af25-f483-4a02-a62b-71c198147c84",
+                    Deleted = false
+                };
             }
             catch
             {
@@ -111,8 +116,14 @@ namespace Testing
         [TestMethod]
         public void TestReadAllMeeting()
         {
-            Assert.IsTrue(false);
-            // TODO
+            List<Meeting> list = ms.ReadAll();
+            Assert.IsNotNull(list);
+            if (list.Count == 0)
+            {
+                Assert.IsTrue(false);
+            }
+            // Success
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
@@ -135,5 +146,5 @@ namespace Testing
             Assert.IsTrue(true);
         }
     }
-    
+
 }

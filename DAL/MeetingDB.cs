@@ -33,7 +33,7 @@ namespace DAL
                 new SqlParameter { ParameterName = "@ContactID", SqlValue = t.ContactId, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@CreatedByID", SqlValue = t.CreatedById, SqlDbType = SqlDbType.NVarChar },
            };
-            
+
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 using (SqlCommand sqlcommand = new SqlCommand(query, con))
@@ -203,6 +203,7 @@ namespace DAL
                 new SqlParameter { ParameterName = "@endtime", SqlValue = t.EndTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@createdbyid", SqlValue = t.CreatedById, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@contactid", SqlValue = t.ContactId, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@deleted", SqlValue = t.Deleted, SqlDbType = SqlDbType.Bit }
             };
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
