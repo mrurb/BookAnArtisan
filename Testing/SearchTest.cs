@@ -139,7 +139,7 @@ namespace Testing
         {
             IList<Project> results = ps.SearchByProjectAddress(address);
             List<Project> resultsList = (List<Project>)results;
-            Assert.AreEqual("stuff 123", resultsList[0].address);
+            Assert.AreEqual("stuff 21", resultsList[0].address);
         }
     }
 }

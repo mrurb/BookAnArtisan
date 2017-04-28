@@ -110,7 +110,7 @@ namespace DAL
 
                             if (reader.Read())
                             {
-                                t.Id = GetDataSafe(reader, IdCol, reader.GetInt32);
+                                t.Id = GetDataSafe(reader, IdCol, reader.GetString);
                                 t.Title = GetDataSafe(reader, TitleCol, reader.GetString);
                                 t.StartTime = (DateTime)GetDataSafe(reader, StartTimeCol, reader.GetSqlDateTime); // Needed explicit cast because wat?
                                 t.EndTime = (DateTime)GetDataSafe(reader, EndTimeCol, reader.GetSqlDateTime);
@@ -228,7 +228,39 @@ namespace DAL
 
         public Meeting ReadDetails(Meeting m)
         {
-            throw new NotImplementedException();
+            Meeting result = null;
+
+            string sql = "SELECT meeting.id mid, Contact.Id cid, Created_By.Id cbid, meeting.starttime mst, meeting.EndTime met, meeting.Title mt, meeting.Description, Meeting.Deleted, Contact.FirstName cf, Contact.LastName cl, Created_By.FirstName cbf, Created_By.LastName cbl FROM Meeting JOIN AspNetUsers Contact ON Meeting.ContactID = Contact.Id JOIN AspNetUsers Created_By ON Meeting.CreatedByID = Created_By.Id WHERE meeting.id = @id";
+
+            SqlParameter midparam = new SqlParameter() { ParameterName = "@id", SqlDbType= SqlDbType.Int, Value= m.Id };
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.Add(midparam);
+                    command.Connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            result = (new Meeting
+                            {
+                                Id = reader["mid"].ToString(),
+                                Deleted = (bool)reader["Deleted"],
+                                Title = reader["mt"].ToString(),
+                                StartTime = (DateTime)reader["mst"],
+                                EndTime = (DateTime)reader["met"],
+                                Description = reader["Description"].ToString(),
+                                CreatedById = reader["cbid"].ToString(),
+                                CreatedBy = reader["cbf"].ToString() + " " + reader["cbl"].ToString(),
+                                ContactId = reader["cid"].ToString(),
+                                Contact = reader["cf"].ToString() + " " + reader["cl"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
+            return result;
         }
 
         public T GetDataSafe<T>(SqlDataReader reader, int columnIndex, Func<int, T> getData)
