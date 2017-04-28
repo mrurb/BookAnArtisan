@@ -32,7 +32,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.Read(meeting);
+                var data = pCl.Read(meeting); //brug ReadDetails function istedet
                 pCl.Close();
                 return View(data);
             }
@@ -56,7 +56,7 @@ namespace BookAnArtisanMVC.Controllers
             {
                 // TODO: Add insert logic here
                 pCl.Create(meeting);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index"); //redirect to ReadDetails istedet??? TODO
             }
             catch
             {
@@ -88,7 +88,7 @@ namespace BookAnArtisanMVC.Controllers
             {
                 // TODO: Add update logic here
                 pCl.Update(meeting);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index"); // TODO send bruger til Read istedet???
             }
             catch
             {
