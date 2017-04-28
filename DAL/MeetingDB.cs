@@ -209,6 +209,7 @@ namespace DAL
             {
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
+                    command.Parameters.AddRange(sqlparams);
                     command.Connection.Open();
                     int rowsaffected = command.ExecuteNonQuery();
                     if (rowsaffected < 1)
