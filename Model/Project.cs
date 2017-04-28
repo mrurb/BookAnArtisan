@@ -37,6 +37,8 @@ namespace Model
         public List<User> artisans { get; set; }
         public string description { get; set; }
         public string address { get; set; }
+        public string Contact_Name { get; set; }
+        public string Created_By_Name { get; set; }
 
         public Project(string id, List<string> tags, string description, User client, List<User> artisans, string address)
         {
