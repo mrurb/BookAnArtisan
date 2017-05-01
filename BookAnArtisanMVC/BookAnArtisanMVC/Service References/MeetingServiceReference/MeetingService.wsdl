@@ -37,6 +37,12 @@
   <wsdl:message name="IMeetingService_ReadAll_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReadAllResponse" />
   </wsdl:message>
+  <wsdl:message name="IMeetingService_AddUserToMeeting_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserToMeeting" />
+  </wsdl:message>
+  <wsdl:message name="IMeetingService_AddUserToMeeting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserToMeetingResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMeetingService">
     <wsdl:operation name="Create">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Meeting/Create" message="tns:IMeetingService_Create_InputMessage" />
@@ -57,6 +63,10 @@
     <wsdl:operation name="ReadAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Meeting/ReadAll" message="tns:IMeetingService_ReadAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Meeting/ReadAllResponse" message="tns:IMeetingService_ReadAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToMeeting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMeetingService/AddUserToMeeting" message="tns:IMeetingService_AddUserToMeeting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMeetingService/AddUserToMeetingResponse" message="tns:IMeetingService_AddUserToMeeting_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMeetingService" type="tns:IMeetingService">
@@ -99,6 +109,15 @@
     </wsdl:operation>
     <wsdl:operation name="ReadAll">
       <soap:operation soapAction="http://tempuri.org/IServiceOf_Meeting/ReadAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToMeeting">
+      <soap:operation soapAction="http://tempuri.org/IMeetingService/AddUserToMeeting" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
