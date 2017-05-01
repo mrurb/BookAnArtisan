@@ -32,7 +32,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.Read(meeting); //brug ReadDetails function istedet
+                var data = pCl.Read(meeting);
                 pCl.Close();
                 return View(data);
             }
@@ -54,9 +54,8 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
                 pCl.Create(meeting);
-                return RedirectToAction("Index"); //redirect to ReadDetails istedet??? TODO
+                return RedirectToAction("Index"); //redirect to Read istedet??? TODO
             }
             catch
             {

@@ -121,7 +121,7 @@ namespace DAL
 
         public Meeting Read(Meeting t)
         {
-            string sql = "SELECT * FROM AspNetUsers WHERE ID = @Id"; // search by ID, see below.
+            string sql = "SELECT * FROM Meeting WHERE ID = @Id"; // search by ID, see below.
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = t.Id, SqlDbType = SqlDbType.NVarChar };
 

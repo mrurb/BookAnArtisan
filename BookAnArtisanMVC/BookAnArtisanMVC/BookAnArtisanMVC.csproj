@@ -394,6 +394,7 @@
     <Content Include="Views\Shared\NoResponseFromServer.cshtml" />
     <Content Include="Views\Meetings\Create.cshtml" />
     <Content Include="Views\Meetings\Index.cshtml" />
+    <Content Include="Views\Meetings\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
