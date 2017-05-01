@@ -205,7 +205,7 @@ namespace DAL
                                     CreatedById = GetDataSafe(reader, CreatedByIDCol, reader.GetString),
                                     CreatedBy = GetDataSafe(reader, CreatedByNameCol, reader.GetString),
                                     ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString),
-                                    Deleted = GetDataSafe(reader, DeletedCol, reader.GetBoolean)
+                                    Deleted = GetDataSafe(reader, DeletedCol, reader.GetBoolean),
                                     Contact = GetDataSafe(reader, ContactCol, reader.GetString)
                                 });
                             }
