@@ -9,12 +9,11 @@ namespace BookAnArtisanMVC.Controllers
 {
     public class ProjectsController : Controller
     {
-        //ProjectServiceClient pCl = new ProjectServiceClient();
+        ProjectServiceClient pCl = new ProjectServiceClient();
 
         // GET: Project
         public ActionResult Index()
         {
-            ProjectServiceClient pCl = new ProjectServiceClient();
             try
             {
                 var data = pCl.ReadAll();
@@ -32,7 +31,6 @@ namespace BookAnArtisanMVC.Controllers
 
         public ActionResult Details(Project project)
         {
-            ProjectServiceClient pCl = new ProjectServiceClient();
             try
             {
                 var data = pCl.Read(project);
@@ -55,7 +53,6 @@ namespace BookAnArtisanMVC.Controllers
         [HttpPost]
         public ActionResult Create(Project project)
         {
-            ProjectServiceClient pCl = new ProjectServiceClient();
             try
             {
                 // TODO: Add insert logic here
@@ -71,7 +68,6 @@ namespace BookAnArtisanMVC.Controllers
         // GET: Project/Edit/5
         public ActionResult Edit(Project project)
         {
-            ProjectServiceClient pCl = new ProjectServiceClient();
             try
             {
                 var data = pCl.Read(project);
@@ -89,7 +85,6 @@ namespace BookAnArtisanMVC.Controllers
         [HttpPost, ActionName("Edit")]
         public ActionResult EditConfirmed(Project project)
         {
-            ProjectServiceClient pCl = new ProjectServiceClient();
             try
             {
                 // TODO: Add update logic here
@@ -105,7 +100,6 @@ namespace BookAnArtisanMVC.Controllers
         // GET: Project/Delete/5
         public ActionResult Delete(Project project)
         {
-            ProjectServiceClient pCl = new ProjectServiceClient();
             try
             {
                 var data = pCl.Delete(project);
@@ -123,7 +117,6 @@ namespace BookAnArtisanMVC.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(Project project)
         {
-            ProjectServiceClient pCl = new ProjectServiceClient();
             try
             {
                 // TODO: Add delete logic here
