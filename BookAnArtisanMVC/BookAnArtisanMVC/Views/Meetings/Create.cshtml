@@ -4,6 +4,11 @@
     ViewBag.Title = "Create";
 }
 
+@section Styles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.css" />
+}
+
+
 
 
 <h2>Create</h2>
@@ -73,10 +78,26 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/Autocomplete")
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/i18n/jquery-ui-timepicker-da.js"></script>
     <script type="text/javascript">
         $( document ).ready(function() {
             autoc($("#ContactName"), $("#ContactId"), "/Users/SearchByName");
         })
+        $('#StartTime').datetimepicker({
+            controlType: 'select',
+            oneLine: true,
+            timeFormat: 'HH:mm',
+            dateFormat: 'dd/mm/yy'
+        });
+        $('#EndTime').datetimepicker({
+            controlType: 'select',
+            oneLine: true,
+            timeFormat: 'HH:mm',
+            dateFormat: 'dd/mm/yy'
+        });
     </script>
+
 }
 
