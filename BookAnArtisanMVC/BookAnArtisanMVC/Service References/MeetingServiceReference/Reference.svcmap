@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="15902e52-b068-4e3d-b8b4-67c654def3cf" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/WCF/MeetingService/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="311338ec-c200-493e-bf92-9757bb558e8c" SourceId="1" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd2" />
+    <MetadataFile FileName="MeetingService.wsdl" MetadataType="Wsdl" ID="1aa9c542-c449-4793-b637-8ecd53e405e6" SourceId="1" SourceUrl="http://localhost:8733/WCF/MeetingService/?wsdl" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="acd119a9-35b7-45c8-b0e8-cd9761b8df9c" SourceId="1" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd0" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="f8d593d5-5fa7-4054-b177-0aa9dbe651cb" SourceId="1" SourceUrl="http://localhost:8733/WCF/MeetingService/?disco" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="99bcdccf-1cd5-4351-a368-458d3844f749" SourceId="1" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
