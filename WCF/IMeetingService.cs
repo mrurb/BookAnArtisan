@@ -13,5 +13,8 @@ namespace WCF
     {
         [OperationContract]
         Meeting AddUserToMeeting(Meeting m, User u);
+
+        [OperationContract]
+        List<Meeting> ReadAllForUser(User user);
     }
 }

@@ -102,7 +102,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.Delete(project);
+                var data = pCl.Read(project);
                 pCl.Close();
                 return View(data);
             }

@@ -17,12 +17,13 @@ namespace BLL
 
         public Meeting Delete(Meeting t)
         {
-            return mdb.Delete(t);
+            mdb.Delete(t);
+            return mdb.ReadDetails(t);
         }
 
         public Meeting Read(Meeting t)
         {
-            return mdb.Read(t);
+            return mdb.ReadDetails(t);
         }
 
         public List<Meeting> ReadAll()
