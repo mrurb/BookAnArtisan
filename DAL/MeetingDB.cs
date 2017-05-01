@@ -127,7 +127,7 @@ namespace DAL
 
         public Meeting Read(Meeting t)
         {
-            string sql = "SELECT * FROM Meeting WHERE ID = @Id"; // search by ID, see below.
+            string sql = "SELECT Meeting.Id mId, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID FROM Meeting JOIN AspNetUsers User1 ON Meeting.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meeting.ContactID = User2.Id WHERE Meeting.ID = @Id"; // search by ID, see below.
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = t.Id, SqlDbType = SqlDbType.NVarChar };
 
@@ -141,13 +141,15 @@ namespace DAL
                     {
                         if (reader.HasRows)
                         {
-                            int IdCol = reader.GetOrdinal("ID"); // probably don't want ID at all... but how to search then boss?
+                            int IdCol = reader.GetOrdinal("MId"); // probably don't want ID at all... but how to search then boss?
                             int TitleCol = reader.GetOrdinal("Title");
                             int StartTimeCol = reader.GetOrdinal("StartTime");
                             int EndTimeCol = reader.GetOrdinal("EndTime");
                             int DescCol = reader.GetOrdinal("Description");
                             int CreatedByIDCol = reader.GetOrdinal("CreatedByID");
+                            int CreatedByNameCol = reader.GetOrdinal("CreatedBy");
                             int ContactIDCol = reader.GetOrdinal("ContactID");
+                            int ContactCol = reader.GetOrdinal("Contact");
 
                             if (reader.Read())
                             {
@@ -157,7 +159,9 @@ namespace DAL
                                 t.EndTime = (DateTime)GetDataSafe(reader, EndTimeCol, reader.GetSqlDateTime);
                                 t.Description = GetDataSafe(reader, DescCol, reader.GetString);
                                 t.CreatedById = GetDataSafe(reader, CreatedByIDCol, reader.GetString);
+                                t.CreatedBy = GetDataSafe(reader, CreatedByNameCol, reader.GetString);
                                 t.ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString);
+                                t.Contact = GetDataSafe(reader, ContactCol, reader.GetString);
 
                             }
                         }
