@@ -20,10 +20,10 @@ namespace BookAnArtisanMVC.Controllers
                 pCl.Close();
                 return View(data);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 pCl.Abort();
-                return new HttpStatusCodeResult(404, "Item Not Found");
+                return new HttpStatusCodeResult(404, e.Message);
             }
 
         }

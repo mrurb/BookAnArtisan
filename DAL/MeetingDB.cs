@@ -59,7 +59,42 @@ namespace DAL
 
         public List<Meeting> ReadAllForUser(User user)
         {
-            throw new NotImplementedException();
+            List<Meeting> userMeetings = new List<Meeting>();
+
+            string sql = "SELECT * FROM Meeting_Users JOIN Meeting ON Meeting_Users.MeetingID = Meeting.ID WHERE Meeting_Users.UserID = @Id";
+
+            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = user.Id, SqlDbType = SqlDbType.NVarChar };
+
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.Add(idParameter);
+                    command.Connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            int IdCol = reader.GetOrdinal("ID");
+                            int TitleCol = reader.GetOrdinal("Title");
+                            int StartTimeCol = reader.GetOrdinal("StartTime");
+                            int EndTimeCol = reader.GetOrdinal("EndTime");
+                            int DescCol = reader.GetOrdinal("Description");
+                            int CreatedByIDCol = reader.GetOrdinal("CreatedByID");
+                            int ContactIDCol = reader.GetOrdinal("ContactID");
+
+                            if (reader.Read())
+                            {
+                                userMeetings.Add(new Meeting
+                                {
+                                    //
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            return userMeetings;
         }
 
         public bool Delete(Meeting t)
@@ -110,7 +145,7 @@ namespace DAL
 
                             if (reader.Read())
                             {
-                                t.Id = GetDataSafe(reader, IdCol, reader.GetString);
+                                t.Id = GetDataSafe(reader, IdCol, reader.GetInt32);
                                 t.Title = GetDataSafe(reader, TitleCol, reader.GetString);
                                 t.StartTime = (DateTime)GetDataSafe(reader, StartTimeCol, reader.GetSqlDateTime); // Needed explicit cast because wat?
                                 t.EndTime = (DateTime)GetDataSafe(reader, EndTimeCol, reader.GetSqlDateTime);
@@ -130,7 +165,7 @@ namespace DAL
         {
             List<Meeting> users = new List<Meeting>();
 
-            string sql = "SELECT StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID FROM Meeting JOIN AspNetUsers User1 ON Meeting.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meeting.ContactID = User2.Id;";
+            string sql = "SELECT Meeting.Id mId, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID FROM Meeting JOIN AspNetUsers User1 ON Meeting.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meeting.ContactID = User2.Id;";
 
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
@@ -149,11 +184,13 @@ namespace DAL
                             int CreatedByNameCol = reader.GetOrdinal("CreatedBy");
                             int ContactIDCol = reader.GetOrdinal("ContactID");
                             int ContactCol = reader.GetOrdinal("Contact");
+                            int IdCol = reader.GetOrdinal("mId");
 
                             while (reader.Read())
                             {
                                 users.Add(new Meeting
                                 {
+                                    Id = GetDataSafe<int>(reader, IdCol, reader.GetInt32),
                                     Title = GetDataSafe(reader, TitleCol, reader.GetString),
                                     StartTime = (DateTime)GetDataSafe(reader, StartTimeCol, reader.GetSqlDateTime),
                                     EndTime = (DateTime)GetDataSafe(reader, EndTimeCol, reader.GetSqlDateTime),
@@ -245,7 +282,7 @@ namespace DAL
                         {
                             result = (new Meeting
                             {
-                                Id = reader["mid"].ToString(),
+                                Id = (int)reader["mid"],
                                 Deleted = (bool)reader["Deleted"],
                                 Title = reader["mt"].ToString(),
                                 StartTime = (DateTime)reader["mst"],
