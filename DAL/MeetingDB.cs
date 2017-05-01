@@ -59,7 +59,42 @@ namespace DAL
 
         public List<Meeting> ReadAllForUser(User user)
         {
-            throw new NotImplementedException();
+            List<Meeting> userMeetings = new List<Meeting>();
+
+            string sql = "SELECT * FROM Meeting_Users JOIN Meeting ON Meeting_Users.MeetingID = Meeting.ID WHERE Meeting_Users.UserID = @Id";
+
+            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = user.Id, SqlDbType = SqlDbType.NVarChar };
+
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.Add(idParameter);
+                    command.Connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            int IdCol = reader.GetOrdinal("ID");
+                            int TitleCol = reader.GetOrdinal("Title");
+                            int StartTimeCol = reader.GetOrdinal("StartTime");
+                            int EndTimeCol = reader.GetOrdinal("EndTime");
+                            int DescCol = reader.GetOrdinal("Description");
+                            int CreatedByIDCol = reader.GetOrdinal("CreatedByID");
+                            int ContactIDCol = reader.GetOrdinal("ContactID");
+
+                            if (reader.Read())
+                            {
+                                userMeetings.Add(new Meeting
+                                {
+                                    //
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            return userMeetings;
         }
 
         public bool Delete(Meeting t)
