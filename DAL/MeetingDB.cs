@@ -155,6 +155,7 @@ namespace DAL
                             {
                                 users.Add(new Meeting
                                 {
+                                    Id = GetDataSafe<int>(reader, IdCol, reader.GetInt32),
                                     Title = GetDataSafe(reader, TitleCol, reader.GetString),
                                     StartTime = (DateTime)GetDataSafe(reader, StartTimeCol, reader.GetSqlDateTime),
                                     EndTime = (DateTime)GetDataSafe(reader, EndTimeCol, reader.GetSqlDateTime),
@@ -162,8 +163,7 @@ namespace DAL
                                     CreatedById = GetDataSafe(reader, CreatedByIDCol, reader.GetString),
                                     CreatedBy = GetDataSafe(reader, CreatedByNameCol, reader.GetString),
                                     ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString),
-                                    Contact = GetDataSafe(reader, ContactCol, reader.GetString),
-                                    Id = GetDataSafe(reader, IdCol, reader.GetInt32)
+                                    Contact = GetDataSafe(reader, ContactCol, reader.GetString)
                                 });
                             }
                         }
