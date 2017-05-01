@@ -53,7 +53,7 @@ namespace Testing
                 m = new Meeting()
                 {
                     Title = "Generic Title!",
-                    Id = "1",
+                    Id = 1,
                     Description = "my descriptions!!",
                     StartTime = DateTime.Now,
                     EndTime = DateTime.Now,
