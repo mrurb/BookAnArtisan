@@ -24,7 +24,7 @@ namespace BLL
         {
             return db.Update(role);
         }
-        public bool Delete(Role role)
+        public Role Delete(Role role)
         {
             return db.Delete(role);
         }

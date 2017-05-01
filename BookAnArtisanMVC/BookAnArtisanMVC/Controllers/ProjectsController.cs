@@ -119,7 +119,6 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
                 pCl.Delete(project);
                 return RedirectToAction("Index");
             }

@@ -96,7 +96,7 @@ namespace DAL
             }
             return role;
         }
-        public bool Delete(Role role)
+        public Role Delete(Role role)
         {
             string sql = "DELETE FROM AspNetRoles WHERE Id = @Id";
 
@@ -111,12 +111,12 @@ namespace DAL
                     int affectedRows = command.ExecuteNonQuery();
                     if (affectedRows < 1)
                     {
-                        return false;
+                        return role;
                     }
                 }
             }
 
-            return true;
+            return role;
         }
 
         public List<Role> ReadAll()

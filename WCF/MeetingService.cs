@@ -16,7 +16,7 @@ namespace WCF
             return mc.Create(t);
         }
 
-        public bool Delete(Meeting t)
+        public Meeting Delete(Meeting t)
         {
             return mc.Delete(t);
         }

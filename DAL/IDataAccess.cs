@@ -14,7 +14,7 @@ namespace DAL
         T Create(T t);
         T Read(T t);
         T Update(T t);
-        bool Delete(T t);
+        T Delete(T t);
         List<T> ReadAll();
     }
 }

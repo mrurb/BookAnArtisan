@@ -24,7 +24,7 @@ namespace WCF
         {
             return roleController.Update(role);
         }
-        public bool Delete(Role role)
+        public Role Delete(Role role)
         {
             return roleController.Delete(role);
         }

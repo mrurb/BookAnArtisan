@@ -25,7 +25,7 @@ namespace BLL
         {
             return db.Update(user);
         }
-        public bool Delete(User user)
+        public User Delete(User user)
         {
             return db.Delete(user);
         }

@@ -23,7 +23,7 @@ namespace BLL
         {
             return db.Update(status);
         }
-        public bool Delete(Status status)
+        public Status Delete(Status status)
         {
             return db.Delete(status);
         }

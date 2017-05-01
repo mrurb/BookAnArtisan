@@ -94,7 +94,7 @@ namespace DAL
             return status;
         }
 
-        public bool Delete(Status status)
+        public Status Delete(Status status)
         {
             string sql = "DELETE FROM Project_status WHERE ID = @Id";
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = status.Id, SqlDbType = SqlDbType.NVarChar };
@@ -108,12 +108,12 @@ namespace DAL
                     int affectedRows = command.ExecuteNonQuery();
                     if (affectedRows < 1)
                     {
-                        return false;
+                        return status;
                     }
                 }
             }
 
-            return true;
+            return status;
         }
 
         public List<Status> ReadAll()

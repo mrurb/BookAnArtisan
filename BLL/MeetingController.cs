@@ -15,7 +15,7 @@ namespace BLL
             return mdb.Create(t);
         }
 
-        public bool Delete(Meeting t)
+        public Meeting Delete(Meeting t)
         {
             return mdb.Delete(t);
         }

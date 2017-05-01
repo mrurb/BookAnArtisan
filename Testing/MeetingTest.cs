@@ -110,7 +110,7 @@ namespace Testing
         [TestMethod]
         public void TestDeleteMeeting()
         {
-            Assert.IsTrue(ms.Delete(m));
+            Assert.AreEqual(ms.Delete(m), null);
         }
 
         [TestMethod]
