@@ -110,7 +110,7 @@ namespace DAL
 
                             if (reader.Read())
                             {
-                                t.Id = GetDataSafe(reader, IdCol, reader.GetString);
+                                t.Id = GetDataSafe(reader, IdCol, reader.GetInt32);
                                 t.Title = GetDataSafe(reader, TitleCol, reader.GetString);
                                 t.StartTime = (DateTime)GetDataSafe(reader, StartTimeCol, reader.GetSqlDateTime); // Needed explicit cast because wat?
                                 t.EndTime = (DateTime)GetDataSafe(reader, EndTimeCol, reader.GetSqlDateTime);
@@ -149,6 +149,7 @@ namespace DAL
                             int CreatedByNameCol = reader.GetOrdinal("CreatedBy");
                             int ContactIDCol = reader.GetOrdinal("ContactID");
                             int ContactCol = reader.GetOrdinal("Contact");
+                            int IdCol = reader.GetOrdinal("Id");
 
                             while (reader.Read())
                             {
@@ -161,7 +162,8 @@ namespace DAL
                                     CreatedById = GetDataSafe(reader, CreatedByIDCol, reader.GetString),
                                     CreatedBy = GetDataSafe(reader, CreatedByNameCol, reader.GetString),
                                     ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString),
-                                    Contact = GetDataSafe(reader, ContactCol, reader.GetString)
+                                    Contact = GetDataSafe(reader, ContactCol, reader.GetString),
+                                    Id = GetDataSafe(reader, IdCol, reader.GetInt32)
                                 });
                             }
                         }
@@ -245,7 +247,7 @@ namespace DAL
                         {
                             result = (new Meeting
                             {
-                                Id = reader["mid"].ToString(),
+                                Id = (int)reader["mid"],
                                 Deleted = (bool)reader["Deleted"],
                                 Title = reader["mt"].ToString(),
                                 StartTime = (DateTime)reader["mst"],
