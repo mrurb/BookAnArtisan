@@ -1,4 +1,5 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="additional-methods.min.js" />
 /// <reference path="bootstrap.js" />
 /// <reference path="jquery.validate.min.js" />
 /// <reference path="jquery.validate.unobtrusive.js" />
