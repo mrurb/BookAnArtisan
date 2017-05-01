@@ -55,6 +55,7 @@ namespace BookAnArtisanMVC.Controllers
             try
             {
                 // TODO: Add insert logic here
+                meeting.CreatedBy = "2083af25-f483-4a02-a62b-71c198147c84";
                 pCl.Create(meeting);
                 return RedirectToAction("Index"); //redirect to ReadDetails istedet??? TODO
             }
