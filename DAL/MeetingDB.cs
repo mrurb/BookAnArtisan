@@ -75,19 +75,25 @@ namespace DAL
                     {
                         if (reader.HasRows)
                         {
-                            int IdCol = reader.GetOrdinal("ID");
                             int TitleCol = reader.GetOrdinal("Title");
                             int StartTimeCol = reader.GetOrdinal("StartTime");
                             int EndTimeCol = reader.GetOrdinal("EndTime");
                             int DescCol = reader.GetOrdinal("Description");
                             int CreatedByIDCol = reader.GetOrdinal("CreatedByID");
                             int ContactIDCol = reader.GetOrdinal("ContactID");
+                            int IdCol = reader.GetOrdinal("Id");
 
-                            if (reader.Read())
+                            while (reader.Read())
                             {
                                 userMeetings.Add(new Meeting
                                 {
-                                    //
+                                    Title = GetDataSafe(reader, TitleCol, reader.GetString),
+                                    StartTime = (DateTime)GetDataSafe(reader, StartTimeCol, reader.GetSqlDateTime),
+                                    EndTime = (DateTime)GetDataSafe(reader, EndTimeCol, reader.GetSqlDateTime),
+                                    Description = GetDataSafe(reader, DescCol, reader.GetString),
+                                    CreatedById = GetDataSafe(reader, CreatedByIDCol, reader.GetString),
+                                    ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString),
+                                    Id = GetDataSafe(reader, IdCol, reader.GetInt32)
                                 });
                             }
                         }

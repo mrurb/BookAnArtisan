@@ -27,8 +27,9 @@ namespace BookAnArtisanMVC
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new ScriptBundle("~/Bundles/jqueryui").Include(
-                "~/Scripts/jquery-ui-{version}.min.js"));
+            bundles.Add(new ScriptBundle("~/Bundles/Autocomplete").Include(
+                "~/Scripts/Main.js"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/jqueryui").Include(
                 "~/Content/base/jquery-ui.min.css"));
