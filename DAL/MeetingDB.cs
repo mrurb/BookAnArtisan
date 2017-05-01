@@ -190,6 +190,7 @@ namespace DAL
                             int CreatedByNameCol = reader.GetOrdinal("CreatedBy");
                             int ContactIDCol = reader.GetOrdinal("ContactID");
                             int ContactCol = reader.GetOrdinal("Contact");
+                            int DeletedCol = reader.GetOrdinal("Deleted");
                             int IdCol = reader.GetOrdinal("mId");
 
                             while (reader.Read())
@@ -204,6 +205,7 @@ namespace DAL
                                     CreatedById = GetDataSafe(reader, CreatedByIDCol, reader.GetString),
                                     CreatedBy = GetDataSafe(reader, CreatedByNameCol, reader.GetString),
                                     ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString),
+                                    Deleted = GetDataSafe(reader, DeletedCol, reader.GetBoolean),
                                     Contact = GetDataSafe(reader, ContactCol, reader.GetString)
                                 });
                             }
