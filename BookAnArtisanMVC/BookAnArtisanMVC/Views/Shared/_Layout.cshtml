@@ -42,36 +42,12 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
-    <script type="text/javascript">
-    $(document).ready(function () {
-        $("#ContactName").autocomplete({
-            source: function (request, response) {
-                var datat;
-                $.ajax({
-                    url: "/Users/SearchByName",
-                    data: { name: request.term },
-                    dataType: "json",
-                    type: "POST",
-                    success: function (data) { 
-                        response($.map(data, function (item) {
-                            return {
-                                label: item.UserName,
-                                id: item.Id
-                            }
-                        }));
-                    }
-                });
-            }, select: function (event, ui){
-                $("#ContactName").val(ui.item.label);
-                $("#ContactId").val(ui.item.id);
-            }
-        });
-    });
-    </script>
+
+
 
 </body>
 </html>
