@@ -24,7 +24,7 @@ namespace BLL
         {
             return db.Update(tag);
         }
-        public bool Delete(Tag tag)
+        public Tag Delete(Tag tag)
         {
             return db.Delete(tag);
         }

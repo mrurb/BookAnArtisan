@@ -48,7 +48,7 @@ namespace BookAnArtisanMVC.Controllers
             return View();
         }
 
-        // POST: Project/Create
+        // POST: Meeting/Create
         [HttpPost]
         public ActionResult Create(Meeting meeting)
         {
@@ -63,7 +63,7 @@ namespace BookAnArtisanMVC.Controllers
             }
         }
 
-        // GET: Project/Edit/5
+        // GET: Meeting/Edit/5
         public ActionResult Edit(Meeting meeting)
         {
             try
@@ -79,15 +79,14 @@ namespace BookAnArtisanMVC.Controllers
             }
         }
 
-        // POST: Project/Edit/5
+        // POST: Meeting/Edit/5
         [HttpPost, ActionName("Edit")]
         public ActionResult EditConfirmed(Meeting meeting)
         {
             try
             {
-                // TODO: Add update logic here
                 pCl.Update(meeting);
-                return RedirectToAction("Index"); // TODO send bruger til Read istedet???
+                return RedirectToAction("Index"); 
             }
             catch
             {
@@ -95,7 +94,7 @@ namespace BookAnArtisanMVC.Controllers
             }
         }
 
-        // GET: Project/Delete/5
+        // GET: Meeting/Delete/5
         public ActionResult Delete(Meeting meeting)
         {
             try
@@ -111,13 +110,12 @@ namespace BookAnArtisanMVC.Controllers
             }
         }
 
-        // POST: Project/Delete/5
+        // POST: Meeting/Delete/5
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(Meeting meeting)
         {
             try
             {
-                // TODO: Add delete logic here
                 pCl.Delete(meeting);
                 return RedirectToAction("Index");
             }

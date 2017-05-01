@@ -24,7 +24,7 @@ namespace WCF
         {
             return statusController.Update(status);
         }
-        public bool Delete(Status status)
+        public Status Delete(Status status)
         {
             return statusController.Delete(status);
         }

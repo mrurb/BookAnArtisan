@@ -25,7 +25,7 @@ namespace WCF
             return projectController.Update(t);
         }
 
-        public bool Delete(Project t)
+        public Project Delete(Project t)
         {
             return projectController.Delete(t);
         }

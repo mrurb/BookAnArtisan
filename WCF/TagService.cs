@@ -24,7 +24,7 @@ namespace WCF
         {
             return tagController.Update(tag);
         }
-        public bool Delete(Tag tag)
+        public Tag Delete(Tag tag)
         {
             return tagController.Delete(tag);
         }

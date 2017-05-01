@@ -27,7 +27,7 @@ namespace BLL
             return db.Update(project);
         }
 
-        public bool Delete(Project project)
+        public Project Delete(Project project)
         {
             return db.Delete(project);
         }

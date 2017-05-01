@@ -206,7 +206,7 @@ namespace DAL
             return user;
         }
 
-        public bool Delete(User user)
+        public User Delete(User user)
         {
             int bitRepresentationOfBool = Convert.ToInt32(true);
 
@@ -225,7 +225,7 @@ namespace DAL
                         int affectedRows = command.ExecuteNonQuery();
                         if (affectedRows < 1)
                         {
-                            return false;
+                            return user;
                         }
                     }
                     catch (Exception)
@@ -235,7 +235,7 @@ namespace DAL
                 }
             }
 
-            return true;
+            return user;
         }
 
         public List<User> ReadAll()

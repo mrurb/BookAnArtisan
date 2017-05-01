@@ -103,7 +103,7 @@ namespace DAL
             return userMeetings;
         }
 
-        public bool Delete(Meeting t)
+        public Meeting Delete(Meeting t)
         {
             string sql = "UPDATE Meeting SET Deleted = 1 WHERE ID = @Id";
 
@@ -122,7 +122,7 @@ namespace DAL
                     }
                 }
             }
-            return true;
+            return t;
         }
 
         public Meeting Read(Meeting t)
