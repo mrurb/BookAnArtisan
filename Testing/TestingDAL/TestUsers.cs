@@ -147,7 +147,7 @@ namespace Testing.TestingDAL
         public void TestReadAllMeetingsForUser()
         {
 
-            List<Meeting> list = ms.ReadAllForUser(u);
+            List<Meeting> list = ms.ReadAllForUser(testUser);
             Assert.IsNotNull(list);
             if (list.Count == 0)
             {
