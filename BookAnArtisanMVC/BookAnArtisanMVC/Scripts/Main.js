@@ -13,7 +13,7 @@ function autoc(TextInput, HiddenInput, AjaxUrl){
                         return {
                             label: item.UserName,
                             id: item.Id
-                        }
+                        };
                     }));
                 }
             });
