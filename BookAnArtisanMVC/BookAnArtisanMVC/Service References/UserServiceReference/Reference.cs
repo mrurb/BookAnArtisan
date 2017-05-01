@@ -321,10 +321,10 @@ namespace BookAnArtisanMVC.UserServiceReference {
         System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> UpdateAsync(BookAnArtisanMVC.UserServiceReference.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/Delete", ReplyAction="http://tempuri.org/IServiceOf_User/DeleteResponse")]
-        bool Delete(BookAnArtisanMVC.UserServiceReference.User t);
+        BookAnArtisanMVC.UserServiceReference.User Delete(BookAnArtisanMVC.UserServiceReference.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/Delete", ReplyAction="http://tempuri.org/IServiceOf_User/DeleteResponse")]
-        System.Threading.Tasks.Task<bool> DeleteAsync(BookAnArtisanMVC.UserServiceReference.User t);
+        System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> DeleteAsync(BookAnArtisanMVC.UserServiceReference.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_User/ReadAllResponse")]
         System.Collections.Generic.List<BookAnArtisanMVC.UserServiceReference.User> ReadAll();
@@ -390,11 +390,11 @@ namespace BookAnArtisanMVC.UserServiceReference {
             return base.Channel.UpdateAsync(t);
         }
         
-        public bool Delete(BookAnArtisanMVC.UserServiceReference.User t) {
+        public BookAnArtisanMVC.UserServiceReference.User Delete(BookAnArtisanMVC.UserServiceReference.User t) {
             return base.Channel.Delete(t);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteAsync(BookAnArtisanMVC.UserServiceReference.User t) {
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.UserServiceReference.User> DeleteAsync(BookAnArtisanMVC.UserServiceReference.User t) {
             return base.Channel.DeleteAsync(t);
         }
         
