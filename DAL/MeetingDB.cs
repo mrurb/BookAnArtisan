@@ -29,7 +29,7 @@ namespace DAL
                 new SqlParameter { ParameterName = "@StartTime", SqlValue = t.StartTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@EndTime", SqlValue = t.EndTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@Title", SqlValue = t.Title, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Description", SqlValue = t.Description, SqlDbType = SqlDbType.Text },
+                new SqlParameter { ParameterName = "@Description", SqlValue = t.Description, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@ContactID", SqlValue = t.ContactId, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@CreatedByID", SqlValue = t.CreatedById, SqlDbType = SqlDbType.NVarChar },
            };
@@ -61,7 +61,7 @@ namespace DAL
         {
             List<Meeting> userMeetings = new List<Meeting>();
 
-            string sql = "SELECT * FROM Meeting_Users JOIN Meeting ON Meeting_Users.MeetingID = Meeting.ID WHERE Meeting_Users.UserID = @Id";
+            string sql = "SELECT DISTINCT Meeting.Id mId, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID  FROM Meeting JOIN Meeting_Users ON Meeting_Users.MeetingID = Meeting.ID JOIN AspNetUsers User1 ON Meeting.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meeting.ContactID = User2.Id WHERE Meeting_Users.UserID = @Id";
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = user.Id, SqlDbType = SqlDbType.NVarChar };
 
@@ -205,7 +205,7 @@ namespace DAL
                                     CreatedById = GetDataSafe(reader, CreatedByIDCol, reader.GetString),
                                     CreatedBy = GetDataSafe(reader, CreatedByNameCol, reader.GetString),
                                     ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString),
-                                    Deleted = GetDataSafe(reader, DeletedCol, reader.GetBoolean),
+                                    Deleted = GetDataSafe(reader, DeletedCol, reader.GetBoolean)
                                     Contact = GetDataSafe(reader, ContactCol, reader.GetString)
                                 });
                             }
@@ -248,7 +248,7 @@ namespace DAL
             {
                 new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int },
                 new SqlParameter { ParameterName = "@title", SqlValue = t.Title, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@description", SqlValue = t.Description, SqlDbType = SqlDbType.Text },
+                new SqlParameter { ParameterName = "@description", SqlValue = t.Description, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@starttime", SqlValue = t.StartTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@endtime", SqlValue = t.EndTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@createdbyid", SqlValue = t.CreatedById, SqlDbType = SqlDbType.NVarChar },
