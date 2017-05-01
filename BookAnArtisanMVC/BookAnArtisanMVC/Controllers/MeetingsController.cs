@@ -101,7 +101,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.Delete(meeting);
+                var data = pCl.Read(meeting);
                 pCl.Close();
                 return View(data);
             }
@@ -125,6 +125,13 @@ namespace BookAnArtisanMVC.Controllers
             {
                 return View(meeting);
             }
+        }
+
+        public ActionResult MyMeetings(User Iguess)
+        {
+            Iguess.Id = "2083af25-f483-4a02-a62b-71c198147c84";
+            var data = pCl.ReadAllForUser(Iguess);
+            return View(data);
         }
     }
 }

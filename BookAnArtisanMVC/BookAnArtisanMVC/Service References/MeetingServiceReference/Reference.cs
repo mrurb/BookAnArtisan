@@ -526,6 +526,12 @@ namespace BookAnArtisanMVC.MeetingServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/AddUserToMeeting", ReplyAction="http://tempuri.org/IMeetingService/AddUserToMeetingResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.MeetingServiceReference.Meeting> AddUserToMeetingAsync(BookAnArtisanMVC.MeetingServiceReference.Meeting m, BookAnArtisanMVC.MeetingServiceReference.User u);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/ReadAllForUser", ReplyAction="http://tempuri.org/IMeetingService/ReadAllForUserResponse")]
+        BookAnArtisanMVC.MeetingServiceReference.Meeting[] ReadAllForUser(BookAnArtisanMVC.MeetingServiceReference.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/ReadAllForUser", ReplyAction="http://tempuri.org/IMeetingService/ReadAllForUserResponse")]
+        System.Threading.Tasks.Task<BookAnArtisanMVC.MeetingServiceReference.Meeting[]> ReadAllForUserAsync(BookAnArtisanMVC.MeetingServiceReference.User user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -601,6 +607,14 @@ namespace BookAnArtisanMVC.MeetingServiceReference {
         
         public System.Threading.Tasks.Task<BookAnArtisanMVC.MeetingServiceReference.Meeting> AddUserToMeetingAsync(BookAnArtisanMVC.MeetingServiceReference.Meeting m, BookAnArtisanMVC.MeetingServiceReference.User u) {
             return base.Channel.AddUserToMeetingAsync(m, u);
+        }
+        
+        public BookAnArtisanMVC.MeetingServiceReference.Meeting[] ReadAllForUser(BookAnArtisanMVC.MeetingServiceReference.User user) {
+            return base.Channel.ReadAllForUser(user);
+        }
+        
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.MeetingServiceReference.Meeting[]> ReadAllForUserAsync(BookAnArtisanMVC.MeetingServiceReference.User user) {
+            return base.Channel.ReadAllForUserAsync(user);
         }
     }
 }
