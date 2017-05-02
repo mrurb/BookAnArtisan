@@ -56,7 +56,7 @@ namespace BookAnArtisanMVC.Controllers
             try
             {
                 // TODO: Add insert logic here
-                meeting.CreatedById = "2083af25-f483-4a02-a62b-71c198147c84";
+                meeting.CreatedById = User.Identity.GetUserId();
                 pCl.Create(meeting);
                 return RedirectToAction("MyMeetings");
             }

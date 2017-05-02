@@ -61,7 +61,7 @@ namespace DAL
         {
             List<Meeting> userMeetings = new List<Meeting>();
 
-            string sql = "SELECT DISTINCT Meeting.Id mId, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID  FROM Meeting JOIN Meeting_Users ON Meeting_Users.MeetingID = Meeting.ID JOIN AspNetUsers User1 ON Meeting.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meeting.ContactID = User2.Id WHERE Meeting_Users.UserID = @Id";
+            string sql = "SELECT DISTINCT Meeting.Id mId, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID  FROM Meeting JOIN AspNetUsers User1 ON Meeting.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meeting.ContactID = User2.Id WHERE Meeting.CreatedByID = @Id OR Meeting.ContactID = @Id";
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = user.Id, SqlDbType = SqlDbType.NVarChar };
 
