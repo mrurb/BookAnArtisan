@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BookAnArtisanMVC.MeetingServiceReference;
+using Microsoft.AspNet.Identity;
 
 namespace BookAnArtisanMVC.Controllers
 {
@@ -127,10 +128,11 @@ namespace BookAnArtisanMVC.Controllers
             }
         }
 
-        public ActionResult MyMeetings(User Iguess)
+        public ActionResult MyMeetings(User user)
         {
-            Iguess.Id = "2083af25-f483-4a02-a62b-71c198147c84";
-            var data = pCl.ReadAllForUser(Iguess);
+            //Iguess.Id = "2083af25-f483-4a02-a62b-71c198147c84";
+            user.Id = User.Identity.GetUserId();
+            var data = pCl.ReadAllForUser(user);
             return View(data);
         }
     }
