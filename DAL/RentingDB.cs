@@ -66,7 +66,7 @@ namespace DAL
 
         public Rented Read(Rented t)
         {
-            string sql = "SELECT * FROM Materials WHERE id = @id";
+            string sql = "SELECT * FROM Rented WHERE id = @id";
             Rented material = null;
             SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int };
             using (SqlConnection connection = new SqlConnection(connectionstring))
@@ -97,7 +97,7 @@ namespace DAL
         {
             List<Rented> materials = new List<Rented>();
 
-            string sql = "SELECT * FROM Materials";
+            string sql = "SELECT * FROM Rented";
 
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {

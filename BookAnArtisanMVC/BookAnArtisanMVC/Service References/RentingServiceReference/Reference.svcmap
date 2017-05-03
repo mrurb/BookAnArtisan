@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="14b4fe12-ff93-42ba-9eed-3741df8ce511" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/WCF/RentingService/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="8311c686-a8bd-4d50-b146-a4e985737cb7" SourceId="1" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd0" />
+    <MetadataFile FileName="RentingService.wsdl" MetadataType="Wsdl" ID="ce7434de-efd9-48ad-aa7c-6738e259857e" SourceId="1" SourceUrl="http://localhost:8733/WCF/RentingService/?wsdl" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="9b13b05f-a560-4c08-b281-fbafc3abc23d" SourceId="1" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd1" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="2fe7ddf1-0695-4c99-8480-a64ba1b9412a" SourceId="1" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd2" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="cc2aa08a-0d91-48d0-8235-6da261d28c22" SourceId="1" SourceUrl="http://localhost:8733/WCF/RentingService/?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

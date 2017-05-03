@@ -20,6 +20,6 @@ namespace Model
         [DataMember]
         public string UserId { get; set; }
         [DataMember]
-        public object Deleted { get; set; }
+        public bool Deleted { get; set; }
     }
 }

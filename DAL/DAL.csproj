@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="MaterialDB.cs" />
     <Compile Include="MeetingDB.cs" />
+    <Compile Include="RentingDB.cs" />
     <Compile Include="SearchDB.cs" />
     <Compile Include="IDataAccess.cs" />
     <Compile Include="ProjectDB.cs" />
