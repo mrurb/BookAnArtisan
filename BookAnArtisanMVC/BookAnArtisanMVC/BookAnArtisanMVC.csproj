@@ -427,8 +427,11 @@
     <Content Include="Views\Meetings\Edit.cshtml" />
     <Content Include="Views\Meetings\Delete.cshtml" />
     <Content Include="Views\Meetings\MyMeetings.cshtml" />
-    <Content Include="Views\Material\Create.cshtml" />
     <Content Include="Views\Material\Index.cshtml" />
+    <Content Include="Views\Material\Create.cshtml" />
+    <Content Include="Views\Material\Delete.cshtml" />
+    <Content Include="Views\Material\Edit.cshtml" />
+    <Content Include="Views\Material\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

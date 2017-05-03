@@ -20,7 +20,8 @@ namespace BookAnArtisanMVC.Controllers
         // GET: Material/Details/5
         public ActionResult Details(Material mat)
         {
-            return View();
+            var data = ms.Read(mat);
+            return View(data);
         }
 
         // GET: Material/Create
@@ -47,7 +48,8 @@ namespace BookAnArtisanMVC.Controllers
         // GET: Material/Edit/5
         public ActionResult Edit(Material mat)
         {
-            return View();
+            var data = ms.Read(mat);
+            return View(data);
         }
 
         // POST: Material/Edit/5
@@ -56,8 +58,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                // TODO: Add update logic here
-
+                ms.Update(mat);
                 return RedirectToAction("Index");
             }
             catch
@@ -69,7 +70,8 @@ namespace BookAnArtisanMVC.Controllers
         // GET: Material/Delete/5
         public ActionResult Delete(Material mat)
         {
-            return View();
+            var data = ms.Read(mat);
+            return View(data);
         }
 
         // POST: Material/Delete/5
@@ -78,8 +80,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
+                ms.Delete(mat);
                 return RedirectToAction("Index");
             }
             catch

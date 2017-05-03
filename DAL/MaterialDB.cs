@@ -14,13 +14,16 @@ namespace DAL
         static string connectionstring = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
         public Material Create(Material t)
         {
-            string query = "INSERT INTO Materials(Name, Description, Condition, OwnerId) VALUES(@Name, @Description, @Condition, @OwnerId);";
+            string query = "INSERT INTO Materials(Name, Description, Condition, OwnerId, Amount, Available, Deleted) VALUES(@Name, @Description, @Condition, @OwnerId, @Amount, @Available, @Deleted);";
             SqlParameter[] ArrayOfParams =
             {
                 new SqlParameter { ParameterName = "@Name", SqlValue = t.Name, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Description", SqlValue = t.Description, SqlDbType = SqlDbType.Text },
+                new SqlParameter { ParameterName = "@Description", SqlValue = t.Description, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@Condition", SqlValue = t.Condition, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@OwnerId", SqlValue = t.OwnderId, SqlDbType = SqlDbType.NVarChar }
+                new SqlParameter { ParameterName = "@OwnerId", SqlValue = t.OwnderId, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Amount", SqlValue = t.Amount, SqlDbType = SqlDbType.Int },
+                new SqlParameter { ParameterName = "@Available", SqlValue = t.Available, SqlDbType = SqlDbType.Bit },
+                new SqlParameter { ParameterName = "@Deleted", SqlValue = t.Deleted, SqlDbType = SqlDbType.Bit }
            };
 
             using (SqlConnection con = new SqlConnection(connectionstring))
@@ -48,22 +51,116 @@ namespace DAL
 
         public Material Delete(Material t)
         {
-            throw new NotImplementedException();
+            string sql = "UPDATE Materials SET Deleted = 1 WHERE id = @id";
+            SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int };
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.Add(theparam);
+                    command.Connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                    }
+                }
+            }
+            return null;
         }
 
         public Material Read(Material t)
         {
-            throw new NotImplementedException();
+            string sql = "SELECT * FROM Materials WHERE id = @id";
+            Material material = null;
+            SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int };
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.Add(theparam);
+                    command.Connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            material = new Material
+                            {
+                                Id = (int)reader["Id"],
+                                Description = reader["Description"].ToString(),
+                                Condition = reader["Condition"].ToString(),
+                                Name = reader["Name"].ToString(),
+                                OwnderId = reader["OwnerId"].ToString(),
+                                Amount = (int)reader["Amount"],
+                                Available = (bool)reader["Available"],
+                                Deleted = (bool)reader["Deleted"]
+                            };
+                        }
+                    }
+                }
+            }
+            return material;
         }
 
         public List<Material> ReadAll()
         {
-            throw new NotImplementedException();
+            List<Material> materials = new List<Material>();
+
+            string sql = "SELECT * FROM Materials";
+
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            materials.Add(new Material
+                            {
+                                Id = (int)reader["Id"],
+                                Description = reader["Description"].ToString(),
+                                Condition = reader["Condition"].ToString(),
+                                Name = reader["Name"].ToString(),
+                                OwnderId = reader["OwnerId"].ToString(),
+                                Amount = (int)reader["Amount"],
+                                Available = (bool)reader["Available"],
+                                Deleted = (bool)reader["Deleted"]
+                            });
+                        }
+                    }
+                }
+            }
+            return materials;
         }
 
         public Material Update(Material t)
         {
-            throw new NotImplementedException();
+            string sql = "UPDATE Materials SET Name = @name, Description = @description, Condition = @condition, Deleted = @deleted, Available = @available, OwnerID = @ownerid, Amount = @amount WHERE ID = @id";
+            SqlParameter[] sqlparams =
+            {
+                new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int },
+                new SqlParameter { ParameterName = "@name", SqlValue = t.Name, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@description", SqlValue = t.Description, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@condition", SqlValue = t.Condition, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@deleted", SqlValue = t.Deleted, SqlDbType = SqlDbType.Bit },
+                new SqlParameter { ParameterName = "@available", SqlValue = t.Available, SqlDbType = SqlDbType.Bit },
+                new SqlParameter { ParameterName = "@ownerid", SqlValue = t.OwnderId, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@amount", SqlValue = t.Amount, SqlDbType = SqlDbType.Int }
+            };
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddRange(sqlparams);
+                    command.Connection.Open();
+                    int rowsaffected = command.ExecuteNonQuery();
+                    if (rowsaffected < 1)
+                    {
+                        throw new Exception();
+                    }
+                }
+            }
+            return t;
         }
     }
 }

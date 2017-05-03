@@ -20,5 +20,12 @@ namespace Model
         public string OwnderId { get; set; }
         [DataMember]
         public string Condition { get; set; }
+        [DataMember]
+        public int Amount { get; set; }
+        [DataMember]
+        public bool Deleted { get; set; }
+        [DataMember]
+        public bool Available { get; set; }
+
     }
 }

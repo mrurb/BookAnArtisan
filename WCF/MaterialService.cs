@@ -18,22 +18,22 @@ namespace WCF
 
         public Material Delete(Material t)
         {
-            throw new NotImplementedException();
+            return mc.Delete(t);
         }
 
         public Material Read(Material t)
         {
-            throw new NotImplementedException();
+            return mc.Read(t);
         }
 
         public List<Material> ReadAll()
         {
-            throw new NotImplementedException();
+            return mc.ReadAll();
         }
 
         public Material Update(Material t)
         {
-            throw new NotImplementedException();
+            return mc.Update(t);
         }
     }
 }

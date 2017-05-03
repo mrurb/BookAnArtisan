@@ -23,7 +23,16 @@ namespace BookAnArtisanMVC.MaterialServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AvailableField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ConditionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool DeletedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
@@ -48,6 +57,32 @@ namespace BookAnArtisanMVC.MaterialServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Amount {
+            get {
+                return this.AmountField;
+            }
+            set {
+                if ((this.AmountField.Equals(value) != true)) {
+                    this.AmountField = value;
+                    this.RaisePropertyChanged("Amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Available {
+            get {
+                return this.AvailableField;
+            }
+            set {
+                if ((this.AvailableField.Equals(value) != true)) {
+                    this.AvailableField = value;
+                    this.RaisePropertyChanged("Available");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Condition {
             get {
                 return this.ConditionField;
@@ -56,6 +91,19 @@ namespace BookAnArtisanMVC.MaterialServiceReference {
                 if ((object.ReferenceEquals(this.ConditionField, value) != true)) {
                     this.ConditionField = value;
                     this.RaisePropertyChanged("Condition");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Deleted {
+            get {
+                return this.DeletedField;
+            }
+            set {
+                if ((this.DeletedField.Equals(value) != true)) {
+                    this.DeletedField = value;
+                    this.RaisePropertyChanged("Deleted");
                 }
             }
         }

@@ -17,22 +17,24 @@ namespace BLL
 
         public Material Delete(Material t)
         {
-            throw new NotImplementedException();
+            mdb.Delete(t);
+            return mdb.Read(t);
         }
 
         public Material Read(Material t)
         {
-            throw new NotImplementedException();
+            return mdb.Read(t);
         }
 
         public List<Material> ReadAll()
         {
-            throw new NotImplementedException();
+            return mdb.ReadAll();
         }
 
         public Material Update(Material t)
         {
-            throw new NotImplementedException();
+            mdb.Update(t);
+            return mdb.Read(t);
         }
     }
 }
