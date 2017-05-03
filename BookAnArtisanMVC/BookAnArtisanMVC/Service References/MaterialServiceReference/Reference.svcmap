@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a153c8e7-51c7-4bf1-8d48-57f7b27dc64c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/WCF/MaterialService/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MaterialService.wsdl" MetadataType="Wsdl" ID="fd262d59-97b4-4f81-a761-74a513e3c6c9" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?wsdl" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="3dc82fcf-df5a-4f58-87de-00d6447bb5c3" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd2" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="8297b0dc-d600-4a6c-b72b-8142a12bea57" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd0" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="2bf7407d-20f1-4419-8a6a-96a38362ac37" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?disco" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="132cbf36-9ec1-48ce-b017-69f0acbbccf9" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
