@@ -36,5 +36,11 @@ namespace BLL
             mdb.Update(t);
             return mdb.Read(t);
         }
+
+
+        public IList<Material> SearchByMaterialName(string name)
+        {
+            return mdb.SearchByMaterialName(name);
+        }
     }
 }

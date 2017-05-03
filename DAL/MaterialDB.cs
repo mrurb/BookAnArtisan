@@ -162,5 +162,45 @@ namespace DAL
             }
             return t;
         }
+
+        public IList<Material> SearchByMaterialName(string name)
+        {
+            IList<Material> list = new List<Material>();
+
+            string sql = "SELECT * FROM Materials WHERE Materials.Name LIKE '%' + @name + '%' OR Materials.Tags LIKE '%' + @name + '%' OR Materials.Description LIKE '%' + @name + '%' OR Materials.Condition LIKE '%' + @name + '%'";
+
+            SqlParameter searchParams = new SqlParameter { ParameterName = "@name", SqlValue = name, SqlDbType = SqlDbType.NVarChar };
+
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, conn))
+                {
+                    command.Parameters.Add(searchParams);
+                    command.Connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(
+                                new Material
+                                {
+                                    Id = (int)reader["ID"],
+                                    Description = (string)reader["Description"],
+                                    Amount = (int)reader["Amount"],
+                                    Available = (bool)reader["Available"],
+                                    Condition = (string)reader["Condition"],
+                                    Deleted = (bool)reader["Deleted"],
+                                    Name = (string)reader["Name"],
+                                    OwnderId = (string)reader["OwnerId"]
+
+                                }
+                            );
+                        }
+                    }
+                }
+            }
+            return list;
+        }
     }
 }
