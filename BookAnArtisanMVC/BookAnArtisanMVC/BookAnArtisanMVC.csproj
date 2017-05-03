@@ -182,6 +182,7 @@
     <Compile Include="Controllers\MaterialController.cs" />
     <Compile Include="Controllers\MeetingsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\RentingController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -202,6 +203,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\ProjectServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RentingServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -347,9 +353,29 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Service References\RentingServiceReference\BookAnArtisanMVC.RentingServiceReference.Rented.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\RentingServiceReference\item.disco" />
+    <None Include="Service References\RentingServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\RentingServiceReference\configuration.svcinfo" />
+    <None Include="Service References\RentingServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Service References\UserServiceReference\BookAnArtisanMVC.UserServiceReference.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\RentingServiceReference\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RentingServiceReference\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RentingServiceReference\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RentingServiceReference\RentingService.wsdl" />
     <None Include="Service References\UserServiceReference\configuration91.svcinfo" />
     <None Include="Service References\UserServiceReference\configuration.svcinfo" />
     <None Include="Service References\UserServiceReference\Reference.svcmap">
@@ -432,6 +458,11 @@
     <Content Include="Views\Material\Delete.cshtml" />
     <Content Include="Views\Material\Edit.cshtml" />
     <Content Include="Views\Material\Details.cshtml" />
+    <Content Include="Views\Renting\Index.cshtml" />
+    <Content Include="Views\Renting\Create.cshtml" />
+    <Content Include="Views\Renting\Delete.cshtml" />
+    <Content Include="Views\Renting\Details.cshtml" />
+    <Content Include="Views\Renting\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -448,6 +479,7 @@
     <WCFMetadataStorage Include="Service References\MaterialServiceReference\" />
     <WCFMetadataStorage Include="Service References\MeetingServiceReference\" />
     <WCFMetadataStorage Include="Service References\ProjectServiceReference\" />
+    <WCFMetadataStorage Include="Service References\RentingServiceReference\" />
     <WCFMetadataStorage Include="Service References\UserServiceReference\" />
   </ItemGroup>
   <PropertyGroup>
