@@ -15,9 +15,9 @@ namespace BookAnArtisanMVC.RentingServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Rented", Namespace="http://schemas.datacontract.org/2004/07/Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Booking", Namespace="http://schemas.datacontract.org/2004/07/Model")]
     [System.SerializableAttribute()]
-    public partial class Rented : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Booking : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -568,35 +568,35 @@ namespace BookAnArtisanMVC.RentingServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RentingServiceReference.IRentingService")]
     public interface IRentingService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Rented/Create", ReplyAction="http://tempuri.org/IServiceOf_Rented/CreateResponse")]
-        BookAnArtisanMVC.RentingServiceReference.Rented Create(BookAnArtisanMVC.RentingServiceReference.Rented t);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Booking/Create", ReplyAction="http://tempuri.org/IServiceOf_Booking/CreateResponse")]
+        BookAnArtisanMVC.RentingServiceReference.Booking Create(BookAnArtisanMVC.RentingServiceReference.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Rented/Create", ReplyAction="http://tempuri.org/IServiceOf_Rented/CreateResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Rented> CreateAsync(BookAnArtisanMVC.RentingServiceReference.Rented t);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Booking/Create", ReplyAction="http://tempuri.org/IServiceOf_Booking/CreateResponse")]
+        System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Booking> CreateAsync(BookAnArtisanMVC.RentingServiceReference.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Rented/Read", ReplyAction="http://tempuri.org/IServiceOf_Rented/ReadResponse")]
-        BookAnArtisanMVC.RentingServiceReference.Rented Read(BookAnArtisanMVC.RentingServiceReference.Rented t);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Booking/Read", ReplyAction="http://tempuri.org/IServiceOf_Booking/ReadResponse")]
+        BookAnArtisanMVC.RentingServiceReference.Booking Read(BookAnArtisanMVC.RentingServiceReference.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Rented/Read", ReplyAction="http://tempuri.org/IServiceOf_Rented/ReadResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Rented> ReadAsync(BookAnArtisanMVC.RentingServiceReference.Rented t);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Booking/Read", ReplyAction="http://tempuri.org/IServiceOf_Booking/ReadResponse")]
+        System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Booking> ReadAsync(BookAnArtisanMVC.RentingServiceReference.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Rented/Update", ReplyAction="http://tempuri.org/IServiceOf_Rented/UpdateResponse")]
-        BookAnArtisanMVC.RentingServiceReference.Rented Update(BookAnArtisanMVC.RentingServiceReference.Rented t);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Booking/Update", ReplyAction="http://tempuri.org/IServiceOf_Booking/UpdateResponse")]
+        BookAnArtisanMVC.RentingServiceReference.Booking Update(BookAnArtisanMVC.RentingServiceReference.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Rented/Update", ReplyAction="http://tempuri.org/IServiceOf_Rented/UpdateResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Rented> UpdateAsync(BookAnArtisanMVC.RentingServiceReference.Rented t);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Booking/Update", ReplyAction="http://tempuri.org/IServiceOf_Booking/UpdateResponse")]
+        System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Booking> UpdateAsync(BookAnArtisanMVC.RentingServiceReference.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Rented/Delete", ReplyAction="http://tempuri.org/IServiceOf_Rented/DeleteResponse")]
-        BookAnArtisanMVC.RentingServiceReference.Rented Delete(BookAnArtisanMVC.RentingServiceReference.Rented t);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Booking/Delete", ReplyAction="http://tempuri.org/IServiceOf_Booking/DeleteResponse")]
+        BookAnArtisanMVC.RentingServiceReference.Booking Delete(BookAnArtisanMVC.RentingServiceReference.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Rented/Delete", ReplyAction="http://tempuri.org/IServiceOf_Rented/DeleteResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Rented> DeleteAsync(BookAnArtisanMVC.RentingServiceReference.Rented t);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Booking/Delete", ReplyAction="http://tempuri.org/IServiceOf_Booking/DeleteResponse")]
+        System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Booking> DeleteAsync(BookAnArtisanMVC.RentingServiceReference.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Rented/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_Rented/ReadAllResponse")]
-        BookAnArtisanMVC.RentingServiceReference.Rented[] ReadAll();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Booking/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_Booking/ReadAllResponse")]
+        BookAnArtisanMVC.RentingServiceReference.Booking[] ReadAll();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Rented/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_Rented/ReadAllResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Rented[]> ReadAllAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Booking/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_Booking/ReadAllResponse")]
+        System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Booking[]> ReadAllAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -626,43 +626,43 @@ namespace BookAnArtisanMVC.RentingServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public BookAnArtisanMVC.RentingServiceReference.Rented Create(BookAnArtisanMVC.RentingServiceReference.Rented t) {
+        public BookAnArtisanMVC.RentingServiceReference.Booking Create(BookAnArtisanMVC.RentingServiceReference.Booking t) {
             return base.Channel.Create(t);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Rented> CreateAsync(BookAnArtisanMVC.RentingServiceReference.Rented t) {
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Booking> CreateAsync(BookAnArtisanMVC.RentingServiceReference.Booking t) {
             return base.Channel.CreateAsync(t);
         }
         
-        public BookAnArtisanMVC.RentingServiceReference.Rented Read(BookAnArtisanMVC.RentingServiceReference.Rented t) {
+        public BookAnArtisanMVC.RentingServiceReference.Booking Read(BookAnArtisanMVC.RentingServiceReference.Booking t) {
             return base.Channel.Read(t);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Rented> ReadAsync(BookAnArtisanMVC.RentingServiceReference.Rented t) {
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Booking> ReadAsync(BookAnArtisanMVC.RentingServiceReference.Booking t) {
             return base.Channel.ReadAsync(t);
         }
         
-        public BookAnArtisanMVC.RentingServiceReference.Rented Update(BookAnArtisanMVC.RentingServiceReference.Rented t) {
+        public BookAnArtisanMVC.RentingServiceReference.Booking Update(BookAnArtisanMVC.RentingServiceReference.Booking t) {
             return base.Channel.Update(t);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Rented> UpdateAsync(BookAnArtisanMVC.RentingServiceReference.Rented t) {
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Booking> UpdateAsync(BookAnArtisanMVC.RentingServiceReference.Booking t) {
             return base.Channel.UpdateAsync(t);
         }
         
-        public BookAnArtisanMVC.RentingServiceReference.Rented Delete(BookAnArtisanMVC.RentingServiceReference.Rented t) {
+        public BookAnArtisanMVC.RentingServiceReference.Booking Delete(BookAnArtisanMVC.RentingServiceReference.Booking t) {
             return base.Channel.Delete(t);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Rented> DeleteAsync(BookAnArtisanMVC.RentingServiceReference.Rented t) {
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Booking> DeleteAsync(BookAnArtisanMVC.RentingServiceReference.Booking t) {
             return base.Channel.DeleteAsync(t);
         }
         
-        public BookAnArtisanMVC.RentingServiceReference.Rented[] ReadAll() {
+        public BookAnArtisanMVC.RentingServiceReference.Booking[] ReadAll() {
             return base.Channel.ReadAll();
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Rented[]> ReadAllAsync() {
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.RentingServiceReference.Booking[]> ReadAllAsync() {
             return base.Channel.ReadAllAsync();
         }
     }

@@ -51,11 +51,11 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Ejer", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(Model => Model.Owner.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.Editor("Ejer", new { htmlAttributes = new { @class = "form-control" } })
-                @Html.HiddenFor(model => model.OwnerId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OwnerId, "", new { @class = "text-danger" })
+                @Html.EditorFor(Model => Model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => Model.Owner.Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Owner.Id, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -76,7 +76,7 @@
     @Scripts.Render("~/bundles/Autocomplete")
     <script type="text/javascript">
             $( document ).ready(function() {
-                autoc($("#Ejer"), $("#OwnerId"), "/Users/SearchByName");
+                autoc($("#Name"), $("#Id"), "/Users/SearchByName");
             })
     </script>
 }

@@ -10,29 +10,29 @@ namespace BookAnArtisanMVC.Controllers
     public class RentingController : Controller
     {
         RentingServiceClient ms = new RentingServiceClient();
-        // GET: Material
+        // GET: Booking
         public ActionResult Index()
         {
             var data = ms.ReadAll();
             return View(data);
         }
 
-        // GET: Material/Details/5
-        public ActionResult Details(Rented mat)
+        // GET: Booking/Details/5
+        public ActionResult Details(Booking mat)
         {
             var data = ms.Read(mat);
             return View(data);
         }
 
-        // GET: Material/Create
+        // GET: Booking/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Material/Create
+        // POST: Booking/Create
         [HttpPost]
-        public ActionResult Create(Rented mat)
+        public ActionResult Create(Booking mat)
         {
             try
             {
@@ -45,16 +45,16 @@ namespace BookAnArtisanMVC.Controllers
             }
         }
 
-        // GET: Material/Edit/5
-        public ActionResult Edit(Rented mat)
+        // GET: Booking/Edit/5
+        public ActionResult Edit(Booking mat)
         {
             var data = ms.Read(mat);
             return View(data);
         }
 
-        // POST: Material/Edit/5
+        // POST: Booking/Edit/5
         [HttpPost, ActionName("Edit")]
-        public ActionResult EditConfirmed(Rented mat)
+        public ActionResult EditConfirmed(Booking mat)
         {
             try
             {
@@ -67,16 +67,16 @@ namespace BookAnArtisanMVC.Controllers
             }
         }
 
-        // GET: Material/Delete/5
-        public ActionResult Delete(Rented mat)
+        // GET: Booking/Delete/5
+        public ActionResult Delete(Booking mat)
         {
             var data = ms.Read(mat);
             return View(data);
         }
 
-        // POST: Material/Delete/5
+        // POST: Booking/Delete/5
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(Rented mat)
+        public ActionResult DeleteConfirmed(Booking mat)
         {
             try
             {

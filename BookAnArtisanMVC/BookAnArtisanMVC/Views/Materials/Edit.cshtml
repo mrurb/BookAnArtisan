@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Material</h4>
         <hr />
@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => Contact.Id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -62,10 +62,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.OwnerId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Owner.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.OwnerId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OwnerId, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Owner.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(Model => Model.Owner.Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Owner.UserName, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -83,4 +84,10 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Autocomplete")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            autoc($("#UserName"), $("#Id"), "/Users/SearchByName");
+        })
+    </script>
 }

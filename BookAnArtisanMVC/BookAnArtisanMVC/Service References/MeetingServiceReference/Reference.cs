@@ -23,16 +23,10 @@ namespace BookAnArtisanMVC.MeetingServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ContactField;
+        private BookAnArtisanMVC.MeetingServiceReference.User ContactField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ContactIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CreatedByField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CreatedByIdField;
+        private BookAnArtisanMVC.MeetingServiceReference.User CreatedByField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool DeletedField;
@@ -63,7 +57,7 @@ namespace BookAnArtisanMVC.MeetingServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Contact {
+        public BookAnArtisanMVC.MeetingServiceReference.User Contact {
             get {
                 return this.ContactField;
             }
@@ -76,20 +70,7 @@ namespace BookAnArtisanMVC.MeetingServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ContactId {
-            get {
-                return this.ContactIdField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ContactIdField, value) != true)) {
-                    this.ContactIdField = value;
-                    this.RaisePropertyChanged("ContactId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CreatedBy {
+        public BookAnArtisanMVC.MeetingServiceReference.User CreatedBy {
             get {
                 return this.CreatedByField;
             }
@@ -97,19 +78,6 @@ namespace BookAnArtisanMVC.MeetingServiceReference {
                 if ((object.ReferenceEquals(this.CreatedByField, value) != true)) {
                     this.CreatedByField = value;
                     this.RaisePropertyChanged("CreatedBy");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CreatedById {
-            get {
-                return this.CreatedByIdField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CreatedByIdField, value) != true)) {
-                    this.CreatedByIdField = value;
-                    this.RaisePropertyChanged("CreatedById");
                 }
             }
         }
