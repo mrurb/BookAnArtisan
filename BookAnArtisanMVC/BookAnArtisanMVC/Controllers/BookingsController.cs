@@ -7,6 +7,20 @@ using BookAnArtisanMVC.RentingServiceReference;
 
 namespace BookAnArtisanMVC.Controllers
 {
+
+    public partial class test
+    {
+
+        public void doWork()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public partial class test
+    {
+
+    }
     public class BookingsController : Controller
     {
         RentingServiceClient ms = new RentingServiceClient();

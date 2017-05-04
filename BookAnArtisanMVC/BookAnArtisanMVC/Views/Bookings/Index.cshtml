@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BookAnArtisanMVC.RentingServiceReference.Rented>
+﻿@model IEnumerable<BookAnArtisanMVC.RentingServiceReference.Booking>
 
 @{
     ViewBag.Title = "Index";
@@ -20,9 +20,6 @@
         <th>
             @Html.DisplayNameFor(model => model.StartTime)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
         <th></th>
     </tr>
 
@@ -36,9 +33,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

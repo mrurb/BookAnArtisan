@@ -1,4 +1,4 @@
-﻿@model BookAnArtisanMVC.RentingServiceReference.Rented
+﻿@model BookAnArtisanMVC.RentingServiceReference.Booking
 
 @{
     ViewBag.Title = "Delete";
@@ -36,11 +36,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UserId)
+            @Html.DisplayNameFor(model => model.User.Id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UserId)
+            @Html.DisplayFor(model => model.User.Id)
         </dd>
 
     </dl>

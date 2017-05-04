@@ -9,7 +9,6 @@ namespace BookAnArtisanMVC.MetaDataTypes
     [MetadataType(typeof(UserMetaData))]
     public partial class User
     {
-        // nothing here??
     }
 
     public class UserMetaData

@@ -1,4 +1,4 @@
-﻿@model BookAnArtisanMVC.RentingServiceReference.Rented
+﻿@model BookAnArtisanMVC.RentingServiceReference.Booking
 
 @{
     ViewBag.Title = "Details";
@@ -7,9 +7,23 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Rented</h4>
+    <h4>Booking</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Deleted)
         </dt>
@@ -18,33 +32,13 @@
             @Html.DisplayFor(model => model.Deleted)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
+      
 
-        <dd>
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User.Id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.Id)
-        </dd>
+       
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Contact.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
