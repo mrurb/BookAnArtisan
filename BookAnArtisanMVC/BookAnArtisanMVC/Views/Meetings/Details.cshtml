@@ -11,11 +11,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Contact)
+            @Html.DisplayNameFor(model => model.Contact.UserName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Contact)
+            @Html.DisplayFor(model => model.Contact.UserName)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.CreatedBy.UserName)
@@ -65,6 +65,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Contact.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "MyMeetings")
 </p>
