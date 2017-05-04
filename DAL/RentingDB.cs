@@ -15,34 +15,51 @@ namespace DAL
         static string connectionstring = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
         public Rented Create(Rented t)
         {
-            string query = "INSERT INTO Rented(StartTime, EndTime, Deleted) VALUES(@starttime, @endtime, @deleted);";
             SqlParameter[] ArrayOfParams =
             {
                 new SqlParameter { ParameterName = "@starttime", SqlValue = t.StartTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@endtime", SqlValue = t.EndTime, SqlDbType = SqlDbType.DateTime },
-                new SqlParameter { ParameterName = "@deleted", SqlValue = t.Deleted, SqlDbType = SqlDbType.Bit }
+                new SqlParameter { ParameterName = "@userID", SqlValue = t.UserId, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter {ParameterName = "@materialID" , SqlValue = t.materialID, SqlDbType = SqlDbType.NVarChar }
            };
-
-            using (SqlConnection con = new SqlConnection(connectionstring))
+            SqlConnection con = new SqlConnection(connectionstring);
+            string query = "if not exists(SELECT StartTime, EndTime FROM Booking WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Deleted = 0) BEGIN INSERT INTO Booking(StartTime, EndTime, UserID, MaterialID) VALUES(@starttime, @endtime, @userID, @materialID) END";
+            SqlCommand sqlcommand = new SqlCommand(query, con);
+            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadCommitted);
+            sqlcommand.Transaction = myTrans;
+            sqlcommand.Parameters.AddRange(ArrayOfParams);
+            try
             {
-                using (SqlCommand sqlcommand = new SqlCommand(query, con))
+                con.Open();
+                int rowsaffected = sqlcommand.ExecuteNonQuery();
+                if(rowsaffected < 1)
+                {
+                    con.Close();
+                    throw new Exception();
+                }
+                myTrans.Commit();
+            }
+                catch (Exception)
                 {
                     try
                     {
-                        sqlcommand.Parameters.AddRange(ArrayOfParams);
-                        con.Open();
-                        int rowsaffected = sqlcommand.ExecuteNonQuery();
-                        if (rowsaffected < 1)
-                        {
-                            throw new System.Exception("No rows affected. Insert failed - Are you a fag?");
-                        }
+                        myTrans.Rollback();
                     }
-                    catch (Exception)
+                    catch (SqlException)
                     {
+                        //rollback failed
                         throw new Exception();
                     }
+                finally
+                {
+                    con.Close();
                 }
-            }
+                    //transaction failed
+                }
+                finally
+                {
+                    con.Close();
+                }
             return t;
         }
 
