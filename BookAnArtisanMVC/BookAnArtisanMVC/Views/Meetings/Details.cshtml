@@ -18,11 +18,11 @@
             @Html.DisplayFor(model => model.Contact)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
+            @Html.DisplayNameFor(model => model.CreatedBy.UserName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
+            @Html.DisplayFor(model => model.CreatedBy.UserName)
         </dd>
 
         <dt>
@@ -65,6 +65,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Contact.Id }) |
     @Html.ActionLink("Back to List", "MyMeetings")
 </p>

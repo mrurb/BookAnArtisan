@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => Contact.Id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Modified, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -76,10 +76,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Project_status_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProjectStatusID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Project_status_ID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project_status_ID, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ProjectStatusID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProjectStatusID, "", new { @class = "text-danger" })
             </div>
         </div>
 

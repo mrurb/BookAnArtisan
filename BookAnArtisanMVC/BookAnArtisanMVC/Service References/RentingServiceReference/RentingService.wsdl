@@ -39,30 +39,30 @@
   </wsdl:message>
   <wsdl:portType name="IRentingService">
     <wsdl:operation name="Create">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Rented/Create" message="tns:IRentingService_Create_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Rented/CreateResponse" message="tns:IRentingService_Create_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Booking/Create" message="tns:IRentingService_Create_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Booking/CreateResponse" message="tns:IRentingService_Create_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Read">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Rented/Read" message="tns:IRentingService_Read_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Rented/ReadResponse" message="tns:IRentingService_Read_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Booking/Read" message="tns:IRentingService_Read_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Booking/ReadResponse" message="tns:IRentingService_Read_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Update">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Rented/Update" message="tns:IRentingService_Update_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Rented/UpdateResponse" message="tns:IRentingService_Update_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Booking/Update" message="tns:IRentingService_Update_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Booking/UpdateResponse" message="tns:IRentingService_Update_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Delete">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Rented/Delete" message="tns:IRentingService_Delete_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Rented/DeleteResponse" message="tns:IRentingService_Delete_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Booking/Delete" message="tns:IRentingService_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Booking/DeleteResponse" message="tns:IRentingService_Delete_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReadAll">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Rented/ReadAll" message="tns:IRentingService_ReadAll_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Rented/ReadAllResponse" message="tns:IRentingService_ReadAll_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Booking/ReadAll" message="tns:IRentingService_ReadAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Booking/ReadAllResponse" message="tns:IRentingService_ReadAll_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IRentingService" type="tns:IRentingService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="Create">
-      <soap:operation soapAction="http://tempuri.org/IServiceOf_Rented/Create" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IServiceOf_Booking/Create" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -71,7 +71,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Read">
-      <soap:operation soapAction="http://tempuri.org/IServiceOf_Rented/Read" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IServiceOf_Booking/Read" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -80,7 +80,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Update">
-      <soap:operation soapAction="http://tempuri.org/IServiceOf_Rented/Update" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IServiceOf_Booking/Update" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -89,7 +89,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Delete">
-      <soap:operation soapAction="http://tempuri.org/IServiceOf_Rented/Delete" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IServiceOf_Booking/Delete" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -98,7 +98,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ReadAll">
-      <soap:operation soapAction="http://tempuri.org/IServiceOf_Rented/ReadAll" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IServiceOf_Booking/ReadAll" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

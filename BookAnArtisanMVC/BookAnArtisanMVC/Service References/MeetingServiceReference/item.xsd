@@ -2,10 +2,8 @@
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:complexType name="Meeting">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Contact" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ContactId" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CreatedById" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Contact" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="tns:User" />
       <xs:element minOccurs="0" name="Deleted" type="xs:boolean" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EndTime" type="xs:dateTime" />
@@ -15,12 +13,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Meeting" nillable="true" type="tns:Meeting" />
-  <xs:complexType name="ArrayOfMeeting">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Meeting" nillable="true" type="tns:Meeting" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfMeeting" nillable="true" type="tns:ArrayOfMeeting" />
   <xs:complexType name="User">
     <xs:sequence>
       <xs:element minOccurs="0" name="AccessFailedCount" type="xs:int" />
@@ -42,4 +34,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="ArrayOfMeeting">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Meeting" nillable="true" type="tns:Meeting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMeeting" nillable="true" type="tns:ArrayOfMeeting" />
 </xs:schema>

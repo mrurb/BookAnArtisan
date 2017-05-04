@@ -354,7 +354,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Service References\RentingServiceReference\BookAnArtisanMVC.RentingServiceReference.Rented.datasource">
+    <Content Include="Service References\RentingServiceReference\BookAnArtisanMVC.RentingServiceReference.Booking.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\RentingServiceReference\item.disco" />

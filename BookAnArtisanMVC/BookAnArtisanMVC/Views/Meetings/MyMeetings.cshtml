@@ -12,16 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Contact)
+            @Html.DisplayNameFor(model => model.Contact.UserName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ContactId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedById)
+            @Html.DisplayNameFor(model => model.CreatedBy.UserName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Deleted)
@@ -47,13 +41,7 @@
             @Html.DisplayFor(modelItem => item.Contact)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ContactId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedById)
+            @Html.DisplayFor(modelItem => item.CreatedBy.UserName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Deleted)

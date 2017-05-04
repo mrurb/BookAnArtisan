@@ -23,13 +23,13 @@ namespace BookAnArtisanMVC.ProjectServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Contact_IDField;
+        private BookAnArtisanMVC.ProjectServiceReference.User ContactField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime CreatedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Created_by_IDField;
+        private BookAnArtisanMVC.ProjectServiceReference.User CreatedByField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool DeletedField;
@@ -44,16 +44,16 @@ namespace BookAnArtisanMVC.ProjectServiceReference {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Project_descriptionField;
+        private string ProjectDescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int Project_status_IDField;
+        private int ProjectStatusIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime Start_timeField;
+        private System.DateTime StartTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Street_NameField;
+        private string StreetNameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -66,14 +66,14 @@ namespace BookAnArtisanMVC.ProjectServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Contact_ID {
+        public BookAnArtisanMVC.ProjectServiceReference.User Contact {
             get {
-                return this.Contact_IDField;
+                return this.ContactField;
             }
             set {
-                if ((object.ReferenceEquals(this.Contact_IDField, value) != true)) {
-                    this.Contact_IDField = value;
-                    this.RaisePropertyChanged("Contact_ID");
+                if ((object.ReferenceEquals(this.ContactField, value) != true)) {
+                    this.ContactField = value;
+                    this.RaisePropertyChanged("Contact");
                 }
             }
         }
@@ -92,14 +92,14 @@ namespace BookAnArtisanMVC.ProjectServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Created_by_ID {
+        public BookAnArtisanMVC.ProjectServiceReference.User CreatedBy {
             get {
-                return this.Created_by_IDField;
+                return this.CreatedByField;
             }
             set {
-                if ((object.ReferenceEquals(this.Created_by_IDField, value) != true)) {
-                    this.Created_by_IDField = value;
-                    this.RaisePropertyChanged("Created_by_ID");
+                if ((object.ReferenceEquals(this.CreatedByField, value) != true)) {
+                    this.CreatedByField = value;
+                    this.RaisePropertyChanged("CreatedBy");
                 }
             }
         }
@@ -157,53 +157,338 @@ namespace BookAnArtisanMVC.ProjectServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Project_description {
+        public string ProjectDescription {
             get {
-                return this.Project_descriptionField;
+                return this.ProjectDescriptionField;
             }
             set {
-                if ((object.ReferenceEquals(this.Project_descriptionField, value) != true)) {
-                    this.Project_descriptionField = value;
-                    this.RaisePropertyChanged("Project_description");
+                if ((object.ReferenceEquals(this.ProjectDescriptionField, value) != true)) {
+                    this.ProjectDescriptionField = value;
+                    this.RaisePropertyChanged("ProjectDescription");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Project_status_ID {
+        public int ProjectStatusID {
             get {
-                return this.Project_status_IDField;
+                return this.ProjectStatusIDField;
             }
             set {
-                if ((this.Project_status_IDField.Equals(value) != true)) {
-                    this.Project_status_IDField = value;
-                    this.RaisePropertyChanged("Project_status_ID");
+                if ((this.ProjectStatusIDField.Equals(value) != true)) {
+                    this.ProjectStatusIDField = value;
+                    this.RaisePropertyChanged("ProjectStatusID");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Start_time {
+        public System.DateTime StartTime {
             get {
-                return this.Start_timeField;
+                return this.StartTimeField;
             }
             set {
-                if ((this.Start_timeField.Equals(value) != true)) {
-                    this.Start_timeField = value;
-                    this.RaisePropertyChanged("Start_time");
+                if ((this.StartTimeField.Equals(value) != true)) {
+                    this.StartTimeField = value;
+                    this.RaisePropertyChanged("StartTime");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Street_Name {
+        public string StreetName {
             get {
-                return this.Street_NameField;
+                return this.StreetNameField;
             }
             set {
-                if ((object.ReferenceEquals(this.Street_NameField, value) != true)) {
-                    this.Street_NameField = value;
-                    this.RaisePropertyChanged("Street_Name");
+                if ((object.ReferenceEquals(this.StreetNameField, value) != true)) {
+                    this.StreetNameField = value;
+                    this.RaisePropertyChanged("StreetName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/Model")]
+    [System.SerializableAttribute()]
+    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AccessFailedCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ApiKeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool EmailConfirmedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FirstNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LastNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool LockoutEnabledField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime LockoutEndDateUtcField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordHashField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool PhoneNumberConfirmedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SecurityStampField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool TwoFactorEnabledField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AccessFailedCount {
+            get {
+                return this.AccessFailedCountField;
+            }
+            set {
+                if ((this.AccessFailedCountField.Equals(value) != true)) {
+                    this.AccessFailedCountField = value;
+                    this.RaisePropertyChanged("AccessFailedCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ApiKey {
+            get {
+                return this.ApiKeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ApiKeyField, value) != true)) {
+                    this.ApiKeyField = value;
+                    this.RaisePropertyChanged("ApiKey");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool EmailConfirmed {
+            get {
+                return this.EmailConfirmedField;
+            }
+            set {
+                if ((this.EmailConfirmedField.Equals(value) != true)) {
+                    this.EmailConfirmedField = value;
+                    this.RaisePropertyChanged("EmailConfirmed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FirstName {
+            get {
+                return this.FirstNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FirstNameField, value) != true)) {
+                    this.FirstNameField = value;
+                    this.RaisePropertyChanged("FirstName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LastName {
+            get {
+                return this.LastNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LastNameField, value) != true)) {
+                    this.LastNameField = value;
+                    this.RaisePropertyChanged("LastName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool LockoutEnabled {
+            get {
+                return this.LockoutEnabledField;
+            }
+            set {
+                if ((this.LockoutEnabledField.Equals(value) != true)) {
+                    this.LockoutEnabledField = value;
+                    this.RaisePropertyChanged("LockoutEnabled");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime LockoutEndDateUtc {
+            get {
+                return this.LockoutEndDateUtcField;
+            }
+            set {
+                if ((this.LockoutEndDateUtcField.Equals(value) != true)) {
+                    this.LockoutEndDateUtcField = value;
+                    this.RaisePropertyChanged("LockoutEndDateUtc");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PasswordHash {
+            get {
+                return this.PasswordHashField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordHashField, value) != true)) {
+                    this.PasswordHashField = value;
+                    this.RaisePropertyChanged("PasswordHash");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PhoneNumber {
+            get {
+                return this.PhoneNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneNumberField, value) != true)) {
+                    this.PhoneNumberField = value;
+                    this.RaisePropertyChanged("PhoneNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool PhoneNumberConfirmed {
+            get {
+                return this.PhoneNumberConfirmedField;
+            }
+            set {
+                if ((this.PhoneNumberConfirmedField.Equals(value) != true)) {
+                    this.PhoneNumberConfirmedField = value;
+                    this.RaisePropertyChanged("PhoneNumberConfirmed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SecurityStamp {
+            get {
+                return this.SecurityStampField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SecurityStampField, value) != true)) {
+                    this.SecurityStampField = value;
+                    this.RaisePropertyChanged("SecurityStamp");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool TwoFactorEnabled {
+            get {
+                return this.TwoFactorEnabledField;
+            }
+            set {
+                if ((this.TwoFactorEnabledField.Equals(value) != true)) {
+                    this.TwoFactorEnabledField = value;
+                    this.RaisePropertyChanged("TwoFactorEnabled");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
                 }
             }
         }
