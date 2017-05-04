@@ -25,12 +25,12 @@ namespace DAL
             SqlParameter[] arrayOfParameters =
             {
                 new SqlParameter { ParameterName = "@Name", SqlValue = project.Name, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Created_by_ID", SqlValue = project.Created_by_ID, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Contact_ID", SqlValue = project.Contact_ID, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Project_status_ID", SqlValue = project.Project_status_ID, SqlDbType = SqlDbType.Int },
-                new SqlParameter { ParameterName = "@Project_description", SqlValue = project.Project_description, SqlDbType = SqlDbType.Text },
-                new SqlParameter { ParameterName = "@Street_Name", SqlValue = project.Street_Name, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Start_time", SqlValue = project.Start_time, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@Created_by_ID", SqlValue = project.CreatedBy, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Contact_ID", SqlValue = project.Contact, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Project_status_ID", SqlValue = project.ProjectStatusID, SqlDbType = SqlDbType.Int },
+                new SqlParameter { ParameterName = "@Project_description", SqlValue = project.ProjectDescription, SqlDbType = SqlDbType.Text },
+                new SqlParameter { ParameterName = "@Street_Name", SqlValue = project.StreetName, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Start_time", SqlValue = project.StartTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@Created", SqlValue = project.Created, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@Modified", SqlValue = project.Modified, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@Deleted", SqlValue = Convert.ToInt32(project.Deleted), SqlDbType = SqlDbType.Bit }
@@ -82,12 +82,12 @@ namespace DAL
                             {
                                 project.Id = GetDataSafe<int>(reader, IdCol, reader.GetInt32);
                                 project.Name = GetDataSafe<string>(reader, NameCol, reader.GetString);
-                                project.Created_by_ID = GetDataSafe<string>(reader, Created_by_IDCol, reader.GetString);
-                                project.Contact_ID = GetDataSafe<string>(reader, Contact_IDCol, reader.GetString);
-                                project.Project_status_ID = GetDataSafe<int>(reader, Project_status_IDCol, reader.GetInt32);
-                                project.Project_description = GetDataSafe<string>(reader, Project_DescriptionCol, reader.GetString);
-                                project.Street_Name = GetDataSafe<string>(reader, Street_NameCol, reader.GetString);
-                                project.Start_time = GetDataSafe<DateTime>(reader, Start_timeCol, reader.GetDateTime);
+                                project.CreatedBy = new User { Id = GetDataSafe<string>(reader, Created_by_IDCol, reader.GetString) };
+                                project.Contact = new User { Id = GetDataSafe<string>(reader, Contact_IDCol, reader.GetString) };
+                                project.ProjectStatusID = GetDataSafe<int>(reader, Project_status_IDCol, reader.GetInt32);
+                                project.ProjectDescription = GetDataSafe<string>(reader, Project_DescriptionCol, reader.GetString);
+                                project.StreetName = GetDataSafe<string>(reader, Street_NameCol, reader.GetString);
+                                project.StartTime = GetDataSafe<DateTime>(reader, Start_timeCol, reader.GetDateTime);
                                 project.Created = GetDataSafe<DateTime>(reader, CreatedCol, reader.GetDateTime);
                                 project.Modified = GetDataSafe<DateTime>(reader, ModifiedCol, reader.GetDateTime);
                                 project.Deleted = GetDataSafe<bool>(reader, DeletedCol, reader.GetBoolean);
@@ -107,12 +107,12 @@ namespace DAL
             {
                 new SqlParameter { ParameterName = "@Id", SqlValue = project.Id, SqlDbType = SqlDbType.Int },
                 new SqlParameter { ParameterName = "@Name", SqlValue = project.Name, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Created_by_ID", SqlValue = project.Created_by_ID, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Contact_ID", SqlValue = project.Contact_ID, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Project_status_ID", SqlValue = project.Project_status_ID, SqlDbType = SqlDbType.Int },
-                new SqlParameter { ParameterName = "@Project_description", SqlValue = project.Project_description, SqlDbType = SqlDbType.Text },
-                new SqlParameter { ParameterName = "@Street_Name", SqlValue = project.Street_Name, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Start_time", SqlValue = project.Start_time, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@Created_by_ID", SqlValue = project.CreatedBy, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Contact_ID", SqlValue = project.Contact, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Project_status_ID", SqlValue = project.ProjectStatusID, SqlDbType = SqlDbType.Int },
+                new SqlParameter { ParameterName = "@Project_description", SqlValue = project.ProjectDescription, SqlDbType = SqlDbType.Text },
+                new SqlParameter { ParameterName = "@Street_Name", SqlValue = project.StreetName, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Start_time", SqlValue = project.StartTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@Created", SqlValue = project.Created, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@Modified", SqlValue = project.Modified, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@Deleted", SqlValue = Convert.ToInt32(project.Deleted), SqlDbType = SqlDbType.Bit }
@@ -197,12 +197,12 @@ namespace DAL
                                 {
                                     Id = GetDataSafe<int>(reader, IdCol, reader.GetInt32),
                                     Name = GetDataSafe<string>(reader, NameCol, reader.GetString),
-                                    Created_by_ID = GetDataSafe<string>(reader, Created_by_IDCol, reader.GetString),
-                                    Contact_ID = GetDataSafe<string>(reader, Contact_IDCol, reader.GetString),
-                                    Project_status_ID = GetDataSafe<int>(reader, Project_status_IDCol, reader.GetInt32),
-                                    Project_description = GetDataSafe<string>(reader, Project_DescriptionCol, reader.GetString),
-                                    Street_Name = GetDataSafe<string>(reader, Street_NameCol, reader.GetString),
-                                    Start_time = GetDataSafe<DateTime>(reader, Start_timeCol, reader.GetDateTime),
+                                    CreatedBy = new User { Id = GetDataSafe<string>(reader, Created_by_IDCol, reader.GetString) },
+                                    Contact = new User { Id = GetDataSafe<string>(reader, Contact_IDCol, reader.GetString) },
+                                    ProjectStatusID = GetDataSafe<int>(reader, Project_status_IDCol, reader.GetInt32),
+                                    ProjectDescription = GetDataSafe<string>(reader, Project_DescriptionCol, reader.GetString),
+                                    StreetName = GetDataSafe<string>(reader, Street_NameCol, reader.GetString),
+                                    StartTime = GetDataSafe<DateTime>(reader, Start_timeCol, reader.GetDateTime),
                                     Created = GetDataSafe<DateTime>(reader, CreatedCol, reader.GetDateTime),
                                     Modified = GetDataSafe<DateTime>(reader, ModifiedCol, reader.GetDateTime),
                                     Deleted = GetDataSafe<bool>(reader, DeletedCol, reader.GetBoolean),
