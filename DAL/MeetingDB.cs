@@ -30,8 +30,8 @@ namespace DAL
                 new SqlParameter { ParameterName = "@EndTime", SqlValue = t.EndTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@Title", SqlValue = t.Title, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@Description", SqlValue = t.Description, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@ContactID", SqlValue = t.ContactId, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@CreatedByID", SqlValue = t.CreatedById, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@ContactID", SqlValue = t.Contact.Id, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@CreatedByID", SqlValue = t.CreatedBy.Id, SqlDbType = SqlDbType.NVarChar },
            };
 
             using (SqlConnection con = new SqlConnection(connectionstring))
@@ -79,8 +79,8 @@ namespace DAL
                             int StartTimeCol = reader.GetOrdinal("StartTime");
                             int EndTimeCol = reader.GetOrdinal("EndTime");
                             int DescCol = reader.GetOrdinal("Description");
-                            int CreatedByIDCol = reader.GetOrdinal("CreatedByID");
-                            int ContactIDCol = reader.GetOrdinal("ContactID");
+                            int CreatedByCol = reader.GetOrdinal("CreatedByID");
+                            int ContactCol = reader.GetOrdinal("ContactID");
                             int IdCol = reader.GetOrdinal("mId");
                             int contactCol = reader.GetOrdinal("Contact");
                             int createdbyCol = reader.GetOrdinal("CreatedBy");
@@ -93,11 +93,9 @@ namespace DAL
                                     StartTime = (DateTime)GetDataSafe(reader, StartTimeCol, reader.GetSqlDateTime),
                                     EndTime = (DateTime)GetDataSafe(reader, EndTimeCol, reader.GetSqlDateTime),
                                     Description = GetDataSafe(reader, DescCol, reader.GetString),
-                                    CreatedById = GetDataSafe(reader, CreatedByIDCol, reader.GetString),
-                                    ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString),
-                                    Id = GetDataSafe(reader, IdCol, reader.GetInt32),
-                                    CreatedBy = GetDataSafe(reader, createdbyCol, reader.GetString),
-                                    Contact = GetDataSafe(reader, contactCol, reader.GetString)
+                                    CreatedBy = new User { Id = GetDataSafe(reader, CreatedByCol, reader.GetString) },
+                                    Contact = new User { Id = GetDataSafe(reader, ContactCol, reader.GetString) },
+                                    Id = GetDataSafe(reader, IdCol, reader.GetInt32)
                                 });
                             }
                         }

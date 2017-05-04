@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Model
 {
     [ServiceContract]
-    public class Rented
+    public class Booking
     {
 
         [DataMember]
@@ -18,7 +18,7 @@ namespace Model
         [DataMember]
         public DateTime EndTime { get; set; }
         [DataMember]
-        public string UserId { get; set; }
+        public User User { get; set; }
         [DataMember]
         public bool Deleted { get; set; }
         [DataMember]

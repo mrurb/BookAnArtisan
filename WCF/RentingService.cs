@@ -11,27 +11,27 @@ namespace WCF
     public class RentingService : IRentingService
     {
         RentingController rc = new RentingController();
-        public Rented Create(Rented t)
+        public Booking Create(Booking t)
         {
             return rc.Create(t);
         }
 
-        public Rented Delete(Rented t)
+        public Booking Delete(Booking t)
         {
             return rc.Delete(t);
         }
 
-        public Rented Read(Rented t)
+        public Booking Read(Booking t)
         {
             return rc.Read(t);
         }
 
-        public List<Rented> ReadAll()
+        public List<Booking> ReadAll()
         {
             return rc.ReadAll();
         }
 
-        public Rented Update(Rented t)
+        public Booking Update(Booking t)
         {
             return rc.Update(t);
         }

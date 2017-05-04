@@ -21,15 +21,11 @@ namespace Model
         [DataMember]
         public int Id { get; set; }
         [DataMember]
-        public string CreatedById { get; set; }
-        [DataMember]
-        public string ContactId { get; set; }
-        [DataMember]
         public bool Deleted { get; set; }
         [DataMember]
-        public string CreatedBy { get; set; }
+        public User CreatedBy { get; set; }
         [DataMember]
-        public string Contact { get; set; }
+        public User Contact { get; set; }
 
         public List<User> AppendedUsers { get; set; }
     }

@@ -8,31 +8,31 @@ using DAL;
 
 namespace BLL
 {
-    public class RentingController : IController<Rented>
+    public class RentingController : IController<Booking>
     {
         RentingDB rdb = new RentingDB();
-        public Rented Create(Rented t)
+        public Booking Create(Booking t)
         {
             return rdb.Create(t);
         }
 
-        public Rented Delete(Rented t)
+        public Booking Delete(Booking t)
         {
             rdb.Delete(t);
             return rdb.Read(t);
         }
 
-        public Rented Read(Rented t)
+        public Booking Read(Booking t)
         {
             return rdb.Read(t);
         }
 
-        public List<Rented> ReadAll()
+        public List<Booking> ReadAll()
         {
             return rdb.ReadAll();
         }
 
-        public Rented Update(Rented t)
+        public Booking Update(Booking t)
         {
             return rdb.Update(t);
         }

@@ -9,12 +9,15 @@ namespace Model
 {
     public class User
     {
-
+        [DataMember]
         public string Id { get; set; }
+        [DataMember]
         public string Email { get; set; }
+        [DataMember]
         public bool EmailConfirmed { get; set; }
-        // Do we want that?? Doesn't seem secure.
+        [DataMember]
         public string PasswordHash { get; set; }
+        [DataMember]
         public string SecurityStamp { get; set; }
         public string PhoneNumber { get; set; }
         public bool PhoneNumberConfirmed { get; set; }
@@ -22,9 +25,13 @@ namespace Model
         public DateTime LockoutEndDateUtc { get; set; }
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
+        [DataMember]
         public string UserName { get; set; }
+        [DataMember]
         public string FirstName { get; set; }
+        [DataMember]
         public string LastName { get; set; }
+        [DataMember]
         public string Address { get; set; }
         public string ApiKey { get; set; }
         public User(string id, string first_name, string last_name, string email, string password, string phonenumber, string address)
@@ -41,34 +48,6 @@ namespace Model
         public User()
         {
             //empty constructor
-        }
-
-        public override bool Equals(object obj)
-        {
-            User other = obj as User;
-
-            if( !this.Id.Equals(other.Id) ||
-                !this.Email.Equals(other.Email) ||
-                this.EmailConfirmed != other.EmailConfirmed ||
-                !this.PasswordHash.Equals(other.PasswordHash) ||
-                !this.SecurityStamp.Equals(other.SecurityStamp) ||
-                !this.PhoneNumber.Equals(other.PhoneNumber) ||
-                this.PhoneNumberConfirmed != other.PhoneNumberConfirmed ||
-                this.TwoFactorEnabled != other.TwoFactorEnabled ||
-                !this.LockoutEndDateUtc.Equals(other.LockoutEndDateUtc) ||
-                this.LockoutEnabled != other.LockoutEnabled ||
-                this.AccessFailedCount != other.AccessFailedCount ||
-                !this.UserName.Equals(other.UserName) ||
-                !this.FirstName.Equals(other.FirstName) ||
-                !this.LastName.Equals(other.LastName) ||
-                !this.Address.Equals(other.Address) ||
-                !this.ApiKey.Equals(other.ApiKey)
-                )
-            {
-                return false;
-            }
-
-            return true;
         }
     }
 }

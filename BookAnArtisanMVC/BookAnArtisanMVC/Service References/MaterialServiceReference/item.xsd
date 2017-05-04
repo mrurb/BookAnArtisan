@@ -8,10 +8,31 @@
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="OwnerId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Owner" nillable="true" type="tns:User" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Material" nillable="true" type="tns:Material" />
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccessFailedCount" type="xs:int" />
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApiKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailConfirmed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LockoutEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LockoutEndDateUtc" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PasswordHash" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNumberConfirmed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SecurityStamp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TwoFactorEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
   <xs:complexType name="ArrayOfMaterial">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Material" nillable="true" type="tns:Material" />

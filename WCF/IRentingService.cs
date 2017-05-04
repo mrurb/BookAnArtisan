@@ -9,7 +9,7 @@ using System.ServiceModel;
 namespace WCF
 {
     [ServiceContract]
-    interface IRentingService : IService<Rented>
+    interface IRentingService : IService<Booking>
     {
     }
 }

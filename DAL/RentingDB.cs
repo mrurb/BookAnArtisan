@@ -10,17 +10,17 @@ using System.Data;
 
 namespace DAL
 {
-    public class RentingDB : IDataAccess<Rented>
+    public class RentingDB : IDataAccess<Booking>
     {
         static string connectionstring = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
-        public Rented Create(Rented t)
+        public Booking Create(Booking t)
         {
             SqlParameter[] ArrayOfParams =
             {
                 new SqlParameter { ParameterName = "@starttime", SqlValue = t.StartTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@endtime", SqlValue = t.EndTime, SqlDbType = SqlDbType.DateTime },
-                new SqlParameter { ParameterName = "@userID", SqlValue = t.UserId, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter {ParameterName = "@materialID" , SqlValue = t.materialID, SqlDbType = SqlDbType.NVarChar }
+                new SqlParameter { ParameterName = "@userID", SqlValue = t.User.Id, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter {ParameterName = "@materialID" , SqlValue = t.item.Id, SqlDbType = SqlDbType.NVarChar }
            };
             SqlConnection con = new SqlConnection(connectionstring);
             string query = "if not exists(SELECT StartTime, EndTime FROM Booking WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Deleted = 0) BEGIN INSERT INTO Booking(StartTime, EndTime, UserID, MaterialID) VALUES(@starttime, @endtime, @userID, @materialID) END";
@@ -63,7 +63,7 @@ namespace DAL
             return t;
         }
 
-        public Rented Delete(Rented t)
+        public Booking Delete(Booking t)
         {
             string sql = "UPDATE Rented SET Deleted = 1 WHERE id = @id";
             SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int };
@@ -81,10 +81,10 @@ namespace DAL
             return null;
         }
 
-        public Rented Read(Rented t)
+        public Booking Read(Booking t)
         {
             string sql = "SELECT * FROM Rented WHERE id = @id";
-            Rented material = null;
+            Booking material = null;
             SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int };
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
@@ -96,7 +96,7 @@ namespace DAL
                     {
                         while (reader.Read())
                         {
-                            material = new Rented
+                            material = new Booking
                             {
                                 Id = (int)reader["Id"],
                                 EndTime = (DateTime)reader["EndTime"],
@@ -110,9 +110,9 @@ namespace DAL
             return material;
         }
 
-        public List<Rented> ReadAll()
+        public List<Booking> ReadAll()
         {
-            List<Rented> materials = new List<Rented>();
+            List<Booking> materials = new List<Booking>();
 
             string sql = "SELECT * FROM Rented";
 
@@ -125,7 +125,7 @@ namespace DAL
                     {
                         while (reader.Read())
                         {
-                            materials.Add(new Rented
+                            materials.Add(new Booking
                             {
                                 Id = (int)reader["Id"],
                                 EndTime = (DateTime)reader["EndTime"],
@@ -139,7 +139,7 @@ namespace DAL
             return materials;
         }
 
-        public Rented Update(Rented t)
+        public Booking Update(Booking t)
         {
             string sql = "UPDATE Rented SET StartTime = @starttime, EndTime = @endtime, Deleted = @deleted WHERE ID = @id";
             SqlParameter[] sqlparams =

@@ -41,7 +41,7 @@ namespace BookAnArtisanMVC.MaterialServiceReference {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string OwnerIdField;
+        private BookAnArtisanMVC.MaterialServiceReference.User OwnerField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -132,14 +132,299 @@ namespace BookAnArtisanMVC.MaterialServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string OwnerId {
+        public BookAnArtisanMVC.MaterialServiceReference.User Owner {
             get {
-                return this.OwnerIdField;
+                return this.OwnerField;
             }
             set {
-                if ((object.ReferenceEquals(this.OwnerIdField, value) != true)) {
-                    this.OwnerIdField = value;
-                    this.RaisePropertyChanged("OwnerId");
+                if ((object.ReferenceEquals(this.OwnerField, value) != true)) {
+                    this.OwnerField = value;
+                    this.RaisePropertyChanged("Owner");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/Model")]
+    [System.SerializableAttribute()]
+    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AccessFailedCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ApiKeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool EmailConfirmedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FirstNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LastNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool LockoutEnabledField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime LockoutEndDateUtcField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordHashField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool PhoneNumberConfirmedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SecurityStampField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool TwoFactorEnabledField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AccessFailedCount {
+            get {
+                return this.AccessFailedCountField;
+            }
+            set {
+                if ((this.AccessFailedCountField.Equals(value) != true)) {
+                    this.AccessFailedCountField = value;
+                    this.RaisePropertyChanged("AccessFailedCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ApiKey {
+            get {
+                return this.ApiKeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ApiKeyField, value) != true)) {
+                    this.ApiKeyField = value;
+                    this.RaisePropertyChanged("ApiKey");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool EmailConfirmed {
+            get {
+                return this.EmailConfirmedField;
+            }
+            set {
+                if ((this.EmailConfirmedField.Equals(value) != true)) {
+                    this.EmailConfirmedField = value;
+                    this.RaisePropertyChanged("EmailConfirmed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FirstName {
+            get {
+                return this.FirstNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FirstNameField, value) != true)) {
+                    this.FirstNameField = value;
+                    this.RaisePropertyChanged("FirstName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LastName {
+            get {
+                return this.LastNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LastNameField, value) != true)) {
+                    this.LastNameField = value;
+                    this.RaisePropertyChanged("LastName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool LockoutEnabled {
+            get {
+                return this.LockoutEnabledField;
+            }
+            set {
+                if ((this.LockoutEnabledField.Equals(value) != true)) {
+                    this.LockoutEnabledField = value;
+                    this.RaisePropertyChanged("LockoutEnabled");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime LockoutEndDateUtc {
+            get {
+                return this.LockoutEndDateUtcField;
+            }
+            set {
+                if ((this.LockoutEndDateUtcField.Equals(value) != true)) {
+                    this.LockoutEndDateUtcField = value;
+                    this.RaisePropertyChanged("LockoutEndDateUtc");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PasswordHash {
+            get {
+                return this.PasswordHashField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordHashField, value) != true)) {
+                    this.PasswordHashField = value;
+                    this.RaisePropertyChanged("PasswordHash");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PhoneNumber {
+            get {
+                return this.PhoneNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneNumberField, value) != true)) {
+                    this.PhoneNumberField = value;
+                    this.RaisePropertyChanged("PhoneNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool PhoneNumberConfirmed {
+            get {
+                return this.PhoneNumberConfirmedField;
+            }
+            set {
+                if ((this.PhoneNumberConfirmedField.Equals(value) != true)) {
+                    this.PhoneNumberConfirmedField = value;
+                    this.RaisePropertyChanged("PhoneNumberConfirmed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SecurityStamp {
+            get {
+                return this.SecurityStampField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SecurityStampField, value) != true)) {
+                    this.SecurityStampField = value;
+                    this.RaisePropertyChanged("SecurityStamp");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool TwoFactorEnabled {
+            get {
+                return this.TwoFactorEnabledField;
+            }
+            set {
+                if ((this.TwoFactorEnabledField.Equals(value) != true)) {
+                    this.TwoFactorEnabledField = value;
+                    this.RaisePropertyChanged("TwoFactorEnabled");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
                 }
             }
         }
