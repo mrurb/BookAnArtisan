@@ -20,7 +20,7 @@ namespace DAL
                 new SqlParameter { ParameterName = "@Name", SqlValue = t.Name, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@Description", SqlValue = t.Description, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@Condition", SqlValue = t.Condition, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@OwnerId", SqlValue = t.OwnerId, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@OwnerId", SqlValue = t.Owner.Id, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@Available", SqlValue = t.Available, SqlDbType = SqlDbType.Bit },
                 new SqlParameter { ParameterName = "@Deleted", SqlValue = t.Deleted, SqlDbType = SqlDbType.Bit }
            };
@@ -84,7 +84,7 @@ namespace DAL
                             material = new Material
                             {
                                 Id = (int)reader["Id"],
-                                OwnerId = reader["OwnerId"].ToString(),
+                                Owner = new User { Id = reader["OwnerId"].ToString() },
                                 Name = reader["Name"].ToString(),
                                 Description = reader["Description"].ToString(),
                                 Condition = reader["Condition"].ToString(),
@@ -116,7 +116,7 @@ namespace DAL
                             materials.Add(new Material
                             {
                                 Id = (int)reader["Id"],
-                                OwnerId = reader["UserName"].ToString(),
+                                Owner = new User { Id = reader["OwnerId"].ToString() },
                                 Name = reader["Name"].ToString(),
                                 Description = reader["Description"].ToString(),
                                 Condition = reader["Condition"].ToString(),
@@ -141,7 +141,7 @@ namespace DAL
                 new SqlParameter { ParameterName = "@condition", SqlValue = t.Condition, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@deleted", SqlValue = t.Deleted, SqlDbType = SqlDbType.Bit },
                 new SqlParameter { ParameterName = "@available", SqlValue = t.Available, SqlDbType = SqlDbType.Bit },
-                new SqlParameter { ParameterName = "@ownerid", SqlValue = t.OwnerId, SqlDbType = SqlDbType.NVarChar }
+                new SqlParameter { ParameterName = "@ownerid", SqlValue = t.Owner.Id, SqlDbType = SqlDbType.NVarChar }
             };
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
@@ -182,7 +182,7 @@ namespace DAL
                                 new Material
                                 {
                                     Id = (int)reader["ID"],
-                                    OwnerId = reader["UserName"].ToString(),
+                                    Owner = new User { Id = reader["OwnerId"].ToString() },
                                     Name = reader["Name"].ToString(),
                                     Description = reader["Description"].ToString(),
                                     Condition = reader["Condition"].ToString(),
