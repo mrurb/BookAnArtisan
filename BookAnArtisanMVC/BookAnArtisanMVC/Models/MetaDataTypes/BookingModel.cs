@@ -13,10 +13,10 @@ namespace BookAnArtisanMVC.RentingServiceReference
     }
     public class BookingMetaData
     {
-        [Display(Name = "Booking Fra")]
+        [Display(Name = "Booket Fra")]
         public DateTime StartTime;
 
-        [Display(Name = "Booking Til")]
+        [Display(Name = "Booket Til")]
         public DateTime EndTime;
 
         [Display(Name ="Slettet")]

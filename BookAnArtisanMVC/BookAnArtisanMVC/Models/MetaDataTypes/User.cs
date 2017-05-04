@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace BookAnArtisanMVC.MetaDataTypes
+namespace BookAnArtisanMVC.RentingServiceReference
 {
     [MetadataType(typeof(UserMetaData))]
     public partial class User
