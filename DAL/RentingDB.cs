@@ -102,7 +102,8 @@ namespace DAL
                                 EndTime = (DateTime)reader["EndTime"],
                                 StartTime = (DateTime)reader["StartTime"],
                                 Deleted = (bool)reader["Deleted"],
-                                User = new User { Id = reader["UserID"].ToString() }
+                                //User = reader["UserID"].ToString(),
+                                //item = reader["somestuff"]
                             };
                         }
                     }
@@ -115,7 +116,7 @@ namespace DAL
         {
             List<Booking> materials = new List<Booking>();
 
-            string sql = "SELECT * FROM Rented";
+            string sql = "SELECT * FROM Bookings JOIN Materials_Unique ON Bookings.MaterialID = Materials_Unique.ID";
 
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
