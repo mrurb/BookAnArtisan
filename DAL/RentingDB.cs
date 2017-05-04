@@ -20,7 +20,7 @@ namespace DAL
                 new SqlParameter { ParameterName = "@starttime", SqlValue = t.StartTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@endtime", SqlValue = t.EndTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@userID", SqlValue = t.UserId, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter {ParameterName = "@materialID" , SqlValue = t.materialID, SqlDbType = SqlDbType.NVarChar }
+                new SqlParameter {ParameterName = "@materialID" , SqlValue = t.item.Id, SqlDbType = SqlDbType.Int }
            };
             SqlConnection con = new SqlConnection(connectionstring);
             string query = "if not exists(SELECT StartTime, EndTime FROM Booking WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Deleted = 0) BEGIN INSERT INTO Booking(StartTime, EndTime, UserID, MaterialID) VALUES(@starttime, @endtime, @userID, @materialID) END";
@@ -101,7 +101,8 @@ namespace DAL
                                 Id = (int)reader["Id"],
                                 EndTime = (DateTime)reader["EndTime"],
                                 StartTime = (DateTime)reader["StartTime"],
-                                Deleted = (bool)reader["Deleted"]
+                                Deleted = (bool)reader["Deleted"],
+                                UserId = reader["UserID"].ToString()
                             };
                         }
                     }
@@ -130,7 +131,9 @@ namespace DAL
                                 Id = (int)reader["Id"],
                                 EndTime = (DateTime)reader["EndTime"],
                                 StartTime = (DateTime)reader["StartTime"],
-                                Deleted = (bool)reader["Deleted"]
+                                Deleted = (bool)reader["Deleted"],
+                                UserId = reader["UserID"].ToString(),
+                                item = reader["materialID"]
                             });
                         }
                     }
@@ -141,26 +144,51 @@ namespace DAL
 
         public Rented Update(Rented t)
         {
-            string sql = "UPDATE Rented SET StartTime = @starttime, EndTime = @endtime, Deleted = @deleted WHERE ID = @id";
+            string sql = "if not exists(SELECT StartTime, EndTime FROM Booking WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Deleted = 0) BEGIN UPDATE Booking SET StartTime = @starttime, EndTime = @endtime, UserID = @userID, Deleted = @deleted END";
             SqlParameter[] sqlparams =
             {
-                new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int },
+                new SqlParameter { ParameterName = "@userID", SqlValue = t.UserId, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@starttime", SqlValue = t.StartTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@endtime", SqlValue = t.EndTime, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@materialID", SqlValue = t.item.Id, SqlDbType = SqlDbType.Int },
                 new SqlParameter { ParameterName = "@deleted", SqlValue = t.Deleted, SqlDbType = SqlDbType.Bit }
             };
-            using (SqlConnection connection = new SqlConnection(connectionstring))
+            SqlConnection con = new SqlConnection(connectionstring);
+            SqlCommand sqlcommand = new SqlCommand(sql, con);
+            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadCommitted);
+            sqlcommand.Transaction = myTrans;
+            sqlcommand.Parameters.AddRange(sqlparams);
+            try
             {
-                using (SqlCommand command = new SqlCommand(sql, connection))
+                sqlcommand.Connection.Open();
+                int rowsaffected = sqlcommand.ExecuteNonQuery();
+                if (rowsaffected < 1)
                 {
-                    command.Parameters.AddRange(sqlparams);
-                    command.Connection.Open();
-                    int rowsaffected = command.ExecuteNonQuery();
-                    if (rowsaffected < 1)
-                    {
-                        throw new Exception();
-                    }
+                    con.Close();
+                    throw new Exception();
                 }
+                myTrans.Commit();
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    myTrans.Rollback();
+                }
+                catch (SqlException)
+                {
+                    //rollback failed
+                    throw new Exception();
+                }
+                finally
+                {
+                    con.Close();
+                }
+                //transaction failed
+            }
+            finally
+            {
+                con.Close();
             }
             return t;
         }
