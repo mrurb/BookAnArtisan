@@ -38,9 +38,9 @@ namespace BLL
         }
 
 
-        public IList<Material> SearchByMaterialName(string name)
+        public IList<Material> Search(string name)
         {
-            return mdb.SearchByMaterialName(name);
+            return mdb.SearchMaterials(name);
         }
     }
 }

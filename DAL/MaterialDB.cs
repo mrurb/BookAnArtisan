@@ -14,7 +14,7 @@ namespace DAL
         static string connectionstring = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
         public Material Create(Material t)
         {
-            string query = "INSERT INTO Materials(Name, Description, Condition, OwnerId, Amount, Available, Deleted) VALUES(@Name, @Description, @Condition, @OwnerId, @Amount, @Available, @Deleted);";
+            string query = "INSERT INTO Materials_Unique(Name, Description, Condition, OwnerId, Available, Deleted) VALUES(@Name, @Description, @Condition, @OwnerId, @Available, @Deleted);";
             SqlParameter[] ArrayOfParams =
             {
                 new SqlParameter { ParameterName = "@Name", SqlValue = t.Name, SqlDbType = SqlDbType.NVarChar },
@@ -36,7 +36,7 @@ namespace DAL
                         int rowsaffected = sqlcommand.ExecuteNonQuery();
                         if (rowsaffected < 1)
                         {
-                            throw new System.Exception("No rows affected. Insert failed - Are you a fag?");
+                            throw new Exception("No rows affected. Insert failed.");
                         }
                     }
                     catch (Exception)
@@ -50,7 +50,7 @@ namespace DAL
 
         public Material Delete(Material t)
         {
-            string sql = "UPDATE Materials SET Deleted = 1 WHERE id = @id";
+            string sql = "UPDATE Materials_Unique SET Deleted = 1 WHERE id = @id";
             SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int };
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
@@ -68,7 +68,7 @@ namespace DAL
 
         public Material Read(Material t)
         {
-            string sql = "SELECT * FROM Materials WHERE id = @id";
+            string sql = "SELECT * FROM Materials_Unique WHERE id = @id";
             Material material = null;
             SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int };
             using (SqlConnection connection = new SqlConnection(connectionstring))
@@ -84,10 +84,10 @@ namespace DAL
                             material = new Material
                             {
                                 Id = (int)reader["Id"],
+                                OwnerId = reader["OwnerId"].ToString(),
+                                Name = reader["Name"].ToString(),
                                 Description = reader["Description"].ToString(),
                                 Condition = reader["Condition"].ToString(),
-                                Name = reader["Name"].ToString(),
-                                OwnerId = reader["OwnerId"].ToString(),
                                 Available = (bool)reader["Available"],
                                 Deleted = (bool)reader["Deleted"]
                             };
@@ -102,7 +102,7 @@ namespace DAL
         {
             List<Material> materials = new List<Material>();
 
-            string sql = "SELECT * FROM Materials";
+            string sql = "SELECT * FROM Materials_Unique";
 
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
@@ -116,10 +116,10 @@ namespace DAL
                             materials.Add(new Material
                             {
                                 Id = (int)reader["Id"],
+                                OwnerId = reader["OwnerId"].ToString(),
+                                Name = reader["Name"].ToString(),
                                 Description = reader["Description"].ToString(),
                                 Condition = reader["Condition"].ToString(),
-                                Name = reader["Name"].ToString(),
-                                OwnerId = reader["OwnerId"].ToString(),
                                 Available = (bool)reader["Available"],
                                 Deleted = (bool)reader["Deleted"]
                             });
@@ -132,7 +132,7 @@ namespace DAL
 
         public Material Update(Material t)
         {
-            string sql = "UPDATE Materials SET Name = @name, Description = @description, Condition = @condition, Deleted = @deleted, Available = @available, OwnerID = @ownerid, Amount = @amount WHERE ID = @id";
+            string sql = "UPDATE Materials_Unique SET Name = @name, Description = @description, Condition = @condition, Deleted = @deleted, Available = @available, OwnerID = @ownerid WHERE ID = @id";
             SqlParameter[] sqlparams =
             {
                 new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int },
@@ -159,11 +159,11 @@ namespace DAL
             return t;
         }
 
-        public IList<Material> SearchByMaterialName(string name)
+        public IList<Material> SearchMaterials(string name)
         {
             IList<Material> list = new List<Material>();
 
-            string sql = "SELECT * FROM Materials WHERE Materials.Name LIKE '%' + @name + '%' OR Materials.Tags LIKE '%' + @name + '%' OR Materials.Description LIKE '%' + @name + '%' OR Materials.Condition LIKE '%' + @name + '%'";
+            string sql = "SELECT * FROM Materials_Unique WHERE Materials.Name LIKE '%' + @name + '%' OR Materials.Tags LIKE '%' + @name + '%' OR Materials.Description LIKE '%' + @name + '%' OR Materials.Condition LIKE '%' + @name + '%'";
 
             SqlParameter searchParams = new SqlParameter { ParameterName = "@name", SqlValue = name, SqlDbType = SqlDbType.NVarChar };
 
@@ -181,14 +181,13 @@ namespace DAL
                             list.Add(
                                 new Material
                                 {
-                                    Id = (int)reader["ID"],
-                                    Description = (string)reader["Description"],
+                                    Id = (int)reader["Id"],
+                                    OwnerId = reader["OwnerId"].ToString(),
+                                    Name = reader["Name"].ToString(),
+                                    Description = reader["Description"].ToString(),
+                                    Condition = reader["Condition"].ToString(),
                                     Available = (bool)reader["Available"],
-                                    Condition = (string)reader["Condition"],
-                                    Deleted = (bool)reader["Deleted"],
-                                    Name = (string)reader["Name"],
-                                    OwnerId = (string)reader["OwnerId"]
-
+                                    Deleted = (bool)reader["Deleted"]
                                 }
                             );
                         }

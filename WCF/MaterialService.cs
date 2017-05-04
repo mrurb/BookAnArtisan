@@ -31,9 +31,9 @@ namespace WCF
             return mc.ReadAll();
         }
 
-        public IList<Material> SearchByName(string name)
+        public IList<Material> Search(string name)
         {
-            return mc.SearchByMaterialName(name);
+            return mc.Search(name);
         }
 
         public Material Update(Material t)
