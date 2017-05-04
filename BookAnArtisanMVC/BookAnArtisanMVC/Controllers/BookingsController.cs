@@ -7,7 +7,7 @@ using BookAnArtisanMVC.RentingServiceReference;
 
 namespace BookAnArtisanMVC.Controllers
 {
-    public class RentingController : Controller
+    public class BookingsController : Controller
     {
         RentingServiceClient ms = new RentingServiceClient();
         // GET: Booking
