@@ -17,11 +17,9 @@ namespace Model
         [DataMember]
         public string Description { get; set; }
         [DataMember]
-        public string OwnderId { get; set; }
+        public User Owner { get; set; }
         [DataMember]
         public string Condition { get; set; }
-        [DataMember]
-        public int Amount { get; set; }
         [DataMember]
         public bool Deleted { get; set; }
         [DataMember]

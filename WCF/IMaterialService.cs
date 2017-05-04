@@ -12,6 +12,6 @@ namespace WCF
     interface IMaterialService : IService<Material>
     {
         [OperationContract]
-        IList<Material> SearchByName(string name);
+        IList<Material> Search(string name);
     }
 }

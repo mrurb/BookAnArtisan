@@ -37,6 +37,12 @@
   <wsdl:message name="IMaterialService_ReadAll_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReadAllResponse" />
   </wsdl:message>
+  <wsdl:message name="IMaterialService_Search_InputMessage">
+    <wsdl:part name="parameters" element="tns:Search" />
+  </wsdl:message>
+  <wsdl:message name="IMaterialService_Search_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMaterialService">
     <wsdl:operation name="Create">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Material/Create" message="tns:IMaterialService_Create_InputMessage" />
@@ -57,6 +63,10 @@
     <wsdl:operation name="ReadAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Material/ReadAll" message="tns:IMaterialService_ReadAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Material/ReadAllResponse" message="tns:IMaterialService_ReadAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMaterialService/Search" message="tns:IMaterialService_Search_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMaterialService/SearchResponse" message="tns:IMaterialService_Search_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMaterialService" type="tns:IMaterialService">
@@ -99,6 +109,15 @@
     </wsdl:operation>
     <wsdl:operation name="ReadAll">
       <soap:operation soapAction="http://tempuri.org/IServiceOf_Material/ReadAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <soap:operation soapAction="http://tempuri.org/IMaterialService/Search" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

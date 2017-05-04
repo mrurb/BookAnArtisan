@@ -23,9 +23,6 @@ namespace BookAnArtisanMVC.MaterialServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int AmountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool AvailableField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -44,7 +41,7 @@ namespace BookAnArtisanMVC.MaterialServiceReference {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string OwnderIdField;
+        private string OwnerIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -53,19 +50,6 @@ namespace BookAnArtisanMVC.MaterialServiceReference {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Amount {
-            get {
-                return this.AmountField;
-            }
-            set {
-                if ((this.AmountField.Equals(value) != true)) {
-                    this.AmountField = value;
-                    this.RaisePropertyChanged("Amount");
-                }
             }
         }
         
@@ -148,14 +132,14 @@ namespace BookAnArtisanMVC.MaterialServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string OwnderId {
+        public string OwnerId {
             get {
-                return this.OwnderIdField;
+                return this.OwnerIdField;
             }
             set {
-                if ((object.ReferenceEquals(this.OwnderIdField, value) != true)) {
-                    this.OwnderIdField = value;
-                    this.RaisePropertyChanged("OwnderId");
+                if ((object.ReferenceEquals(this.OwnerIdField, value) != true)) {
+                    this.OwnerIdField = value;
+                    this.RaisePropertyChanged("OwnerId");
                 }
             }
         }
@@ -203,6 +187,12 @@ namespace BookAnArtisanMVC.MaterialServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Material/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_Material/ReadAllResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.MaterialServiceReference.Material[]> ReadAllAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/Search", ReplyAction="http://tempuri.org/IMaterialService/SearchResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material[] Search(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/Search", ReplyAction="http://tempuri.org/IMaterialService/SearchResponse")]
+        System.Threading.Tasks.Task<BookAnArtisanMVC.MaterialServiceReference.Material[]> SearchAsync(string name);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -270,6 +260,14 @@ namespace BookAnArtisanMVC.MaterialServiceReference {
         
         public System.Threading.Tasks.Task<BookAnArtisanMVC.MaterialServiceReference.Material[]> ReadAllAsync() {
             return base.Channel.ReadAllAsync();
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material[] Search(string name) {
+            return base.Channel.Search(name);
+        }
+        
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.MaterialServiceReference.Material[]> SearchAsync(string name) {
+            return base.Channel.SearchAsync(name);
         }
     }
 }
