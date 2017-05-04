@@ -160,10 +160,8 @@ namespace DAL
                                 t.StartTime = (DateTime)GetDataSafe(reader, StartTimeCol, reader.GetSqlDateTime); // Needed explicit cast because wat?
                                 t.EndTime = (DateTime)GetDataSafe(reader, EndTimeCol, reader.GetSqlDateTime);
                                 t.Description = GetDataSafe(reader, DescCol, reader.GetString);
-                                t.CreatedById = GetDataSafe(reader, CreatedByIDCol, reader.GetString);
-                                t.CreatedBy = GetDataSafe(reader, CreatedByNameCol, reader.GetString);
-                                t.ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString);
-                                t.Contact = GetDataSafe(reader, ContactCol, reader.GetString);
+                                t.CreatedBy = new User {Id =  GetDataSafe(reader, CreatedByNameCol, reader.GetString) };
+                                t.Contact = new User {Id =  GetDataSafe(reader, ContactCol, reader.GetString) };
 
                             }
                         }
@@ -208,11 +206,9 @@ namespace DAL
                                     StartTime = (DateTime)GetDataSafe(reader, StartTimeCol, reader.GetSqlDateTime),
                                     EndTime = (DateTime)GetDataSafe(reader, EndTimeCol, reader.GetSqlDateTime),
                                     Description = GetDataSafe(reader, DescCol, reader.GetString),
-                                    CreatedById = GetDataSafe(reader, CreatedByIDCol, reader.GetString),
-                                    CreatedBy = GetDataSafe(reader, CreatedByNameCol, reader.GetString),
-                                    ContactId = GetDataSafe(reader, ContactIDCol, reader.GetString),
+                                    CreatedBy = new User { Id = GetDataSafe(reader, CreatedByNameCol, reader.GetString) },
                                     Deleted = GetDataSafe(reader, DeletedCol, reader.GetBoolean),
-                                    Contact = GetDataSafe(reader, ContactCol, reader.GetString)
+                                    Contact = new User { Id = GetDataSafe(reader, ContactCol, reader.GetString) }
                                 });
                             }
                         }
@@ -257,8 +253,8 @@ namespace DAL
                 new SqlParameter { ParameterName = "@description", SqlValue = t.Description, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@starttime", SqlValue = t.StartTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@endtime", SqlValue = t.EndTime, SqlDbType = SqlDbType.DateTime },
-                new SqlParameter { ParameterName = "@createdbyid", SqlValue = t.CreatedById, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@contactid", SqlValue = t.ContactId, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@createdbyid", SqlValue = t.CreatedBy.Id, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@contactid", SqlValue = t.Contact.Id, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@deleted", SqlValue = t.Deleted, SqlDbType = SqlDbType.Bit }
             };
             using (SqlConnection connection = new SqlConnection(connectionstring))
@@ -302,10 +298,8 @@ namespace DAL
                                 StartTime = (DateTime)reader["mst"],
                                 EndTime = (DateTime)reader["met"],
                                 Description = reader["Description"].ToString(),
-                                CreatedById = reader["cbid"].ToString(),
-                                CreatedBy = reader["cbf"].ToString() + " " + reader["cbl"].ToString(),
-                                ContactId = reader["cid"].ToString(),
-                                Contact = reader["cf"].ToString() + " " + reader["cl"].ToString()
+                                CreatedBy = new User { Id =  reader["cbid"].ToString(), FirstName = reader["cbf"].ToString(), LastName = reader["cbl"].ToString() },
+                                Contact = new User { FirstName = reader["cf"].ToString(), LastName =  reader["cl"].ToString(), Id = reader["cid"].ToString() }
                             });
                         }
                     }
