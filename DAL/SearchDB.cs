@@ -125,7 +125,7 @@ namespace DAL
                     }
                 }
             }
-            p.tags = results;
+            p.Tags = results;
         }
 
 
@@ -165,8 +165,8 @@ namespace DAL
                             while (datareader.Read())
                             {
                                 Project p = new Project(datareader["id"].ToString(), tags, datareader["Project_description"].ToString(), client, artisans, datareader["street_name"].ToString());
-                                p.Created_By_Name = datareader["cfirstname"].ToString() + " " + datareader["clastname"].ToString();
-                                p.Contact_Name = datareader["afirstname"].ToString() + " " + datareader["alastname"].ToString();
+                                p.CreatedBy = new User { FirstName = datareader["cfirstname"].ToString(), LastName = datareader["clastname"].ToString() };
+                                p.Contact = new User { FirstName = datareader["afirstname"].ToString(), LastName = datareader["alastname"].ToString() };
                                 p.Name = datareader["pname"].ToString();
                                 p.Deleted = (bool)datareader["deleted"];
                                 results.Add(p);
