@@ -7,7 +7,7 @@ using BookAnArtisanMVC.MaterialServiceReference;
 
 namespace BookAnArtisanMVC.Controllers
 {
-    public class MaterialController : Controller
+    public class MaterialsController : Controller
     {
         MaterialServiceClient ms = new MaterialServiceClient();
         // GET: Material

@@ -179,7 +179,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MaterialController.cs" />
+    <Compile Include="Controllers\MaterialsController.cs" />
     <Compile Include="Controllers\MeetingsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\RentingController.cs" />
@@ -453,11 +453,11 @@
     <Content Include="Views\Meetings\Edit.cshtml" />
     <Content Include="Views\Meetings\Delete.cshtml" />
     <Content Include="Views\Meetings\MyMeetings.cshtml" />
-    <Content Include="Views\Material\Index.cshtml" />
-    <Content Include="Views\Material\Create.cshtml" />
-    <Content Include="Views\Material\Delete.cshtml" />
-    <Content Include="Views\Material\Edit.cshtml" />
-    <Content Include="Views\Material\Details.cshtml" />
+    <Content Include="Views\Materials\Index.cshtml" />
+    <Content Include="Views\Materials\Create.cshtml" />
+    <Content Include="Views\Materials\Delete.cshtml" />
+    <Content Include="Views\Materials\Edit.cshtml" />
+    <Content Include="Views\Materials\Details.cshtml" />
     <Content Include="Views\Renting\Index.cshtml" />
     <Content Include="Views\Renting\Create.cshtml" />
     <Content Include="Views\Renting\Delete.cshtml" />

@@ -54,8 +54,8 @@
             @Html.Label("Ejer", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.Editor("Ejer", new { htmlAttributes = new { @class = "form-control" } })
-                @Html.HiddenFor(model => model.OwnderId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OwnderId, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.OwnerId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OwnerId, "", new { @class = "text-danger" })
             </div>
         </div>
 
