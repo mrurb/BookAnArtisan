@@ -15,13 +15,6 @@
         <h4>Material</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Available, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -42,16 +35,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Deleted, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Deleted)
-                    @Html.ValidationMessageFor(model => model.Deleted, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
@@ -68,9 +51,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.OwnderId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Ejer", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.OwnderId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.Editor("Ejer", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.OwnderId, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.OwnderId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -89,4 +73,10 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Autocomplete")
+    <script type="text/javascript">
+            $( document ).ready(function() {
+                autoc($("#Ejer"), $("#OwnerId"), "/Users/SearchByName");
+            })
+    </script>
 }
