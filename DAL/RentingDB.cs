@@ -102,8 +102,8 @@ namespace DAL
                                 EndTime = (DateTime)reader["EndTime"],
                                 StartTime = (DateTime)reader["StartTime"],
                                 Deleted = (bool)reader["Deleted"],
-                                User = reader["UserID"].ToString(),
-                                item = reader["somestuff"]
+                                //User = reader["UserID"].ToString(),
+                                //item = reader["somestuff"]
                             };
                         }
                     }
