@@ -20,8 +20,7 @@ namespace DAL
                 new SqlParameter { ParameterName = "@Name", SqlValue = t.Name, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@Description", SqlValue = t.Description, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@Condition", SqlValue = t.Condition, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@OwnerId", SqlValue = t.OwnderId, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Amount", SqlValue = t.Amount, SqlDbType = SqlDbType.Int },
+                new SqlParameter { ParameterName = "@OwnerId", SqlValue = t.OwnerId, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@Available", SqlValue = t.Available, SqlDbType = SqlDbType.Bit },
                 new SqlParameter { ParameterName = "@Deleted", SqlValue = t.Deleted, SqlDbType = SqlDbType.Bit }
            };
@@ -121,8 +120,7 @@ namespace DAL
                                 Description = reader["Description"].ToString(),
                                 Condition = reader["Condition"].ToString(),
                                 Name = reader["Name"].ToString(),
-                                OwnderId = reader["OwnerId"].ToString(),
-                                Amount = (int)reader["Amount"],
+                                OwnerId = reader["OwnerId"].ToString(),
                                 Available = (bool)reader["Available"],
                                 Deleted = (bool)reader["Deleted"]
                             });
@@ -144,8 +142,7 @@ namespace DAL
                 new SqlParameter { ParameterName = "@condition", SqlValue = t.Condition, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@deleted", SqlValue = t.Deleted, SqlDbType = SqlDbType.Bit },
                 new SqlParameter { ParameterName = "@available", SqlValue = t.Available, SqlDbType = SqlDbType.Bit },
-                new SqlParameter { ParameterName = "@ownerid", SqlValue = t.OwnderId, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@amount", SqlValue = t.Amount, SqlDbType = SqlDbType.Int }
+                new SqlParameter { ParameterName = "@ownerid", SqlValue = t.OwnerId, SqlDbType = SqlDbType.NVarChar }
             };
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
@@ -187,12 +184,11 @@ namespace DAL
                                 {
                                     Id = (int)reader["ID"],
                                     Description = (string)reader["Description"],
-                                    Amount = (int)reader["Amount"],
                                     Available = (bool)reader["Available"],
                                     Condition = (string)reader["Condition"],
                                     Deleted = (bool)reader["Deleted"],
                                     Name = (string)reader["Name"],
-                                    OwnderId = (string)reader["OwnerId"]
+                                    OwnerId = (string)reader["OwnerId"]
 
                                 }
                             );
