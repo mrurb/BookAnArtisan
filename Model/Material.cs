@@ -17,7 +17,7 @@ namespace Model
         [DataMember]
         public string Description { get; set; }
         [DataMember]
-        public string OwnerId { get; set; }
+        public User Owner { get; set; }
         [DataMember]
         public string Condition { get; set; }
         [DataMember]

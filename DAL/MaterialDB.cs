@@ -87,8 +87,7 @@ namespace DAL
                                 Description = reader["Description"].ToString(),
                                 Condition = reader["Condition"].ToString(),
                                 Name = reader["Name"].ToString(),
-                                OwnderId = reader["OwnerId"].ToString(),
-                                Amount = (int)reader["Amount"],
+                                OwnerId = reader["OwnerId"].ToString(),
                                 Available = (bool)reader["Available"],
                                 Deleted = (bool)reader["Deleted"]
                             };

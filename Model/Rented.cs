@@ -21,5 +21,7 @@ namespace Model
         public string UserId { get; set; }
         [DataMember]
         public bool Deleted { get; set; }
+        [DataMember]
+        public Material item { get; set; }
     }
 }
