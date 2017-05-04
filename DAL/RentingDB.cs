@@ -83,7 +83,7 @@ namespace DAL
 
         public Booking Read(Booking t)
         {
-            string sql = "SELECT * FROM Rented WHERE id = @id";
+            string sql = "SELECT * FROM Bookings WHERE id = @id";
             Booking material = null;
             SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int };
             using (SqlConnection connection = new SqlConnection(connectionstring))
@@ -102,8 +102,19 @@ namespace DAL
                                 EndTime = (DateTime)reader["EndTime"],
                                 StartTime = (DateTime)reader["StartTime"],
                                 Deleted = (bool)reader["Deleted"],
-                                //User = reader["UserID"].ToString(),
-                                //item = reader["somestuff"]
+                                User = new User() {
+                                    Id = reader["UserID"].ToString(),
+                                    FirstName = reader["FirstName"].ToString(),
+                                    LastName = reader["LastName"].ToString(),
+                                    Email = reader["Email"].ToString(),
+                                },
+                                item = new Material()
+                                {
+                                    Id = (int)reader["MaterialID"],
+                                    Name = reader["Name"].ToString(),
+                                    Description = reader["Description"].ToString(),
+                                    Condition = reader["Condition"].ToString(),
+                                }
                             };
                         }
                     }
@@ -116,7 +127,7 @@ namespace DAL
         {
             List<Booking> materials = new List<Booking>();
 
-            string sql = "SELECT * FROM Bookings JOIN Materials_Unique ON Bookings.MaterialID = Materials_Unique.ID";
+            string sql = "SELECT booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id";
 
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
@@ -129,12 +140,27 @@ namespace DAL
                         {
                             materials.Add(new Booking
                             {
-                                Id = (int)reader["Id"],
-                                EndTime = (DateTime)reader["EndTime"],
-                                StartTime = (DateTime)reader["StartTime"],
-                                Deleted = (bool)reader["Deleted"],
-                                User = new User { Id =  reader["UserID"].ToString() },
-                                item = new Material { Id = (int)reader["materialID"] }
+                                Id = (int)reader["bookingID"],
+                                EndTime = (DateTime)reader["endtime"],
+                                StartTime = (DateTime)reader["starttime"],
+                                Deleted = (bool)reader["deleted"],
+                                User = new User()
+                                {
+                                    Id = reader["userID"].ToString(),
+                                    FirstName = reader["firstname"].ToString(),
+                                    LastName = reader["lastname"].ToString(),
+                                    Email = reader["email"].ToString(),
+                                    PhoneNumber = reader["phonenumber"].ToString(),
+                                    Address = reader["address"].ToString(),
+                                    UserName = reader["username"].ToString()
+                                },
+                                item = new Material()
+                                {
+                                    Id = (int)reader["materialID"],
+                                    Name = reader["materialsname"].ToString(),
+                                    Description = reader["description"].ToString(),
+                                    Condition = reader["condition"].ToString(),
+                                }
                             });
                         }
                     }
