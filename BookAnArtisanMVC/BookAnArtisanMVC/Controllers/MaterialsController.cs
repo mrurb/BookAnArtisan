@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BookAnArtisanMVC.MaterialServiceReference;
+using BookAnArtisanMVC.ServiceReference;
 
 namespace BookAnArtisanMVC.Controllers
 {
@@ -13,14 +13,14 @@ namespace BookAnArtisanMVC.Controllers
         // GET: Material
         public ActionResult Index()
         {
-            var data = ms.ReadAll();
+            var data = ms.ReadAllMaterial();
             return View(data);
         }
 
         // GET: Material/Details/5
         public ActionResult Details(Material mat)
         {
-            var data = ms.Read(mat);
+            var data = ms.ReadMaterial(mat);
             return View(data);
         }
 
@@ -36,7 +36,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                ms.Create(mat);
+                ms.CreateMaterial(mat);
                 return RedirectToAction("Index");
             }
             catch
@@ -48,7 +48,7 @@ namespace BookAnArtisanMVC.Controllers
         // GET: Material/Edit/5
         public ActionResult Edit(Material mat)
         {
-            var data = ms.Read(mat);
+            var data = ms.ReadMaterial(mat);
             return View(data);
         }
 
@@ -58,7 +58,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                ms.Update(mat);
+                ms.UpdateMaterial(mat);
                 return RedirectToAction("Index");
             }
             catch
@@ -70,7 +70,7 @@ namespace BookAnArtisanMVC.Controllers
         // GET: Material/Delete/5
         public ActionResult Delete(Material mat)
         {
-            var data = ms.Read(mat);
+            var data = ms.ReadMaterial(mat);
             return View(data);
         }
 
@@ -80,7 +80,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                ms.Delete(mat);
+                ms.DeleteMaterial(mat);
                 return RedirectToAction("Index");
             }
             catch
