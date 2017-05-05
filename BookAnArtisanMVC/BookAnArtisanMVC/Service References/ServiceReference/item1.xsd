@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8733/WCF/MaterialService/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Model" />
-  <xs:element name="Create">
+  <xs:element name="CreateMaterial">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="t" nillable="true" type="q1:Material" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CreateResponse">
+  <xs:element name="CreateMaterialResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="CreateResult" nillable="true" type="q2:Material" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="CreateMaterialResult" nillable="true" type="q2:Material" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Read">
+  <xs:element name="ReadMaterial">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="t" nillable="true" type="q3:Material" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReadResponse">
+  <xs:element name="ReadMaterialResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadResult" nillable="true" type="q4:Material" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadMaterialResult" nillable="true" type="q4:Material" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Update">
+  <xs:element name="UpdateMaterial">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="t" nillable="true" type="q5:Material" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UpdateResponse">
+  <xs:element name="UpdateMaterialResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="UpdateResult" nillable="true" type="q6:Material" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="UpdateMaterialResult" nillable="true" type="q6:Material" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Delete">
+  <xs:element name="DeleteMaterial">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="t" nillable="true" type="q7:Material" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="DeleteResponse">
+  <xs:element name="DeleteMaterialResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="DeleteResult" nillable="true" type="q8:Material" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="DeleteMaterialResult" nillable="true" type="q8:Material" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReadAll">
+  <xs:element name="ReadAllMaterial">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReadAllResponse">
+  <xs:element name="ReadAllMaterialResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadAllResult" nillable="true" type="q9:ArrayOfMaterial" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadAllMaterialResult" nillable="true" type="q9:ArrayOfMaterial" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

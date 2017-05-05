@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BookAnArtisanMVC.MeetingServiceReference;
+using BookAnArtisanMVC.ServiceReference;
 using Microsoft.AspNet.Identity;
 
 namespace BookAnArtisanMVC.Controllers

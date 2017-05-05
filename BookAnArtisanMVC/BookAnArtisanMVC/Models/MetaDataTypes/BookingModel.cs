@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace BookAnArtisanMVC.RentingServiceReference
+namespace BookAnArtisanMVC.ServiceReference
 {
     [MetadataType(typeof(BookingMetaData))]
     public partial class Booking

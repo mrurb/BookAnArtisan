@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace BookAnArtisanMVC.MaterialServiceReference
+namespace BookAnArtisanMVC.ServiceReference
 {
     [MetadataType(typeof(MaterialMetaData))]
     public partial class Material
