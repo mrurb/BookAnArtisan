@@ -14,23 +14,23 @@ namespace BookAnArtisanMVC.Controllers
 
         public ActionResult Index()
         {
-            return View(uCl.ReadAll());
+            return View(uCl.ReadAllUser());
         }
 
         public ActionResult Edit(User user)
         {
-            return View(uCl.Read(user));
+            return View(uCl.ReadUser(user));
         }
 
         [HttpPost, ActionName("Edit")]
         public ActionResult EditConfirmed(User user)
         {
-            return View(uCl.Update(user));
+            return View(uCl.UpdateUser(user));
         }
 
         public ActionResult Delete(User user)
         {
-            return View(uCl.Read(user));
+            return View(uCl.ReadUser(user));
         }
 
 
@@ -38,7 +38,7 @@ namespace BookAnArtisanMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(User user)
         {
-            uCl.Delete(user);
+            uCl.DeleteUser(user);
             return RedirectToAction("Index");
         }
 
@@ -53,7 +53,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                uCl.Create(user);
+                uCl.CreateUser(user);
 
                 return RedirectToAction("Index");
             }
@@ -67,7 +67,7 @@ namespace BookAnArtisanMVC.Controllers
 
         public ActionResult Details(User user)
         {
-            return View(uCl.Read(user));
+            return View(uCl.ReadUser(user));
         }
 
         [HttpPost]

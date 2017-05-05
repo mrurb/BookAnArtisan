@@ -7,20 +7,6 @@ using BookAnArtisanMVC.ServiceReference;
 
 namespace BookAnArtisanMVC.Controllers
 {
-
-    public partial class test
-    {
-
-        public void doWork()
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public partial class test
-    {
-
-    }
     public class BookingsController : Controller
     {
 
@@ -28,14 +14,14 @@ namespace BookAnArtisanMVC.Controllers
         // GET: Booking
         public ActionResult Index()
         {
-            var data = ms.ReadAll();
+            var data = ms.ReadAllBooking();
             return View(data);
         }
 
         // GET: Booking/Details/5
         public ActionResult Details(Booking mat)
         {
-            var data = ms.Read(mat);
+            var data = ms.ReadBooking(mat);
             return View(data);
         }
 
@@ -51,7 +37,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                ms.Create(mat);
+                ms.CreateBooking(mat);
                 return RedirectToAction("Index");
             }
             catch
@@ -73,7 +59,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                ms.Update(mat);
+                ms.UpdateBooking(mat);
                 return RedirectToAction("Index");
             }
             catch
@@ -85,7 +71,7 @@ namespace BookAnArtisanMVC.Controllers
         // GET: Booking/Delete/5
         public ActionResult Delete(Booking mat)
         {
-            var data = ms.Read(mat);
+            var data = ms.ReadBooking(mat);
             return View(data);
         }
 
@@ -95,7 +81,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                ms.Delete(mat);
+                ms.DeleteBooking(mat);
                 return RedirectToAction("Index");
             }
             catch
