@@ -17,7 +17,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.ReadAll();
+                var data = pCl.ReadAllMeeting();
                 pCl.Close();
                 return View(data);
             }
@@ -33,7 +33,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.Read(meeting);
+                var data = pCl.ReadMeeting(meeting);
                 pCl.Close();
                 return View(data);
             }
@@ -57,7 +57,7 @@ namespace BookAnArtisanMVC.Controllers
             {
                 // TODO: Add insert logic here
                 meeting.CreatedBy.Id = User.Identity.GetUserId();
-                pCl.Create(meeting);
+                pCl.CreateMeeting(meeting);
                 return RedirectToAction("MyMeetings");
             }
             catch
@@ -71,7 +71,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.Read(meeting);
+                var data = pCl.ReadMeeting(meeting);
                 pCl.Close();
                 return View(data);
             }
@@ -88,7 +88,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                pCl.Update(meeting);
+                pCl.UpdateMeeting(meeting);
                 return RedirectToAction("MyMeetings"); 
             }
             catch
@@ -102,7 +102,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.Read(meeting);
+                var data = pCl.ReadMeeting(meeting);
                 pCl.Close();
                 return View(data);
             }
@@ -119,7 +119,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                pCl.Delete(meeting);
+                pCl.DeleteMeeting(meeting);
                 return RedirectToAction("MyMeetings");
             }
             catch

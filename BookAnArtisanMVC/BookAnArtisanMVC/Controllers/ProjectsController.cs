@@ -16,7 +16,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.ReadAll();
+                var data = pCl.ReadAllProject();
                 pCl.Close();
                 return View(data);
             }
@@ -33,7 +33,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.Read(project);
+                var data = pCl.ReadProject(project);
                 pCl.Close();
                 return View(data);
             }
@@ -56,7 +56,7 @@ namespace BookAnArtisanMVC.Controllers
             try
             {
                 // TODO: Add insert logic here
-                pCl.Create(project);
+                pCl.CreateProject(project);
                 return RedirectToAction("Index");
             }
             catch
@@ -70,7 +70,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.Read(project);
+                var data = pCl.ReadProject(project);
                 pCl.Close();
                 return View(data);
             }
@@ -88,7 +88,7 @@ namespace BookAnArtisanMVC.Controllers
             try
             {
                 // TODO: Add update logic here
-                pCl.Update(project);
+                pCl.UpdateProject(project);
                 return RedirectToAction("Index");
             }
             catch
@@ -102,7 +102,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.Read(project);
+                var data = pCl.ReadProject(project);
                 pCl.Close();
                 return View(data);
             }
@@ -119,13 +119,18 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                pCl.Delete(project);
+                pCl.DeleteProject(project);
                 return RedirectToAction("Index");
             }
             catch
             {
                 return View(project);
             }
+        }
+
+        public ActionResult ProjectSearch()
+        {
+            return View();
         }
     }
 }
