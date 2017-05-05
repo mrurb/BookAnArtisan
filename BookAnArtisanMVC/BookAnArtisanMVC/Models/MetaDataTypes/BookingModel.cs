@@ -23,8 +23,12 @@ namespace BookAnArtisanMVC.RentingServiceReference
         [Display(Name = "Booket Til", Order = -8)]
         public DateTime EndTime;
 
-        [Display(Name ="Slettet", Order = -7)]
+        [Display(Name = "Slettet", Order = -7)]
         public bool Deleted;
+        [Required()]
+        public User User { get; set; }
+        [Required()]
+        public Material item { get; set; }
 
     }
 
