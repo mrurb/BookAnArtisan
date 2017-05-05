@@ -11,25 +11,25 @@ namespace WCF
     public class RoleService : IRoleService
     {
         RoleController roleController = new RoleController();
-        public Role Create(Role role)
+        public Role CreateRole(Role role)
         {
             return roleController.Create(role);
         }
 
-        public Role Read(Role role)
+        public Role ReadRole(Role role)
         {
             return roleController.Read(role);
         }
-        public Role Update(Role role)
+        public Role UpdateRole(Role role)
         {
             return roleController.Update(role);
         }
-        public Role Delete(Role role)
+        public Role DeleteRole(Role role)
         {
             return roleController.Delete(role);
         }
 
-        public List<Role> ReadAll()
+        public List<Role> ReadAllRole()
         {
             return roleController.ReadAll();
         }

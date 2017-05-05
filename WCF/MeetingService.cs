@@ -11,27 +11,27 @@ namespace WCF
     public class MeetingService : IMeetingService
     {
         MeetingController mc = new MeetingController();
-        public Meeting Create(Meeting t)
+        public Meeting CreateMeeting(Meeting t)
         {
             return mc.Create(t);
         }
 
-        public Meeting Delete(Meeting t)
+        public Meeting DeleteMeeting(Meeting t)
         {
             return mc.Delete(t);
         }
 
-        public Meeting Read(Meeting t)
+        public Meeting ReadMeeting(Meeting t)
         {
             return mc.Read(t);
         }
 
-        public List<Meeting> ReadAll()
+        public List<Meeting> ReadAllMeeting()
         {
             return mc.ReadAll();
         }
 
-        public Meeting Update(Meeting t)
+        public Meeting UpdateMeeting(Meeting t)
         {
             return mc.Update(t);
         }

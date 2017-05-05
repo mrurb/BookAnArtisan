@@ -9,8 +9,19 @@ using System.Threading.Tasks;
 namespace WCF
 {
     [ServiceContract]
-    public interface ITagService : IService<Tag>
+    public interface ITagService
     {
-
+        // Implementing CRUD as a starting point.
+        [OperationContract]
+        Tag CreateTag(Tag t);
+        [OperationContract]
+        Tag ReadTag(Tag t);
+        [OperationContract]
+        Tag UpdateTag(Tag t);
+        [OperationContract]
+        Tag DeleteTag(Tag t);
+        // Implementing ReadAll
+        [OperationContract]
+        List<Tag> ReadAllTag();
     }
 }

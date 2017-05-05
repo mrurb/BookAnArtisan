@@ -11,22 +11,22 @@ namespace WCF
     public class MaterialService : IMaterialService
     {
         MaterialController mc = new MaterialController();
-        public Material Create(Material t)
+        public Material CreateMaterial(Material t)
         {
             return mc.Create(t);
         }
 
-        public Material Delete(Material t)
+        public Material DeleteMaterial(Material t)
         {
             return mc.Delete(t);
         }
 
-        public Material Read(Material t)
+        public Material ReadMaterial(Material t)
         {
             return mc.Read(t);
         }
 
-        public List<Material> ReadAll()
+        public List<Material> ReadAllMaterial()
         {
             return mc.ReadAll();
         }
@@ -36,7 +36,7 @@ namespace WCF
             return mc.Search(name);
         }
 
-        public Material Update(Material t)
+        public Material UpdateMaterial(Material t)
         {
             return mc.Update(t);
         }

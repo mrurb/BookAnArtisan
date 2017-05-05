@@ -11,27 +11,27 @@ namespace WCF
     public class UserService : IUserService
     {
             UserController userController = new UserController();
-        public User Create(User user)
+        public User CreateUser(User user)
         {
             return userController.Create(user);
         }
 
-        public User Read(User user)
+        public User ReadUser(User user)
         {
             return userController.Read(user);
         }
 
-        public User Update(User user)
+        public User UpdateUser(User user)
         {
             return userController.Update(user);
         }
 
-        public User Delete(User user)
+        public User DeleteUser(User user)
         {
             return userController.Delete(user);
         }
 
-        public List<User> ReadAll()
+        public List<User> ReadAllUser()
         {
             return userController.ReadAll();
         }

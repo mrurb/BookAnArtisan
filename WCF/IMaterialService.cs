@@ -9,8 +9,20 @@ using System.ServiceModel;
 namespace WCF
 {
     [ServiceContract]
-    interface IMaterialService : IService<Material>
+    interface IMaterialService
     {
+        // Implementing CRUD as a starting point.
+        [OperationContract]
+        Material CreateMaterial(Material t);
+        [OperationContract]
+        Material ReadMaterial(Material t);
+        [OperationContract]
+        Material UpdateMaterial(Material t);
+        [OperationContract]
+        Material DeleteMaterial(Material t);
+        // Implementing ReadAll
+        [OperationContract]
+        List<Material> ReadAllMaterial();
         [OperationContract]
         IList<Material> Search(string name);
     }

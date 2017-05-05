@@ -11,25 +11,25 @@ namespace WCF
     public class StatusService : IStatusService
     {
         StatusController statusController = new StatusController();
-        public Status Create(Status status)
+        public Status CreateStatus(Status status)
         {
             return statusController.Create(status);
         }
 
-        public Status Read(Status status)
+        public Status ReadStatus(Status status)
         {
             return statusController.Read(status);
         }
-        public Status Update(Status status)
+        public Status UpdateStatus(Status status)
         {
             return statusController.Update(status);
         }
-        public Status Delete(Status status)
+        public Status DeleteStatus(Status status)
         {
             return statusController.Delete(status);
         }
 
-        public List<Status> ReadAll()
+        public List<Status> ReadAllStatus()
         {
             return statusController.ReadAll();
         }

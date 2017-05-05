@@ -9,8 +9,20 @@ using System.ServiceModel;
 namespace WCF
 {
     [ServiceContract]
-    interface IMeetingService : IService<Meeting>
+    interface IMeetingService
     {
+        // Implementing CRUD as a starting point.
+        [OperationContract]
+        Meeting CreateMeeting(Meeting t);
+        [OperationContract]
+        Meeting ReadMeeting(Meeting t);
+        [OperationContract]
+        Meeting UpdateMeeting(Meeting t);
+        [OperationContract]
+        Meeting DeleteMeeting(Meeting t);
+        // Implementing ReadAll
+        [OperationContract]
+        List<Meeting> ReadAllMeeting();
         [OperationContract]
         Meeting AddUserToMeeting(Meeting m, User u);
 

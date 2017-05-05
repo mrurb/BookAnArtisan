@@ -11,25 +11,25 @@ namespace WCF
     public class TagService : ITagService
     {
         TagController tagController = new TagController();
-        public Tag Create(Tag tag)
+        public Tag CreateTag(Tag tag)
         {
             return tagController.Create(tag);
         }
 
-        public Tag Read(Tag tag)
+        public Tag ReadTag(Tag tag)
         {
             return tagController.Read(tag);
         }
-        public Tag Update(Tag tag)
+        public Tag UpdateTag(Tag tag)
         {
             return tagController.Update(tag);
         }
-        public Tag Delete(Tag tag)
+        public Tag DeleteTag(Tag tag)
         {
             return tagController.Delete(tag);
         }
 
-        public List<Tag> ReadAll()
+        public List<Tag> ReadAllTag()
         {
             return tagController.ReadAll();
         }
