@@ -130,7 +130,7 @@ namespace BookAnArtisanMVC.Controllers
 
         public ActionResult MyMeetings(User user)
         {
-            user.Id = User.Identity.GetUserId();
+            user.Id = "2083af25-f483-4a02-a62b-71c198147c84";
             var data = pCl.ReadAllForUser(user);
             return View(data);
         }
