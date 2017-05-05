@@ -127,5 +127,10 @@ namespace BookAnArtisanMVC.Controllers
                 return View(project);
             }
         }
+
+        public ActionResult ProjectSearch()
+        {
+            return View();
+        }
     }
 }
