@@ -277,7 +277,7 @@ namespace DAL
         {
             Meeting result = null;
 
-            string sql = "SELECT Meetings.id mid, Contact.Id cid, Created_By.Id cbid, Meetings.starttime mst, Meetings.EndTime met, Meetings.Title mt, Meetings.Description, Meeting.Deleted, Contact.FirstName cf, Contact.LastName cl, Created_By.FirstName cbf, Created_By.LastName cbl FROM Meetings JOIN AspNetUsers Contact ON Meetings.ContactID = Contact.Id JOIN AspNetUsers Created_By ON Meetings.CreatedByID = Created_By.Id WHERE Meetings.id = @id";
+            string sql = "SELECT Meetings.id mid, Contact.Id cid, Created_By.Id cbid, Meetings.starttime mst, Meetings.EndTime met, Meetings.Title mt, Meetings.Description, Meetings.Deleted, Contact.FirstName cf, Contact.LastName cl, Created_By.FirstName cbf, Created_By.LastName cbl FROM Meetings JOIN AspNetUsers Contact ON Meetings.ContactID = Contact.Id JOIN AspNetUsers Created_By ON Meetings.CreatedByID = Created_By.Id WHERE Meetings.id = @id";
 
             SqlParameter midparam = new SqlParameter() { ParameterName = "@id", SqlDbType= SqlDbType.Int, Value= m.Id };
             using (SqlConnection connection = new SqlConnection(connectionstring))
