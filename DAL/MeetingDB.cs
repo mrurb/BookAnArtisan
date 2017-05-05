@@ -23,7 +23,7 @@ namespace DAL
          */
         public Meeting Create(Meeting t)
         {
-            string query = "INSERT INTO Meeting(StartTime, EndTime, Title, Description, ContactID, CreatedByID) VALUES(@StartTime, @EndTime, @Title, @Description, @ContactID, @CreatedByID);";
+            string query = "INSERT INTO Meetings(StartTime, EndTime, Title, Description, ContactID, CreatedByID) VALUES(@StartTime, @EndTime, @Title, @Description, @ContactID, @CreatedByID);";
             SqlParameter[] ArrayOfParams =
             {
                 new SqlParameter { ParameterName = "@StartTime", SqlValue = t.StartTime, SqlDbType = SqlDbType.DateTime },
@@ -61,7 +61,7 @@ namespace DAL
         {
             List<Meeting> userMeetings = new List<Meeting>();
 
-            string sql = "SELECT DISTINCT Meeting.Id mId, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID  FROM Meeting JOIN AspNetUsers User1 ON Meeting.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meeting.ContactID = User2.Id WHERE Meeting.CreatedByID = @Id OR Meeting.ContactID = @Id";
+            string sql = "SELECT DISTINCT Meetings.Id mId, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID  FROM Meetings JOIN AspNetUsers User1 ON Meetings.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meetings.ContactID = User2.Id WHERE Meetings.CreatedByID = @Id OR Meetings.ContactID = @Id";
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = user.Id, SqlDbType = SqlDbType.NVarChar };
 
@@ -107,7 +107,7 @@ namespace DAL
 
         public Meeting Delete(Meeting t)
         {
-            string sql = "UPDATE Meeting SET Deleted = 1 WHERE ID = @Id";
+            string sql = "UPDATE Meetings SET Deleted = 1 WHERE ID = @Id";
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = t.Id, SqlDbType = SqlDbType.NVarChar };
 
@@ -129,7 +129,7 @@ namespace DAL
 
         public Meeting Read(Meeting t)
         {
-            string sql = "SELECT Meeting.Id mId, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID FROM Meeting JOIN AspNetUsers User1 ON Meeting.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meeting.ContactID = User2.Id WHERE Meeting.ID = @Id"; // search by ID, see below.
+            string sql = "SELECT Meetings.Id mId, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID FROM Meetings JOIN AspNetUsers User1 ON Meetings.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meetings.ContactID = User2.Id WHERE Meetings.ID = @Id"; // search by ID, see below.
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = t.Id, SqlDbType = SqlDbType.NVarChar };
 
@@ -175,7 +175,7 @@ namespace DAL
         {
             List<Meeting> users = new List<Meeting>();
 
-            string sql = "SELECT Meeting.Id mId, Meeting.Deleted, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID FROM Meeting JOIN AspNetUsers User1 ON Meeting.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meeting.ContactID = User2.Id;";
+            string sql = "SELECT Meetings.Id mId, Meetings.Deleted, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID FROM Meetings JOIN AspNetUsers User1 ON Meetings.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meetings.ContactID = User2.Id;";
 
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
@@ -220,7 +220,7 @@ namespace DAL
 
         public Meeting AddUserToMeeting(Meeting m, User u)
         {
-            string sql = "INSERT INTO Meeting_Users VALUES(@MeetingID, @UserID);";
+            string sql = "INSERT INTO Meetings_Users VALUES(@MeetingID, @UserID);";
 
             SqlParameter[] arrayofparams =
             {
@@ -245,7 +245,7 @@ namespace DAL
 
         public Meeting Update(Meeting t)
         {
-            string sql = "UPDATE Meeting SET Title = @title, Description = @description, StartTime = @starttime, EndTime = @endtime, CreatedByID = @createdbyid, ContactID = @contactid, Deleted = @deleted WHERE ID = @id";
+            string sql = "UPDATE Meetings SET Title = @title, Description = @description, StartTime = @starttime, EndTime = @endtime, CreatedByID = @createdbyid, ContactID = @contactid, Deleted = @deleted WHERE ID = @id";
             SqlParameter[] sqlparams =
             {
                 new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int },
@@ -277,7 +277,7 @@ namespace DAL
         {
             Meeting result = null;
 
-            string sql = "SELECT meeting.id mid, Contact.Id cid, Created_By.Id cbid, meeting.starttime mst, meeting.EndTime met, meeting.Title mt, meeting.Description, Meeting.Deleted, Contact.FirstName cf, Contact.LastName cl, Created_By.FirstName cbf, Created_By.LastName cbl FROM Meeting JOIN AspNetUsers Contact ON Meeting.ContactID = Contact.Id JOIN AspNetUsers Created_By ON Meeting.CreatedByID = Created_By.Id WHERE meeting.id = @id";
+            string sql = "SELECT Meetings.id mid, Contact.Id cid, Created_By.Id cbid, Meetings.starttime mst, Meetings.EndTime met, Meetings.Title mt, Meetings.Description, Meeting.Deleted, Contact.FirstName cf, Contact.LastName cl, Created_By.FirstName cbf, Created_By.LastName cbl FROM Meetings JOIN AspNetUsers Contact ON Meetings.ContactID = Contact.Id JOIN AspNetUsers Created_By ON Meetings.CreatedByID = Created_By.Id WHERE Meetings.id = @id";
 
             SqlParameter midparam = new SqlParameter() { ParameterName = "@id", SqlDbType= SqlDbType.Int, Value= m.Id };
             using (SqlConnection connection = new SqlConnection(connectionstring))
