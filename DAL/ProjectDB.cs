@@ -167,7 +167,7 @@ namespace DAL
         {
             List<Project> projects = new List<Project>();
             
-            string sql = "SELECT * FROM Projects";
+            string sql = "SELECT TOP(10) * FROM Projects";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

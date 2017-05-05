@@ -1496,4 +1496,79 @@ namespace BookAnArtisanMVC.ServiceReference {
             return base.Channel.SearchByNameAsync(name);
         }
     }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IProjectSearch")]
+    public interface IProjectSearch {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectSearch/SearchByTag", ReplyAction="http://tempuri.org/IProjectSearch/SearchByTagResponse")]
+        System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project> SearchByTag(string search_tag);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectSearch/SearchByTag", ReplyAction="http://tempuri.org/IProjectSearch/SearchByTagResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project>> SearchByTagAsync(string search_tag);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectSearch/SearchByProjectUser", ReplyAction="http://tempuri.org/IProjectSearch/SearchByProjectUserResponse")]
+        System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project> SearchByProjectUser(BookAnArtisanMVC.ServiceReference.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectSearch/SearchByProjectUser", ReplyAction="http://tempuri.org/IProjectSearch/SearchByProjectUserResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project>> SearchByProjectUserAsync(BookAnArtisanMVC.ServiceReference.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectSearch/SearchByProjectAddress", ReplyAction="http://tempuri.org/IProjectSearch/SearchByProjectAddressResponse")]
+        System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project> SearchByProjectAddress(string address);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectSearch/SearchByProjectAddress", ReplyAction="http://tempuri.org/IProjectSearch/SearchByProjectAddressResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project>> SearchByProjectAddressAsync(string address);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IProjectSearchChannel : BookAnArtisanMVC.ServiceReference.IProjectSearch, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ProjectSearchClient : System.ServiceModel.ClientBase<BookAnArtisanMVC.ServiceReference.IProjectSearch>, BookAnArtisanMVC.ServiceReference.IProjectSearch {
+        
+        public ProjectSearchClient() {
+        }
+        
+        public ProjectSearchClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ProjectSearchClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ProjectSearchClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ProjectSearchClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project> SearchByTag(string search_tag) {
+            return base.Channel.SearchByTag(search_tag);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project>> SearchByTagAsync(string search_tag) {
+            return base.Channel.SearchByTagAsync(search_tag);
+        }
+        
+        public System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project> SearchByProjectUser(BookAnArtisanMVC.ServiceReference.User user) {
+            return base.Channel.SearchByProjectUser(user);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project>> SearchByProjectUserAsync(BookAnArtisanMVC.ServiceReference.User user) {
+            return base.Channel.SearchByProjectUserAsync(user);
+        }
+        
+        public System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project> SearchByProjectAddress(string address) {
+            return base.Channel.SearchByProjectAddress(address);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project>> SearchByProjectAddressAsync(string address) {
+            return base.Channel.SearchByProjectAddressAsync(address);
+        }
+    }
 }

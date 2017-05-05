@@ -325,6 +325,15 @@
     <None Include="Service References\ServiceReference\item14.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceReference\item15.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item151.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item152.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceReference\item2.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -351,6 +360,7 @@
     </None>
     <None Include="Service References\ServiceReference\MaterialService.wsdl" />
     <None Include="Service References\ServiceReference\MeetingService.wsdl" />
+    <None Include="Service References\ServiceReference\ProjectSearch.wsdl" />
     <None Include="Service References\ServiceReference\ProjectService.wsdl" />
     <None Include="Service References\ServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
@@ -361,6 +371,7 @@
     <None Include="Service References\ServiceReference\item2.disco" />
     <None Include="Service References\ServiceReference\item3.disco" />
     <None Include="Service References\ServiceReference\item4.disco" />
+    <None Include="Service References\ServiceReference\item5.disco" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
