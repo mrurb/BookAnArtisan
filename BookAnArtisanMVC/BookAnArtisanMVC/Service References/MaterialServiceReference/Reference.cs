@@ -439,6 +439,163 @@ namespace BookAnArtisanMVC.MaterialServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Meeting", Namespace="http://schemas.datacontract.org/2004/07/Model")]
+    [System.SerializableAttribute()]
+    public partial class Meeting : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private BookAnArtisanMVC.MaterialServiceReference.User ContactField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private BookAnArtisanMVC.MaterialServiceReference.User CreatedByField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool DeletedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime EndTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime StartTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TitleField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public BookAnArtisanMVC.MaterialServiceReference.User Contact {
+            get {
+                return this.ContactField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContactField, value) != true)) {
+                    this.ContactField = value;
+                    this.RaisePropertyChanged("Contact");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public BookAnArtisanMVC.MaterialServiceReference.User CreatedBy {
+            get {
+                return this.CreatedByField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CreatedByField, value) != true)) {
+                    this.CreatedByField = value;
+                    this.RaisePropertyChanged("CreatedBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Deleted {
+            get {
+                return this.DeletedField;
+            }
+            set {
+                if ((this.DeletedField.Equals(value) != true)) {
+                    this.DeletedField = value;
+                    this.RaisePropertyChanged("Deleted");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime EndTime {
+            get {
+                return this.EndTimeField;
+            }
+            set {
+                if ((this.EndTimeField.Equals(value) != true)) {
+                    this.EndTimeField = value;
+                    this.RaisePropertyChanged("EndTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime StartTime {
+            get {
+                return this.StartTimeField;
+            }
+            set {
+                if ((this.StartTimeField.Equals(value) != true)) {
+                    this.StartTimeField = value;
+                    this.RaisePropertyChanged("StartTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Title {
+            get {
+                return this.TitleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TitleField, value) != true)) {
+                    this.TitleField = value;
+                    this.RaisePropertyChanged("Title");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MaterialServiceReference.IMaterialService")]
     public interface IMaterialService {
@@ -446,38 +603,20 @@ namespace BookAnArtisanMVC.MaterialServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Material/Create", ReplyAction="http://tempuri.org/IServiceOf_Material/CreateResponse")]
         BookAnArtisanMVC.MaterialServiceReference.Material Create(BookAnArtisanMVC.MaterialServiceReference.Material t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Material/Create", ReplyAction="http://tempuri.org/IServiceOf_Material/CreateResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.MaterialServiceReference.Material> CreateAsync(BookAnArtisanMVC.MaterialServiceReference.Material t);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Material/Read", ReplyAction="http://tempuri.org/IServiceOf_Material/ReadResponse")]
         BookAnArtisanMVC.MaterialServiceReference.Material Read(BookAnArtisanMVC.MaterialServiceReference.Material t);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Material/Read", ReplyAction="http://tempuri.org/IServiceOf_Material/ReadResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.MaterialServiceReference.Material> ReadAsync(BookAnArtisanMVC.MaterialServiceReference.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Material/Update", ReplyAction="http://tempuri.org/IServiceOf_Material/UpdateResponse")]
         BookAnArtisanMVC.MaterialServiceReference.Material Update(BookAnArtisanMVC.MaterialServiceReference.Material t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Material/Update", ReplyAction="http://tempuri.org/IServiceOf_Material/UpdateResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.MaterialServiceReference.Material> UpdateAsync(BookAnArtisanMVC.MaterialServiceReference.Material t);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Material/Delete", ReplyAction="http://tempuri.org/IServiceOf_Material/DeleteResponse")]
         BookAnArtisanMVC.MaterialServiceReference.Material Delete(BookAnArtisanMVC.MaterialServiceReference.Material t);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Material/Delete", ReplyAction="http://tempuri.org/IServiceOf_Material/DeleteResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.MaterialServiceReference.Material> DeleteAsync(BookAnArtisanMVC.MaterialServiceReference.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Material/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_Material/ReadAllResponse")]
         BookAnArtisanMVC.MaterialServiceReference.Material[] ReadAll();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Material/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_Material/ReadAllResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.MaterialServiceReference.Material[]> ReadAllAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/Search", ReplyAction="http://tempuri.org/IMaterialService/SearchResponse")]
         BookAnArtisanMVC.MaterialServiceReference.Material[] Search(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/Search", ReplyAction="http://tempuri.org/IMaterialService/SearchResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.MaterialServiceReference.Material[]> SearchAsync(string name);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -511,48 +650,317 @@ namespace BookAnArtisanMVC.MaterialServiceReference {
             return base.Channel.Create(t);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.MaterialServiceReference.Material> CreateAsync(BookAnArtisanMVC.MaterialServiceReference.Material t) {
-            return base.Channel.CreateAsync(t);
-        }
-        
         public BookAnArtisanMVC.MaterialServiceReference.Material Read(BookAnArtisanMVC.MaterialServiceReference.Material t) {
             return base.Channel.Read(t);
-        }
-        
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.MaterialServiceReference.Material> ReadAsync(BookAnArtisanMVC.MaterialServiceReference.Material t) {
-            return base.Channel.ReadAsync(t);
         }
         
         public BookAnArtisanMVC.MaterialServiceReference.Material Update(BookAnArtisanMVC.MaterialServiceReference.Material t) {
             return base.Channel.Update(t);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.MaterialServiceReference.Material> UpdateAsync(BookAnArtisanMVC.MaterialServiceReference.Material t) {
-            return base.Channel.UpdateAsync(t);
-        }
-        
         public BookAnArtisanMVC.MaterialServiceReference.Material Delete(BookAnArtisanMVC.MaterialServiceReference.Material t) {
             return base.Channel.Delete(t);
-        }
-        
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.MaterialServiceReference.Material> DeleteAsync(BookAnArtisanMVC.MaterialServiceReference.Material t) {
-            return base.Channel.DeleteAsync(t);
         }
         
         public BookAnArtisanMVC.MaterialServiceReference.Material[] ReadAll() {
             return base.Channel.ReadAll();
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.MaterialServiceReference.Material[]> ReadAllAsync() {
-            return base.Channel.ReadAllAsync();
-        }
-        
         public BookAnArtisanMVC.MaterialServiceReference.Material[] Search(string name) {
             return base.Channel.Search(name);
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MaterialServiceReference.IMeetingService")]
+    public interface IMeetingService {
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.MaterialServiceReference.Material[]> SearchAsync(string name) {
-            return base.Channel.SearchAsync(name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Meeting/Create", ReplyAction="http://tempuri.org/IServiceOf_Meeting/CreateResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material Create(BookAnArtisanMVC.MaterialServiceReference.Material t);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Meeting/Read", ReplyAction="http://tempuri.org/IServiceOf_Meeting/ReadResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material Read(BookAnArtisanMVC.MaterialServiceReference.Material t);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Meeting/Update", ReplyAction="http://tempuri.org/IServiceOf_Meeting/UpdateResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material Update(BookAnArtisanMVC.MaterialServiceReference.Material t);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Meeting/Delete", ReplyAction="http://tempuri.org/IServiceOf_Meeting/DeleteResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material Delete(BookAnArtisanMVC.MaterialServiceReference.Material t);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Meeting/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_Meeting/ReadAllResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material[] ReadAll();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/AddUserToMeeting", ReplyAction="http://tempuri.org/IMeetingService/AddUserToMeetingResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Meeting AddUserToMeeting(BookAnArtisanMVC.MaterialServiceReference.Meeting m, BookAnArtisanMVC.MaterialServiceReference.User u);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/ReadAllForUser", ReplyAction="http://tempuri.org/IMeetingService/ReadAllForUserResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Meeting[] ReadAllForUser(BookAnArtisanMVC.MaterialServiceReference.User user);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IMeetingServiceChannel : BookAnArtisanMVC.MaterialServiceReference.IMeetingService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class MeetingServiceClient : System.ServiceModel.ClientBase<BookAnArtisanMVC.MaterialServiceReference.IMeetingService>, BookAnArtisanMVC.MaterialServiceReference.IMeetingService {
+        
+        public MeetingServiceClient() {
+        }
+        
+        public MeetingServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public MeetingServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public MeetingServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public MeetingServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material Create(BookAnArtisanMVC.MaterialServiceReference.Material t) {
+            return base.Channel.Create(t);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material Read(BookAnArtisanMVC.MaterialServiceReference.Material t) {
+            return base.Channel.Read(t);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material Update(BookAnArtisanMVC.MaterialServiceReference.Material t) {
+            return base.Channel.Update(t);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material Delete(BookAnArtisanMVC.MaterialServiceReference.Material t) {
+            return base.Channel.Delete(t);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material[] ReadAll() {
+            return base.Channel.ReadAll();
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Meeting AddUserToMeeting(BookAnArtisanMVC.MaterialServiceReference.Meeting m, BookAnArtisanMVC.MaterialServiceReference.User u) {
+            return base.Channel.AddUserToMeeting(m, u);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Meeting[] ReadAllForUser(BookAnArtisanMVC.MaterialServiceReference.User user) {
+            return base.Channel.ReadAllForUser(user);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MaterialServiceReference.IProjectService")]
+    public interface IProjectService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Project/Create", ReplyAction="http://tempuri.org/IServiceOf_Project/CreateResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material Create(BookAnArtisanMVC.MaterialServiceReference.Material t);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Project/Read", ReplyAction="http://tempuri.org/IServiceOf_Project/ReadResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material Read(BookAnArtisanMVC.MaterialServiceReference.Material t);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Project/Update", ReplyAction="http://tempuri.org/IServiceOf_Project/UpdateResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material Update(BookAnArtisanMVC.MaterialServiceReference.Material t);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Project/Delete", ReplyAction="http://tempuri.org/IServiceOf_Project/DeleteResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material Delete(BookAnArtisanMVC.MaterialServiceReference.Material t);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Project/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_Project/ReadAllResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material[] ReadAll();
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IProjectServiceChannel : BookAnArtisanMVC.MaterialServiceReference.IProjectService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ProjectServiceClient : System.ServiceModel.ClientBase<BookAnArtisanMVC.MaterialServiceReference.IProjectService>, BookAnArtisanMVC.MaterialServiceReference.IProjectService {
+        
+        public ProjectServiceClient() {
+        }
+        
+        public ProjectServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ProjectServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ProjectServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ProjectServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material Create(BookAnArtisanMVC.MaterialServiceReference.Material t) {
+            return base.Channel.Create(t);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material Read(BookAnArtisanMVC.MaterialServiceReference.Material t) {
+            return base.Channel.Read(t);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material Update(BookAnArtisanMVC.MaterialServiceReference.Material t) {
+            return base.Channel.Update(t);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material Delete(BookAnArtisanMVC.MaterialServiceReference.Material t) {
+            return base.Channel.Delete(t);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material[] ReadAll() {
+            return base.Channel.ReadAll();
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MaterialServiceReference.IRentingService")]
+    public interface IRentingService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Booking/Create", ReplyAction="http://tempuri.org/IServiceOf_Booking/CreateResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material Create(BookAnArtisanMVC.MaterialServiceReference.Material t);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Booking/Read", ReplyAction="http://tempuri.org/IServiceOf_Booking/ReadResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material Read(BookAnArtisanMVC.MaterialServiceReference.Material t);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Booking/Update", ReplyAction="http://tempuri.org/IServiceOf_Booking/UpdateResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material Update(BookAnArtisanMVC.MaterialServiceReference.Material t);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Booking/Delete", ReplyAction="http://tempuri.org/IServiceOf_Booking/DeleteResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material Delete(BookAnArtisanMVC.MaterialServiceReference.Material t);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Booking/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_Booking/ReadAllResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material[] ReadAll();
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IRentingServiceChannel : BookAnArtisanMVC.MaterialServiceReference.IRentingService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class RentingServiceClient : System.ServiceModel.ClientBase<BookAnArtisanMVC.MaterialServiceReference.IRentingService>, BookAnArtisanMVC.MaterialServiceReference.IRentingService {
+        
+        public RentingServiceClient() {
+        }
+        
+        public RentingServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public RentingServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public RentingServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public RentingServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material Create(BookAnArtisanMVC.MaterialServiceReference.Material t) {
+            return base.Channel.Create(t);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material Read(BookAnArtisanMVC.MaterialServiceReference.Material t) {
+            return base.Channel.Read(t);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material Update(BookAnArtisanMVC.MaterialServiceReference.Material t) {
+            return base.Channel.Update(t);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material Delete(BookAnArtisanMVC.MaterialServiceReference.Material t) {
+            return base.Channel.Delete(t);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material[] ReadAll() {
+            return base.Channel.ReadAll();
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MaterialServiceReference.IUserService")]
+    public interface IUserService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/Create", ReplyAction="http://tempuri.org/IServiceOf_User/CreateResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material Create(BookAnArtisanMVC.MaterialServiceReference.Material t);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/Read", ReplyAction="http://tempuri.org/IServiceOf_User/ReadResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material Read(BookAnArtisanMVC.MaterialServiceReference.Material t);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/Update", ReplyAction="http://tempuri.org/IServiceOf_User/UpdateResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material Update(BookAnArtisanMVC.MaterialServiceReference.Material t);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/Delete", ReplyAction="http://tempuri.org/IServiceOf_User/DeleteResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material Delete(BookAnArtisanMVC.MaterialServiceReference.Material t);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_User/ReadAll", ReplyAction="http://tempuri.org/IServiceOf_User/ReadAllResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.Material[] ReadAll();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/SearchByName", ReplyAction="http://tempuri.org/IUserService/SearchByNameResponse")]
+        BookAnArtisanMVC.MaterialServiceReference.User[] SearchByName(string name);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IUserServiceChannel : BookAnArtisanMVC.MaterialServiceReference.IUserService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UserServiceClient : System.ServiceModel.ClientBase<BookAnArtisanMVC.MaterialServiceReference.IUserService>, BookAnArtisanMVC.MaterialServiceReference.IUserService {
+        
+        public UserServiceClient() {
+        }
+        
+        public UserServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public UserServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public UserServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public UserServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material Create(BookAnArtisanMVC.MaterialServiceReference.Material t) {
+            return base.Channel.Create(t);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material Read(BookAnArtisanMVC.MaterialServiceReference.Material t) {
+            return base.Channel.Read(t);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material Update(BookAnArtisanMVC.MaterialServiceReference.Material t) {
+            return base.Channel.Update(t);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material Delete(BookAnArtisanMVC.MaterialServiceReference.Material t) {
+            return base.Channel.Delete(t);
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.Material[] ReadAll() {
+            return base.Channel.ReadAll();
+        }
+        
+        public BookAnArtisanMVC.MaterialServiceReference.User[] SearchByName(string name) {
+            return base.Channel.SearchByName(name);
         }
     }
 }
