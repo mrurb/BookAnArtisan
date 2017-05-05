@@ -10,7 +10,7 @@ namespace BookAnArtisanMVC.Controllers
     public class ProjectsController : Controller
     {
         ProjectServiceClient pCl = new ProjectServiceClient();
-
+        ProjectSearchClient psCl = new ProjectSearchClient();
         // GET: Project
         public ActionResult Index()
         {
@@ -130,7 +130,16 @@ namespace BookAnArtisanMVC.Controllers
 
         public ActionResult ProjectSearch()
         {
-            return View();
+            var data = psCl.SearchByProjectAddress("a");
+            return View(data);
+            //return View(pCl.ReadAllProject());
+        }
+
+        [HttpPost, ActionName("ProjectSearch")]
+        public ActionResult ProjectSearch(Project projects) // maybe not list ... 
+        {
+            var data = psCl.SearchByProjectAddress("a");
+            return View(data);
         }
     }
 }

@@ -26,6 +26,7 @@
     <MetadataSource Address="http://localhost:8733/WCF/ProjectService/" Protocol="http" SourceId="3" />
     <MetadataSource Address="http://localhost:8733/WCF/RentingService/" Protocol="http" SourceId="4" />
     <MetadataSource Address="http://localhost:8733/WCF/UserService/" Protocol="http" SourceId="5" />
+    <MetadataSource Address="http://localhost:8733/WCF/ProjectSearch/" Protocol="http" SourceId="6" />
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="MaterialService.wsdl" MetadataType="Wsdl" ID="1875d3eb-0aac-4e85-b613-5e94765d55be" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?wsdl" />
@@ -53,6 +54,11 @@
     <MetadataFile FileName="UserService.wsdl" MetadataType="Wsdl" ID="4585457f-828b-4619-87eb-2515b3d152ee" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?wsdl" />
     <MetadataFile FileName="item13.xsd" MetadataType="Schema" ID="85cbfd90-b2d5-423e-bd03-5d320fb228ac" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd2" />
     <MetadataFile FileName="item14.xsd" MetadataType="Schema" ID="f9614db1-152c-4dc9-8880-e700179fa581" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd1" />
+    <MetadataFile FileName="item15.xsd" MetadataType="Schema" ID="5de9fcad-000a-4f00-9741-364b301e68bf" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?xsd=xsd0" />
+    <MetadataFile FileName="ProjectSearch.wsdl" MetadataType="Wsdl" ID="8d6e9a87-2f1d-4521-950d-c16e2b4e3363" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?wsdl" />
+    <MetadataFile FileName="item151.xsd" MetadataType="Schema" ID="bec5855a-c14a-4ff0-877b-3a1ae2ab24a5" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?xsd=xsd1" />
+    <MetadataFile FileName="item152.xsd" MetadataType="Schema" ID="9d7d61a1-2fe1-40a9-9730-55cd6ba901f3" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?xsd=xsd2" />
+    <MetadataFile FileName="item5.disco" MetadataType="Disco" ID="cd69591d-879b-46c2-8080-3f1354be8614" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
