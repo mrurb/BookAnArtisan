@@ -63,7 +63,7 @@ namespace BookAnArtisanMVC.Controllers
         // GET: Booking/Edit/5
         public ActionResult Edit(Booking mat)
         {
-            var data = ms.Read(mat);
+            var data = ms.ReadBooking(mat);
             return View(data);
         }
 
