@@ -13,14 +13,22 @@ namespace BookAnArtisanMVC.RentingServiceReference
     }
     public class BookingMetaData
     {
-        [Display(Name = "Booket Fra")]
+        [Required()]
+        /*[DisplayFormat(DataFormatString = "{0:d}")]*/
+        /*[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F}")]*/
+        [Display(Name = "Booket Fra", Order = -9)]
         public DateTime StartTime;
 
-        [Display(Name = "Booket Til")]
+        [Required()]
+        [Display(Name = "Booket Til", Order = -8)]
         public DateTime EndTime;
 
-        [Display(Name ="Slettet")]
+        [Display(Name = "Slettet", Order = -7)]
         public bool Deleted;
+        [Required()]
+        public User User { get; set; }
+        [Required()]
+        public Material item { get; set; }
 
     }
 
