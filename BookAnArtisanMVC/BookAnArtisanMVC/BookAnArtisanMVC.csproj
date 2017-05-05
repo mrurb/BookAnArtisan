@@ -424,6 +424,7 @@
     <Content Include="Views\Bookings\Index.cshtml" />
     <None Include="Service References\ServiceReference\RentingService.wsdl" />
     <None Include="Service References\ServiceReference\UserService.wsdl" />
+    <Content Include="Views\Projects\ProjectSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
