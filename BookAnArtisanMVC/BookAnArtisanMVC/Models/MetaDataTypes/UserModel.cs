@@ -32,3 +32,4 @@ namespace BookAnArtisanMVC.UserServiceReference
         public string LastName;
     }
 }
+
