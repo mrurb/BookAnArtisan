@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8733/WCF/MeetingService/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Model" />
-  <xs:element name="Create">
+  <xs:element name="CreateMeeting">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="t" nillable="true" type="q1:Meeting" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CreateResponse">
+  <xs:element name="CreateMeetingResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="CreateResult" nillable="true" type="q2:Meeting" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="CreateMeetingResult" nillable="true" type="q2:Meeting" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Read">
+  <xs:element name="ReadMeeting">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="t" nillable="true" type="q3:Meeting" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReadResponse">
+  <xs:element name="ReadMeetingResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadResult" nillable="true" type="q4:Meeting" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadMeetingResult" nillable="true" type="q4:Meeting" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Update">
+  <xs:element name="UpdateMeeting">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="t" nillable="true" type="q5:Meeting" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UpdateResponse">
+  <xs:element name="UpdateMeetingResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="UpdateResult" nillable="true" type="q6:Meeting" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="UpdateMeetingResult" nillable="true" type="q6:Meeting" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Delete">
+  <xs:element name="DeleteMeeting">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="t" nillable="true" type="q7:Meeting" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="DeleteResponse">
+  <xs:element name="DeleteMeetingResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="DeleteResult" nillable="true" type="q8:Meeting" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="DeleteMeetingResult" nillable="true" type="q8:Meeting" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReadAll">
+  <xs:element name="ReadAllMeeting">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReadAllResponse">
+  <xs:element name="ReadAllMeetingResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadAllResult" nillable="true" type="q9:ArrayOfMeeting" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadAllMeetingResult" nillable="true" type="q9:ArrayOfMeeting" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

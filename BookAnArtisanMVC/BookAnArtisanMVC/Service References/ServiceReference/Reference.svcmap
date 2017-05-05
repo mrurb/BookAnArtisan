@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c12ef404-d754-444a-bf0e-4975fd25d292" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/WCF/MaterialService/" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8733/WCF/MeetingService/" Protocol="http" SourceId="2" />
+    <MetadataSource Address="http://localhost:8733/WCF/ProjectService/" Protocol="http" SourceId="3" />
+    <MetadataSource Address="http://localhost:8733/WCF/RentingService/" Protocol="http" SourceId="4" />
+    <MetadataSource Address="http://localhost:8733/WCF/UserService/" Protocol="http" SourceId="5" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MaterialService.wsdl" MetadataType="Wsdl" ID="1875d3eb-0aac-4e85-b613-5e94765d55be" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?wsdl" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="307bc260-1412-4a84-9536-b823fdb8e321" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd2" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="be155fc3-422a-4d2e-a442-1fe7f0ae6a2c" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd0" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="ef2f8770-490f-4ccd-964e-9f5a185cbb2e" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?disco" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="b66ac18a-4300-4852-938b-a16355cf4c10" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd1" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="8dd08bfe-5b8d-438b-bd22-e15c54261eba" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd2" />
+    <MetadataFile FileName="MeetingService.wsdl" MetadataType="Wsdl" ID="3ca6f11d-0ef9-4d25-819e-49cfaeedbf77" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?wsdl" />
+    <MetadataFile FileName="item4.xsd" MetadataType="Schema" ID="eb758722-94b7-401c-ae17-d0c81d44768b" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd0" />
+    <MetadataFile FileName="item1.disco" MetadataType="Disco" ID="6c704f02-3b12-45a7-b1ee-744b77428e5a" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?disco" />
+    <MetadataFile FileName="item5.xsd" MetadataType="Schema" ID="5f3c4a21-e55d-4bbe-8628-f82e29b69799" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd1" />
+    <MetadataFile FileName="item2.disco" MetadataType="Disco" ID="c13016f8-d30c-43f6-b388-310242970171" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?disco" />
+    <MetadataFile FileName="item6.xsd" MetadataType="Schema" ID="d9c968d7-f181-4032-866a-c325d7125710" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd2" />
+    <MetadataFile FileName="item7.xsd" MetadataType="Schema" ID="f634a502-2060-4675-8138-dcfd6b9e8ee5" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd1" />
+    <MetadataFile FileName="ProjectService.wsdl" MetadataType="Wsdl" ID="ce0f2555-a876-4b96-a2e0-be0c6f106d0c" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?wsdl" />
+    <MetadataFile FileName="item8.xsd" MetadataType="Schema" ID="66701028-e9e4-4c5a-b82b-7f30cf52ac55" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd0" />
+    <MetadataFile FileName="item9.xsd" MetadataType="Schema" ID="c489473b-aa8d-450f-9fad-64996c45ef31" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd0" />
+    <MetadataFile FileName="RentingService.wsdl" MetadataType="Wsdl" ID="1eeb2c6e-1bd9-4279-a1d4-ff49f2763e11" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?wsdl" />
+    <MetadataFile FileName="item10.xsd" MetadataType="Schema" ID="35ce0017-e218-406d-b14b-432843c36ab9" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd1" />
+    <MetadataFile FileName="item11.xsd" MetadataType="Schema" ID="b0e1662f-bd2a-4177-a76c-d4ec43a89aea" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd2" />
+    <MetadataFile FileName="item3.disco" MetadataType="Disco" ID="530558ab-b1be-4b86-8b03-6b8a417c83a2" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?disco" />
+    <MetadataFile FileName="item4.disco" MetadataType="Disco" ID="4989cca4-f65b-4625-b71f-3ad1364dd83e" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?disco" />
+    <MetadataFile FileName="item12.xsd" MetadataType="Schema" ID="3d95791d-36f7-4442-9f0c-9e6438c26a88" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd0" />
+    <MetadataFile FileName="UserService.wsdl" MetadataType="Wsdl" ID="4585457f-828b-4619-87eb-2515b3d152ee" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?wsdl" />
+    <MetadataFile FileName="item13.xsd" MetadataType="Schema" ID="85cbfd90-b2d5-423e-bd03-5d320fb228ac" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd2" />
+    <MetadataFile FileName="item14.xsd" MetadataType="Schema" ID="f9614db1-152c-4dc9-8880-e700179fa581" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -195,7 +195,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\MaterialServiceReference\Reference.cs">
+    <Compile Include="Service References\ServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -287,74 +287,80 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <Content Include="Service References\MaterialServiceReference\BookAnArtisanMVC.MaterialServiceReference.Material.datasource">
+    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\MaterialServiceReference\BookAnArtisanMVC.MaterialServiceReference.User.datasource">
+    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.Booking.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\MaterialServiceReference\BookAnArtisanMVC.MaterialServiceReference.Meeting.datasource">
+    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.Material.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\MaterialServiceReference\item.disco" />
-    <None Include="Service References\MaterialServiceReference\configuration91.svcinfo" />
-    <None Include="Service References\MaterialServiceReference\configuration.svcinfo" />
-    <None Include="Service References\MaterialServiceReference\item3.xsd">
+    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.Meeting.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.Project.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReference\configuration.svcinfo" />
+    <None Include="Service References\ServiceReference\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MaterialServiceReference\item31.xsd">
+    <None Include="Service References\ServiceReference\item1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MaterialServiceReference\item32.xsd">
+    <None Include="Service References\ServiceReference\item10.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MaterialServiceReference\item33.xsd">
+    <None Include="Service References\ServiceReference\item11.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MaterialServiceReference\item34.xsd">
+    <None Include="Service References\ServiceReference\item12.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MaterialServiceReference\item35.xsd">
+    <None Include="Service References\ServiceReference\item13.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MaterialServiceReference\item36.xsd">
+    <None Include="Service References\ServiceReference\item14.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MaterialServiceReference\item37.xsd">
+    <None Include="Service References\ServiceReference\item2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MaterialServiceReference\item38.xsd">
+    <None Include="Service References\ServiceReference\item3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MaterialServiceReference\item4.xsd">
+    <None Include="Service References\ServiceReference\item4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MaterialServiceReference\item41.xsd">
+    <None Include="Service References\ServiceReference\item5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MaterialServiceReference\item42.xsd">
+    <None Include="Service References\ServiceReference\item6.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MaterialServiceReference\MeetingService.wsdl" />
-    <None Include="Service References\MaterialServiceReference\ProjectService.wsdl" />
-    <None Include="Service References\MaterialServiceReference\Reference.svcmap">
+    <None Include="Service References\ServiceReference\item7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\MaterialService.wsdl" />
+    <None Include="Service References\ServiceReference\MeetingService.wsdl" />
+    <None Include="Service References\ServiceReference\ProjectService.wsdl" />
+    <None Include="Service References\ServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\MaterialServiceReference\item.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MaterialServiceReference\item1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MaterialServiceReference\item2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MaterialServiceReference\MaterialService.wsdl" />
-    <None Include="Service References\MaterialServiceReference\item2.disco" />
-    <None Include="Service References\MaterialServiceReference\item1.disco" />
-    <None Include="Service References\MaterialServiceReference\item11.disco" />
-    <None Include="Service References\MaterialServiceReference\item12.disco" />
+    <None Include="Service References\ServiceReference\item.disco" />
+    <None Include="Service References\ServiceReference\item1.disco" />
+    <None Include="Service References\ServiceReference\item2.disco" />
+    <None Include="Service References\ServiceReference\item3.disco" />
+    <None Include="Service References\ServiceReference\item4.disco" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -416,8 +422,8 @@
     <Content Include="Views\Bookings\Edit.cshtml" />
     <Content Include="Views\Bookings\Details.cshtml" />
     <Content Include="Views\Bookings\Index.cshtml" />
-    <None Include="Service References\MaterialServiceReference\RentingService.wsdl" />
-    <None Include="Service References\MaterialServiceReference\UserService.wsdl" />
+    <None Include="Service References\ServiceReference\RentingService.wsdl" />
+    <None Include="Service References\ServiceReference\UserService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -431,7 +437,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\MaterialServiceReference\" />
+    <WCFMetadataStorage Include="Service References\ServiceReference\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

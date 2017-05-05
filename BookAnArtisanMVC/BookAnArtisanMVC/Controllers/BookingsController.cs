@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BookAnArtisanMVC.RentingServiceReference;
+using BookAnArtisanMVC.ServiceReference;
 
 namespace BookAnArtisanMVC.Controllers
 {
@@ -23,6 +23,7 @@ namespace BookAnArtisanMVC.Controllers
     }
     public class BookingsController : Controller
     {
+
         RentingServiceClient ms = new RentingServiceClient();
         // GET: Booking
         public ActionResult Index()
