@@ -14,11 +14,11 @@ namespace WCF
     public class ProjectSearch : IProjectSearch
     {
         ProjectController pc = new ProjectController();
-
+        /*
         public IList<Project> SearchByTag(string search_tag)
         {
             return pc.SearchByTag(search_tag);
-        }
+        }*/
 
         public IList<Project> SearchByProjectAddress(Project p)
         {

@@ -42,10 +42,11 @@ namespace BLL
         {
             return db.ReadAllForUser(user);
         }
+        /*
         public List<Project> SearchByTag(string search_tag)
         {
             return dba.SearchByTag(search_tag);
-        }
+        }*/
 
         public List<Project> SearchByProjectAddress(Project p)
         {

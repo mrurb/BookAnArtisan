@@ -51,6 +51,7 @@ namespace DAL
          * @params search_tag a string search term searching for tags
          * @returns projects a list of projects of which contains the tag searched for
          */
+         /*
         public List<Project> SearchByTag(string search_tag)
         {
             List<Project> results = new List<Project>();
@@ -87,7 +88,7 @@ namespace DAL
                 AppendTags(item);
             }
             return results;
-        }
+        }*/
 
         /*
          * Private function: append all the tags of a given project by sweeping the database.
@@ -135,7 +136,6 @@ namespace DAL
         {
             List<Project> results = new List<Project>();
             List<User> artisans = new List<User>();
-            User client = null;
             List<string> tags = new List<string>();
             string query = "SELECT projects.id, projects.name pname, artisan.FirstName afirstname, client.FirstName cfirstname, Tags.Name tag FROM projects JOIN AspNetUsers client ON projects.Created_by_ID = client.Id JOIN AspNetUsers artisan ON projects.Contact_ID = artisan.id JOIN project_status ON project_status.id = projects.id JOIN Project_tags ON project_tags.Project_ID = projects.ID JOIN Tags ON Tags.ID = project_tags.Tag_ID WHERE street_name LIKE @address OR projects.name LIKE @name OR project_status.name LIKE @status";
             SqlParameter[] arrayofparams =
@@ -173,7 +173,7 @@ namespace DAL
                                 p.Contact = new User { FirstName = datareader["afirstname"].ToString(), LastName = datareader["alastname"].ToString() };
                                 p.Name = datareader["pname"].ToString();
                                 results.Add(p);
-                                AppendTags(p);
+                                //AppendTags(p); can I do this??
                             }
                         }
                     }
