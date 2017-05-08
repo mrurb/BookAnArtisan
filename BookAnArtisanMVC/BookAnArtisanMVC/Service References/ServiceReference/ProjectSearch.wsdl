@@ -7,18 +7,6 @@
       <xsd:import schemaLocation="http://localhost:8733/WCF/ProjectSearch/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Model" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IProjectSearch_SearchByTag_InputMessage">
-    <wsdl:part name="parameters" element="tns:SearchByTag" />
-  </wsdl:message>
-  <wsdl:message name="IProjectSearch_SearchByTag_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SearchByTagResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProjectSearch_SearchByProjectUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:SearchByProjectUser" />
-  </wsdl:message>
-  <wsdl:message name="IProjectSearch_SearchByProjectUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SearchByProjectUserResponse" />
-  </wsdl:message>
   <wsdl:message name="IProjectSearch_SearchByProjectAddress_InputMessage">
     <wsdl:part name="parameters" element="tns:SearchByProjectAddress" />
   </wsdl:message>
@@ -26,14 +14,6 @@
     <wsdl:part name="parameters" element="tns:SearchByProjectAddressResponse" />
   </wsdl:message>
   <wsdl:portType name="IProjectSearch">
-    <wsdl:operation name="SearchByTag">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProjectSearch/SearchByTag" message="tns:IProjectSearch_SearchByTag_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProjectSearch/SearchByTagResponse" message="tns:IProjectSearch_SearchByTag_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SearchByProjectUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProjectSearch/SearchByProjectUser" message="tns:IProjectSearch_SearchByProjectUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProjectSearch/SearchByProjectUserResponse" message="tns:IProjectSearch_SearchByProjectUser_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="SearchByProjectAddress">
       <wsdl:input wsaw:Action="http://tempuri.org/IProjectSearch/SearchByProjectAddress" message="tns:IProjectSearch_SearchByProjectAddress_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProjectSearch/SearchByProjectAddressResponse" message="tns:IProjectSearch_SearchByProjectAddress_OutputMessage" />
@@ -41,24 +21,6 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IProjectSearch" type="tns:IProjectSearch">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="SearchByTag">
-      <soap:operation soapAction="http://tempuri.org/IProjectSearch/SearchByTag" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SearchByProjectUser">
-      <soap:operation soapAction="http://tempuri.org/IProjectSearch/SearchByProjectUser" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="SearchByProjectAddress">
       <soap:operation soapAction="http://tempuri.org/IProjectSearch/SearchByProjectAddress" style="document" />
       <wsdl:input>

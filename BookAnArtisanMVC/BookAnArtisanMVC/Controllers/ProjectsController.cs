@@ -132,7 +132,9 @@ namespace BookAnArtisanMVC.Controllers
 
         public ActionResult ProjectSearch()
         {
-            var data = _psCl.SearchByProjectAddress("a");
+            Project p = new Project();
+            p.Name = "a";
+            var data = _psCl.SearchByProjectAddress(p);
             return View(data);
             //return View(pCl.ReadAllProject());
         }
@@ -140,7 +142,9 @@ namespace BookAnArtisanMVC.Controllers
         [HttpPost, ActionName("ProjectSearch")]
         public ActionResult ProjectSearch(Project projects) // maybe not list ... 
         {
-            var data = _psCl.SearchByProjectAddress("a");
+            Project p = new Project();
+            p.Name = "a";
+            var data = _psCl.SearchByProjectAddress(p);
             return View(data);
         }
 

@@ -149,7 +149,7 @@ namespace DAL
                 query += " OR client.UserName LIKE @contact OR artisan.UserName LIKE @contact";
                 arrayofparams[arrayofparams.Length] = new SqlParameter { ParameterName = "@contact", SqlValue = "%" + pinput.Contact + "%", SqlDbType = SqlDbType.NVarChar };
             }
-            if (pinput.Tags.Count > 0)
+            if (pinput.Tags != null)
             {
                 query += " OR Tags.name LIKE @tag";
                 arrayofparams[arrayofparams.Length] = new SqlParameter { ParameterName = "@tag", SqlValue = "%" + pinput.Tags[0] + "%", SqlDbType = SqlDbType.NVarChar };
@@ -165,15 +165,19 @@ namespace DAL
                         con.Open();
                         using (SqlDataReader datareader = sqlcommand.ExecuteReader())
                         {
-                            while (datareader.Read())
+                            if (datareader.HasRows)
                             {
-                                Project p = new Project();
-                                p.Id = (int)datareader["id"];
-                                p.CreatedBy = new User { FirstName = datareader["cfirstname"].ToString(), LastName = datareader["clastname"].ToString() };
-                                p.Contact = new User { FirstName = datareader["afirstname"].ToString(), LastName = datareader["alastname"].ToString() };
-                                p.Name = datareader["pname"].ToString();
-                                results.Add(p);
-                                //AppendTags(p); can I do this??
+                                while (datareader.Read())
+                                {
+                                    Project p = new Project();
+                                    p.Id = (int)datareader["id"];
+                                    p.CreatedBy = new User { FirstName = datareader["cfirstname"].ToString() };
+                                    p.Contact = new User { FirstName = datareader["afirstname"].ToString() };
+                                    p.Name = datareader["pname"].ToString();
+                                    results.Add(p);
+                                    //AppendTags(p); can I do this??
+                                }
+
                             }
                         }
                     }
