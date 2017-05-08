@@ -72,7 +72,7 @@ namespace BookAnArtisanMVC.Controllers
 
         [HttpPost]
         public JsonResult SearchByName(string name)
-       {
+        {
             return Json(uCl.SearchByName(name), JsonRequestBehavior.AllowGet);
         }
     }

@@ -93,5 +93,10 @@ namespace BookAnArtisanMVC.Controllers
         {
             throw new NotImplementedException();
         }
+        [HttpPost]
+        public JsonResult SearchByName(string name)
+        {
+            return Json(ms.Search(name), JsonRequestBehavior.AllowGet);
+        }
     }
 }
