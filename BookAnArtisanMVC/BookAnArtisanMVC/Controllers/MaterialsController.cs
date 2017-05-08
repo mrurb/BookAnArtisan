@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BookAnArtisanMVC.ServiceReference;
+using Microsoft.AspNet.Identity;
 
 namespace BookAnArtisanMVC.Controllers
 {
@@ -89,14 +90,17 @@ namespace BookAnArtisanMVC.Controllers
             }
         }
 
-        public ActionResult MyMaterials()
-        {
-            throw new NotImplementedException();
-        }
         [HttpPost]
         public JsonResult SearchByName(string name)
         {
             return Json(ms.Search(name), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult MyMaterials(User user)
+        {
+            user.Id = HttpContext.User.Identity.GetUserId();
+            var data = ms.ReadAllMaterialsForUser(user);
+            return View(data);
         }
     }
 }

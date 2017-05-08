@@ -25,5 +25,7 @@ namespace WCF
         List<Material> ReadAllMaterial();
         [OperationContract]
         IList<Material> Search(string name);
+        [OperationContract]
+        List<Material> ReadAllMaterialsForUser(User user);
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BookAnArtisanMVC.ServiceReference;
+using Microsoft.AspNet.Identity;
 
 namespace BookAnArtisanMVC.Controllers
 {
@@ -144,7 +145,7 @@ namespace BookAnArtisanMVC.Controllers
 
         public ActionResult MyProjects(User user)
         {
-            user.Id = "2083af25-f483-4a02-a62b-71c198147c84";
+            user.Id = HttpContext.User.Identity.GetUserId();
             var data = _pCl.ReadAllProjectsForUser(user);
             return View(data);
         }

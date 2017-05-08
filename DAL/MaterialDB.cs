@@ -48,6 +48,38 @@ namespace DAL
             return t;
         }
 
+        public List<Material> ReadAllForUser(User user)
+        {
+            string sql = "SELECT Materials_Unique.ID, Materials_Unique.Name, Materials_Unique.Description, Materials_Unique.Condition, Materials_Unique.Deleted, Materials_Unique.Available, AspNetUsers.UserName OwnerUserName, Materials_Unique.OwnerID FROM Materials_Unique JOIN AspNetUsers ON OwnerID = AspNetUsers.Id WHERE AspNetUsers.Id = @id";
+            List<Material> materials = new List<Material>();
+            SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = user.Id, SqlDbType = SqlDbType.NVarChar };
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.Add(theparam);
+                    command.Connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            materials.Add(new Material
+                            {
+                                Id = (int)reader["Id"],
+                                Owner = new User { Id = reader["OwnerID"].ToString(), UserName = reader["OwnerUserName"].ToString() },
+                                Name = reader["Name"].ToString(),
+                                Description = reader["Description"].ToString(),
+                                Condition = reader["Condition"].ToString(),
+                                Available = (bool)reader["Available"],
+                                Deleted = (bool)reader["Deleted"]
+                            });
+                        }
+                    }
+                }
+            }
+            return materials;
+        }
+
         public Material Delete(Material t)
         {
             string sql = "UPDATE Materials_Unique SET Deleted = 1 WHERE id = @id";
@@ -163,7 +195,7 @@ namespace DAL
         {
             IList<Material> list = new List<Material>();
 
-            string sql = "SELECT Materials_Unique.ID, Materials_Unique.Name, Materials_Unique.Description, Materials_Unique.Condition, Materials_Unique.Deleted, Materials_Unique.Available, AspNetUsers.UserName, Materials_Unique.OwnerID FROM Materials_Unique JOIN AspNetUsers ON OwnerID = AspNetUsers.Id WHERE Name LIKE '%' + @name + '%' OR Description LIKE '%' + @name + '%'";
+            string sql = "SELECT Materials_Unique.ID, Materials_Unique.Name, Materials_Unique.Description, Materials_Unique.Condition, Materials_Unique.Deleted, Materials_Unique.Available, AspNetUsers.UserName FROM Materials_Unique JOIN AspNetUsers ON OwnerID = AspNetUsers.Id WHERE Name LIKE '%' + @name + '%' OR Tags LIKE '%' + @name + '%' OR Description LIKE '%' + @name + '%' OR Condition LIKE '%' + @name + '%'";
 
             SqlParameter searchParams = new SqlParameter { ParameterName = "@name", SqlValue = name, SqlDbType = SqlDbType.NVarChar };
 
@@ -182,7 +214,7 @@ namespace DAL
                                 new Material
                                 {
                                     Id = (int)reader["ID"],
-                                    Owner = new User { Id = reader["OwnerID"].ToString() },
+                                    Owner = new User { Id = reader["OwnerId"].ToString() },
                                     Name = reader["Name"].ToString(),
                                     Description = reader["Description"].ToString(),
                                     Condition = reader["Condition"].ToString(),

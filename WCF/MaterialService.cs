@@ -40,5 +40,10 @@ namespace WCF
         {
             return mc.Update(t);
         }
+
+        public List<Material> ReadAllMaterialsForUser(User user)
+        {
+            return mc.ReadAllForUser(user);
+        }
     }
 }

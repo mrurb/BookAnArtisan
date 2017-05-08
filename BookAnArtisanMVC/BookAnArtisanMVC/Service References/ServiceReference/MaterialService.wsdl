@@ -43,6 +43,12 @@
   <wsdl:message name="IMaterialService_Search_OutputMessage">
     <wsdl:part name="parameters" element="tns:SearchResponse" />
   </wsdl:message>
+  <wsdl:message name="IMaterialService_ReadAllMaterialsForUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadAllMaterialsForUser" />
+  </wsdl:message>
+  <wsdl:message name="IMaterialService_ReadAllMaterialsForUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadAllMaterialsForUserResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMaterialService">
     <wsdl:operation name="CreateMaterial">
       <wsdl:input wsaw:Action="http://tempuri.org/IMaterialService/CreateMaterial" message="tns:IMaterialService_CreateMaterial_InputMessage" />
@@ -67,6 +73,10 @@
     <wsdl:operation name="Search">
       <wsdl:input wsaw:Action="http://tempuri.org/IMaterialService/Search" message="tns:IMaterialService_Search_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMaterialService/SearchResponse" message="tns:IMaterialService_Search_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadAllMaterialsForUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMaterialService/ReadAllMaterialsForUser" message="tns:IMaterialService_ReadAllMaterialsForUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMaterialService/ReadAllMaterialsForUserResponse" message="tns:IMaterialService_ReadAllMaterialsForUser_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMaterialService" type="tns:IMaterialService">
@@ -118,6 +128,15 @@
     </wsdl:operation>
     <wsdl:operation name="Search">
       <soap:operation soapAction="http://tempuri.org/IMaterialService/Search" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadAllMaterialsForUser">
+      <soap:operation soapAction="http://tempuri.org/IMaterialService/ReadAllMaterialsForUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

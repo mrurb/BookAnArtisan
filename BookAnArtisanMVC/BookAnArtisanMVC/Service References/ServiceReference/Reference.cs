@@ -965,6 +965,12 @@ namespace BookAnArtisanMVC.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/Search", ReplyAction="http://tempuri.org/IMaterialService/SearchResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Material>> SearchAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadAllMaterialsForUser", ReplyAction="http://tempuri.org/IMaterialService/ReadAllMaterialsForUserResponse")]
+        System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Material> ReadAllMaterialsForUser(BookAnArtisanMVC.ServiceReference.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadAllMaterialsForUser", ReplyAction="http://tempuri.org/IMaterialService/ReadAllMaterialsForUserResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Material>> ReadAllMaterialsForUserAsync(BookAnArtisanMVC.ServiceReference.User user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1040,6 +1046,14 @@ namespace BookAnArtisanMVC.ServiceReference {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Material>> SearchAsync(string name) {
             return base.Channel.SearchAsync(name);
+        }
+        
+        public System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Material> ReadAllMaterialsForUser(BookAnArtisanMVC.ServiceReference.User user) {
+            return base.Channel.ReadAllMaterialsForUser(user);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Material>> ReadAllMaterialsForUserAsync(BookAnArtisanMVC.ServiceReference.User user) {
+            return base.Channel.ReadAllMaterialsForUserAsync(user);
         }
     }
     

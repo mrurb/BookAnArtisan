@@ -42,5 +42,10 @@ namespace BLL
         {
             return mdb.SearchMaterials(name);
         }
+
+        public List<Material> ReadAllForUser(User user)
+        {
+            return mdb.ReadAllForUser(user);
+        }
     }
 }
