@@ -68,7 +68,7 @@ namespace DAL
 
         public Material Read(Material t)
         {
-            string sql = "SELECT * FROM Materials_Unique WHERE id = @id";
+            string sql = "SELECT Materials_Unique.ID, Materials_Unique.Name, Materials_Unique.Description, Materials_Unique.Condition, Materials_Unique.Deleted, Materials_Unique.Available, AspNetUsers.UserName OwnerUserName, Materials_Unique.OwnerID FROM Materials_Unique JOIN AspNetUsers ON OwnerID = AspNetUsers.Id WHERE Materials_Unique.ID = @id";
             Material material = null;
             SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int };
             using (SqlConnection connection = new SqlConnection(connectionstring))
@@ -84,7 +84,7 @@ namespace DAL
                             material = new Material
                             {
                                 Id = (int)reader["Id"],
-                                Owner = new User { Id = reader["OwnerId"].ToString() },
+                                Owner = new User { Id = reader["OwnerID"].ToString(), UserName = reader["OwnerUserName"].ToString() },
                                 Name = reader["Name"].ToString(),
                                 Description = reader["Description"].ToString(),
                                 Condition = reader["Condition"].ToString(),
@@ -102,7 +102,7 @@ namespace DAL
         {
             List<Material> materials = new List<Material>();
 
-            string sql = "SELECT Materials_Unique.ID, Materials_Unique.Name, Materials_Unique.Description, Materials_Unique.Condition, Materials_Unique.Deleted, Materials_Unique.Available, AspNetUsers.UserName FROM Materials_Unique JOIN AspNetUsers ON OwnerID = AspNetUsers.Id";
+            string sql = "SELECT Materials_Unique.ID, Materials_Unique.Name, Materials_Unique.Description, Materials_Unique.Condition, Materials_Unique.Deleted, Materials_Unique.Available, AspNetUsers.UserName OwnerUserName, Materials_Unique.OwnerID FROM Materials_Unique JOIN AspNetUsers ON OwnerID = AspNetUsers.Id";
 
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
@@ -116,7 +116,7 @@ namespace DAL
                             materials.Add(new Material
                             {
                                 Id = (int)reader["Id"],
-                                Owner = new User { Id = reader["UserName"].ToString() },
+                                Owner = new User { Id = reader["OwnerID"].ToString(), UserName = reader["OwnerUserName"].ToString() },
                                 Name = reader["Name"].ToString(),
                                 Description = reader["Description"].ToString(),
                                 Condition = reader["Condition"].ToString(),
