@@ -428,13 +428,13 @@
     <Content Include="Views\Materials\Details.cshtml" />
     <Content Include="Views\Bookings\Create.cshtml" />
     <Content Include="Views\Bookings\Delete.cshtml" />
-    <Content Include="Views\Bookings\Edit.cshtml" />
     <Content Include="Views\Bookings\Details.cshtml" />
     <Content Include="Views\Bookings\Index.cshtml" />
     <None Include="Service References\ServiceReference\RentingService.wsdl" />
     <None Include="Service References\ServiceReference\UserService.wsdl" />
     <Content Include="Views\Projects\ProjectSearch.cshtml" />
     <Content Include="Views\Bookings\MyBooking.cshtml" />
+    <Content Include="Views\Bookings\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

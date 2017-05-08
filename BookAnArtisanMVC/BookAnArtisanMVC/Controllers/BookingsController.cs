@@ -9,8 +9,7 @@ namespace BookAnArtisanMVC.Controllers
 {
     public class BookingsController : Controller
     {
-
-        RentingServiceClient ms = new RentingServiceClient();
+        private RentingServiceClient ms = new RentingServiceClient();
         // GET: Booking
         public ActionResult Index()
         {

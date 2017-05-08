@@ -15,7 +15,7 @@ namespace DAL
         static string connectionstring = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
         public Booking Create(Booking t)
         {
-            SqlParameter[] ArrayOfParams =
+            SqlParameter[] arrayOfParams =
             {
                 new SqlParameter { ParameterName = "@starttime", SqlValue = t.StartTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@endtime", SqlValue = t.EndTime, SqlDbType = SqlDbType.DateTime },
@@ -25,41 +25,32 @@ namespace DAL
             SqlConnection con = new SqlConnection(connectionstring);
             string query = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Deleted = 0) BEGIN INSERT INTO Bookings(StartTime, EndTime, UserID, MaterialID) VALUES(@starttime, @endtime, @userID, @materialID) END";
             SqlCommand sqlcommand = new SqlCommand(query, con);
-            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadCommitted);
-            sqlcommand.Transaction = myTrans;
-            sqlcommand.Parameters.AddRange(ArrayOfParams);
+
+
             try
             {
+
                 con.Open();
-                int rowsaffected = sqlcommand.ExecuteNonQuery();
-                if(rowsaffected < 1)
+                SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadCommitted);
+                sqlcommand.Transaction = myTrans;
+                sqlcommand.Parameters.AddRange(arrayOfParams);
+                var rowsaffected = sqlcommand.ExecuteNonQuery();
+                if (rowsaffected < 1)
                 {
                     con.Close();
                     throw new Exception();
                 }
                 myTrans.Commit();
             }
-                catch (Exception)
-                {
-                    try
-                    {
-                        myTrans.Rollback();
-                    }
-                    catch (SqlException)
-                    {
-                        //rollback failed
-                        throw new Exception();
-                    }
-                finally
-                {
-                    con.Close();
-                }
-                    //transaction failed
-                }
-                finally
-                {
-                    con.Close();
-                }
+            catch (Exception)
+            {
+                con.Close();
+                throw new Exception();
+            }
+            finally
+            {
+                con.Close();
+            }
             return t;
         }
 
@@ -175,23 +166,25 @@ namespace DAL
 
         public Booking Update(Booking t)
         {
-            string sql = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Deleted = 0) BEGIN UPDATE Bookings SET StartTime = @starttime, EndTime = @endtime, UserID = @userID, Deleted = @deleted END";
+            string sql = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Deleted = 0) AND id <> @id BEGIN UPDATE Bookings SET StartTime = @starttime, EndTime = @endtime, UserID = @userID, Deleted = @deleted END";
             SqlParameter[] sqlparams =
             {
                 new SqlParameter { ParameterName = "@userID", SqlValue = t.User.Id, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@starttime", SqlValue = t.StartTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@endtime", SqlValue = t.EndTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@materialID", SqlValue = t.item.Id, SqlDbType = SqlDbType.Int },
-                new SqlParameter { ParameterName = "@deleted", SqlValue = t.Deleted, SqlDbType = SqlDbType.Bit }
+                new SqlParameter { ParameterName = "@deleted", SqlValue = t.Deleted, SqlDbType = SqlDbType.Bit },
+                new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int }
             };
             SqlConnection con = new SqlConnection(connectionstring);
-            SqlCommand sqlcommand = new SqlCommand(sql, con);
-            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadCommitted);
-            sqlcommand.Transaction = myTrans;
-            sqlcommand.Parameters.AddRange(sqlparams);
+            
             try
             {
-                sqlcommand.Connection.Open();
+                SqlCommand sqlcommand = new SqlCommand(sql, con);
+                SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadCommitted);
+                sqlcommand.Transaction = myTrans;
+                sqlcommand.Parameters.AddRange(sqlparams);
+                con.Open();
                 int rowsaffected = sqlcommand.ExecuteNonQuery();
                 if (rowsaffected < 1)
                 {
@@ -202,20 +195,8 @@ namespace DAL
             }
             catch (Exception)
             {
-                try
-                {
-                    myTrans.Rollback();
-                }
-                catch (SqlException)
-                {
-                    //rollback failed
-                    throw new Exception();
-                }
-                finally
-                {
-                    con.Close();
-                }
-                //transaction failed
+                throw new Exception();
+
             }
             finally
             {
