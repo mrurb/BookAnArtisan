@@ -187,9 +187,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\MetaDataTypes\BookingModel.cs" />
-    <Compile Include="Models\MetaDataTypes\MaterialModel.cs" />
-    <Compile Include="Models\MetaDataTypes\UserModel.cs" />
+    <Compile Include="Models\MetaDataTypes\MetaModels.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
