@@ -214,7 +214,7 @@ namespace DAL
                                 new Material
                                 {
                                     Id = (int)reader["ID"],
-                                    Owner = new User { Id = reader["OwnerId"].ToString() },
+                                    Owner = new User { Id = reader["UserName"].ToString() },
                                     Name = reader["Name"].ToString(),
                                     Description = reader["Description"].ToString(),
                                     Condition = reader["Condition"].ToString(),
