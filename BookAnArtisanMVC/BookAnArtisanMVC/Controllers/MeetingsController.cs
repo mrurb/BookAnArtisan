@@ -10,7 +10,7 @@ namespace BookAnArtisanMVC.Controllers
 {
     public class MeetingsController : Controller
     {
-        MeetingServiceClient pCl = new MeetingServiceClient();
+        private MeetingServiceClient pCl = new MeetingServiceClient();
 
         // GET: Project
         public ActionResult Index()

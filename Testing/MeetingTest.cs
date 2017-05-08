@@ -57,8 +57,8 @@ namespace Testing
                     Description = "my descriptions!!",
                     StartTime = DateTime.Now,
                     EndTime = DateTime.Now,
-                    CreatedById = "2083af25-f483-4a02-a62b-71c198147c84",
-                    ContactId = "2083af25-f483-4a02-a62b-71c198147c84",
+                    CreatedBy =  new User() {Id = "2083af25-f483-4a02-a62b-71c198147c84"},
+                    Contact = new User() {Id = "2083af25-f483-4a02-a62b-71c198147c84"},
                     Deleted = false
                 };
             }
@@ -86,8 +86,8 @@ namespace Testing
         [TestMethod]
         public void TestCreateMeeting()
         {
-            ms.Create(m);
-            Meeting m1 = ms.Read(m);
+            ms.CreateMeeting(m);
+            Meeting m1 = ms.ReadMeeting(m);
             Assert.AreEqual(m, m1);
         }
 
@@ -95,28 +95,28 @@ namespace Testing
         public void TestUpdateMeeting()
         {
             m.Title = $"last tested: {DateTime.Now}";
-            ms.Update(m);
-            Meeting m1 = ms.Read(m);
+            ms.UpdateMeeting(m);
+            Meeting m1 = ms.ReadMeeting(m);
             Assert.AreEqual(m, m1);
         }
 
         [TestMethod]
         public void TestReadMeeting()
         {
-            Meeting m1 = ms.Read(m);
+            Meeting m1 = ms.ReadMeeting(m);
             Assert.AreEqual(m, m1);
         }
 
         [TestMethod]
         public void TestDeleteMeeting()
         {
-            Assert.AreEqual(ms.Delete(m), null);
+            Assert.AreEqual(ms.DeleteMeeting(m), null);
         }
 
         [TestMethod]
         public void TestReadAllMeeting()
         {
-            List<Meeting> list = ms.ReadAll();
+            List<Meeting> list = ms.ReadAllMeeting();
             Assert.IsNotNull(list);
             if (list.Count == 0)
             {

@@ -9,20 +9,20 @@ namespace BookAnArtisanMVC.Controllers
 {
     public class ProjectsController : Controller
     {
-        ProjectServiceClient pCl = new ProjectServiceClient();
-        ProjectSearchClient psCl = new ProjectSearchClient();
+        ProjectServiceClient _pCl = new ProjectServiceClient();
+        ProjectSearchClient _psCl = new ProjectSearchClient();
         // GET: Project
         public ActionResult Index()
         {
             try
             {
-                var data = pCl.ReadAllProject();
-                pCl.Close();
+                var data = _pCl.ReadAllProject();
+                _pCl.Close();
                 return View(data);
             }
             catch (Exception)
             {
-                pCl.Abort();
+                _pCl.Abort();
                 return View("NoResponseFromServer");
                 //return new HttpStatusCodeResult(404, "Item Not Found");
             }
@@ -33,13 +33,13 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.ReadProject(project);
-                pCl.Close();
+                var data = _pCl.ReadProject(project);
+                _pCl.Close();
                 return View(data);
             }
             catch (Exception)
             {
-                pCl.Abort();
+                _pCl.Abort();
                 throw;
             }
         }
@@ -56,7 +56,7 @@ namespace BookAnArtisanMVC.Controllers
             try
             {
                 // TODO: Add insert logic here
-                pCl.CreateProject(project);
+                _pCl.CreateProject(project);
                 return RedirectToAction("Index");
             }
             catch
@@ -70,13 +70,13 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.ReadProject(project);
-                pCl.Close();
+                var data = _pCl.ReadProject(project);
+                _pCl.Close();
                 return View(data);
             }
             catch (Exception)
             {
-                pCl.Abort();
+                _pCl.Abort();
                 throw;
             }
         }
@@ -88,7 +88,7 @@ namespace BookAnArtisanMVC.Controllers
             try
             {
                 // TODO: Add update logic here
-                pCl.UpdateProject(project);
+                _pCl.UpdateProject(project);
                 return RedirectToAction("Index");
             }
             catch
@@ -102,13 +102,13 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.ReadProject(project);
-                pCl.Close();
+                var data = _pCl.ReadProject(project);
+                _pCl.Close();
                 return View(data);
             }
             catch (Exception)
             {
-                pCl.Abort();
+                _pCl.Abort();
                 throw;
             }
         }
@@ -119,7 +119,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                pCl.DeleteProject(project);
+                _pCl.DeleteProject(project);
                 return RedirectToAction("Index");
             }
             catch
@@ -130,7 +130,7 @@ namespace BookAnArtisanMVC.Controllers
 
         public ActionResult ProjectSearch()
         {
-            var data = psCl.SearchByProjectAddress("a");
+            var data = _psCl.SearchByProjectAddress("a");
             return View(data);
             //return View(pCl.ReadAllProject());
         }
@@ -138,8 +138,13 @@ namespace BookAnArtisanMVC.Controllers
         [HttpPost, ActionName("ProjectSearch")]
         public ActionResult ProjectSearch(Project projects) // maybe not list ... 
         {
-            var data = psCl.SearchByProjectAddress("a");
+            var data = _psCl.SearchByProjectAddress("a");
             return View(data);
+        }
+
+        public ActionResult MyProjects()
+        {
+            throw new NotImplementedException();
         }
     }
 }

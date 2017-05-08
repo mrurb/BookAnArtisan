@@ -89,5 +89,10 @@ namespace BookAnArtisanMVC.Controllers
                 return View();
             }
         }
+
+        public ActionResult MyBooking(User user)
+        {
+            return View(ms.ReadAllBooking());
+        }
     }
 }

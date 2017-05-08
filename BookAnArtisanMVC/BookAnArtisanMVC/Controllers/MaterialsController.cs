@@ -88,5 +88,10 @@ namespace BookAnArtisanMVC.Controllers
                 return View();
             }
         }
+
+        public ActionResult MyMaterials()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
