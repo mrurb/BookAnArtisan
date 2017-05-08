@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Contact.UserName)
+            @Html.DisplayName("Kontakt")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedBy.UserName)
+            @Html.DisplayName("Oprettet af")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Deleted)
@@ -38,7 +38,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Contact)
+            @Html.DisplayFor(modelItem => item.Contact.UserName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CreatedBy.UserName)

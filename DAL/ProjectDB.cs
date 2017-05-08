@@ -35,23 +35,22 @@ namespace DAL
                 new SqlParameter { ParameterName = "@Modified", SqlValue = project.Modified, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@Deleted", SqlValue = Convert.ToInt32(project.Deleted), SqlDbType = SqlDbType.Bit }
             };
-            
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
                     command.Parameters.AddRange(arrayOfParameters);
                     command.Connection.Open();
-                    // Add exceptionhandling
                     project.Id = Convert.ToInt32(command.ExecuteScalar());
-                }   
+                }
             }
             return project;
         }
 
         public Project Read(Project project)
         {
-            string sql = "SELECT * FROM Projects WHERE ID = @Id";
+            string sql = "SELECT Projects.Name, Projects.ID, Projects.Created_by_ID, Projects.Contact_ID, Projects.Project_status_ID, Projects.Project_description, Projects.Street_Name,Projects.Start_time, Projects.Created, Projects.Modified, Projects.Deleted, CreatedBy.UserName CreatedByUserName, Contact.UserName ContactUserName FROM Projects JOIN AspNetUsers CreatedBy ON Projects.Created_by_ID = CreatedBy.Id JOIN AspNetUsers Contact ON Projects.Contact_ID = Contact.Id WHERE Projects.ID = @Id";
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = project.Id, SqlDbType = SqlDbType.Int };
 
@@ -61,7 +60,6 @@ namespace DAL
                 {
                     command.Parameters.Add(idParameter);
                     command.Connection.Open();
-                    // Add exceptionhandling
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
@@ -77,23 +75,25 @@ namespace DAL
                             int CreatedCol = reader.GetOrdinal("Created");
                             int ModifiedCol = reader.GetOrdinal("Modified");
                             int DeletedCol = reader.GetOrdinal("Deleted");
+                            int CreatedByUserNameCol = reader.GetOrdinal("CreatedByUserName");
+                            int ContactUserNameCol = reader.GetOrdinal("ContactUserName");
 
                             if (reader.Read())
                             {
-                                project.Id = GetDataSafe<int>(reader, IdCol, reader.GetInt32);
-                                project.Name = GetDataSafe<string>(reader, NameCol, reader.GetString);
-                                project.CreatedBy = new User { Id = GetDataSafe<string>(reader, Created_by_IDCol, reader.GetString) };
-                                project.Contact = new User { Id = GetDataSafe<string>(reader, Contact_IDCol, reader.GetString) };
-                                project.ProjectStatusID = GetDataSafe<int>(reader, Project_status_IDCol, reader.GetInt32);
-                                project.ProjectDescription = GetDataSafe<string>(reader, Project_DescriptionCol, reader.GetString);
-                                project.StreetName = GetDataSafe<string>(reader, Street_NameCol, reader.GetString);
-                                project.StartTime = GetDataSafe<DateTime>(reader, Start_timeCol, reader.GetDateTime);
-                                project.Created = GetDataSafe<DateTime>(reader, CreatedCol, reader.GetDateTime);
-                                project.Modified = GetDataSafe<DateTime>(reader, ModifiedCol, reader.GetDateTime);
-                                project.Deleted = GetDataSafe<bool>(reader, DeletedCol, reader.GetBoolean);
+                                project.Id = GetDataSafe(reader, IdCol, reader.GetInt32);
+                                project.Name = GetDataSafe(reader, NameCol, reader.GetString);
+                                project.CreatedBy = new User { Id = GetDataSafe(reader, Created_by_IDCol, reader.GetString), UserName = GetDataSafe(reader, CreatedByUserNameCol, reader.GetString) };
+                                project.Contact = new User { Id = GetDataSafe(reader, Contact_IDCol, reader.GetString), UserName = GetDataSafe(reader, ContactUserNameCol, reader.GetString) };
+                                project.ProjectStatusID = GetDataSafe(reader, Project_status_IDCol, reader.GetInt32);
+                                project.ProjectDescription = GetDataSafe(reader, Project_DescriptionCol, reader.GetString);
+                                project.StreetName = GetDataSafe(reader, Street_NameCol, reader.GetString);
+                                project.StartTime = GetDataSafe(reader, Start_timeCol, reader.GetDateTime);
+                                project.Created = GetDataSafe(reader, CreatedCol, reader.GetDateTime);
+                                project.Modified = GetDataSafe(reader, ModifiedCol, reader.GetDateTime);
+                                project.Deleted = GetDataSafe(reader, DeletedCol, reader.GetBoolean);
                             }
                         }
-                    }    
+                    }
                 }
             }
             return project;
@@ -124,18 +124,16 @@ namespace DAL
                 {
                     command.Parameters.AddRange(arrayOfParameters);
                     command.Connection.Open();
-                    // Add exceptionhandling 
                     int affectedRows = command.ExecuteNonQuery();
                     if (!(0 < affectedRows))
                     {
-                        throw new System.Exception("No rows affected. Update failed - Does the object exist beforehand in the database?");
+                        throw new Exception("No rows affected. Update failed.");
                     }
                 }
             }
             return project;
         }
 
-        //Actually deletes the object because there's currently no 'Deleted' bit in DB.
         public Project Delete(Project project)
         {
             int bitRepresentationOfBool = Convert.ToInt32(true);
@@ -166,15 +164,14 @@ namespace DAL
         public List<Project> ReadAll()
         {
             List<Project> projects = new List<Project>();
-            
-            string sql = "SELECT TOP(10) * FROM Projects";
+
+            string sql = "SELECT TOP(10) Projects.Name, Projects.ID, Projects.Created_by_ID, Projects.Contact_ID, Projects.Project_status_ID, Projects.Project_description, Projects.Street_Name,Projects.Start_time, Projects.Created, Projects.Modified, Projects.Deleted, CreatedBy.UserName CreatedByUserName, Contact.UserName ContactUserName FROM Projects JOIN AspNetUsers CreatedBy ON Projects.Created_by_ID = CreatedBy.Id JOIN AspNetUsers Contact ON Projects.Contact_ID = Contact.Id";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
                     command.Connection.Open();
-                    // Add exceptionhandling
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
@@ -190,22 +187,24 @@ namespace DAL
                             int CreatedCol = reader.GetOrdinal("Created");
                             int ModifiedCol = reader.GetOrdinal("Modified");
                             int DeletedCol = reader.GetOrdinal("Deleted");
+                            int CreatedByUserNameCol = reader.GetOrdinal("CreatedByUserName");
+                            int ContactUserNameCol = reader.GetOrdinal("ContactUserName");
 
                             while (reader.Read())
                             {
                                 projects.Add(new Project
                                 {
-                                    Id = GetDataSafe<int>(reader, IdCol, reader.GetInt32),
-                                    Name = GetDataSafe<string>(reader, NameCol, reader.GetString),
-                                    CreatedBy = new User { Id = GetDataSafe<string>(reader, Created_by_IDCol, reader.GetString) },
-                                    Contact = new User { Id = GetDataSafe<string>(reader, Contact_IDCol, reader.GetString) },
-                                    ProjectStatusID = GetDataSafe<int>(reader, Project_status_IDCol, reader.GetInt32),
-                                    ProjectDescription = GetDataSafe<string>(reader, Project_DescriptionCol, reader.GetString),
-                                    StreetName = GetDataSafe<string>(reader, Street_NameCol, reader.GetString),
-                                    StartTime = GetDataSafe<DateTime>(reader, Start_timeCol, reader.GetDateTime),
-                                    Created = GetDataSafe<DateTime>(reader, CreatedCol, reader.GetDateTime),
-                                    Modified = GetDataSafe<DateTime>(reader, ModifiedCol, reader.GetDateTime),
-                                    Deleted = GetDataSafe<bool>(reader, DeletedCol, reader.GetBoolean),
+                                    Id = GetDataSafe(reader, IdCol, reader.GetInt32),
+                                    Name = GetDataSafe(reader, NameCol, reader.GetString),
+                                    CreatedBy = new User { Id = GetDataSafe(reader, Created_by_IDCol, reader.GetString), UserName = GetDataSafe(reader, CreatedByUserNameCol, reader.GetString) },
+                                    Contact = new User { Id = GetDataSafe(reader, Contact_IDCol, reader.GetString), UserName = GetDataSafe(reader, ContactUserNameCol, reader.GetString) },
+                                    ProjectStatusID = GetDataSafe(reader, Project_status_IDCol, reader.GetInt32),
+                                    ProjectDescription = GetDataSafe(reader, Project_DescriptionCol, reader.GetString),
+                                    StreetName = GetDataSafe(reader, Street_NameCol, reader.GetString),
+                                    StartTime = GetDataSafe(reader, Start_timeCol, reader.GetDateTime),
+                                    Created = GetDataSafe(reader, CreatedCol, reader.GetDateTime),
+                                    Modified = GetDataSafe(reader, ModifiedCol, reader.GetDateTime),
+                                    Deleted = GetDataSafe(reader, DeletedCol, reader.GetBoolean),
                                 });
                             }
                         }
