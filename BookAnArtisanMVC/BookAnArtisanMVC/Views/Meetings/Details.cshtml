@@ -1,9 +1,9 @@
 ﻿@model BookAnArtisanMVC.ServiceReference.Meeting
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detaljer";
 }
-@Html.DisplayNameFor(model => model.Title)
+
 <h2>@Html.DisplayFor(model => model.Title)</h2>
 
 <div>
@@ -11,14 +11,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Contact.UserName)
+            @Html.DisplayName("Kontakt")
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Contact.UserName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy.UserName)
+            @Html.DisplayName("Oprettet af")
         </dt>
 
         <dd>
@@ -65,6 +65,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "MyMeetings")
+    @Html.ActionLink("Redigér", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Tilbage til liste", "MyMeetings")
 </p>

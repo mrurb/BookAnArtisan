@@ -36,6 +36,12 @@ namespace BLL
         {
             return db.ReadAll();
         }
+
+
+        public List<Project> ReadAllForUser(User user)
+        {
+            return db.ReadAllForUser(user);
+        }
         public List<Project> SearchByTag(string search_tag)
         {
             return dba.SearchByTag(search_tag);
