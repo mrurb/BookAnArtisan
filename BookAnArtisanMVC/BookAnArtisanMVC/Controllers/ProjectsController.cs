@@ -141,5 +141,10 @@ namespace BookAnArtisanMVC.Controllers
             var data = _psCl.SearchByProjectAddress("a");
             return View(data);
         }
+
+        public ActionResult MyProjects()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
