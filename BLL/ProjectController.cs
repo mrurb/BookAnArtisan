@@ -46,15 +46,10 @@ namespace BLL
         {
             return dba.SearchByTag(search_tag);
         }
-        
-        public List<Project> SearchByProjectUser(User user)
-        {
-            return dba.SearchByProjectUser(user);
-        }
 
-        public List<Project> SearchByProjectAddress(string address)
+        public List<Project> SearchByProjectAddress(Project p)
         {
-            return dba.SearchByProjectAddress(address);
+            return dba.SearchByProjectAddress(p);
         }
     }
 }

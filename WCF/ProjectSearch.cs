@@ -20,13 +20,13 @@ namespace WCF
             return pc.SearchByTag(search_tag);
         }
 
-        public IList<Project> SearchByProjectAddress(string address)
+        public IList<Project> SearchByProjectAddress(Project p)
         {
-            return pc.SearchByProjectAddress(address);
+            return pc.SearchByProjectAddress(p);
         }
-        public IList<Project> SearchByProjectUser(User user)
-        {
-            return pc.SearchByProjectUser(user);
-        }
+        //public IList<Project> SearchByProjectUser(User user)
+        //{
+        //    return pc.SearchByProjectUser(user); //no longer needed?
+        //}
     }
 }

@@ -12,12 +12,10 @@ namespace DAL
 {
     public class SearchDB
     {
-
-
-        private string connectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
         public SearchDB()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
+            //do nothing?
         }
 
         public bool DBConnectionTest()
@@ -46,11 +44,6 @@ namespace DAL
                 }
             }
             return true;
-        }
-
-        public List<Project> SearchByProjectUser(User user)
-        {
-            throw new NotImplementedException();
         }
 
         /*
@@ -138,19 +131,29 @@ namespace DAL
          * @return list of projects
          * @throws generic exception.
          */
-        public List<Project> SearchByProjectAddress(string searchparam)
+        public List<Project> SearchByProjectAddress(Project pinput)
         {
             List<Project> results = new List<Project>();
             List<User> artisans = new List<User>();
             User client = null;
             List<string> tags = new List<string>();
-            string query = "SELECT projects.id, projects.name pname, projects.street_name, projects.deleted, projects.Project_description, artisan.FirstName afirstname, artisan.LastName alastname, client.FirstName cfirstname, client.LastName clastname FROM projects JOIN AspNetUsers client ON projects.Created_by_ID = client.Id JOIN AspNetUsers artisan ON projects.Contact_ID = artisan.id JOIN project_status ON project_status.id = projects.id WHERE street_name LIKE @address OR projects.name LIKE @name OR project_status.name LIKE @status;";
+            string query = "SELECT projects.id, projects.name pname, artisan.FirstName afirstname, client.FirstName cfirstname, Tags.Name tag FROM projects JOIN AspNetUsers client ON projects.Created_by_ID = client.Id JOIN AspNetUsers artisan ON projects.Contact_ID = artisan.id JOIN project_status ON project_status.id = projects.id JOIN Project_tags ON project_tags.Project_ID = projects.ID JOIN Tags ON Tags.ID = project_tags.Tag_ID WHERE street_name LIKE @address OR projects.name LIKE @name OR project_status.name LIKE @status";
             SqlParameter[] arrayofparams =
             {
-                new SqlParameter { ParameterName = "@address", SqlValue = "%" + searchparam + "%", SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@name", SqlValue = "%" + searchparam + "%", SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@status", SqlValue = "%" + searchparam + "%", SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@address", SqlValue = "%" + pinput.StreetName + "%", SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@name", SqlValue = "%" + pinput.Name + "%", SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@status", SqlValue = "%" + pinput.ProjectStatusID + "%", SqlDbType = SqlDbType.NVarChar }
         };
+            if (pinput.Contact != null)
+            {
+                query += " OR client.UserName LIKE @contact OR artisan.UserName LIKE @contact";
+                arrayofparams[arrayofparams.Length] = new SqlParameter { ParameterName = "@contact", SqlValue = "%" + pinput.Contact + "%", SqlDbType = SqlDbType.NVarChar };
+            }
+            if (pinput.Tags.Count > 0)
+            {
+                query += " OR Tags.name LIKE @tag";
+                arrayofparams[arrayofparams.Length] = new SqlParameter { ParameterName = "@tag", SqlValue = "%" + pinput.Tags[0] + "%", SqlDbType = SqlDbType.NVarChar };
+            }
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -164,12 +167,13 @@ namespace DAL
                         {
                             while (datareader.Read())
                             {
-                                Project p = new Project(datareader["id"].ToString(), tags, datareader["Project_description"].ToString(), client, artisans, datareader["street_name"].ToString());
+                                Project p = new Project();
+                                p.Id = (int)datareader["id"];
                                 p.CreatedBy = new User { FirstName = datareader["cfirstname"].ToString(), LastName = datareader["clastname"].ToString() };
                                 p.Contact = new User { FirstName = datareader["afirstname"].ToString(), LastName = datareader["alastname"].ToString() };
                                 p.Name = datareader["pname"].ToString();
-                                p.Deleted = (bool)datareader["deleted"];
                                 results.Add(p);
+                                AppendTags(p);
                             }
                         }
                     }
