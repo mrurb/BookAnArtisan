@@ -84,20 +84,20 @@ namespace DAL
                     {
                         if (reader.HasRows)
                         {
-                            int IdCol = reader.GetOrdinal("ID");
-                            int FirstNameCol = reader.GetOrdinal("FirstName");
-                            int LastNameCol = reader.GetOrdinal("LastName");
-                            int UserNameCol = reader.GetOrdinal("UserName");
+                            var idCol = reader.GetOrdinal("ID");
+                            var firstNameCol = reader.GetOrdinal("FirstName");
+                            var lastNameCol = reader.GetOrdinal("LastName");
+                            var userNameCol = reader.GetOrdinal("UserName");
 
                             while (reader.Read())
                             {
                                 list.Add(
                                     new User
                                     {
-                                        Id = GetDataSafe(reader, IdCol, reader.GetString),
-                                        FirstName = GetDataSafe(reader, FirstNameCol, reader.GetString),
-                                        LastName = GetDataSafe(reader, LastNameCol, reader.GetString),
-                                        UserName = GetDataSafe(reader, UserNameCol, reader.GetString)
+                                        Id = GetDataSafe(reader, idCol, reader.GetString),
+                                        FirstName = GetDataSafe(reader, firstNameCol, reader.GetString),
+                                        LastName = GetDataSafe(reader, lastNameCol, reader.GetString),
+                                        UserName = GetDataSafe(reader, userNameCol, reader.GetString)
                                     }
                                 );
                             }
@@ -126,42 +126,41 @@ namespace DAL
                     {
                         if (reader.HasRows)
                         {
-                            int IdCol = reader.GetOrdinal("ID");
-                            int EmailCol = reader.GetOrdinal("Email");
-                            int EmailConfirmedCol = reader.GetOrdinal("EmailConfirmed");
-                            int PasswordHashCol = reader.GetOrdinal("PasswordHash");
-                            int SecurityStampCol = reader.GetOrdinal("SecurityStamp");
-                            int PhoneNumberCol = reader.GetOrdinal("PhoneNumber");
-                            int PhoneNumberConfirmedCol = reader.GetOrdinal("PhoneNumberConfirmed");
-                            int TwoFactorEnabledCol = reader.GetOrdinal("TwoFactorEnabled");
-                            int LockoutEndDateUtcCol = reader.GetOrdinal("LockoutEndDateUtc");
-                            int LockoutEnabledCol = reader.GetOrdinal("LockoutEnabled");
-                            int AccessFailedCountCol = reader.GetOrdinal("AccessFailedCount");
-                            int UserNameCol = reader.GetOrdinal("UserName");
-                            int FirstNameCol = reader.GetOrdinal("FirstName");
-                            int LastNameCol = reader.GetOrdinal("LastName");
-                            int PhoneCol = reader.GetOrdinal("Phone");
-                            int AddressCol = reader.GetOrdinal("Address");
-                            int ApiKeyCol = reader.GetOrdinal("ApiKey");
+                            int idCol = reader.GetOrdinal("ID");
+                            int emailCol = reader.GetOrdinal("Email");
+                            int emailConfirmedCol = reader.GetOrdinal("EmailConfirmed");
+                            int passwordHashCol = reader.GetOrdinal("PasswordHash");
+                            int securityStampCol = reader.GetOrdinal("SecurityStamp");
+                            int phoneNumberCol = reader.GetOrdinal("PhoneNumber");
+                            int phoneNumberConfirmedCol = reader.GetOrdinal("PhoneNumberConfirmed");
+                            int twoFactorEnabledCol = reader.GetOrdinal("TwoFactorEnabled");
+                            int lockoutEndDateUtcCol = reader.GetOrdinal("LockoutEndDateUtc");
+                            int lockoutEnabledCol = reader.GetOrdinal("LockoutEnabled");
+                            int accessFailedCountCol = reader.GetOrdinal("AccessFailedCount");
+                            int userNameCol = reader.GetOrdinal("UserName");
+                            int firstNameCol = reader.GetOrdinal("FirstName");
+                            int lastNameCol = reader.GetOrdinal("LastName");
+                            int addressCol = reader.GetOrdinal("Address");
+                            int apiKeyCol = reader.GetOrdinal("ApiKey");
 
                             if (reader.Read())
                             {
-                                user.Id = GetDataSafe<string>(reader, IdCol, reader.GetString);
-                                user.Email = GetDataSafe<string>(reader, EmailCol, reader.GetString);
-                                user.EmailConfirmed = GetDataSafe<bool>(reader, EmailConfirmedCol, reader.GetBoolean);
-                                user.PasswordHash = GetDataSafe<string>(reader, PasswordHashCol, reader.GetString);
-                                user.SecurityStamp = GetDataSafe<string>(reader, SecurityStampCol, reader.GetString);
-                                user.PhoneNumber = GetDataSafe<string>(reader, PhoneNumberCol, reader.GetString);
-                                user.PhoneNumberConfirmed = GetDataSafe<bool>(reader, PhoneNumberConfirmedCol, reader.GetBoolean);
-                                user.TwoFactorEnabled = GetDataSafe<bool>(reader, TwoFactorEnabledCol, reader.GetBoolean);
-                                user.LockoutEndDateUtc = GetDataSafe<DateTime>(reader, LockoutEndDateUtcCol, reader.GetDateTime);
-                                user.LockoutEnabled = GetDataSafe<bool>(reader, LockoutEnabledCol, reader.GetBoolean);
-                                user.AccessFailedCount = GetDataSafe<int>(reader, AccessFailedCountCol, reader.GetInt32);
-                                user.UserName = GetDataSafe<string>(reader, UserNameCol, reader.GetString);
-                                user.FirstName = GetDataSafe<string>(reader, FirstNameCol, reader.GetString);
-                                user.LastName = GetDataSafe<string>(reader, LastNameCol, reader.GetString);
-                                user.Address = GetDataSafe<string>(reader, AddressCol, reader.GetString);
-                                user.ApiKey = GetDataSafe<string>(reader, ApiKeyCol, reader.GetString);
+                                user.Id = GetDataSafe<string>(reader, idCol, reader.GetString);
+                                user.Email = GetDataSafe<string>(reader, emailCol, reader.GetString);
+                                user.EmailConfirmed = GetDataSafe<bool>(reader, emailConfirmedCol, reader.GetBoolean);
+                                user.PasswordHash = GetDataSafe<string>(reader, passwordHashCol, reader.GetString);
+                                user.SecurityStamp = GetDataSafe<string>(reader, securityStampCol, reader.GetString);
+                                user.PhoneNumber = GetDataSafe<string>(reader, phoneNumberCol, reader.GetString);
+                                user.PhoneNumberConfirmed = GetDataSafe<bool>(reader, phoneNumberConfirmedCol, reader.GetBoolean);
+                                user.TwoFactorEnabled = GetDataSafe<bool>(reader, twoFactorEnabledCol, reader.GetBoolean);
+                                user.LockoutEndDateUtc = GetDataSafe<DateTime>(reader, lockoutEndDateUtcCol, reader.GetDateTime);
+                                user.LockoutEnabled = GetDataSafe<bool>(reader, lockoutEnabledCol, reader.GetBoolean);
+                                user.AccessFailedCount = GetDataSafe<int>(reader, accessFailedCountCol, reader.GetInt32);
+                                user.UserName = GetDataSafe<string>(reader, userNameCol, reader.GetString);
+                                user.FirstName = GetDataSafe<string>(reader, firstNameCol, reader.GetString);
+                                user.LastName = GetDataSafe<string>(reader, lastNameCol, reader.GetString);
+                                user.Address = GetDataSafe<string>(reader, addressCol, reader.GetString);
+                                user.ApiKey = GetDataSafe<string>(reader, apiKeyCol, reader.GetString);
                             }
                         }
                     }
@@ -172,10 +171,6 @@ namespace DAL
 
         public User Update(User user)
         {
-            int EmailConfirmed = Convert.ToInt32(user.EmailConfirmed);
-            int PhoneNumberConfirmed = Convert.ToInt32(user.PhoneNumberConfirmed);
-            int TwoFactorEnabled = Convert.ToInt32(user.TwoFactorEnabled);
-            int LockoutEnabled = Convert.ToInt32(user.LockoutEnabled);
 
             string sql = "UPDATE AspNetUsers SET FirstName = @FirstName, LastName = @LastName, Address = @Address, ApiKey = @ApiKey, Email = @Email WHERE ID = @Id";
 

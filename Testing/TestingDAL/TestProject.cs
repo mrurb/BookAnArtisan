@@ -9,8 +9,8 @@ namespace Testing
     [TestClass]
     public class TestProject
     {
-        static private Project testProject;
-        static private ProjectDB db;
+        private static Project testProject;
+        private static ProjectDB db;
 
         public TestProject()
         {
@@ -87,10 +87,10 @@ namespace Testing
         [TestMethod]
         public void TestCreateProject()
         {
-            int earlierID = testProject.Id;
-            int returnedID = db.Create(testProject).Id;
-            Assert.AreNotEqual(earlierID, returnedID);
-            testProject.Id = returnedID;
+            int earlierId = testProject.Id;
+            int returnedId = db.Create(testProject).Id;
+            Assert.AreNotEqual(earlierId, returnedId);
+            testProject.Id = returnedId;
         }
 
         [TestMethod]

@@ -163,7 +163,7 @@ namespace DAL
         {
             IList<Material> list = new List<Material>();
 
-            string sql = "SELECT Materials_Unique.ID, Materials_Unique.Name, Materials_Unique.Description, Materials_Unique.Condition, Materials_Unique.Deleted, Materials_Unique.Available, AspNetUsers.UserName FROM Materials_Unique JOIN AspNetUsers ON OwnerID = AspNetUsers.Id WHERE Name LIKE '%' + @name + '%' OR Tags LIKE '%' + @name + '%' OR Description LIKE '%' + @name + '%' OR Condition LIKE '%' + @name + '%'";
+            string sql = "SELECT Materials_Unique.ID, Materials_Unique.Name, Materials_Unique.Description, Materials_Unique.Condition, Materials_Unique.Deleted, Materials_Unique.Available, AspNetUsers.UserName, Materials_Unique.OwnerID FROM Materials_Unique JOIN AspNetUsers ON OwnerID = AspNetUsers.Id WHERE Name LIKE '%' + @name + '%' OR Description LIKE '%' + @name + '%'";
 
             SqlParameter searchParams = new SqlParameter { ParameterName = "@name", SqlValue = name, SqlDbType = SqlDbType.NVarChar };
 
@@ -182,7 +182,7 @@ namespace DAL
                                 new Material
                                 {
                                     Id = (int)reader["ID"],
-                                    Owner = new User { Id = reader["OwnerId"].ToString() },
+                                    Owner = new User { Id = reader["OwnerID"].ToString() },
                                     Name = reader["Name"].ToString(),
                                     Description = reader["Description"].ToString(),
                                     Condition = reader["Condition"].ToString(),
