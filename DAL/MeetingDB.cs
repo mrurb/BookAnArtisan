@@ -129,7 +129,7 @@ namespace DAL
 
         public Meeting Read(Meeting t)
         {
-            string sql = "SELECT Meetings.Id mId, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID FROM Meetings JOIN AspNetUsers User1 ON Meetings.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meetings.ContactID = User2.Id WHERE Meetings.ID = @Id"; // search by ID, see below.
+            string sql = "SELECT User1 CreatedByUserName, User2 ContactUserName, Meetings.Id mId, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID FROM Meetings JOIN AspNetUsers User1 ON Meetings.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meetings.ContactID = User2.Id WHERE Meetings.ID = @Id"; // search by ID, see below.
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = t.Id, SqlDbType = SqlDbType.NVarChar };
 
@@ -152,6 +152,8 @@ namespace DAL
                             int CreatedByNameCol = reader.GetOrdinal("CreatedBy");
                             int ContactIDCol = reader.GetOrdinal("ContactID");
                             int ContactCol = reader.GetOrdinal("Contact");
+                            int CreatedByUserNameCol = reader.GetOrdinal("CreatedByUserName");
+                            int ContactUserNameCol = reader.GetOrdinal("ContactUserName");
 
                             if (reader.Read())
                             {
@@ -160,8 +162,8 @@ namespace DAL
                                 t.StartTime = (DateTime)GetDataSafe(reader, StartTimeCol, reader.GetSqlDateTime); // Needed explicit cast because wat?
                                 t.EndTime = (DateTime)GetDataSafe(reader, EndTimeCol, reader.GetSqlDateTime);
                                 t.Description = GetDataSafe(reader, DescCol, reader.GetString);
-                                t.CreatedBy = new User {Id =  GetDataSafe(reader, CreatedByNameCol, reader.GetString) };
-                                t.Contact = new User {Id =  GetDataSafe(reader, ContactCol, reader.GetString) };
+                                t.CreatedBy = new User { Id = GetDataSafe(reader, CreatedByNameCol, reader.GetString), UserName = GetDataSafe(reader, CreatedByUserNameCol, reader.GetString) };
+                                t.Contact = new User { Id = GetDataSafe(reader, ContactCol, reader.GetString), UserName = GetDataSafe(reader, ContactUserNameCol, reader.GetString) };
 
                             }
                         }
@@ -175,7 +177,7 @@ namespace DAL
         {
             List<Meeting> users = new List<Meeting>();
 
-            string sql = "SELECT Meetings.Id mId, Meetings.Deleted, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID FROM Meetings JOIN AspNetUsers User1 ON Meetings.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meetings.ContactID = User2.Id;";
+            string sql = "SELECT User1.UserName CreatedByUserName, User2.UserName ContactUserName, Meetings.Id mId, Meetings.Deleted, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID FROM Meetings JOIN AspNetUsers User1 ON Meetings.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meetings.ContactID = User2.Id";
 
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
@@ -196,6 +198,8 @@ namespace DAL
                             int ContactCol = reader.GetOrdinal("Contact");
                             int DeletedCol = reader.GetOrdinal("Deleted");
                             int IdCol = reader.GetOrdinal("mId");
+                            int CreatedByUserNameCol = reader.GetOrdinal("CreatedByUserName");
+                            int ContactUserNameCol = reader.GetOrdinal("ContactUserName");
 
                             while (reader.Read())
                             {
@@ -206,9 +210,9 @@ namespace DAL
                                     StartTime = (DateTime)GetDataSafe(reader, StartTimeCol, reader.GetSqlDateTime),
                                     EndTime = (DateTime)GetDataSafe(reader, EndTimeCol, reader.GetSqlDateTime),
                                     Description = GetDataSafe(reader, DescCol, reader.GetString),
-                                    CreatedBy = new User { Id = GetDataSafe(reader, CreatedByNameCol, reader.GetString) },
+                                    CreatedBy = new User { Id = GetDataSafe(reader, CreatedByNameCol, reader.GetString), UserName = GetDataSafe(reader, CreatedByUserNameCol, reader.GetString) },
                                     Deleted = GetDataSafe(reader, DeletedCol, reader.GetBoolean),
-                                    Contact = new User { Id = GetDataSafe(reader, ContactCol, reader.GetString) }
+                                    Contact = new User { Id = GetDataSafe(reader, ContactCol, reader.GetString), UserName = GetDataSafe(reader, ContactUserNameCol, reader.GetString) }
                                 });
                             }
                         }
@@ -279,7 +283,7 @@ namespace DAL
 
             string sql = "SELECT Meetings.id mid, Contact.Id cid, Created_By.Id cbid, Meetings.starttime mst, Meetings.EndTime met, Meetings.Title mt, Meetings.Description, Meetings.Deleted, Contact.FirstName cf, Contact.LastName cl, Created_By.FirstName cbf, Created_By.LastName cbl FROM Meetings JOIN AspNetUsers Contact ON Meetings.ContactID = Contact.Id JOIN AspNetUsers Created_By ON Meetings.CreatedByID = Created_By.Id WHERE Meetings.id = @id";
 
-            SqlParameter midparam = new SqlParameter() { ParameterName = "@id", SqlDbType= SqlDbType.Int, Value= m.Id };
+            SqlParameter midparam = new SqlParameter() { ParameterName = "@id", SqlDbType = SqlDbType.Int, Value = m.Id };
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
                 using (SqlCommand command = new SqlCommand(sql, connection))
@@ -298,8 +302,8 @@ namespace DAL
                                 StartTime = (DateTime)reader["mst"],
                                 EndTime = (DateTime)reader["met"],
                                 Description = reader["Description"].ToString(),
-                                CreatedBy = new User { Id =  reader["cbid"].ToString(), FirstName = reader["cbf"].ToString(), LastName = reader["cbl"].ToString() },
-                                Contact = new User { FirstName = reader["cf"].ToString(), LastName =  reader["cl"].ToString(), Id = reader["cid"].ToString() }
+                                CreatedBy = new User { Id = reader["cbid"].ToString(), FirstName = reader["cbf"].ToString(), LastName = reader["cbl"].ToString() },
+                                Contact = new User { FirstName = reader["cf"].ToString(), LastName = reader["cl"].ToString(), Id = reader["cid"].ToString() }
                             });
                         }
                     }
