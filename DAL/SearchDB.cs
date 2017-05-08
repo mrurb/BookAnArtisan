@@ -175,7 +175,7 @@ namespace DAL
                                     p.Contact = new User { FirstName = datareader["afirstname"].ToString() };
                                     p.Name = datareader["pname"].ToString();
                                     results.Add(p);
-                                    //AppendTags(p); can I do this??
+                                    AppendTags(p); //can I do this??
                                 }
 
                             }
