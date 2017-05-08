@@ -122,7 +122,7 @@ namespace DAL
         {
             List<Booking> materials = new List<Booking>();
 
-            string sql = "SELECT booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id";
+            string sql = "SELECT booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0";
 
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
@@ -166,25 +166,25 @@ namespace DAL
 
         public Booking Update(Booking t)
         {
-            string sql = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Deleted = 0) AND id <> @id BEGIN UPDATE Bookings SET StartTime = @starttime, EndTime = @endtime, UserID = @userID, Deleted = @deleted END";
+            string sql = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Deleted = 0 AND Bookings.ID <> @id) BEGIN UPDATE Bookings SET StartTime = @starttime, EndTime = @endtime, UserID = @userID END";
             SqlParameter[] sqlparams =
             {
                 new SqlParameter { ParameterName = "@userID", SqlValue = t.User.Id, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@starttime", SqlValue = t.StartTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@endtime", SqlValue = t.EndTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@materialID", SqlValue = t.item.Id, SqlDbType = SqlDbType.Int },
-                new SqlParameter { ParameterName = "@deleted", SqlValue = t.Deleted, SqlDbType = SqlDbType.Bit },
                 new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int }
             };
             SqlConnection con = new SqlConnection(connectionstring);
             
             try
             {
+                con.Open();
                 SqlCommand sqlcommand = new SqlCommand(sql, con);
                 SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadCommitted);
                 sqlcommand.Transaction = myTrans;
                 sqlcommand.Parameters.AddRange(sqlparams);
-                con.Open();
+                
                 int rowsaffected = sqlcommand.ExecuteNonQuery();
                 if (rowsaffected < 1)
                 {

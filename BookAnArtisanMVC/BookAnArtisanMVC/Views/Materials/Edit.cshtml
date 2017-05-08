@@ -34,16 +34,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Deleted, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Deleted)
-                    @Html.ValidationMessageFor(model => model.Deleted, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
@@ -63,7 +53,7 @@
             @Html.LabelFor(model => model.Owner.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Owner.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.HiddenFor(Model => Model.Owner.Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.Owner.Id, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Owner.UserName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -85,7 +75,7 @@
     @Scripts.Render("~/bundles/Autocomplete")
     <script type="text/javascript">
         $(document).ready(function () {
-            autoc($("#UserName"), $("#Id"), "/Users/SearchByName");
+            autoc($("#Owner_UserName"), $("#Owner_Id"), "/Users/SearchByName");
         })
     </script>
 }
