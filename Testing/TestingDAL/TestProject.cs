@@ -52,12 +52,12 @@ namespace Testing
                     // Below ID is set only for testing whether it changes when created in DB.
                     Id = 20,
                     Name = "Test",
-                    Created_by_ID = "f93e4146-0ef5-45fb-8088-d1150e91dea3",
-                    Contact_ID = "f93e4146-0ef5-45fb-8088-d1150e91dea3",
-                    Project_status_ID = 1,
-                    Project_description = "Something",
-                    Street_Name = "Test street",
-                    Start_time = new DateTime(2017, 04, 19, 17, 09, 21, 0),
+                    CreatedBy = new User() {Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3",},
+                    Contact = new User() {Id= "f93e4146-0ef5-45fb-8088-d1150e91dea3"},
+                    ProjectStatusID = 1,
+                    ProjectDescription = "Something",
+                    StreetName = "Test street",
+                    StartTime = new DateTime(2017, 04, 19, 17, 09, 21, 0),
                     Created = new DateTime(2017, 04, 19, 17, 09, 21, 0),
                     Modified = new DateTime(2017, 04, 19, 17, 09, 21, 0),
                     Deleted = false
@@ -102,8 +102,8 @@ namespace Testing
         [TestMethod]
         public void TestUpdateProject()
         {
-            testProject.Street_Name = "New street";
-            Assert.IsTrue("New street".Equals(db.Update(testProject).Street_Name));
+            testProject.StreetName = "New street";
+            Assert.IsTrue("New street".Equals(db.Update(testProject).StreetName));
         }
 
         [TestMethod]
