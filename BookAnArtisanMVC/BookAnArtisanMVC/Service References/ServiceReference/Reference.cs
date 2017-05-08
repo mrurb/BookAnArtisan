@@ -1207,6 +1207,12 @@ namespace BookAnArtisanMVC.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/ReadAllProject", ReplyAction="http://tempuri.org/IProjectService/ReadAllProjectResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project>> ReadAllProjectAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/ReadAllProjectsForUser", ReplyAction="http://tempuri.org/IProjectService/ReadAllProjectsForUserResponse")]
+        System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project> ReadAllProjectsForUser(BookAnArtisanMVC.ServiceReference.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/ReadAllProjectsForUser", ReplyAction="http://tempuri.org/IProjectService/ReadAllProjectsForUserResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project>> ReadAllProjectsForUserAsync(BookAnArtisanMVC.ServiceReference.User user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1274,6 +1280,14 @@ namespace BookAnArtisanMVC.ServiceReference {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project>> ReadAllProjectAsync() {
             return base.Channel.ReadAllProjectAsync();
+        }
+        
+        public System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project> ReadAllProjectsForUser(BookAnArtisanMVC.ServiceReference.User user) {
+            return base.Channel.ReadAllProjectsForUser(user);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project>> ReadAllProjectsForUserAsync(BookAnArtisanMVC.ServiceReference.User user) {
+            return base.Channel.ReadAllProjectsForUserAsync(user);
         }
     }
     

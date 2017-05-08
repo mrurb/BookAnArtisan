@@ -142,9 +142,11 @@ namespace BookAnArtisanMVC.Controllers
             return View(data);
         }
 
-        public ActionResult MyProjects()
+        public ActionResult MyProjects(User user)
         {
-            throw new NotImplementedException();
+            user.Id = "2083af25-f483-4a02-a62b-71c198147c84";
+            var data = _pCl.ReadAllProjectsForUser(user);
+            return View(data);
         }
     }
 }

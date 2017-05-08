@@ -1,10 +1,10 @@
-﻿@model IEnumerable<BookAnArtisanMVC.ServiceReference.Meeting>
+﻿@model IEnumerable<BookAnArtisanMVC.ServiceReference.Project>
 
 @{
-    ViewBag.Title = "MyMeetings";
+    ViewBag.Title = "MyProjects";
 }
 
-<h2>Mine møder</h2>
+<h2>Mine projekter</h2>
 
 <p>
     @Html.ActionLink("Opret ny", "Create")
@@ -12,25 +12,28 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayName("Kontakt")
+            @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayName("Oprettet af")
+            @Html.DisplayNameFor(model => model.Created)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Deleted)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Modified)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EndTime)
+            @Html.DisplayNameFor(model => model.ProjectDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectStatusID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.StartTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.StreetName)
         </th>
         <th></th>
     </tr>
@@ -38,25 +41,28 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Contact.UserName)
+            @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy.UserName)
+            @Html.DisplayFor(modelItem => item.Created)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Deleted)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
+            @Html.DisplayFor(modelItem => item.Modified)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EndTime)
+            @Html.DisplayFor(modelItem => item.ProjectDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectStatusID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StartTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.DisplayFor(modelItem => item.StreetName)
         </td>
         <td>
             @Html.ActionLink("Redigér", "Edit", new { id=item.Id }) |

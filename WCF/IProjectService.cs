@@ -11,7 +11,6 @@ namespace WCF
     [ServiceContract]
     public interface IProjectService
     {
-        // Implementing CRUD as a starting point.
         [OperationContract]
         Project CreateProject(Project t);
         [OperationContract]
@@ -20,8 +19,9 @@ namespace WCF
         Project UpdateProject(Project t);
         [OperationContract]
         Project DeleteProject(Project t);
-        // Implementing ReadAll
         [OperationContract]
         List<Project> ReadAllProject();
+        [OperationContract]
+        List<Project> ReadAllProjectsForUser(User user);
     }
 }

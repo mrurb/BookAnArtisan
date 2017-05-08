@@ -37,6 +37,12 @@
   <wsdl:message name="IProjectService_ReadAllProject_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReadAllProjectResponse" />
   </wsdl:message>
+  <wsdl:message name="IProjectService_ReadAllProjectsForUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadAllProjectsForUser" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadAllProjectsForUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadAllProjectsForUserResponse" />
+  </wsdl:message>
   <wsdl:portType name="IProjectService">
     <wsdl:operation name="CreateProject">
       <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/CreateProject" message="tns:IProjectService_CreateProject_InputMessage" />
@@ -57,6 +63,10 @@
     <wsdl:operation name="ReadAllProject">
       <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/ReadAllProject" message="tns:IProjectService_ReadAllProject_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/ReadAllProjectResponse" message="tns:IProjectService_ReadAllProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadAllProjectsForUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/ReadAllProjectsForUser" message="tns:IProjectService_ReadAllProjectsForUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/ReadAllProjectsForUserResponse" message="tns:IProjectService_ReadAllProjectsForUser_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IProjectService" type="tns:IProjectService">
@@ -99,6 +109,15 @@
     </wsdl:operation>
     <wsdl:operation name="ReadAllProject">
       <soap:operation soapAction="http://tempuri.org/IProjectService/ReadAllProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadAllProjectsForUser">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/ReadAllProjectsForUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

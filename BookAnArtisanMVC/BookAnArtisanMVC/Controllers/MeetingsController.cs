@@ -10,20 +10,20 @@ namespace BookAnArtisanMVC.Controllers
 {
     public class MeetingsController : Controller
     {
-        private MeetingServiceClient pCl = new MeetingServiceClient();
+        private MeetingServiceClient mCl = new MeetingServiceClient();
 
         // GET: Project
         public ActionResult Index()
         {
             try
             {
-                var data = pCl.ReadAllMeeting();
-                pCl.Close();
+                var data = mCl.ReadAllMeeting();
+                mCl.Close();
                 return View(data);
             }
             catch (Exception e)
             {
-                pCl.Abort();
+                mCl.Abort();
                 return new HttpStatusCodeResult(404, e.Message);
             }
 
@@ -33,13 +33,13 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.ReadMeeting(meeting);
-                pCl.Close();
+                var data = mCl.ReadMeeting(meeting);
+                mCl.Close();
                 return View(data);
             }
             catch (Exception)
             {
-                pCl.Abort();
+                mCl.Abort();
                 throw;
             }
         }
@@ -57,7 +57,7 @@ namespace BookAnArtisanMVC.Controllers
             {
                 // TODO: Add insert logic here
                 meeting.CreatedBy.Id = User.Identity.GetUserId();
-                pCl.CreateMeeting(meeting);
+                mCl.CreateMeeting(meeting);
                 return RedirectToAction("MyMeetings");
             }
             catch
@@ -71,13 +71,13 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.ReadMeeting(meeting);
-                pCl.Close();
+                var data = mCl.ReadMeeting(meeting);
+                mCl.Close();
                 return View(data);
             }
             catch (Exception)
             {
-                pCl.Abort();
+                mCl.Abort();
                 throw;
             }
         }
@@ -88,7 +88,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                pCl.UpdateMeeting(meeting);
+                mCl.UpdateMeeting(meeting);
                 return RedirectToAction("MyMeetings"); 
             }
             catch
@@ -102,13 +102,13 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = pCl.ReadMeeting(meeting);
-                pCl.Close();
+                var data = mCl.ReadMeeting(meeting);
+                mCl.Close();
                 return View(data);
             }
             catch (Exception)
             {
-                pCl.Abort();
+                mCl.Abort();
                 throw;
             }
         }
@@ -119,7 +119,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                pCl.DeleteMeeting(meeting);
+                mCl.DeleteMeeting(meeting);
                 return RedirectToAction("MyMeetings");
             }
             catch
@@ -130,8 +130,8 @@ namespace BookAnArtisanMVC.Controllers
 
         public ActionResult MyMeetings(User user)
         {
-            user.Id = "2083af25-f483-4a02-a62b-71c198147c84";
-            var data = pCl.ReadAllForUser(user);
+            user.Id = /*"2083af25-f483-4a02-a62b-71c198147c84"*/HttpContext.User.Identity.GetUserId();
+            var data = mCl.ReadAllForUser(user);
             return View(data);
         }
     }

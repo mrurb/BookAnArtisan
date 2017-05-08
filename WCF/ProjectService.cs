@@ -34,5 +34,10 @@ namespace WCF
         {
             return projectController.ReadAll();
         }
+
+        public List<Project> ReadAllProjectsForUser(User user)
+        {
+            return projectController.ReadAllForUser(user);
+        }
     }
 }

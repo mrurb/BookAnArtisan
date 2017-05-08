@@ -1,10 +1,10 @@
-﻿@model IEnumerable<BookAnArtisanMVC.ServiceReference.Meeting>
+﻿@model IEnumerable<BookAnArtisanMVC.ServiceReference.Material>
 
 @{
-    ViewBag.Title = "MyMeetings";
+    ViewBag.Title = "MyMaterials";
 }
 
-<h2>Mine møder</h2>
+<h2>Mine materialer</h2>
 
 <p>
     @Html.ActionLink("Opret ny", "Create")
@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayName("Kontakt")
+            @Html.DisplayNameFor(model => model.Available)
         </th>
         <th>
-            @Html.DisplayName("Oprettet af")
+            @Html.DisplayNameFor(model => model.Condition)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Deleted)
@@ -24,13 +24,7 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.Name)
         </th>
         <th></th>
     </tr>
@@ -38,10 +32,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Contact.UserName)
+            @Html.DisplayFor(modelItem => item.Available)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy.UserName)
+            @Html.DisplayFor(modelItem => item.Condition)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Deleted)
@@ -50,13 +44,7 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EndTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.ActionLink("Redigér", "Edit", new { id=item.Id }) |
