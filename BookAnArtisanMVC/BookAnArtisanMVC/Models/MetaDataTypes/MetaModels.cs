@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BookAnArtisanMVC.ServiceReference
 {
+    [MetadataType(typeof(UserMetaData))]
     public partial class User
     {
     }
