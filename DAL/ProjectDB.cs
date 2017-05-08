@@ -25,14 +25,14 @@ namespace DAL
             SqlParameter[] arrayOfParameters =
             {
                 new SqlParameter { ParameterName = "@Name", SqlValue = project.Name, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Created_by_ID", SqlValue = project.CreatedBy, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Contact_ID", SqlValue = project.Contact, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Created_by_ID", SqlValue = project.CreatedBy.Id, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Contact_ID", SqlValue = project.Contact.Id, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@Project_status_ID", SqlValue = project.ProjectStatusID, SqlDbType = SqlDbType.Int },
                 new SqlParameter { ParameterName = "@Project_description", SqlValue = project.ProjectDescription, SqlDbType = SqlDbType.Text },
                 new SqlParameter { ParameterName = "@Street_Name", SqlValue = project.StreetName, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@Start_time", SqlValue = project.StartTime, SqlDbType = SqlDbType.DateTime },
-                new SqlParameter { ParameterName = "@Created", SqlValue = project.Created, SqlDbType = SqlDbType.DateTime },
-                new SqlParameter { ParameterName = "@Modified", SqlValue = project.Modified, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@Created", SqlValue = DateTime.Now, SqlDbType = SqlDbType.DateTime },
+                new SqlParameter { ParameterName = "@Modified", SqlValue = DateTime.Now, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@Deleted", SqlValue = Convert.ToInt32(project.Deleted), SqlDbType = SqlDbType.Bit }
             };
 
@@ -42,7 +42,11 @@ namespace DAL
                 {
                     command.Parameters.AddRange(arrayOfParameters);
                     command.Connection.Open();
-                    project.Id = Convert.ToInt32(command.ExecuteScalar());
+                    int rowsaffected = command.ExecuteNonQuery();
+                    if (rowsaffected < 1)
+                    {
+                        throw new System.Exception("No rows affected. Insert failed");
+                    }
                 }
             }
             return project;
@@ -165,7 +169,7 @@ namespace DAL
         {
             List<Project> projects = new List<Project>();
 
-            string sql = "SELECT TOP(10) Projects.Name, Projects.ID, Projects.Created_by_ID, Projects.Contact_ID, Projects.Project_status_ID, Projects.Project_description, Projects.Street_Name,Projects.Start_time, Projects.Created, Projects.Modified, Projects.Deleted, CreatedBy.UserName CreatedByUserName, Contact.UserName ContactUserName FROM Projects JOIN AspNetUsers CreatedBy ON Projects.Created_by_ID = CreatedBy.Id JOIN AspNetUsers Contact ON Projects.Contact_ID = Contact.Id";
+            string sql = "SELECT TOP(10) Projects.Name, Projects.ID, Projects.Created_by_ID, Projects.Contact_ID, Projects.Project_status_ID, Projects.Project_description, Projects.Street_Name,Projects.Start_time, Projects.Created, Projects.Modified, Projects.Deleted, CreatedBy.UserName CreatedByUserName, Contact.UserName ContactUserName FROM Projects JOIN AspNetUsers CreatedBy ON Projects.Created_by_ID = CreatedBy.Id JOIN AspNetUsers Contact ON Projects.Contact_ID = Contact.Id WHERE Projects.Deleted = 0";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

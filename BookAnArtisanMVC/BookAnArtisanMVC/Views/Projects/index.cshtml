@@ -17,19 +17,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Contact.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Contact.UserName)
+            @Html.DisplayName("Kontakt")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Created)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedBy.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Deleted)
+            @Html.DisplayName("Oprettet af")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Modified)
@@ -55,9 +49,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Contact.UserName)
         </td>
         <td>
@@ -65,9 +56,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CreatedBy.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Deleted)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Modified)

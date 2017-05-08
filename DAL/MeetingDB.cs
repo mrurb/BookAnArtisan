@@ -45,7 +45,7 @@ namespace DAL
                         int rowsaffected = sqlcommand.ExecuteNonQuery();
                         if (rowsaffected < 1)
                         {
-                            throw new System.Exception("No rows affected. Insert failed - Are you a fag?");
+                            throw new System.Exception("No rows affected. Insert failed");
                         }
                     }
                     catch (Exception)

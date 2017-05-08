@@ -56,6 +56,7 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
+                project.CreatedBy = new User { Id = HttpContext.User.Identity.GetUserId() };
                 // TODO: Add insert logic here
                 _pCl.CreateProject(project);
                 return RedirectToAction("Index");
