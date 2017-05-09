@@ -158,8 +158,8 @@ namespace DAL
                             }
                         });
                     }
-                    myTrans.Commit();
                 }
+                myTrans.Commit();
             }
             catch (Exception)
             {
