@@ -23,13 +23,12 @@ namespace DAL
                 new SqlParameter {ParameterName = "@materialID" , SqlValue = t.item.Id, SqlDbType = SqlDbType.NVarChar }
            };
             SqlConnection con = new SqlConnection(connectionstring);
-            string query = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Deleted = 0) BEGIN INSERT INTO Bookings(StartTime, EndTime, UserID, MaterialID) VALUES(@starttime, @endtime, @userID, @materialID) END";
+            string query = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Bookings.Deleted = 0) BEGIN INSERT INTO Bookings(StartTime, EndTime, UserID, MaterialID) VALUES(@starttime, @endtime, @userID, @materialID) END";
             SqlCommand sqlcommand = new SqlCommand(query, con);
 
 
             try
             {
-
                 con.Open();
                 SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadCommitted);
                 sqlcommand.Transaction = myTrans;
@@ -123,43 +122,53 @@ namespace DAL
             List<Booking> materials = new List<Booking>();
 
             string sql = "SELECT booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0";
-
-            using (SqlConnection connection = new SqlConnection(connectionstring))
+            SqlConnection con = new SqlConnection(connectionstring);
+            SqlCommand command = new SqlCommand(sql, con);
+            try
             {
-                using (SqlCommand command = new SqlCommand(sql, connection))
+                con.Open();
+                SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadUncommitted);
+                command.Transaction = myTrans;
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    command.Connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        materials.Add(new Booking
                         {
-                            materials.Add(new Booking
+                            Id = (int)reader["bookingID"],
+                            EndTime = (DateTime)reader["endtime"],
+                            StartTime = (DateTime)reader["starttime"],
+                            Deleted = (bool)reader["deleted"],
+                            User = new User()
                             {
-                                Id = (int)reader["bookingID"],
-                                EndTime = (DateTime)reader["endtime"],
-                                StartTime = (DateTime)reader["starttime"],
-                                Deleted = (bool)reader["deleted"],
-                                User = new User()
-                                {
-                                    Id = reader["userID"].ToString(),
-                                    FirstName = reader["firstname"].ToString(),
-                                    LastName = reader["lastname"].ToString(),
-                                    Email = reader["email"].ToString(),
-                                    PhoneNumber = reader["phonenumber"].ToString(),
-                                    Address = reader["address"].ToString(),
-                                    UserName = reader["username"].ToString()
-                                },
-                                item = new Material()
-                                {
-                                    Id = (int)reader["materialID"],
-                                    Name = reader["materialsname"].ToString(),
-                                    Description = reader["description"].ToString(),
-                                    Condition = reader["condition"].ToString(),
-                                }
-                            });
-                        }
+                                Id = reader["userID"].ToString(),
+                                FirstName = reader["firstname"].ToString(),
+                                LastName = reader["lastname"].ToString(),
+                                Email = reader["email"].ToString(),
+                                PhoneNumber = reader["phonenumber"].ToString(),
+                                Address = reader["address"].ToString(),
+                                UserName = reader["username"].ToString()
+                            },
+                            item = new Material()
+                            {
+                                Id = (int)reader["materialID"],
+                                Name = reader["materialsname"].ToString(),
+                                Description = reader["description"].ToString(),
+                                Condition = reader["condition"].ToString(),
+                            }
+                        });
                     }
+                    myTrans.Commit();
                 }
+            }
+            catch (Exception)
+            {
+                con.Close();
+                throw new Exception();
+            }
+            finally
+            {
+                con.Close();
             }
             return materials;
         }
