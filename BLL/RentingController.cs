@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Model;
 using DAL;
 
@@ -10,7 +6,7 @@ namespace BLL
 {
     public class RentingController : IController<Booking>
     {
-        RentingDB rdb = new RentingDB();
+        RentingDb rdb = new RentingDb();
         public Booking Create(Booking t)
         {
             return rdb.Create(t);

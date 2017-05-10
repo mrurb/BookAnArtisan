@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -10,9 +7,9 @@ using System.Data;
 
 namespace DAL
 {
-    public class RentingDB : IDataAccess<Booking>
+    public class RentingDb : IDataAccess<Booking>
     {
-        static string connectionstring = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
+        static readonly string Connectionstring = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
         public Booking Create(Booking t)
         {
             SqlParameter[] arrayOfParams =
@@ -22,7 +19,7 @@ namespace DAL
                 new SqlParameter { ParameterName = "@userID", SqlValue = t.User.Id, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter {ParameterName = "@materialID" , SqlValue = t.item.Id, SqlDbType = SqlDbType.NVarChar }
            };
-            SqlConnection con = new SqlConnection(connectionstring);
+            SqlConnection con = new SqlConnection(Connectionstring);
             string query = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Bookings.Deleted = 0) BEGIN INSERT INTO Bookings(StartTime, EndTime, UserID, MaterialID) VALUES(@starttime, @endtime, @userID, @materialID) END";
             SqlCommand sqlcommand = new SqlCommand(query, con);
 
@@ -57,13 +54,13 @@ namespace DAL
         {
             string sql = "UPDATE Bookings SET Deleted = 1 WHERE id = @id";
             SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int };
-            using (SqlConnection connection = new SqlConnection(connectionstring))
+            using (SqlConnection connection = new SqlConnection(Connectionstring))
             {
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
                     command.Parameters.Add(theparam);
                     command.Connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (command.ExecuteReader())
                     {
                     }
                 }
@@ -76,7 +73,7 @@ namespace DAL
             string sql = "SELECT Bookings.ID bookingID, Bookings.StartTime starttime, Bookings.Deleted deleted, Bookings.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings JOIN Materials_Unique materials ON Bookings.MaterialID = materials.ID JOIN AspNetUsers users ON Bookings.UserID = users.Id WHERE bookings.ID = @id";
             Booking material = null;
             SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int };
-            using (SqlConnection connection = new SqlConnection(connectionstring))
+            using (SqlConnection connection = new SqlConnection(Connectionstring))
             {
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
@@ -122,7 +119,7 @@ namespace DAL
             List<Booking> materials = new List<Booking>();
 
             string sql = "SELECT booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0";
-            SqlConnection con = new SqlConnection(connectionstring);
+            SqlConnection con = new SqlConnection(Connectionstring);
             SqlCommand command = new SqlCommand(sql, con);
             try
             {
@@ -184,7 +181,7 @@ namespace DAL
                 new SqlParameter { ParameterName = "@materialID", SqlValue = t.item.Id, SqlDbType = SqlDbType.Int },
                 new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int }
             };
-            SqlConnection con = new SqlConnection(connectionstring);
+            SqlConnection con = new SqlConnection(Connectionstring);
             
             try
             {

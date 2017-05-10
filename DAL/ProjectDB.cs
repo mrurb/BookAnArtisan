@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -12,11 +9,7 @@ namespace DAL
 {
     public class ProjectDB : IDataAccess<Project>
     {
-        private string connectionString;
-        public ProjectDB()
-        {
-            connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
-        }
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
 
         public Project Create(Project project)
         {
