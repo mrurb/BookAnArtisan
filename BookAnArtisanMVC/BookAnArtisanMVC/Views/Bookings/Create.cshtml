@@ -41,11 +41,11 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => Model.item.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => Model.Item.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.Editor("material", new { htmlAttributes = new { @class = "form-control" } })
-                @Html.HiddenFor(model => model.item.Id, new { @class = "form-control", id = "MaterialId" })
-                @Html.ValidationMessageFor(model => model.item.Name, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Item.Id, new { @class = "form-control", id = "MaterialId" })
+                @Html.ValidationMessageFor(model => model.Item.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 

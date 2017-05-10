@@ -811,6 +811,9 @@ namespace BookAnArtisanMVC.ServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime CreatedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool DeletedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -820,13 +823,16 @@ namespace BookAnArtisanMVC.ServiceReference {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private BookAnArtisanMVC.ServiceReference.Material ItemField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime StartTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BookAnArtisanMVC.ServiceReference.User UserField;
+        private System.DateTime UpdatedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BookAnArtisanMVC.ServiceReference.Material itemField;
+        private BookAnArtisanMVC.ServiceReference.User UserField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -835,6 +841,19 @@ namespace BookAnArtisanMVC.ServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Created {
+            get {
+                return this.CreatedField;
+            }
+            set {
+                if ((this.CreatedField.Equals(value) != true)) {
+                    this.CreatedField = value;
+                    this.RaisePropertyChanged("Created");
+                }
             }
         }
         
@@ -878,6 +897,19 @@ namespace BookAnArtisanMVC.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public BookAnArtisanMVC.ServiceReference.Material Item {
+            get {
+                return this.ItemField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ItemField, value) != true)) {
+                    this.ItemField = value;
+                    this.RaisePropertyChanged("Item");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime StartTime {
             get {
                 return this.StartTimeField;
@@ -891,6 +923,19 @@ namespace BookAnArtisanMVC.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Updated {
+            get {
+                return this.UpdatedField;
+            }
+            set {
+                if ((this.UpdatedField.Equals(value) != true)) {
+                    this.UpdatedField = value;
+                    this.RaisePropertyChanged("Updated");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public BookAnArtisanMVC.ServiceReference.User User {
             get {
                 return this.UserField;
@@ -899,19 +944,6 @@ namespace BookAnArtisanMVC.ServiceReference {
                 if ((object.ReferenceEquals(this.UserField, value) != true)) {
                     this.UserField = value;
                     this.RaisePropertyChanged("User");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public BookAnArtisanMVC.ServiceReference.Material item {
-            get {
-                return this.itemField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.itemField, value) != true)) {
-                    this.itemField = value;
-                    this.RaisePropertyChanged("item");
                 }
             }
         }
