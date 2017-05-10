@@ -17,8 +17,7 @@ namespace DAL
                 new SqlParameter { ParameterName = "@starttime", SqlValue = t.StartTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@endtime", SqlValue = t.EndTime, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@userID", SqlValue = t.User.Id, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@materialID" , SqlValue = t.Item.Id, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Updated" , SqlValue = t.Updated, SqlDbType = SqlDbType.DateTime }
+                new SqlParameter { ParameterName = "@materialID" , SqlValue = t.Item.Id, SqlDbType = SqlDbType.NVarChar }
            };
             SqlConnection con = new SqlConnection(Connectionstring);
             string query = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Bookings.Deleted = 0) BEGIN INSERT INTO Bookings(StartTime, EndTime, UserID, MaterialID) VALUES(@starttime, @endtime, @userID, @materialID) END";
@@ -39,10 +38,10 @@ namespace DAL
                 }
                 myTrans.Commit();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 con.Close();
-                throw new Exception();
+                throw new Exception("", ex);
             }
             finally
             {
