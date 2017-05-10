@@ -22,6 +22,10 @@ namespace Model
         [DataMember]
         public bool Deleted { get; set; }
         [DataMember]
-        public Material item { get; set; }
+        public Material Item { get; set; }
+        [DataMember]
+        public DateTime Created { get; set; }
+        [DataMember]
+        public DateTime Updated { get; set; }
     }
 }
