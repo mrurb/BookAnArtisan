@@ -64,16 +64,19 @@ namespace BookAnArtisanMVC.ServiceReference
     public partial class Booking
     {
 
+     
     }
     public class BookingMetaData
     {
         [Required()]
         /*[DisplayFormat(DataFormatString = "{0:d}")]*/
         /*[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F}")]*/
+       /* [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd'T'hh:mm:ss}", ApplyFormatInEditMode = true)]*/
         [Display(Name = "Booket Fra", Order = -9)]
         public DateTime StartTime;
 
         [Required()]
+        /*[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd'T'hh:mm:ss}", ApplyFormatInEditMode = false)]*/
         [Display(Name = "Booket Til", Order = -8)]
         public DateTime EndTime;
 
