@@ -435,6 +435,8 @@
     <Content Include="Views\Projects\ProjectSearch.cshtml" />
     <Content Include="Views\Bookings\MyBooking.cshtml" />
     <Content Include="Views\Bookings\Edit.cshtml" />
+    <Content Include="Views\Materials\MyMaterials.cshtml" />
+    <Content Include="Views\Projects\MyProjects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
