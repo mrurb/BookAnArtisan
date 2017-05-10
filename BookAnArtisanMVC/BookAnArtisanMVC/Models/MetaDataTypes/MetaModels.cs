@@ -82,7 +82,7 @@ namespace BookAnArtisanMVC.ServiceReference
         [Required()]
         public User User { get; set; }
         [Required()]
-        public Material item { get; set; }
+        public Material Item { get; set; }
 
     }
 
