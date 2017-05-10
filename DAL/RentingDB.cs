@@ -71,7 +71,7 @@ namespace DAL
 
         public Booking Read(Booking t)
         {
-            string sql = "SELECT Bookings.ID bookingID, Bookings.StartTime starttime, Bookings.Deleted deleted, Bookings.EndTime endtime, Bookings.Updated, Bookings.Created, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings JOIN Materials_Unique materials ON Bookings.MaterialID = materials.ID JOIN AspNetUsers users ON Bookings.UserID = users.Id WHERE bookings.ID = @id";
+            string sql = "SELECT Bookings.ID bookingID, Bookings.StartTime starttime, Bookings.Deleted deleted, Bookings.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description,materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address, materialOwner.Id ownerId, materialOwner.UserName ownerUserName FROM Bookings JOIN Materials_Unique materials ON Bookings.MaterialID = materials.ID JOIN AspNetUsers materialOwner ON materialOwner.Id = materials.OwnerID JOIN AspNetUsers users ON Bookings.UserID = users.Id WHERE bookings.ID = @id";
             Booking material = null;
             SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int };
             using (SqlConnection connection = new SqlConnection(Connectionstring))
@@ -90,8 +90,6 @@ namespace DAL
                                 EndTime = (DateTime)reader["endtime"],
                                 StartTime = (DateTime)reader["starttime"],
                                 Deleted = (bool)reader["deleted"],
-                                Created = (DateTime)reader["Created"],
-                                Updated = (DateTime)reader["Updated"],
                                 User = new User()
                                 {
                                     Id = reader["userID"].ToString(),
@@ -108,6 +106,11 @@ namespace DAL
                                     Name = reader["materialsname"].ToString(),
                                     Description = reader["description"].ToString(),
                                     Condition = reader["condition"].ToString(),
+                                    Owner = new User()
+                                    {
+                                        Id = reader["ownerId"].ToString(),
+                                        UserName = reader["ownerUsername"].ToString()
+                                    }
                                 }
                             };
                         }
