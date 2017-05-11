@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0f51d0d1-2e0d-4ca7-a08c-c2c7d2bcec9f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/WCF/UserService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:8733/WCF/MaterialService/mex" Protocol="mex" SourceId="2" />
+    <MetadataSource Address="http://localhost:8733/WCF/RentingService/mex" Protocol="mex" SourceId="3" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="951f02de-4fd4-48b7-a30a-ff29fd535dd4" SourceId="1" SourceUrl="http://localhost:8733/WCF/UserService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="c5aac117-6f08-4166-9b7a-a9d7e645a31a" SourceId="1" SourceUrl="http://localhost:8733/WCF/UserService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="352b971b-97bf-49b4-a6d0-0ff5c8a9993a" SourceId="1" SourceUrl="http://localhost:8733/WCF/UserService/mex" />
+    <MetadataFile FileName="Model.xsd" MetadataType="Schema" ID="16aab830-e746-4f88-85df-0e24f06f8461" SourceId="1" SourceUrl="http://localhost:8733/WCF/UserService/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="c4a2424f-33f5-4d25-9ce2-b7c54ae65e42" SourceId="2" SourceUrl="http://localhost:8733/WCF/MaterialService/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="1452f984-b050-49a0-9334-3c452651873b" SourceId="2" SourceUrl="http://localhost:8733/WCF/MaterialService/mex" />
+    <MetadataFile FileName="service3.xsd" MetadataType="Schema" ID="423316ac-00da-449a-91cb-e4414cb2418c" SourceId="2" SourceUrl="http://localhost:8733/WCF/MaterialService/mex" />
+    <MetadataFile FileName="Model1.xsd" MetadataType="Schema" ID="afb5dc5b-5d74-4b1e-a1f7-e8551ec7c7af" SourceId="2" SourceUrl="http://localhost:8733/WCF/MaterialService/mex" />
+    <MetadataFile FileName="service2.wsdl" MetadataType="Wsdl" ID="16653153-1a9e-49ae-82f3-6bccfaba7329" SourceId="3" SourceUrl="http://localhost:8733/WCF/RentingService/mex" />
+    <MetadataFile FileName="service4.xsd" MetadataType="Schema" ID="784eca96-1f71-4fd6-842e-5325a9cd6c0a" SourceId="3" SourceUrl="http://localhost:8733/WCF/RentingService/mex" />
+    <MetadataFile FileName="service5.xsd" MetadataType="Schema" ID="6f5aad82-953f-44fe-ad56-3f05cee0fc31" SourceId="3" SourceUrl="http://localhost:8733/WCF/RentingService/mex" />
+    <MetadataFile FileName="Model2.xsd" MetadataType="Schema" ID="38115680-cadf-4bae-8f39-2e3e175fc166" SourceId="3" SourceUrl="http://localhost:8733/WCF/RentingService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
