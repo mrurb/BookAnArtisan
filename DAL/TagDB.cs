@@ -84,7 +84,7 @@ namespace DAL
             SqlConnection con = new SqlConnection(connectionString);
             SqlCommand sqlcommand = new SqlCommand(sql, con);
             con.Open();
-            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.Serializable);
+            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.RepeatableRead);
             sqlcommand.Parameters.AddRange(arrayOfParameters);
             sqlcommand.Transaction = myTrans;
                 int affectedRows = sqlcommand.ExecuteNonQuery();

@@ -192,7 +192,7 @@ namespace DAL
             SqlConnection con = new SqlConnection(Connectionstring);
             SqlCommand sqlcommand = new SqlCommand(sql, con);
             con.Open();
-            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.Serializable);
+            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.RepeatableRead);
             try
             {
                 
