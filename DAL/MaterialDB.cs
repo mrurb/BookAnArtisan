@@ -50,7 +50,7 @@ namespace DAL
 
         public List<Material> ReadAllForUser(User user)
         {
-            string sql = "SELECT Materials_Unique.ID, Materials_Unique.Name, Materials_Unique.Description, Materials_Unique.Condition, Materials_Unique.Deleted, Materials_Unique.Available, AspNetUsers.UserName OwnerUserName, Materials_Unique.OwnerID FROM Materials_Unique JOIN AspNetUsers ON OwnerID = AspNetUsers.Id WHERE AspNetUsers.Id = @id";
+            string sql = "SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; BEGIN TRANSACTION SELECT Materials_Unique.ID, Materials_Unique.Name, Materials_Unique.Description, Materials_Unique.Condition, Materials_Unique.Deleted, Materials_Unique.Available, AspNetUsers.UserName OwnerUserName, Materials_Unique.OwnerID FROM Materials_Unique JOIN AspNetUsers ON OwnerID = AspNetUsers.Id WHERE AspNetUsers.Id = @id; COMMIT";
             List<Material> materials = new List<Material>();
             SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = user.Id, SqlDbType = SqlDbType.NVarChar };
             using (SqlConnection connection = new SqlConnection(connectionstring))
@@ -134,7 +134,7 @@ namespace DAL
         {
             List<Material> materials = new List<Material>();
 
-            string sql = "SELECT Materials_Unique.ID, Materials_Unique.Name, Materials_Unique.Description, Materials_Unique.Condition, Materials_Unique.Deleted, Materials_Unique.Available, AspNetUsers.UserName OwnerUserName, Materials_Unique.OwnerID FROM Materials_Unique JOIN AspNetUsers ON OwnerID = AspNetUsers.Id WHERE Materials_Unique.Deleted = 0";
+            string sql = "SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; BEGIN TRANSACTION SELECT Materials_Unique.ID, Materials_Unique.Name, Materials_Unique.Description, Materials_Unique.Condition, Materials_Unique.Deleted, Materials_Unique.Available, AspNetUsers.UserName OwnerUserName, Materials_Unique.OwnerID FROM Materials_Unique JOIN AspNetUsers ON OwnerID = AspNetUsers.Id WHERE Materials_Unique.Deleted = 0; COMMIT";
 
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
@@ -175,19 +175,18 @@ namespace DAL
                 new SqlParameter { ParameterName = "@available", SqlValue = t.Available, SqlDbType = SqlDbType.Bit },
                 new SqlParameter { ParameterName = "@ownerid", SqlValue = t.Owner.Id, SqlDbType = SqlDbType.NVarChar }
             };
-            using (SqlConnection connection = new SqlConnection(connectionstring))
-            {
-                using (SqlCommand command = new SqlCommand(sql, connection))
+            SqlConnection con = new SqlConnection(connectionstring);
+            SqlCommand sqlcommand = new SqlCommand(sql, con);
+            con.Open();
+            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.Serializable);
+            sqlcommand.Transaction = myTrans;
+            sqlcommand.Parameters.AddRange(sqlparams);
+                int rowsaffected = sqlcommand.ExecuteNonQuery();
+                if (rowsaffected < 1)
                 {
-                    command.Parameters.AddRange(sqlparams);
-                    command.Connection.Open();
-                    int rowsaffected = command.ExecuteNonQuery();
-                    if (rowsaffected < 1)
-                    {
-                        throw new Exception();
-                    }
+                    throw new Exception();
                 }
-            }
+            myTrans.Commit();
             return t;
         }
 

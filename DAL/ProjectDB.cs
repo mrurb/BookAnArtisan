@@ -114,20 +114,18 @@ namespace DAL
                 new SqlParameter { ParameterName = "@Modified", SqlValue = project.Modified, SqlDbType = SqlDbType.DateTime },
                 new SqlParameter { ParameterName = "@Deleted", SqlValue = Convert.ToInt32(project.Deleted), SqlDbType = SqlDbType.Bit }
             };
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand(sql, connection))
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand sqlcommand = new SqlCommand(sql, con);
+            con.Open();
+            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.Serializable);
+            sqlcommand.Transaction = myTrans;
+            sqlcommand.Parameters.AddRange(arrayOfParameters);
+                int affectedRows = sqlcommand.ExecuteNonQuery();
+                if (!(0 < affectedRows))
                 {
-                    command.Parameters.AddRange(arrayOfParameters);
-                    command.Connection.Open();
-                    int affectedRows = command.ExecuteNonQuery();
-                    if (!(0 < affectedRows))
-                    {
-                        throw new Exception("No rows affected. Update failed.");
-                    }
+                    throw new Exception("No rows affected. Update failed.");
                 }
-            }
+            myTrans.Commit();
             return project;
         }
 
@@ -162,7 +160,7 @@ namespace DAL
         {
             List<Project> projects = new List<Project>();
 
-            string sql = "SELECT TOP(10) Projects.Name, Projects.ID, Projects.Created_by_ID, Projects.Contact_ID, Projects.Project_status_ID, Projects.Project_description, Projects.Street_Name,Projects.Start_time, Projects.Created, Projects.Modified, Projects.Deleted, CreatedBy.UserName CreatedByUserName, Contact.UserName ContactUserName FROM Projects JOIN AspNetUsers CreatedBy ON Projects.Created_by_ID = CreatedBy.Id JOIN AspNetUsers Contact ON Projects.Contact_ID = Contact.Id WHERE Projects.Deleted = 0";
+            string sql = "SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; BEGIN TRANSACTION SELECT TOP(10) Projects.Name, Projects.ID, Projects.Created_by_ID, Projects.Contact_ID, Projects.Project_status_ID, Projects.Project_description, Projects.Street_Name,Projects.Start_time, Projects.Created, Projects.Modified, Projects.Deleted, CreatedBy.UserName CreatedByUserName, Contact.UserName ContactUserName FROM Projects JOIN AspNetUsers CreatedBy ON Projects.Created_by_ID = CreatedBy.Id JOIN AspNetUsers Contact ON Projects.Contact_ID = Contact.Id WHERE Projects.Deleted = 0; COMMIT";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -216,7 +214,7 @@ namespace DAL
         {
             List<Project> projects = new List<Project>();
 
-            string sql = "SELECT TOP(10) Projects.Name, Projects.ID, Projects.Created_by_ID, Projects.Contact_ID, Projects.Project_status_ID, Projects.Project_description, Projects.Street_Name,Projects.Start_time, Projects.Created, Projects.Modified, Projects.Deleted, CreatedBy.UserName CreatedByUserName, Contact.UserName ContactUserName FROM Projects JOIN AspNetUsers CreatedBy ON Projects.Created_by_ID = CreatedBy.Id JOIN AspNetUsers Contact ON Projects.Contact_ID = Contact.Id WHERE Projects.Created_by_ID = @Id OR Projects.Contact_ID = @Id";
+            string sql = "SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; BEGIN TRANSACTION SELECT TOP(10) Projects.Name, Projects.ID, Projects.Created_by_ID, Projects.Contact_ID, Projects.Project_status_ID, Projects.Project_description, Projects.Street_Name,Projects.Start_time, Projects.Created, Projects.Modified, Projects.Deleted, CreatedBy.UserName CreatedByUserName, Contact.UserName ContactUserName FROM Projects JOIN AspNetUsers CreatedBy ON Projects.Created_by_ID = CreatedBy.Id JOIN AspNetUsers Contact ON Projects.Contact_ID = Contact.Id WHERE Projects.Created_by_ID = @Id OR Projects.Contact_ID = @Id; COMMIT";
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = user.Id, SqlDbType = SqlDbType.NVarChar };
 

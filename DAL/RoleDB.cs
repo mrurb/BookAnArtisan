@@ -80,20 +80,19 @@ namespace DAL
                 new SqlParameter { ParameterName = "@Id", SqlValue = role.Id, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@Name" , SqlValue = role.Name, SqlDbType = SqlDbType.NVarChar}
             };
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using(SqlCommand command = new SqlCommand(sql, connection))
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand sqlcommand = new SqlCommand(sql, con);
+            con.Open();
+            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.Serializable);
+            sqlcommand.Parameters.AddRange(arrayOfParameters);
+            sqlcommand.Connection.Open();
+            sqlcommand.Transaction = myTrans;
+            int affectedRows = sqlcommand.ExecuteNonQuery();
+                if (affectedRows < 1)
                 {
-                    command.Parameters.AddRange(arrayOfParameters);
-                    command.Connection.Open();
-                    int affectedRows = command.ExecuteNonQuery();
-                    if (affectedRows < 1)
-                    {
-                        throw new System.Exception("No rows affected");
-                    }
+                    throw new System.Exception("No rows affected");
                 }
-            }
+            myTrans.Commit();
             return role;
         }
         public Role Delete(Role role)
@@ -123,7 +122,7 @@ namespace DAL
         {
             List<Role> roles = new List<Role>();
 
-            string sql = "SELECT * FROM AspNetRoles";
+            string sql = "SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; BEGIN TRANSACTION SELECT * FROM AspNetRoles; COMMIT";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

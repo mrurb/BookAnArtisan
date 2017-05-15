@@ -132,7 +132,7 @@ namespace DAL
          * @return list of projects
          * @throws generic exception.
          */
-        public List<Project> SearchByProjectAddress(Project pinput)
+        public List<Project> SearchByProjectAddress(Project pinput) //read uncommitted? hurtigere.
         {
             List<Project> results = new List<Project>();
             List<User> artisans = new List<User>();
@@ -154,38 +154,36 @@ namespace DAL
                 query += " OR Tags.name LIKE @tag";
                 arrayofparams[arrayofparams.Length] = new SqlParameter { ParameterName = "@tag", SqlValue = "%" + pinput.Tags[0] + "%", SqlDbType = SqlDbType.NVarChar };
             }
-
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                using (SqlCommand sqlcommand = new SqlCommand(query, con))
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand sqlcommand = new SqlCommand(query, con);
+            con.Open();
+            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadUncommitted);
+                try
                 {
-                    try
+                    sqlcommand.Parameters.AddRange(arrayofparams);
+                    sqlcommand.Transaction = myTrans;
+                    using (SqlDataReader datareader = sqlcommand.ExecuteReader())
                     {
-                        sqlcommand.Parameters.AddRange(arrayofparams);
-                        con.Open();
-                        using (SqlDataReader datareader = sqlcommand.ExecuteReader())
+                        if (datareader.HasRows)
                         {
-                            if (datareader.HasRows)
+                            while (datareader.Read())
                             {
-                                while (datareader.Read())
-                                {
-                                    Project p = new Project();
-                                    p.Id = (int)datareader["id"];
-                                    p.CreatedBy = new User { FirstName = datareader["cfirstname"].ToString() };
-                                    p.Contact = new User { FirstName = datareader["afirstname"].ToString() };
-                                    p.Name = datareader["pname"].ToString();
-                                    results.Add(p);
-                                    AppendTags(p); //can I do this??
-                                }
-
+                                Project p = new Project();
+                                p.Id = (int)datareader["id"];
+                                p.CreatedBy = new User { FirstName = datareader["cfirstname"].ToString() };
+                                p.Contact = new User { FirstName = datareader["afirstname"].ToString() };
+                                p.Name = datareader["pname"].ToString();
+                                results.Add(p);
+                                AppendTags(p); //can I do this??
                             }
+
                         }
                     }
-                    catch (Exception)
-                    {
-                        throw new Exception();
-                    }
+                    myTrans.Commit();
                 }
+            catch (Exception ex)
+            {
+                throw new Exception();
             }
             return results;
         }

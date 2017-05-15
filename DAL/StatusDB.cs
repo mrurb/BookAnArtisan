@@ -77,20 +77,19 @@ namespace DAL
                 new SqlParameter { ParameterName = "@Id", SqlValue = status.Id, SqlDbType = SqlDbType.Int },
                 new SqlParameter { ParameterName = "@Name" , SqlValue = status.Name, SqlDbType = SqlDbType.NVarChar}
             };
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand sqlcommand = new SqlCommand(sql, con);
+            con.Open();
+            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.Serializable);
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand(sql, connection))
+            sqlcommand.Parameters.AddRange(arrayOfParameters);
+            sqlcommand.Transaction = myTrans;
+                int affectedRows = sqlcommand.ExecuteNonQuery();
+                if (affectedRows < 1)
                 {
-                    command.Parameters.AddRange(arrayOfParameters);
-                    command.Connection.Open();
-                    int affectedRows = command.ExecuteNonQuery();
-                    if (affectedRows < 1)
-                    {
-                        throw new System.Exception("No rows affected");
-                    }
+                    throw new System.Exception("No rows affected");
                 }
-            }
+            myTrans.Commit();
             return status;
         }
 
@@ -120,7 +119,7 @@ namespace DAL
         {
             List<Status> status = new List<Status>();
 
-            string sql = "SELECT * FROM Project_status";
+            string sql = "SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; BEGIN TRANSACTION SELECT * FROM Project_status; COMMIT";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

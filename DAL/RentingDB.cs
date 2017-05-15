@@ -27,7 +27,7 @@ namespace DAL
             try
             {
                 con.Open();
-                SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.RepeatableRead);
+                SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.Serializable);
                 sqlcommand.Transaction = myTrans;
                 sqlcommand.Parameters.AddRange(arrayOfParams);
                 var rowsaffected = sqlcommand.ExecuteNonQuery();
@@ -192,7 +192,7 @@ namespace DAL
             SqlConnection con = new SqlConnection(Connectionstring);
             SqlCommand sqlcommand = new SqlCommand(sql, con);
             con.Open();
-            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadCommitted);
+            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.Serializable);
             try
             {
                 

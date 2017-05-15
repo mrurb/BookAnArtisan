@@ -61,7 +61,7 @@ namespace DAL
         {
             List<Meeting> userMeetings = new List<Meeting>();
 
-            string sql = "SELECT DISTINCT Meetings.Id mId, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID  FROM Meetings JOIN AspNetUsers User1 ON Meetings.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meetings.ContactID = User2.Id WHERE Meetings.CreatedByID = @Id OR Meetings.ContactID = @Id";
+            string sql = "SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; BEGIN TRANSACTION SELECT DISTINCT Meetings.Id mId, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID  FROM Meetings JOIN AspNetUsers User1 ON Meetings.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meetings.ContactID = User2.Id WHERE Meetings.CreatedByID = @Id OR Meetings.ContactID = @Id; COMMIT";
 
             SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = user.Id, SqlDbType = SqlDbType.NVarChar };
 
@@ -177,7 +177,7 @@ namespace DAL
         {
             List<Meeting> users = new List<Meeting>();
 
-            string sql = "SELECT User1.UserName CreatedByUserName, User2.UserName ContactUserName, Meetings.Id mId, Meetings.Deleted, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID FROM Meetings JOIN AspNetUsers User1 ON Meetings.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meetings.ContactID = User2.Id";
+            string sql = "SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; BEGIN TRANSACTION SELECT User1.UserName CreatedByUserName, User2.UserName ContactUserName, Meetings.Id mId, Meetings.Deleted, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID FROM Meetings JOIN AspNetUsers User1 ON Meetings.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meetings.ContactID = User2.Id; COMMIT";
 
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
@@ -261,19 +261,18 @@ namespace DAL
                 new SqlParameter { ParameterName = "@contactid", SqlValue = t.Contact.Id, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@deleted", SqlValue = t.Deleted, SqlDbType = SqlDbType.Bit }
             };
-            using (SqlConnection connection = new SqlConnection(connectionstring))
-            {
-                using (SqlCommand command = new SqlCommand(sql, connection))
+            SqlConnection con = new SqlConnection(connectionstring);
+            SqlCommand sqlcommand = new SqlCommand(sql, con);
+            con.Open();
+            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.Serializable);
+            sqlcommand.Parameters.AddRange(sqlparams);
+            sqlcommand.Transaction = myTrans;
+                int rowsaffected = sqlcommand.ExecuteNonQuery();
+                if (rowsaffected < 1)
                 {
-                    command.Parameters.AddRange(sqlparams);
-                    command.Connection.Open();
-                    int rowsaffected = command.ExecuteNonQuery();
-                    if (rowsaffected < 1)
-                    {
-                        throw new Exception();
-                    }
+                    throw new Exception();
                 }
-            }
+            myTrans.Commit();
             return t;
         }
 
