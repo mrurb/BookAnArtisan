@@ -29,7 +29,7 @@ namespace BLL
         }
 
         public Booking Update(Booking t)
-        {
+        { 
             return rdb.Update(t);
         }
     }
