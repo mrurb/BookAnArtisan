@@ -29,8 +29,8 @@
                     </ListView>
                     <TextBox x:Name="materialtxt" HorizontalAlignment="Left" Height="23" Margin="484,78,0,0" TextWrapping="Wrap" Text="Choose Something.." VerticalAlignment="Top" Width="120" IsEnabled="False"/>
                     <TextBox x:Name="rentertxt" HorizontalAlignment="Left" Height="23" Margin="484,121,0,0" TextWrapping="Wrap" Text="Choose Something.." VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-                    <TextBox x:Name="fromtxt" HorizontalAlignment="Left" Height="23" Margin="484,165,0,0" TextWrapping="Wrap" Text="Choose Something.." VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="totxt" HorizontalAlignment="Left" Height="23" Margin="484,210,0,0" TextWrapping="Wrap" Text="Choose Something.." VerticalAlignment="Top" Width="120"/>
+                    <wpfTool:DateTimePicker Name="fromtxt" Margin="484,171,130,143" TimeFormat="FullDateTime" Kind="Local" />
+                    <wpfTool:DateTimePicker Name="totxt" Margin="484,216,130,98" TimeFormat="FullDateTime" Kind="Local" />
                     <TextBox x:Name="ownertxt" HorizontalAlignment="Left" Height="23" Margin="484,254,0,0" TextWrapping="Wrap" Text="Choose Something.." VerticalAlignment="Top" Width="120" IsEnabled="False"/>
                     <Button x:Name="button" Content="Delete" HorizontalAlignment="Left" Margin="529,298,0,0" VerticalAlignment="Top" Width="75" Click="btn_delete"/>
                     <Button x:Name="SUBMITBTN" Content="submit changes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="635,298,0,0" Click="SUBMITBTN_Click"/>

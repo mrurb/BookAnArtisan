@@ -124,7 +124,7 @@ namespace DAL
         {
             List<Booking> materials = new List<Booking>();
 
-            string sql = "SELECT booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0";
+            string sql = "SELECT booking.updated, booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0";
             SqlConnection con = new SqlConnection(Connectionstring);
             SqlCommand command = new SqlCommand(sql, con);
             try
@@ -138,6 +138,7 @@ namespace DAL
                     {
                         materials.Add(new Booking
                         {
+                            Updated = (DateTime)reader["updated"],
                             Id = (int)reader["bookingID"],
                             EndTime = (DateTime)reader["endtime"],
                             StartTime = (DateTime)reader["starttime"],

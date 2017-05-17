@@ -64,13 +64,13 @@ namespace ApactaWPF
 
 		private void SUBMITBTN_Click(object sender, RoutedEventArgs e)
 		{
-			if (bla1 != null)
+			if (bla1 != null && (fromtxt.Value != null && totxt.Value != null))
 			{
 				Booking bla2 = new Booking()
 				{
 					Id = bla1.Id,
-					StartTime = Convert.ToDateTime(fromtxt.Text),
-					EndTime = Convert.ToDateTime(totxt.Text),
+					StartTime = (DateTime)fromtxt.Value,
+					EndTime = (DateTime)totxt.Value,
 					Updated = bla1.Updated,
 					//User = sCl.ReadUser(new User() { Id = bla1.User.Id})
 					Item = bla1.Item,
