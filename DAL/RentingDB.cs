@@ -176,7 +176,7 @@ namespace DAL
             return materials;
         }
 
-        public Booking Update(Booking t)
+        public Booking Update(Booking t) //where updated = @updated
         {
             var sql = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Deleted = 0 AND Bookings.ID <> @id) BEGIN UPDATE Bookings SET StartTime = @starttime, EndTime = @endtime, UserID = @userID, Updated = GETUTCDATE() WHERE Bookings.ID = @id AND Bookings.Updated = @Updated END";
             
@@ -192,7 +192,7 @@ namespace DAL
             SqlConnection con = new SqlConnection(Connectionstring);
             SqlCommand sqlcommand = new SqlCommand(sql, con);
             con.Open();
-            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.RepeatableRead);
+            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadCommitted);
             try
             {
                 

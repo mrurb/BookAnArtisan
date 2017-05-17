@@ -11,7 +11,7 @@
         <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="364" VerticalAlignment="Top" Width="742">
             <TabItem Header="Show All">
                 <Grid Background="#FFE5E5E5">
-                    <Button x:Name="RefreshBtn" Content="Get Stuff" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Width="75" Click="Get_All_Bookings"/>
+                    <Button x:Name="RefreshBtn" Content="Get Bookings" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Width="75" Click="Get_All_Bookings"/>
                     <Label x:Name="label" Content="Details/edit:" HorizontalAlignment="Left" Margin="510,16,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.579,0.524"/>
                     <Label x:Name="renterlbl" Content="Renter" HorizontalAlignment="Left" Margin="405,121,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="tolbl" Content="To" HorizontalAlignment="Left" Margin="405,210,0,0" VerticalAlignment="Top"/>
@@ -38,7 +38,7 @@
             </TabItem>
             <TabItem Header="Create New">
                 <Grid Background="#FFE5E5E5">
-                    <Button x:Name="button1" Content="create" HorizontalAlignment="Left" Margin="338,242,0,0" VerticalAlignment="Top" Width="75" Click="create"/>
+                    <Button x:Name="button1" Content="create" HorizontalAlignment="Left" Margin="338,242,0,0" VerticalAlignment="Top" Width="75" Click="Create"/>
                     <Label x:Name="renterlbl_Copy" Content="Renter" HorizontalAlignment="Left" Margin="256,72,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="tolbl_Copy" Content="To" HorizontalAlignment="Left" Margin="256,161,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="fromlbl_Copy" Content="From" HorizontalAlignment="Left" Margin="256,116,0,0" VerticalAlignment="Top"/>
