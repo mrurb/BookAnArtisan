@@ -7,6 +7,9 @@ using Model;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Data.Common;
+using System.Runtime.Serialization;
+using System.ServiceModel;
 
 namespace DAL
 {
@@ -276,37 +279,67 @@ namespace DAL
             return t;
         }
 
-        public Meeting ReadDetails(Meeting m)
+        public Meeting ReadDetails(Meeting m) 
         {
             Meeting result = null;
 
             string sql = "SELECT Contact.UserName ContactUserName, CreatedBy.UserName CreatedByUserName, Meetings.id MeetingId, Contact.Id ContactId, CreatedBy.Id CreatedById, Meetings.starttime MeetingStartTime, Meetings.EndTime MeetingEndTime, Meetings.Title MeetingTitle, Meetings.Description, Meetings.Deleted, Contact.FirstName ContactFirstName, Contact.LastName ContactLastName, CreatedBy.FirstName CreatedByFirstName, CreatedBy.LastName CreatedByLastName FROM Meetings JOIN AspNetUsers Contact ON Meetings.ContactID = Contact.Id JOIN AspNetUsers CreatedBy ON Meetings.CreatedByID = CreatedBy.Id WHERE Meetings.id = @id";
 
-            SqlParameter midparam = new SqlParameter() { ParameterName = "@id", SqlDbType = SqlDbType.Int, Value = m.Id };
-            using (SqlConnection connection = new SqlConnection(connectionstring))
+            try
             {
-                using (SqlCommand command = new SqlCommand(sql, connection))
+                SqlParameter midparam = new SqlParameter() {ParameterName = "@id", SqlDbType = SqlDbType.Int, Value = m.Id};
+                using (SqlConnection connection = new SqlConnection(connectionstring))
                 {
-                    command.Parameters.Add(midparam);
-                    command.Connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (SqlCommand command = new SqlCommand(sql, connection))
                     {
-                        while (reader.Read())
+                        command.Parameters.Add(midparam);
+                        command.Connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            result = (new Meeting
+                            while (reader.Read())
                             {
-                                Id = (int)reader["MeetingId"],
-                                Deleted = (bool)reader["Deleted"],
-                                Title = reader["MeetingTitle"].ToString(),
-                                StartTime = (DateTime)reader["MeetingStartTime"],
-                                EndTime = (DateTime)reader["MeetingEndTime"],
-                                Description = reader["Description"].ToString(),
-                                CreatedBy = new User { Id = reader["CreatedById"].ToString(), FirstName = reader["CreatedByFirstName"].ToString(), LastName = reader["CreatedByLastName"].ToString(), UserName = reader["CreatedByUserName"].ToString() },
-                                Contact = new User { FirstName = reader["ContactFirstName"].ToString(), LastName = reader["ContactLastName"].ToString(), Id = reader["ContactId"].ToString(), UserName = reader["ContactUserName"].ToString() }
-                            });
+                                result = (new Meeting
+                                {
+                                    Id = (int) reader["MeetingId"],
+                                    Deleted = (bool) reader["Deleted"],
+                                    Title = reader["MeetingTitle"].ToString(),
+                                    StartTime = (DateTime) reader["MeetingStartTime"],
+                                    EndTime = (DateTime) reader["MeetingEndTime"],
+                                    Description = reader["Description"].ToString(),
+                                    CreatedBy = new User
+                                    {
+                                        Id = reader["CreatedById"].ToString(),
+                                        FirstName = reader["CreatedByFirstName"].ToString(),
+                                        LastName = reader["CreatedByLastName"].ToString(),
+                                        UserName = reader["CreatedByUserName"].ToString()
+                                    },
+                                    Contact = new User
+                                    {
+                                        FirstName = reader["ContactFirstName"].ToString(),
+                                        LastName = reader["ContactLastName"].ToString(),
+                                        Id = reader["ContactId"].ToString(),
+                                        UserName = reader["ContactUserName"].ToString()
+                                    }
+                                });
+                            }
                         }
                     }
                 }
+            }
+            catch (SqlException e)
+            {
+                throw new FaultException<SqlException>(e, new FaultReason(e.Message), new FaultCode("Sender"));
+                //log exception   
+            }
+            catch(DbException e)
+            {
+                throw new FaultException<DbException>(e, new FaultReason(e.Message), new FaultCode("Sender"));
+                //log exception!
+            }
+            catch (Exception e)
+            {
+                throw new FaultException<Exception>(e, new FaultReason(e.Message), new FaultCode("Sender"));
+                //log Exception!
             }
             return result;
         }

@@ -4,6 +4,7 @@ using Model;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.ServiceModel;
 
 namespace DAL
 {
@@ -33,15 +34,9 @@ namespace DAL
                 var rowsaffected = sqlcommand.ExecuteNonQuery();
                 if (rowsaffected < 1)
                 {
-                    con.Close();
-                    throw new Exception();
+                    throw new ApplicationException("Booking not created");
                 }
                 myTrans.Commit();
-            }
-            catch (Exception ex)
-            {
-                con.Close();
-                throw new Exception("", ex);
             }
             finally
             {
@@ -124,7 +119,7 @@ namespace DAL
         {
             List<Booking> materials = new List<Booking>();
 
-            string sql = "SELECT booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0";
+            string sql = "SELECT booking.updated, booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0";
             SqlConnection con = new SqlConnection(Connectionstring);
             SqlCommand command = new SqlCommand(sql, con);
             try
@@ -138,6 +133,7 @@ namespace DAL
                     {
                         materials.Add(new Booking
                         {
+                            Updated = (DateTime)reader["updated"],
                             Id = (int)reader["bookingID"],
                             EndTime = (DateTime)reader["endtime"],
                             StartTime = (DateTime)reader["starttime"],
@@ -176,7 +172,7 @@ namespace DAL
             return materials;
         }
 
-        public Booking Update(Booking t)
+        public Booking Update(Booking t) //where updated = @updated
         {
             var sql = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Deleted = 0 AND Bookings.ID <> @id) BEGIN UPDATE Bookings SET StartTime = @starttime, EndTime = @endtime, UserID = @userID, Updated = GETUTCDATE() WHERE Bookings.ID = @id AND Bookings.Updated = @Updated END";
             
@@ -192,7 +188,7 @@ namespace DAL
             SqlConnection con = new SqlConnection(Connectionstring);
             SqlCommand sqlcommand = new SqlCommand(sql, con);
             con.Open();
-            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.RepeatableRead);
+            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadCommitted);
             try
             {
                 

@@ -3,6 +3,7 @@
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8733/WCF/RentingService/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8733/WCF/RentingService/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
       <xsd:import schemaLocation="http://localhost:8733/WCF/RentingService/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8733/WCF/RentingService/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Model" />
     </xsd:schema>
@@ -12,6 +13,9 @@
   </wsdl:message>
   <wsdl:message name="IRentingService_CreateBooking_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRentingService_CreateBooking_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/System" name="detail" element="q1:ApplicationException" />
   </wsdl:message>
   <wsdl:message name="IRentingService_ReadBooking_InputMessage">
     <wsdl:part name="parameters" element="tns:ReadBooking" />
@@ -41,6 +45,7 @@
     <wsdl:operation name="CreateBooking">
       <wsdl:input wsaw:Action="http://tempuri.org/IRentingService/CreateBooking" message="tns:IRentingService_CreateBooking_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRentingService/CreateBookingResponse" message="tns:IRentingService_CreateBooking_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IRentingService/CreateBookingApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IRentingService_CreateBooking_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReadBooking">
       <wsdl:input wsaw:Action="http://tempuri.org/IRentingService/ReadBooking" message="tns:IRentingService_ReadBooking_InputMessage" />
@@ -69,6 +74,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ReadBooking">
       <soap:operation soapAction="http://tempuri.org/IRentingService/ReadBooking" style="document" />

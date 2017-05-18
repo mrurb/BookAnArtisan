@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using DAL;
+using System.ServiceModel;
+
 namespace BLL
 {
     public class MeetingController : IController<Meeting>
