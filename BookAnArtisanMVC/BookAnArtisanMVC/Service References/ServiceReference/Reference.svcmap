@@ -44,11 +44,12 @@
     <MetadataFile FileName="item7.xsd" MetadataType="Schema" ID="f634a502-2060-4675-8138-dcfd6b9e8ee5" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd1" />
     <MetadataFile FileName="ProjectService.wsdl" MetadataType="Wsdl" ID="ce0f2555-a876-4b96-a2e0-be0c6f106d0c" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?wsdl" />
     <MetadataFile FileName="item8.xsd" MetadataType="Schema" ID="66701028-e9e4-4c5a-b82b-7f30cf52ac55" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd0" />
-    <MetadataFile FileName="item9.xsd" MetadataType="Schema" ID="c489473b-aa8d-450f-9fad-64996c45ef31" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd0" />
-    <MetadataFile FileName="RentingService.wsdl" MetadataType="Wsdl" ID="1eeb2c6e-1bd9-4279-a1d4-ff49f2763e11" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?wsdl" />
-    <MetadataFile FileName="item10.xsd" MetadataType="Schema" ID="35ce0017-e218-406d-b14b-432843c36ab9" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd1" />
-    <MetadataFile FileName="item11.xsd" MetadataType="Schema" ID="b0e1662f-bd2a-4177-a76c-d4ec43a89aea" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd2" />
     <MetadataFile FileName="item3.disco" MetadataType="Disco" ID="530558ab-b1be-4b86-8b03-6b8a417c83a2" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?disco" />
+    <MetadataFile FileName="item10.xsd" MetadataType="Schema" ID="35ce0017-e218-406d-b14b-432843c36ab9" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd1" />
+    <MetadataFile FileName="item9.xsd" MetadataType="Schema" ID="c489473b-aa8d-450f-9fad-64996c45ef31" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd0" />
+    <MetadataFile FileName="item16.xsd" MetadataType="Schema" ID="e5564425-0ef2-4b1f-9555-d3181dc04236" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd3" />
+    <MetadataFile FileName="item11.xsd" MetadataType="Schema" ID="b0e1662f-bd2a-4177-a76c-d4ec43a89aea" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd2" />
+    <MetadataFile FileName="RentingService.wsdl" MetadataType="Wsdl" ID="1eeb2c6e-1bd9-4279-a1d4-ff49f2763e11" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?wsdl" />
     <MetadataFile FileName="item4.disco" MetadataType="Disco" ID="4989cca4-f65b-4625-b71f-3ad1364dd83e" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?disco" />
     <MetadataFile FileName="item12.xsd" MetadataType="Schema" ID="3d95791d-36f7-4442-9f0c-9e6438c26a88" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd0" />
     <MetadataFile FileName="UserService.wsdl" MetadataType="Wsdl" ID="4585457f-828b-4619-87eb-2515b3d152ee" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?wsdl" />

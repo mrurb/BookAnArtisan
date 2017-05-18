@@ -4,6 +4,7 @@ using Model;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.ServiceModel;
 
 namespace DAL
 {
@@ -33,15 +34,9 @@ namespace DAL
                 var rowsaffected = sqlcommand.ExecuteNonQuery();
                 if (rowsaffected < 1)
                 {
-                    con.Close();
-                    throw new Exception();
+                    throw new ApplicationException("Booking not created");
                 }
                 myTrans.Commit();
-            }
-            catch (Exception ex)
-            {
-                con.Close();
-                throw new Exception("", ex);
             }
             finally
             {

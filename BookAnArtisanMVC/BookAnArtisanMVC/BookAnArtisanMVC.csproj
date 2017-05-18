@@ -332,6 +332,9 @@
     <None Include="Service References\ServiceReference\item152.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceReference\item16.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceReference\item2.xsd">
       <SubType>Designer</SubType>
     </None>
