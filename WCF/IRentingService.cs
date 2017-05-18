@@ -13,6 +13,7 @@ namespace WCF
     {
         // Implementing CRUD as a starting point.
         [OperationContract]
+		[FaultContract(typeof(ApplicationException))]
         Booking CreateBooking(Booking t);
         [OperationContract]
         Booking ReadBooking(Booking t);

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ServiceModel;
 using Model;
 using DAL;
 
@@ -9,7 +11,7 @@ namespace BLL
         RentingDb rdb = new RentingDb();
         public Booking Create(Booking t)
         {
-            return rdb.Create(t);
+		        return rdb.Create(t);
         }
 
         public Booking Delete(Booking t)

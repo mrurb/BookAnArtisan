@@ -1343,6 +1343,7 @@ namespace BookAnArtisanMVC.ServiceReference {
     public interface IRentingService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/CreateBooking", ReplyAction="http://tempuri.org/IRentingService/CreateBookingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IRentingService/CreateBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Booking CreateBooking(BookAnArtisanMVC.ServiceReference.Booking t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/CreateBooking", ReplyAction="http://tempuri.org/IRentingService/CreateBookingResponse")]
