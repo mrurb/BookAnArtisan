@@ -48,7 +48,7 @@ namespace BookAnArtisanMVC.Controllers
 			}
 			catch (FaultException e)
 			{
-				return View("Error");
+				return View("Error", new HandleErrorInfo(e, "Bookings", "Create"));
 			}
 			catch
 			{

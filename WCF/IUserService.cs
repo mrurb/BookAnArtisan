@@ -14,16 +14,21 @@ namespace WCF
     {
         // Implementing CRUD as a starting point.
         [OperationContract]
-        User CreateUser(User t);
+        [FaultContract(typeof(ApplicationException))]
+		User CreateUser(User t);
         [OperationContract]
-        User ReadUser(User t);
+        [FaultContract(typeof(ApplicationException))]
+		User ReadUser(User t);
         [OperationContract]
-        User UpdateUser(User t);
+        [FaultContract(typeof(ApplicationException))]
+		User UpdateUser(User t);
         [OperationContract]
-        User DeleteUser(User t);
+        [FaultContract(typeof(ApplicationException))]
+		User DeleteUser(User t);
         // Implementing ReadAll
         [OperationContract]
-        List<User> ReadAllUser();
+        [FaultContract(typeof(ApplicationException))]
+		List<User> ReadAllUser();
         [OperationContract]
         IList<User> SearchByName(string name);
     }

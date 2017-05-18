@@ -12,8 +12,18 @@ namespace BLL
     public class MeetingController : IController<Meeting>
     {
         MeetingDB mdb = new MeetingDB();
+		UserController uctr = new UserController();
         public Meeting Create(Meeting t)
         {
+	        if (t.StartTime >= t.EndTime)
+	        {
+		        throw new ApplicationException("Incorrect Dates.");
+	        }
+	        var contact = uctr.Read(t.Contact);
+	        if (contact.UserName != t.Contact.UserName)
+	        {
+		        throw new ApplicationException("User: Contact invalid.");
+	        }
             return mdb.Create(t);
         }
 

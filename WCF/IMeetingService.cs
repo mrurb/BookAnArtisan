@@ -14,21 +14,27 @@ namespace WCF
     {
         // Implementing CRUD as a starting point.
         [OperationContract]
-        Meeting CreateMeeting(Meeting t);
+        [FaultContract(typeof(ApplicationException))]
+		Meeting CreateMeeting(Meeting t);
         [OperationContract]
-        Meeting ReadMeeting(Meeting t);
+        [FaultContract(typeof(ApplicationException))]
+		Meeting ReadMeeting(Meeting t);
         [OperationContract]
-        Meeting UpdateMeeting(Meeting t);
+        [FaultContract(typeof(ApplicationException))]
+		Meeting UpdateMeeting(Meeting t);
         [OperationContract]
         [FaultContract(typeof(ApplicationException))]
         Meeting DeleteMeeting(Meeting t);
         // Implementing ReadAll
         [OperationContract]
-        List<Meeting> ReadAllMeeting();
+        [FaultContract(typeof(ApplicationException))]
+		List<Meeting> ReadAllMeeting();
         [OperationContract]
-        Meeting AddUserToMeeting(Meeting m, User u);
+        [FaultContract(typeof(ApplicationException))]
+		Meeting AddUserToMeeting(Meeting m, User u);
 
         [OperationContract]
-        List<Meeting> ReadAllForUser(User user);
+        [FaultContract(typeof(ApplicationException))]
+		List<Meeting> ReadAllForUser(User user);
     }
 }

@@ -5,36 +5,102 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using BLL;
+using System.ServiceModel;
 
 namespace WCF
 {
     public class UserService : IUserService
     {
-            UserController userController = new UserController();
+        UserController userController = new UserController();
         public User CreateUser(User user)
         {
-            return userController.Create(user);
+	        try
+	        {
+		        return userController.Create(user);
+			}
+			catch (ApplicationException ex)
+	        {
+		        throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+	        }
+	        catch (Exception ex)
+	        {
+		        //log(ex);
+		        var ex2 = new ApplicationException(@"Unknown Error");
+		        throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+	        }
         }
 
         public User ReadUser(User user)
         {
-            return userController.Read(user);
-        }
+			try
+			{
+				return userController.Read(user);
+			}
+			catch (ApplicationException ex)
+			{
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception ex)
+			{
+				//log(ex);
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
+		}
 
         public User UpdateUser(User user)
         {
-            return userController.Update(user);
-        }
+			try
+			{
+				return userController.Update(user);
+			}
+			catch (ApplicationException ex)
+			{
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception ex)
+			{
+				//log(ex);
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
+		}
 
         public User DeleteUser(User user)
         {
-            return userController.Delete(user);
-        }
+			try
+			{
+				return userController.Delete(user);
+			}
+			catch (ApplicationException ex)
+			{
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception ex)
+			{
+				//log(ex);
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
+		}
 
         public List<User> ReadAllUser()
         {
-            return userController.ReadAll();
-        }
+			try
+			{
+				return userController.ReadAll();
+			}
+			catch (ApplicationException ex)
+			{
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception ex)
+			{
+				//log(ex);
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
+		}
 
         public IList<User> SearchByName(string name)
         {
