@@ -19,15 +19,8 @@ namespace BLL
 
         public Meeting Delete(Meeting t)
         {
-            try
-            {
-                mdb.Delete(t);
-                return mdb.ReadDetails(t);
-            }
-            catch (FaultException e)
-            {
-                throw;
-            }
+            mdb.Delete(t);
+            return mdb.ReadDetails(t);
         }
 
         public Meeting Read(Meeting t)

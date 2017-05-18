@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
@@ -13,7 +14,19 @@ namespace WCF
         MeetingController mc = new MeetingController();
         public Meeting CreateMeeting(Meeting t)
         {
-            return mc.Create(t);
+            try
+            {
+                return mc.Create(t);
+            }
+            catch (ApplicationException e)
+            {
+                throw new FaultException<ApplicationException>(e, new FaultReason(e.Message), new FaultCode("Sender"));
+            }
+            catch (Exception e)
+            {
+                throw new FaultException<ApplicationException>((ApplicationException)e, new FaultReason(e.Message), new FaultCode("Sender"));
+
+            }
         }
 
         public Meeting DeleteMeeting(Meeting t)

@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://localhost:8733/WCF/MeetingService/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8733/WCF/MeetingService/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8733/WCF/MeetingService/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Model" />
+      <xsd:import schemaLocation="http://localhost:8733/WCF/MeetingService/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IMeetingService_CreateMeeting_InputMessage">
@@ -30,6 +31,9 @@
   </wsdl:message>
   <wsdl:message name="IMeetingService_DeleteMeeting_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteMeetingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMeetingService_DeleteMeeting_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/System" name="detail" element="q1:ApplicationException" />
   </wsdl:message>
   <wsdl:message name="IMeetingService_ReadAllMeeting_InputMessage">
     <wsdl:part name="parameters" element="tns:ReadAllMeeting" />
@@ -65,6 +69,7 @@
     <wsdl:operation name="DeleteMeeting">
       <wsdl:input wsaw:Action="http://tempuri.org/IMeetingService/DeleteMeeting" message="tns:IMeetingService_DeleteMeeting_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMeetingService/DeleteMeetingResponse" message="tns:IMeetingService_DeleteMeeting_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IMeetingService/DeleteMeetingApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IMeetingService_DeleteMeeting_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReadAllMeeting">
       <wsdl:input wsaw:Action="http://tempuri.org/IMeetingService/ReadAllMeeting" message="tns:IMeetingService_ReadAllMeeting_InputMessage" />
@@ -116,6 +121,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ReadAllMeeting">
       <soap:operation soapAction="http://tempuri.org/IMeetingService/ReadAllMeeting" style="document" />

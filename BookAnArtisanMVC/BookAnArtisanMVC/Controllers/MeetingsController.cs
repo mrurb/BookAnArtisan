@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Web;
 using System.Web.Mvc;
 using BookAnArtisanMVC.ServiceReference;
@@ -55,9 +56,15 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
                 meeting.CreatedBy.Id = User.Identity.GetUserId();
-                mCl.CreateMeeting(meeting);
+                try
+                {
+                    mCl.CreateMeeting(meeting);
+                }
+                catch (FaultException e)
+                {
+                    return View("Error");
+                }
                 return RedirectToAction("MyMeetings");
             }
             catch
@@ -130,7 +137,6 @@ namespace BookAnArtisanMVC.Controllers
 
         public ActionResult MyMeetings(User user)
         {
-            //user.Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3";
             user.Id = HttpContext.User.Identity.GetUserId();
             var data = mCl.ReadAllForUser(user);
             return View(data);

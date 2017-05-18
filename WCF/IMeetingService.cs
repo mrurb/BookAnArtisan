@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace WCF
         [OperationContract]
         Meeting UpdateMeeting(Meeting t);
         [OperationContract]
+        [FaultContract(typeof(ApplicationException))]
         Meeting DeleteMeeting(Meeting t);
         // Implementing ReadAll
         [OperationContract]
