@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using DAL;
+using System.ServiceModel;
+
 namespace BLL
 {
     public class MeetingController : IController<Meeting>
@@ -17,8 +19,15 @@ namespace BLL
 
         public Meeting Delete(Meeting t)
         {
-            mdb.Delete(t);
-            return mdb.ReadDetails(t);
+            try
+            {
+                mdb.Delete(t);
+                return mdb.ReadDetails(t);
+            }
+            catch (FaultException e)
+            {
+                throw;
+            }
         }
 
         public Meeting Read(Meeting t)
