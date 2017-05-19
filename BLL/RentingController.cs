@@ -13,6 +13,7 @@ namespace BLL
         UserController uctr = new UserController();
         public Booking Create(Booking t)
         {
+            //overvejelse: skal små queries væk? bliver tjekket på stor query anyway. pro: en stor er hurtigere end en stor + 2 små. con: hvis fejl er en lille hurtigere.
             if (t.StartTime >= t.EndTime)
             {
                 throw new ApplicationException("Dates Overlapping");

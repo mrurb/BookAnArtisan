@@ -21,10 +21,12 @@ namespace BookAnArtisanMVC.Controllers
 			}
 			catch (FaultException e)
 			{
-				return View("Error", new HandleErrorInfo(e, "Bookings", "Index"));
+				ViewBag.ErrorMessage = e.Message;
+				return View();
 			}
-			catch
+			catch (Exception e)
 			{
+				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
 		}
@@ -39,10 +41,12 @@ namespace BookAnArtisanMVC.Controllers
 			}
 			catch (FaultException e)
 			{
-				return View("Error", new HandleErrorInfo(e, "Bookings", "Details"));
+				ViewBag.ErrorMessage = e.Message;
+				return View();
 			}
-			catch
+			catch (Exception e)
 			{
+				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
 		}
@@ -70,11 +74,13 @@ namespace BookAnArtisanMVC.Controllers
 			}
 			catch (FaultException e)
 			{
-				return View("Error", new HandleErrorInfo(e, "Bookings", "Create"));
-			}
-			catch
-			{
+				ViewBag.ErrorMessage = e.Message;
 				return View();
+			}
+			catch (Exception e)
+			{
+				ViewBag.ErrorMessage = e.Message;
+				return View(mat);
 			}
 		}
 
@@ -88,10 +94,12 @@ namespace BookAnArtisanMVC.Controllers
 			}
 			catch (FaultException e)
 			{
-				return View("Error", new HandleErrorInfo(e, "Bookings", "Edit"));
+				ViewBag.ErrorMessage = e.Message;
+				return View();
 			}
-			catch
+			catch (Exception e)
 			{
+				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
 		}
@@ -107,11 +115,13 @@ namespace BookAnArtisanMVC.Controllers
 			}
 			catch (FaultException e)
 			{
-				return View("Error", new HandleErrorInfo(e, "Bookings", "Edit"));
+				ViewBag.ErrorMessage = e.Message;
+				return View(mat);
 			}
-			catch
+			catch (Exception e)
 			{
-				return View();
+				ViewBag.ErrorMessage = e.Message;
+				return View(mat);
 			}
 		}
 
@@ -125,10 +135,12 @@ namespace BookAnArtisanMVC.Controllers
 			}
 			catch (FaultException e)
 			{
-				return View("Error", new HandleErrorInfo(e, "Bookings", "Delete"));
+				ViewBag.ErrorMessage = e.Message;
+				return View();
 			}
-			catch
+			catch (Exception e)
 			{
+				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
 		}
@@ -144,10 +156,12 @@ namespace BookAnArtisanMVC.Controllers
 			}
 			catch (FaultException e)
 			{
-				return View("Error", new HandleErrorInfo(e, "Bookings", "Delete"));
+				ViewBag.ErrorMessage = e.Message;
+				return View();
 			}
-			catch
+			catch (Exception e)
 			{
+				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
 		}
@@ -160,10 +174,12 @@ namespace BookAnArtisanMVC.Controllers
 			}
 			catch (FaultException e)
 			{
-				return View("Error", new HandleErrorInfo(e, "Bookings", "MyBooking"));
+				ViewBag.ErrorMessage = e.Message;
+				return View();
 			}
-			catch
+			catch (Exception e)
 			{
+				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
 		}

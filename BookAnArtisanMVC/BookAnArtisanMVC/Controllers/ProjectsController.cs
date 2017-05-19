@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BookAnArtisanMVC.ServiceReference;
 using Microsoft.AspNet.Identity;
+using System.ServiceModel;
 
 namespace BookAnArtisanMVC.Controllers
 {
@@ -21,13 +22,18 @@ namespace BookAnArtisanMVC.Controllers
                 _pCl.Close();
                 return View(data);
             }
-            catch (Exception)
+            catch (FaultException e)
             {
                 _pCl.Abort();
-                return View("NoResponseFromServer");
-                //return new HttpStatusCodeResult(404, "Item Not Found");
+                ViewBag.ErrorMessage = e.Message;
+                return View();
             }
-            
+            catch (Exception e)
+            {
+                _pCl.Abort();
+                ViewBag.ErrorMessage = e.Message;
+                return View();
+            }
         }
 
         public ActionResult Details(Project project)
@@ -38,10 +44,17 @@ namespace BookAnArtisanMVC.Controllers
                 _pCl.Close();
                 return View(data);
             }
-            catch (Exception)
+            catch (FaultException e)
             {
                 _pCl.Abort();
-                throw;
+                ViewBag.ErrorMessage = e.Message;
+                return View();
+            }
+            catch (Exception e)
+            {
+                _pCl.Abort();
+                ViewBag.ErrorMessage = e.Message;
+                return View();
             }
         }
 
@@ -57,12 +70,19 @@ namespace BookAnArtisanMVC.Controllers
             try
             {
                 project.CreatedBy = new User { Id = HttpContext.User.Identity.GetUserId() };
-                // TODO: Add insert logic here
                 _pCl.CreateProject(project);
                 return RedirectToAction("Index");
             }
-            catch
+            catch (FaultException e)
             {
+                _pCl.Abort();
+                ViewBag.ErrorMessage = e.Message;
+                return View(project);
+            }
+            catch (Exception e)
+            {
+                _pCl.Abort();
+                ViewBag.ErrorMessage = e.Message;
                 return View(project);
             }
         }
@@ -76,10 +96,17 @@ namespace BookAnArtisanMVC.Controllers
                 _pCl.Close();
                 return View(data);
             }
-            catch (Exception)
+            catch (FaultException e)
             {
                 _pCl.Abort();
-                throw;
+                ViewBag.ErrorMessage = e.Message;
+                return View();
+            }
+            catch (Exception e)
+            {
+                _pCl.Abort();
+                ViewBag.ErrorMessage = e.Message;
+                return View();
             }
         }
 
@@ -89,12 +116,19 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                // TODO: Add update logic here
                 _pCl.UpdateProject(project);
                 return RedirectToAction("Index");
             }
-            catch
+            catch (FaultException e)
             {
+                _pCl.Abort();
+                ViewBag.ErrorMessage = e.Message;
+                return View(project);
+            }
+            catch (Exception e)
+            {
+                _pCl.Abort();
+                ViewBag.ErrorMessage = e.Message;
                 return View(project);
             }
         }
@@ -108,10 +142,17 @@ namespace BookAnArtisanMVC.Controllers
                 _pCl.Close();
                 return View(data);
             }
-            catch (Exception)
+            catch (FaultException e)
             {
                 _pCl.Abort();
-                throw;
+                ViewBag.ErrorMessage = e.Message;
+                return View();
+            }
+            catch (Exception e)
+            {
+                _pCl.Abort();
+                ViewBag.ErrorMessage = e.Message;
+                return View();
             }
         }
 
@@ -124,9 +165,17 @@ namespace BookAnArtisanMVC.Controllers
                 _pCl.DeleteProject(project);
                 return RedirectToAction("Index");
             }
-            catch
+            catch (FaultException e)
             {
-                return View(project);
+                _pCl.Abort();
+                ViewBag.ErrorMessage = e.Message;
+                return View();
+            }
+            catch (Exception e)
+            {
+                _pCl.Abort();
+                ViewBag.ErrorMessage = e.Message;
+                return View();
             }
         }
 
@@ -140,7 +189,7 @@ namespace BookAnArtisanMVC.Controllers
         }
 
         [HttpPost, ActionName("ProjectSearch")]
-        public ActionResult ProjectSearch(Project projects) // maybe not list ... 
+        public ActionResult ProjectSearch(Project projects)
         {
             Project p = new Project();
             p.Name = "a";
@@ -150,9 +199,24 @@ namespace BookAnArtisanMVC.Controllers
 
         public ActionResult MyProjects(User user)
         {
-            user.Id = HttpContext.User.Identity.GetUserId();
-            var data = _pCl.ReadAllProjectsForUser(user);
-            return View(data);
+            try
+            {
+                user.Id = HttpContext.User.Identity.GetUserId();
+                var data = _pCl.ReadAllProjectsForUser(user);
+                return View(data);
+            }
+            catch (FaultException e)
+            {
+                _pCl.Abort();
+                ViewBag.ErrorMessage = e.Message;
+                return View();
+            }
+            catch (Exception e)
+            {
+                _pCl.Abort();
+                ViewBag.ErrorMessage = e.Message;
+                return View();
+            }
         }
     }
 }
