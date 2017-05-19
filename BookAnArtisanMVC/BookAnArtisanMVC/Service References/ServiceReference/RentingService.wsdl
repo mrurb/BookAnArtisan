@@ -23,11 +23,17 @@
   <wsdl:message name="IRentingService_ReadBooking_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReadBookingResponse" />
   </wsdl:message>
+  <wsdl:message name="IRentingService_ReadBooking_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/System" name="detail" element="q2:ApplicationException" />
+  </wsdl:message>
   <wsdl:message name="IRentingService_UpdateBooking_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateBooking" />
   </wsdl:message>
   <wsdl:message name="IRentingService_UpdateBooking_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRentingService_UpdateBooking_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/System" name="detail" element="q3:ApplicationException" />
   </wsdl:message>
   <wsdl:message name="IRentingService_DeleteBooking_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteBooking" />
@@ -35,11 +41,17 @@
   <wsdl:message name="IRentingService_DeleteBooking_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteBookingResponse" />
   </wsdl:message>
+  <wsdl:message name="IRentingService_DeleteBooking_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/System" name="detail" element="q4:ApplicationException" />
+  </wsdl:message>
   <wsdl:message name="IRentingService_ReadAllBooking_InputMessage">
     <wsdl:part name="parameters" element="tns:ReadAllBooking" />
   </wsdl:message>
   <wsdl:message name="IRentingService_ReadAllBooking_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReadAllBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRentingService_ReadAllBooking_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/System" name="detail" element="q5:ApplicationException" />
   </wsdl:message>
   <wsdl:portType name="IRentingService">
     <wsdl:operation name="CreateBooking">
@@ -50,18 +62,22 @@
     <wsdl:operation name="ReadBooking">
       <wsdl:input wsaw:Action="http://tempuri.org/IRentingService/ReadBooking" message="tns:IRentingService_ReadBooking_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRentingService/ReadBookingResponse" message="tns:IRentingService_ReadBooking_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IRentingService/ReadBookingApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IRentingService_ReadBooking_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateBooking">
       <wsdl:input wsaw:Action="http://tempuri.org/IRentingService/UpdateBooking" message="tns:IRentingService_UpdateBooking_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRentingService/UpdateBookingResponse" message="tns:IRentingService_UpdateBooking_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IRentingService/UpdateBookingApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IRentingService_UpdateBooking_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteBooking">
       <wsdl:input wsaw:Action="http://tempuri.org/IRentingService/DeleteBooking" message="tns:IRentingService_DeleteBooking_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRentingService/DeleteBookingResponse" message="tns:IRentingService_DeleteBooking_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IRentingService/DeleteBookingApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IRentingService_DeleteBooking_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReadAllBooking">
       <wsdl:input wsaw:Action="http://tempuri.org/IRentingService/ReadAllBooking" message="tns:IRentingService_ReadAllBooking_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRentingService/ReadAllBookingResponse" message="tns:IRentingService_ReadAllBooking_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IRentingService/ReadAllBookingApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IRentingService_ReadAllBooking_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IRentingService" type="tns:IRentingService">
@@ -86,6 +102,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="UpdateBooking">
       <soap:operation soapAction="http://tempuri.org/IRentingService/UpdateBooking" style="document" />
@@ -95,6 +114,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="DeleteBooking">
       <soap:operation soapAction="http://tempuri.org/IRentingService/DeleteBooking" style="document" />
@@ -104,6 +126,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ReadAllBooking">
       <soap:operation soapAction="http://tempuri.org/IRentingService/ReadAllBooking" style="document" />
@@ -113,6 +138,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="RentingService">

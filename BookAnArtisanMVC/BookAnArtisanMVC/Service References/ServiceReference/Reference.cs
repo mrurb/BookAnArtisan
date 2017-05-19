@@ -963,30 +963,35 @@ namespace BookAnArtisanMVC.ServiceReference {
     public interface IMaterialService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/CreateMaterial", ReplyAction="http://tempuri.org/IMaterialService/CreateMaterialResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMaterialService/CreateMaterialApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Material CreateMaterial(BookAnArtisanMVC.ServiceReference.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/CreateMaterial", ReplyAction="http://tempuri.org/IMaterialService/CreateMaterialResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Material> CreateMaterialAsync(BookAnArtisanMVC.ServiceReference.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadMaterial", ReplyAction="http://tempuri.org/IMaterialService/ReadMaterialResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMaterialService/ReadMaterialApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Material ReadMaterial(BookAnArtisanMVC.ServiceReference.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadMaterial", ReplyAction="http://tempuri.org/IMaterialService/ReadMaterialResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Material> ReadMaterialAsync(BookAnArtisanMVC.ServiceReference.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/UpdateMaterial", ReplyAction="http://tempuri.org/IMaterialService/UpdateMaterialResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMaterialService/UpdateMaterialApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Material UpdateMaterial(BookAnArtisanMVC.ServiceReference.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/UpdateMaterial", ReplyAction="http://tempuri.org/IMaterialService/UpdateMaterialResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Material> UpdateMaterialAsync(BookAnArtisanMVC.ServiceReference.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/DeleteMaterial", ReplyAction="http://tempuri.org/IMaterialService/DeleteMaterialResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMaterialService/DeleteMaterialApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Material DeleteMaterial(BookAnArtisanMVC.ServiceReference.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/DeleteMaterial", ReplyAction="http://tempuri.org/IMaterialService/DeleteMaterialResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Material> DeleteMaterialAsync(BookAnArtisanMVC.ServiceReference.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadAllMaterial", ReplyAction="http://tempuri.org/IMaterialService/ReadAllMaterialResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMaterialService/ReadAllMaterialApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Material> ReadAllMaterial();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadAllMaterial", ReplyAction="http://tempuri.org/IMaterialService/ReadAllMaterialResponse")]
@@ -999,6 +1004,8 @@ namespace BookAnArtisanMVC.ServiceReference {
         System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Material>> SearchAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadAllMaterialsForUser", ReplyAction="http://tempuri.org/IMaterialService/ReadAllMaterialsForUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMaterialService/ReadAllMaterialsForUserApplicationExceptionFa" +
+            "ult", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Material> ReadAllMaterialsForUser(BookAnArtisanMVC.ServiceReference.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadAllMaterialsForUser", ReplyAction="http://tempuri.org/IMaterialService/ReadAllMaterialsForUserResponse")]
@@ -1094,18 +1101,21 @@ namespace BookAnArtisanMVC.ServiceReference {
     public interface IMeetingService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/CreateMeeting", ReplyAction="http://tempuri.org/IMeetingService/CreateMeetingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMeetingService/CreateMeetingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Meeting CreateMeeting(BookAnArtisanMVC.ServiceReference.Meeting t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/CreateMeeting", ReplyAction="http://tempuri.org/IMeetingService/CreateMeetingResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Meeting> CreateMeetingAsync(BookAnArtisanMVC.ServiceReference.Meeting t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/ReadMeeting", ReplyAction="http://tempuri.org/IMeetingService/ReadMeetingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMeetingService/ReadMeetingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Meeting ReadMeeting(BookAnArtisanMVC.ServiceReference.Meeting t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/ReadMeeting", ReplyAction="http://tempuri.org/IMeetingService/ReadMeetingResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Meeting> ReadMeetingAsync(BookAnArtisanMVC.ServiceReference.Meeting t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/UpdateMeeting", ReplyAction="http://tempuri.org/IMeetingService/UpdateMeetingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMeetingService/UpdateMeetingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Meeting UpdateMeeting(BookAnArtisanMVC.ServiceReference.Meeting t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/UpdateMeeting", ReplyAction="http://tempuri.org/IMeetingService/UpdateMeetingResponse")]
@@ -1119,18 +1129,21 @@ namespace BookAnArtisanMVC.ServiceReference {
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Meeting> DeleteMeetingAsync(BookAnArtisanMVC.ServiceReference.Meeting t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/ReadAllMeeting", ReplyAction="http://tempuri.org/IMeetingService/ReadAllMeetingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMeetingService/ReadAllMeetingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Meeting> ReadAllMeeting();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/ReadAllMeeting", ReplyAction="http://tempuri.org/IMeetingService/ReadAllMeetingResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Meeting>> ReadAllMeetingAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/AddUserToMeeting", ReplyAction="http://tempuri.org/IMeetingService/AddUserToMeetingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMeetingService/AddUserToMeetingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Meeting AddUserToMeeting(BookAnArtisanMVC.ServiceReference.Meeting m, BookAnArtisanMVC.ServiceReference.User u);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/AddUserToMeeting", ReplyAction="http://tempuri.org/IMeetingService/AddUserToMeetingResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Meeting> AddUserToMeetingAsync(BookAnArtisanMVC.ServiceReference.Meeting m, BookAnArtisanMVC.ServiceReference.User u);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/ReadAllForUser", ReplyAction="http://tempuri.org/IMeetingService/ReadAllForUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMeetingService/ReadAllForUserApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Meeting> ReadAllForUser(BookAnArtisanMVC.ServiceReference.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/ReadAllForUser", ReplyAction="http://tempuri.org/IMeetingService/ReadAllForUserResponse")]
@@ -1226,36 +1239,43 @@ namespace BookAnArtisanMVC.ServiceReference {
     public interface IProjectService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/CreateProject", ReplyAction="http://tempuri.org/IProjectService/CreateProjectResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IProjectService/CreateProjectApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Project CreateProject(BookAnArtisanMVC.ServiceReference.Project t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/CreateProject", ReplyAction="http://tempuri.org/IProjectService/CreateProjectResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Project> CreateProjectAsync(BookAnArtisanMVC.ServiceReference.Project t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/ReadProject", ReplyAction="http://tempuri.org/IProjectService/ReadProjectResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IProjectService/ReadProjectApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Project ReadProject(BookAnArtisanMVC.ServiceReference.Project t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/ReadProject", ReplyAction="http://tempuri.org/IProjectService/ReadProjectResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Project> ReadProjectAsync(BookAnArtisanMVC.ServiceReference.Project t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/UpdateProject", ReplyAction="http://tempuri.org/IProjectService/UpdateProjectResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IProjectService/UpdateProjectApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Project UpdateProject(BookAnArtisanMVC.ServiceReference.Project t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/UpdateProject", ReplyAction="http://tempuri.org/IProjectService/UpdateProjectResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Project> UpdateProjectAsync(BookAnArtisanMVC.ServiceReference.Project t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/DeleteProject", ReplyAction="http://tempuri.org/IProjectService/DeleteProjectResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IProjectService/DeleteProjectApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Project DeleteProject(BookAnArtisanMVC.ServiceReference.Project t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/DeleteProject", ReplyAction="http://tempuri.org/IProjectService/DeleteProjectResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Project> DeleteProjectAsync(BookAnArtisanMVC.ServiceReference.Project t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/ReadAllProject", ReplyAction="http://tempuri.org/IProjectService/ReadAllProjectResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IProjectService/ReadAllProjectApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project> ReadAllProject();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/ReadAllProject", ReplyAction="http://tempuri.org/IProjectService/ReadAllProjectResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project>> ReadAllProjectAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/ReadAllProjectsForUser", ReplyAction="http://tempuri.org/IProjectService/ReadAllProjectsForUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IProjectService/ReadAllProjectsForUserApplicationExceptionFaul" +
+            "t", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Project> ReadAllProjectsForUser(BookAnArtisanMVC.ServiceReference.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/ReadAllProjectsForUser", ReplyAction="http://tempuri.org/IProjectService/ReadAllProjectsForUserResponse")]
@@ -1350,24 +1370,28 @@ namespace BookAnArtisanMVC.ServiceReference {
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Booking> CreateBookingAsync(BookAnArtisanMVC.ServiceReference.Booking t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/ReadBooking", ReplyAction="http://tempuri.org/IRentingService/ReadBookingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IRentingService/ReadBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Booking ReadBooking(BookAnArtisanMVC.ServiceReference.Booking t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/ReadBooking", ReplyAction="http://tempuri.org/IRentingService/ReadBookingResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Booking> ReadBookingAsync(BookAnArtisanMVC.ServiceReference.Booking t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/UpdateBooking", ReplyAction="http://tempuri.org/IRentingService/UpdateBookingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IRentingService/UpdateBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Booking UpdateBooking(BookAnArtisanMVC.ServiceReference.Booking t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/UpdateBooking", ReplyAction="http://tempuri.org/IRentingService/UpdateBookingResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Booking> UpdateBookingAsync(BookAnArtisanMVC.ServiceReference.Booking t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/DeleteBooking", ReplyAction="http://tempuri.org/IRentingService/DeleteBookingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IRentingService/DeleteBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Booking DeleteBooking(BookAnArtisanMVC.ServiceReference.Booking t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/DeleteBooking", ReplyAction="http://tempuri.org/IRentingService/DeleteBookingResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Booking> DeleteBookingAsync(BookAnArtisanMVC.ServiceReference.Booking t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/ReadAllBooking", ReplyAction="http://tempuri.org/IRentingService/ReadAllBookingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IRentingService/ReadAllBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Booking> ReadAllBooking();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/ReadAllBooking", ReplyAction="http://tempuri.org/IRentingService/ReadAllBookingResponse")]
@@ -1447,30 +1471,35 @@ namespace BookAnArtisanMVC.ServiceReference {
     public interface IUserService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/CreateUser", ReplyAction="http://tempuri.org/IUserService/CreateUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IUserService/CreateUserApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.User CreateUser(BookAnArtisanMVC.ServiceReference.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/CreateUser", ReplyAction="http://tempuri.org/IUserService/CreateUserResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.User> CreateUserAsync(BookAnArtisanMVC.ServiceReference.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ReadUser", ReplyAction="http://tempuri.org/IUserService/ReadUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IUserService/ReadUserApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.User ReadUser(BookAnArtisanMVC.ServiceReference.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ReadUser", ReplyAction="http://tempuri.org/IUserService/ReadUserResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.User> ReadUserAsync(BookAnArtisanMVC.ServiceReference.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IUserService/UpdateUserApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.User UpdateUser(BookAnArtisanMVC.ServiceReference.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.User> UpdateUserAsync(BookAnArtisanMVC.ServiceReference.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IUserService/DeleteUserApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.User DeleteUser(BookAnArtisanMVC.ServiceReference.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.User> DeleteUserAsync(BookAnArtisanMVC.ServiceReference.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ReadAllUser", ReplyAction="http://tempuri.org/IUserService/ReadAllUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IUserService/ReadAllUserApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.User> ReadAllUser();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ReadAllUser", ReplyAction="http://tempuri.org/IUserService/ReadAllUserResponse")]
