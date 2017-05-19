@@ -51,6 +51,10 @@ namespace BLL
 
         public List<Project> ReadAllForUser(User user)
         {
+	        if (user == null)
+	        {
+		        throw new ApplicationException("No user selected.");
+	        }
             return db.ReadAllForUser(user);
         }
         /*

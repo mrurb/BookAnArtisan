@@ -55,6 +55,10 @@ namespace BLL
 
         public List<Meeting> ReadAllForUser(User user)
         {
+	        if (user == null)
+	        {
+		        throw new ApplicationException("No user selected.");
+	        }
             return mdb.ReadAllForUser(user);
         }
     }

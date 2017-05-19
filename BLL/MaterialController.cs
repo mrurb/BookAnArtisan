@@ -45,6 +45,10 @@ namespace BLL
 
         public List<Material> ReadAllForUser(User user)
         {
+	        if (user == null)
+	        {
+		        throw new ApplicationException("No user selected.");
+	        }
             return mdb.ReadAllForUser(user);
         }
     }
