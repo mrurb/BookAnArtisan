@@ -14,15 +14,37 @@ namespace BookAnArtisanMVC.Controllers
 		// GET: Booking
 		public ActionResult Index()
 		{
-			var data = ms.ReadAllBooking();
-			return View(data);
+			try
+			{
+				var data = ms.ReadAllBooking();
+				return View(data);
+			}
+			catch (FaultException e)
+			{
+				return View("Error", new HandleErrorInfo(e, "Bookings", "Index"));
+			}
+			catch
+			{
+				return View();
+			}
 		}
 
 		// GET: Booking/Details/5
 		public ActionResult Details(Booking mat)
 		{
-			var data = ms.ReadBooking(mat);
-			return View(data);
+			try
+			{
+				var data = ms.ReadBooking(mat);
+				return View(data);
+			}
+			catch (FaultException e)
+			{
+				return View("Error", new HandleErrorInfo(e, "Bookings", "Details"));
+			}
+			catch
+			{
+				return View();
+			}
 		}
 
 		// GET: Booking/Create
@@ -59,8 +81,19 @@ namespace BookAnArtisanMVC.Controllers
 		// GET: Booking/Edit/5
 		public ActionResult Edit(Booking mat)
 		{
-			var data = ms.ReadBooking(mat);
-			return View(data);
+			try
+			{
+				var data = ms.ReadBooking(mat);
+				return View(data);
+			}
+			catch (FaultException e)
+			{
+				return View("Error", new HandleErrorInfo(e, "Bookings", "Edit"));
+			}
+			catch
+			{
+				return View();
+			}
 		}
 
 		// POST: Booking/Edit/5
@@ -72,6 +105,10 @@ namespace BookAnArtisanMVC.Controllers
 				ms.UpdateBooking(mat);
 				return RedirectToAction("Index");
 			}
+			catch (FaultException e)
+			{
+				return View("Error", new HandleErrorInfo(e, "Bookings", "Edit"));
+			}
 			catch
 			{
 				return View();
@@ -81,8 +118,19 @@ namespace BookAnArtisanMVC.Controllers
 		// GET: Booking/Delete/5
 		public ActionResult Delete(Booking mat)
 		{
-			var data = ms.ReadBooking(mat);
-			return View(data);
+			try
+			{
+				var data = ms.ReadBooking(mat);
+				return View(data);
+			}
+			catch (FaultException e)
+			{
+				return View("Error", new HandleErrorInfo(e, "Bookings", "Delete"));
+			}
+			catch
+			{
+				return View();
+			}
 		}
 
 		// POST: Booking/Delete/5
@@ -94,6 +142,10 @@ namespace BookAnArtisanMVC.Controllers
 				ms.DeleteBooking(mat);
 				return RedirectToAction("Index");
 			}
+			catch (FaultException e)
+			{
+				return View("Error", new HandleErrorInfo(e, "Bookings", "Delete"));
+			}
 			catch
 			{
 				return View();
@@ -102,7 +154,18 @@ namespace BookAnArtisanMVC.Controllers
 
 		public ActionResult MyBooking(User user)
 		{
-			return View(ms.ReadAllBooking());
+			try
+			{
+				return View(ms.ReadAllBooking());
+			}
+			catch (FaultException e)
+			{
+				return View("Error", new HandleErrorInfo(e, "Bookings", "MyBooking"));
+			}
+			catch
+			{
+				return View();
+			}
 		}
 	}
 }
