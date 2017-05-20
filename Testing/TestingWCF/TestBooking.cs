@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 using WCF;
+using System.ServiceModel;
+
 namespace Testing.TestingWCF
 {
 	class TestBooking
@@ -38,7 +40,7 @@ namespace Testing.TestingWCF
 		{
 			Booking bookingnew = new Booking()
 			{
-				StartTime = new DateTime(2014, 2, 15, 12, 0, 0),
+				StartTime = new DateTime(2014, 2, 15, 12, 00, 00),
 				EndTime = new DateTime(2014, 2, 20, 11, 59, 59),
 				Created = DateTime.Now,
 				Deleted = false,
@@ -76,16 +78,29 @@ namespace Testing.TestingWCF
 			};
 			try
 			{
-				rs.CreateBooking(blabla);
-				Assert.AreEqual(expected, actual); //one for each?? or read operation?
-				rs.ReadBooking(blabla);
-				rs.UpdateBooking(blabla);
-				rs.ReadBooking(blabla);
-				rs.DeleteBooking(blabla);
+				rs.CreateBooking(bookingnew);
+				Assert.AreEqual(bookingnew, rs.ReadBooking(bookingnew)); //one for each field or read operation? //object reference comparison?
+
+				rs.ReadBooking(bookingnew); // what if read doesnt work????
+				Assert.AreEqual(bookingnew, rs.ReadBooking(bookingnew)); //one for each field?? to make sure it works?? but what if create doesnt work???
+
+				bookingnew.Deleted = true; // delete locally
+				bookingnew.EndTime = new DateTime(2014, 2, 21, 12, 00, 00); // update endtime locally
+				rs.UpdateBooking(bookingnew); //update endtime in DB
+				Assert.AreEqual(bookingnew, rs.ReadBooking(bookingnew)); //one for each field or read operation? //object reference comparison?
+
+				rs.DeleteBooking(bookingnew); // delete in DB
+				Assert.AreEqual(bookingnew.Deleted, rs.ReadBooking(bookingnew).Deleted); //compare deleted.
 			}
-			catch (Exception e)
+			catch (ApplicationException ex)
 			{
-				throw;
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception ex)
+			{
+				//log(ex);
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 	}
