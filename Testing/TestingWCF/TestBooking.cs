@@ -82,7 +82,7 @@ namespace Testing.TestingWCF
 				Assert.AreEqual(bookingnew, rs.ReadBooking(bookingnew)); //one for each field or read operation? //object reference comparison?
 
 				rs.ReadBooking(bookingnew); // what if read doesnt work????
-				Assert.AreEqual(bookingnew, rs.ReadBooking(bookingnew)); //one for each field?? to make sure it works?? but what if create doesnt work???
+				Assert.AreEqual(bookingnew, rs.ReadBooking(bookingnew)); //what if create doesnt work???
 
 				bookingnew.Deleted = true; // delete locally
 				bookingnew.EndTime = new DateTime(2014, 2, 21, 12, 00, 00); // update endtime locally
