@@ -60,6 +60,7 @@
     <Compile Include="TestingDAL\TestRole.cs" />
     <Compile Include="TestingDAL\TestStatus.cs" />
     <Compile Include="TestingDAL\TestUsers.cs" />
+    <Compile Include="TestingWCF\TestBooking.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
@@ -92,7 +93,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TestingBLL\" />
-    <Folder Include="TestingWCF\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
