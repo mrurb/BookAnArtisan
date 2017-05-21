@@ -42,9 +42,9 @@ namespace Testing.TestingWCF
 			{
 				StartTime = new DateTime(2014, 2, 15, 12, 00, 00),
 				EndTime = new DateTime(2014, 2, 20, 11, 59, 59),
-				Created = DateTime.Now,
+				//Created = DateTime.Now, // I don't control this
 				Deleted = false,
-				Updated = DateTime.Now,
+				//Updated = DateTime.Now, // I don't control this.
 				Item = new Material()
 				{
 					Name = "Traktor",
@@ -78,19 +78,26 @@ namespace Testing.TestingWCF
 			};
 			try
 			{
+						//test create
 				rs.CreateBooking(bookingnew);
-				Assert.AreEqual(bookingnew, rs.ReadBooking(bookingnew)); //one for each field or read operation? //object reference comparison?
+				Booking dbBooking = rs.ReadBooking(bookingnew);
+				bookingnew.Updated = dbBooking.Updated;	// THESE MIGHT BE WRONG?
+				bookingnew.Created = dbBooking.Created; // THESE MIGHT BE WRONG?
+				ComparisonBooking(bookingnew, dbBooking);
+				//this also tests read.		what if read is wrong ? Test with pre-existent object in DB
 
-				rs.ReadBooking(bookingnew); // what if read doesnt work????
-				Assert.AreEqual(bookingnew, rs.ReadBooking(bookingnew)); //what if create doesnt work???
+						//test update 
+				bookingnew.StartTime = new DateTime(2014, 2, 13, 12, 00, 00);		//update starttime locally
+				bookingnew.EndTime = new DateTime(2014, 2, 21, 12, 00, 00);			//update endtime locally
+				rs.UpdateBooking(bookingnew);										//update in DB
+				dbBooking = rs.ReadBooking(bookingnew);
+				Assert.AreEqual(bookingnew.StartTime, dbBooking.StartTime);			//compare.
+				Assert.AreEqual(bookingnew.EndTime, dbBooking.EndTime);				//compare.
 
-				bookingnew.Deleted = true; // delete locally
-				bookingnew.EndTime = new DateTime(2014, 2, 21, 12, 00, 00); // update endtime locally
-				rs.UpdateBooking(bookingnew); //update endtime in DB
-				Assert.AreEqual(bookingnew, rs.ReadBooking(bookingnew)); //one for each field or read operation? //object reference comparison?
-
-				rs.DeleteBooking(bookingnew); // delete in DB
-				Assert.AreEqual(bookingnew.Deleted, rs.ReadBooking(bookingnew).Deleted); //compare deleted.
+						//test delete
+				bookingnew.Deleted = true;											//delete locally
+				rs.DeleteBooking(bookingnew);										//delete in DB
+				Assert.AreEqual(bookingnew.Deleted, rs.ReadBooking(bookingnew).Deleted); //compare.
 			}
 			catch (ApplicationException ex)
 			{
@@ -102,6 +109,39 @@ namespace Testing.TestingWCF
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
+		}
+
+		private void ComparisonBooking(Booking expected, Booking actual)
+		{
+			//base details of booking
+			Assert.AreEqual(expected.Deleted, actual.Deleted);
+			Assert.AreEqual(expected.StartTime, actual.StartTime);
+			Assert.AreEqual(expected.EndTime, actual.EndTime);
+			//Assert.AreEqual(expected.Created, actual.Created);
+			//Assert.AreEqual(expected.Updated, actual.Updated);
+			//base details of item
+			Assert.AreEqual(expected.Item.Id, actual.Item.Id);
+			Assert.AreEqual(expected.Item.Name, actual.Item.Name);
+			Assert.AreEqual(expected.Item.Deleted, actual.Item.Deleted);
+			Assert.AreEqual(expected.Item.Available, actual.Item.Available);
+			Assert.AreEqual(expected.Item.Condition, actual.Item.Condition);
+			Assert.AreEqual(expected.Item.Description, actual.Item.Description);
+			//owner of item
+			Assert.AreEqual(expected.Item.Owner.UserName, actual.Item.Owner.UserName);
+			Assert.AreEqual(expected.Item.Owner.Email, actual.Item.Owner.Email);
+			Assert.AreEqual(expected.Item.Owner.Address, actual.Item.Owner.Address);
+			Assert.AreEqual(expected.Item.Owner.FirstName, actual.Item.Owner.FirstName);
+			Assert.AreEqual(expected.Item.Owner.LastName, actual.Item.Owner.LastName);
+			Assert.AreEqual(expected.Item.Owner.Id, actual.Item.Owner.Id);
+			Assert.AreEqual(expected.Item.Owner.PhoneNumber, actual.Item.Owner.PhoneNumber);
+			//the renter
+			Assert.AreEqual(expected.User.UserName, actual.User.UserName);
+			Assert.AreEqual(expected.User.Email, actual.User.Email);
+			Assert.AreEqual(expected.User.Address, actual.User.Address);
+			Assert.AreEqual(expected.User.FirstName, actual.User.FirstName);
+			Assert.AreEqual(expected.User.LastName, actual.User.LastName);
+			Assert.AreEqual(expected.User.Id, actual.User.Id);
+			Assert.AreEqual(expected.User.PhoneNumber, actual.User.PhoneNumber);
 		}
 	}
 }
