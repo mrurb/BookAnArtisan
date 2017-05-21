@@ -64,6 +64,9 @@ namespace Testing.TestingWCF
 		}
 		#endregion
 
+		/*
+		 * did not consider tags.
+		 */
 		[TestMethod]
 		public void ProjectIntegrationTest()
 		{
@@ -74,17 +77,17 @@ namespace Testing.TestingWCF
 			project.Created = projectdb.Created;
 			ComparisonProject(project, projectdb);
 
-			//update
-			project.Name = "bla";
+				//update
+			project.Name = "bla-name";
 			project.StartTime = new DateTime(2014, 3, 15, 12, 00, 00);
-			project.ProjectDescription = "blablabla";
+			project.ProjectDescription = "bla-description";
 			project.StreetName = "some street bla";
 			project.ProjectStatusID = 2;
 			pSv.UpdateProject(project);
 			projectdb = pSv.ReadProject(project);
 			ComparisonProject(project, projectdb);
 
-			//delete
+				//delete
 			project.Deleted = true;
 			pSv.DeleteProject(project);
 			projectdb = pSv.ReadProject(project);
