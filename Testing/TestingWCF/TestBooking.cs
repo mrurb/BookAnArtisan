@@ -44,7 +44,7 @@ namespace Testing.TestingWCF
 				EndTime = new DateTime(2014, 2, 20, 11, 59, 59),
 				//Created = DateTime.Now, // I don't control this
 				Deleted = false,
-				//Updated = DateTime.Now, // I don't control this.
+				//Updated = DateTime.Now, // I don't control this. (should be nowutc)
 				Item = new Material()
 				{
 					Name = "Traktor",
