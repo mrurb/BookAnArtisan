@@ -4,6 +4,7 @@ using Model;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using static System.Int32;
 
 namespace DAL
 {
@@ -35,10 +36,11 @@ namespace DAL
 				{
 					using (var command = new SqlCommand(sql, connection))
 					{
+						
 						command.Parameters.AddRange(arrayOfParameters);
 						command.Connection.Open();
-						var exsc = command.ExecuteScalar();
-						project.Id = (int)exsc;
+						// For some reason our ExecuteScalar could not be casted to int, so we made a dirty quick fix.
+						project.Id = Parse(command.ExecuteScalar().ToString());
 						if (project.Id == 0)
 						{
 							throw new Exception("No rows affected. Insert failed");
