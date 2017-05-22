@@ -12,7 +12,7 @@ namespace Testing
         private static Project testProject;
         private static ProjectDB db;
 
-        public TestProject()
+		public TestProject()
         {
             // do nothing?
         }
@@ -83,7 +83,7 @@ namespace Testing
             }
         }
         #endregion
-        #region DALTesting
+        #region CRUDS
         [TestMethod]
         public void TestCreateProject()
         {
@@ -121,9 +121,19 @@ namespace Testing
             List<Project> list = db.ReadAll();
             foreach(Project p in list)
             {
-                Assert.IsFalse(0 == p.Id);
+                Assert.IsFalse(0 == p.Id); //list?
             }
             
         }
-    }
+
+	    #region Boundary Tests
+
+	    [TestMethod]
+	    public void BoundaryTest()
+	    {
+		    //no boundaries?
+	    }
+	    
+	    #endregion
+	}
 }
