@@ -152,6 +152,11 @@ namespace DAL
 			return project;
 		}
 
+		public void Remove(Project project)
+		{
+			// TODO
+		}
+
 		public List<Project> ReadAll()
 		{
 			var projects = new List<Project>();
