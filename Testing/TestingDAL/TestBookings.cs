@@ -112,7 +112,7 @@ namespace Testing.TestingDAL
 		{
 			bDb.Create(booking);
 			Booking dbBooking = bDb.Read(booking);
-			// TODO
+			
 		}
 
 		[TestMethod]
