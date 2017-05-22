@@ -15,6 +15,7 @@ namespace Testing.TestingWCF
 	{
 		private Booking bookingnew;
 		private BookingDb bDb;
+		BookingService rs;
 		#region setups + teardowns
 		[ClassInitialize]
 		public static void setUpBeforeClass(TestContext tc)
@@ -68,6 +69,7 @@ namespace Testing.TestingWCF
 				}
 			};
 			bDb = new BookingDb();
+			rs = new BookingService();
 			bookingnew.Id = rs.CreateBooking(bookingnew).Id;
 		}
 		[TestCleanup]
@@ -75,10 +77,11 @@ namespace Testing.TestingWCF
 		{
 			bDb.RemoveBooking(bookingnew);
 			bDb = null;
+			rs = null;
 			bookingnew = null;
 		}
 		#endregion
-		BookingService rs = new BookingService();
+		
 
 		[TestMethod]
 		public void BookingIntegrationTest()
@@ -102,7 +105,7 @@ namespace Testing.TestingWCF
 				Assert.AreEqual(bookingnew.StartTime, dbBooking.StartTime);			//compare.
 				Assert.AreEqual(bookingnew.EndTime, dbBooking.EndTime);				//compare.
 
-						//test delete
+				//test delete
 				bookingnew.Deleted = true;											//delete locally
 				rs.DeleteBooking(bookingnew);										//delete in DB
 				Assert.AreEqual(bookingnew.Deleted, rs.ReadBooking(bookingnew).Deleted); //compare.
