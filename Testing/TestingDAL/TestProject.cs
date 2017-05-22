@@ -113,7 +113,6 @@ namespace Testing.TestingDAL
 		[TestMethod]
 		public void TestReadAllProject()
 		{
-			// TODO
 			var list = pDb.ReadAll();
 			Assert.IsTrue(0 < list.Count);
 			foreach (var p in list)
@@ -124,9 +123,15 @@ namespace Testing.TestingDAL
 		}
 
 		[TestMethod]
-		public void TestProjectReadAllForuser()
+		public void TestProjectReadAllForUser()
 		{
-			// TODO
+			var user = new User { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3" };
+			var list = pDb.ReadAllForUser(user);
+			Assert.IsTrue(0 < list.Count);
+			foreach (var p in list)
+			{
+				Assert.IsTrue(p.Id != 0);
+			}
 		}
 		#endregion
 
