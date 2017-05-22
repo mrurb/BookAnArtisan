@@ -39,10 +39,7 @@ namespace Testing.TestingDAL
 				uDb = new UserDB();
 				mDb = new MaterialDB();
 				bDb = new RentingDb();
-				//user1 = uDb.Read(new User { Id = "2083af25-f483-4a02-a62b-71c198147c84" });
-				//user2 = uDb.Read(new User { Id = "ef32f29e-1afd-4591-b42c-d0b3838fe6bd" });
-				//material = mDb.Read(new Material {Id = 4});
-				booking = new Booking()
+				Booking bookingnew = new Booking()
 				{
 					StartTime = new DateTime(2014, 2, 15, 12, 00, 00),
 					EndTime = new DateTime(2014, 2, 20, 11, 59, 59),
@@ -96,9 +93,6 @@ namespace Testing.TestingDAL
 				uDb = null;
 				bDb = null;
 				mDb = null;
-				user1 = null;
-				user2 = null;
-				material = null;
 
 			}
 			catch
@@ -115,7 +109,9 @@ namespace Testing.TestingDAL
 		[TestMethod]
 		public void TestCreateBooking()
 		{
-			//Assert.IsNotNull(bDb.Create(booking)); check intergration test for inspiration
+			bDb.Create(booking);
+			Booking dbBooking = bDb.Read(booking);
+			// TODO
 		}
 
 		[TestMethod]
