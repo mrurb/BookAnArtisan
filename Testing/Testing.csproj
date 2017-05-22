@@ -92,7 +92,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="TestingBLL\" />
     <Folder Include="TestingWCF\" />
   </ItemGroup>
   <Choose>
