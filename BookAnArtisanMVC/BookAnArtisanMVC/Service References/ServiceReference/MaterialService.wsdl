@@ -3,6 +3,7 @@
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8733/WCF/MaterialService/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8733/WCF/MaterialService/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
       <xsd:import schemaLocation="http://localhost:8733/WCF/MaterialService/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8733/WCF/MaterialService/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Model" />
     </xsd:schema>
@@ -13,11 +14,17 @@
   <wsdl:message name="IMaterialService_CreateMaterial_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateMaterialResponse" />
   </wsdl:message>
+  <wsdl:message name="IMaterialService_CreateMaterial_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/System" name="detail" element="q1:ApplicationException" />
+  </wsdl:message>
   <wsdl:message name="IMaterialService_ReadMaterial_InputMessage">
     <wsdl:part name="parameters" element="tns:ReadMaterial" />
   </wsdl:message>
   <wsdl:message name="IMaterialService_ReadMaterial_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReadMaterialResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMaterialService_ReadMaterial_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/System" name="detail" element="q2:ApplicationException" />
   </wsdl:message>
   <wsdl:message name="IMaterialService_UpdateMaterial_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateMaterial" />
@@ -25,17 +32,26 @@
   <wsdl:message name="IMaterialService_UpdateMaterial_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateMaterialResponse" />
   </wsdl:message>
+  <wsdl:message name="IMaterialService_UpdateMaterial_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/System" name="detail" element="q3:ApplicationException" />
+  </wsdl:message>
   <wsdl:message name="IMaterialService_DeleteMaterial_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteMaterial" />
   </wsdl:message>
   <wsdl:message name="IMaterialService_DeleteMaterial_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteMaterialResponse" />
   </wsdl:message>
+  <wsdl:message name="IMaterialService_DeleteMaterial_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/System" name="detail" element="q4:ApplicationException" />
+  </wsdl:message>
   <wsdl:message name="IMaterialService_ReadAllMaterial_InputMessage">
     <wsdl:part name="parameters" element="tns:ReadAllMaterial" />
   </wsdl:message>
   <wsdl:message name="IMaterialService_ReadAllMaterial_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReadAllMaterialResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMaterialService_ReadAllMaterial_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/System" name="detail" element="q5:ApplicationException" />
   </wsdl:message>
   <wsdl:message name="IMaterialService_Search_InputMessage">
     <wsdl:part name="parameters" element="tns:Search" />
@@ -49,26 +65,34 @@
   <wsdl:message name="IMaterialService_ReadAllMaterialsForUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReadAllMaterialsForUserResponse" />
   </wsdl:message>
+  <wsdl:message name="IMaterialService_ReadAllMaterialsForUser_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/System" name="detail" element="q6:ApplicationException" />
+  </wsdl:message>
   <wsdl:portType name="IMaterialService">
     <wsdl:operation name="CreateMaterial">
       <wsdl:input wsaw:Action="http://tempuri.org/IMaterialService/CreateMaterial" message="tns:IMaterialService_CreateMaterial_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMaterialService/CreateMaterialResponse" message="tns:IMaterialService_CreateMaterial_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IMaterialService/CreateMaterialApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IMaterialService_CreateMaterial_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReadMaterial">
       <wsdl:input wsaw:Action="http://tempuri.org/IMaterialService/ReadMaterial" message="tns:IMaterialService_ReadMaterial_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMaterialService/ReadMaterialResponse" message="tns:IMaterialService_ReadMaterial_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IMaterialService/ReadMaterialApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IMaterialService_ReadMaterial_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateMaterial">
       <wsdl:input wsaw:Action="http://tempuri.org/IMaterialService/UpdateMaterial" message="tns:IMaterialService_UpdateMaterial_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMaterialService/UpdateMaterialResponse" message="tns:IMaterialService_UpdateMaterial_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IMaterialService/UpdateMaterialApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IMaterialService_UpdateMaterial_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteMaterial">
       <wsdl:input wsaw:Action="http://tempuri.org/IMaterialService/DeleteMaterial" message="tns:IMaterialService_DeleteMaterial_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMaterialService/DeleteMaterialResponse" message="tns:IMaterialService_DeleteMaterial_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IMaterialService/DeleteMaterialApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IMaterialService_DeleteMaterial_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReadAllMaterial">
       <wsdl:input wsaw:Action="http://tempuri.org/IMaterialService/ReadAllMaterial" message="tns:IMaterialService_ReadAllMaterial_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMaterialService/ReadAllMaterialResponse" message="tns:IMaterialService_ReadAllMaterial_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IMaterialService/ReadAllMaterialApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IMaterialService_ReadAllMaterial_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="Search">
       <wsdl:input wsaw:Action="http://tempuri.org/IMaterialService/Search" message="tns:IMaterialService_Search_InputMessage" />
@@ -77,6 +101,7 @@
     <wsdl:operation name="ReadAllMaterialsForUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IMaterialService/ReadAllMaterialsForUser" message="tns:IMaterialService_ReadAllMaterialsForUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMaterialService/ReadAllMaterialsForUserResponse" message="tns:IMaterialService_ReadAllMaterialsForUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IMaterialService/ReadAllMaterialsForUserApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IMaterialService_ReadAllMaterialsForUser_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMaterialService" type="tns:IMaterialService">
@@ -89,6 +114,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ReadMaterial">
       <soap:operation soapAction="http://tempuri.org/IMaterialService/ReadMaterial" style="document" />
@@ -98,6 +126,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="UpdateMaterial">
       <soap:operation soapAction="http://tempuri.org/IMaterialService/UpdateMaterial" style="document" />
@@ -107,6 +138,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="DeleteMaterial">
       <soap:operation soapAction="http://tempuri.org/IMaterialService/DeleteMaterial" style="document" />
@@ -116,6 +150,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ReadAllMaterial">
       <soap:operation soapAction="http://tempuri.org/IMaterialService/ReadAllMaterial" style="document" />
@@ -125,6 +162,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="Search">
       <soap:operation soapAction="http://tempuri.org/IMaterialService/Search" style="document" />
@@ -143,6 +183,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="MaterialService">

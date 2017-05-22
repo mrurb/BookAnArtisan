@@ -12,16 +12,22 @@ namespace WCF
     public interface IProjectService
     {
         [OperationContract]
-        Project CreateProject(Project t);
+        [FaultContract(typeof(ApplicationException))]
+		Project CreateProject(Project t);
         [OperationContract]
-        Project ReadProject(Project t);
+        [FaultContract(typeof(ApplicationException))]
+		Project ReadProject(Project t);
         [OperationContract]
-        Project UpdateProject(Project t);
+        [FaultContract(typeof(ApplicationException))]
+		Project UpdateProject(Project t);
         [OperationContract]
-        Project DeleteProject(Project t);
+        [FaultContract(typeof(ApplicationException))]
+		Project DeleteProject(Project t);
         [OperationContract]
-        List<Project> ReadAllProject();
+        [FaultContract(typeof(ApplicationException))]
+		List<Project> ReadAllProject();
         [OperationContract]
-        List<Project> ReadAllProjectsForUser(User user);
+        [FaultContract(typeof(ApplicationException))]
+		List<Project> ReadAllProjectsForUser(User user);
     }
 }

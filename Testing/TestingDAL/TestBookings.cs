@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ServiceModel;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 using DAL;
@@ -93,7 +94,6 @@ namespace Testing.TestingDAL
 				uDb = null;
 				bDb = null;
 				mDb = null;
-
 			}
 			catch
 			{
@@ -103,6 +103,7 @@ namespace Testing.TestingDAL
 		#endregion
 
 		#region  Test Methods
+
 
 		#region CRUD tests
 		

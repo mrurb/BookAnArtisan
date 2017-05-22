@@ -285,9 +285,6 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.User.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.Booking.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -298,6 +295,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.Project.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\ServiceReference\configuration91.svcinfo" />
@@ -330,6 +330,21 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference\item152.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item16.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item17.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item18.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item181.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item182.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference\item2.xsd">
@@ -437,6 +452,7 @@
     <Content Include="Views\Bookings\Edit.cshtml" />
     <Content Include="Views\Materials\MyMaterials.cshtml" />
     <Content Include="Views\Projects\MyProjects.cshtml" />
+    <Content Include="Views\Shared\CustError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

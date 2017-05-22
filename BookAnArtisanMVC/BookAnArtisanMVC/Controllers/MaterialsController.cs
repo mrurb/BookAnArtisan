@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Web;
 using System.Web.Mvc;
 using BookAnArtisanMVC.ServiceReference;
@@ -14,15 +15,45 @@ namespace BookAnArtisanMVC.Controllers
         // GET: Material
         public ActionResult Index()
         {
-            var data = ms.ReadAllMaterial();
-            return View(data);
+            try
+            {
+                var data = ms.ReadAllMaterial();
+                return View(data);
+            }
+            catch (FaultException e)
+            {
+                ms.Abort();
+                ViewBag.ErrorMessage = e.Message;
+                return View();
+            }
+            catch (Exception e)
+            {
+                ms.Abort();
+                ViewBag.ErrorMessage = e.Message;
+                return View();
+            }
         }
 
         // GET: Material/Details/5
         public ActionResult Details(Material mat)
         {
-            var data = ms.ReadMaterial(mat);
-            return View(data);
+            try
+            {
+                var data = ms.ReadMaterial(mat);
+                return View(data);
+            }
+            catch (FaultException e)
+            {
+                ms.Abort();
+                ViewBag.ErrorMessage = e.Message;
+                return View();
+            }
+            catch (Exception e)
+            {
+                ms.Abort();
+                ViewBag.ErrorMessage = e.Message;
+                return View();
+            }
         }
 
         // GET: Material/Create
@@ -40,11 +71,19 @@ namespace BookAnArtisanMVC.Controllers
                 ms.CreateMaterial(mat);
                 return RedirectToAction("Index");
             }
-            catch
+			catch (FaultException e)
             {
-                return View();
+	            ms.Abort();
+	            ViewBag.ErrorMessage = e.Message;
+	            return View(mat);
             }
-        }
+            catch (Exception e)
+            {
+	            ms.Abort();
+	            ViewBag.ErrorMessage = e.Message;
+	            return View(mat);
+            }
+		}
 
         // GET: Material/Edit/5
         public ActionResult Edit(Material mat)
@@ -62,18 +101,41 @@ namespace BookAnArtisanMVC.Controllers
                 ms.UpdateMaterial(mat);
                 return RedirectToAction("Index");
             }
-            catch
+			catch (FaultException e)
             {
-                return View();
+	            ms.Abort();
+	            ViewBag.ErrorMessage = e.Message;
+	            return View(mat);
             }
-        }
+            catch (Exception e)
+            {
+	            ms.Abort();
+	            ViewBag.ErrorMessage = e.Message;
+	            return View(mat);
+            }
+		}
 
         // GET: Material/Delete/5
         public ActionResult Delete(Material mat)
         {
-            var data = ms.ReadMaterial(mat);
-            return View(data);
-        }
+	        try
+	        {
+		        var data = ms.ReadMaterial(mat);
+		        return View(data);
+			}
+			catch (FaultException e)
+	        {
+		        ms.Abort();
+		        ViewBag.ErrorMessage = e.Message;
+		        return View();
+	        }
+	        catch (Exception e)
+	        {
+		        ms.Abort();
+		        ViewBag.ErrorMessage = e.Message;
+		        return View();
+	        }
+		}
 
         // POST: Material/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -84,11 +146,19 @@ namespace BookAnArtisanMVC.Controllers
                 ms.DeleteMaterial(mat);
                 return RedirectToAction("Index");
             }
-            catch
+			catch (FaultException e)
             {
-                return View();
+	            ms.Abort();
+	            ViewBag.ErrorMessage = e.Message;
+	            return View();
             }
-        }
+            catch (Exception e)
+            {
+	            ms.Abort();
+	            ViewBag.ErrorMessage = e.Message;
+	            return View();
+            }
+		}
 
         [HttpPost]
         public JsonResult SearchByName(string name)
@@ -98,9 +168,24 @@ namespace BookAnArtisanMVC.Controllers
 
         public ActionResult MyMaterials(User user)
         {
-            user.Id = HttpContext.User.Identity.GetUserId();
-            var data = ms.ReadAllMaterialsForUser(user);
-            return View(data);
+	        try
+	        {
+				user.Id = HttpContext.User.Identity.GetUserId();
+				var data = ms.ReadAllMaterialsForUser(user);
+				return View(data);
+	        }
+			catch (FaultException e)
+	        {
+		        ms.Abort();
+		        ViewBag.ErrorMessage = e.Message;
+		        return View();
+	        }
+	        catch (Exception e)
+	        {
+		        ms.Abort();
+		        ViewBag.ErrorMessage = e.Message;
+		        return View();
+	        }
         }
     }
 }

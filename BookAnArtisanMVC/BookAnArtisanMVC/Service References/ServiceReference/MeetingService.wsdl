@@ -3,6 +3,7 @@
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8733/WCF/MeetingService/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8733/WCF/MeetingService/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
       <xsd:import schemaLocation="http://localhost:8733/WCF/MeetingService/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8733/WCF/MeetingService/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Model" />
     </xsd:schema>
@@ -13,11 +14,17 @@
   <wsdl:message name="IMeetingService_CreateMeeting_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateMeetingResponse" />
   </wsdl:message>
+  <wsdl:message name="IMeetingService_CreateMeeting_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/System" name="detail" element="q1:ApplicationException" />
+  </wsdl:message>
   <wsdl:message name="IMeetingService_ReadMeeting_InputMessage">
     <wsdl:part name="parameters" element="tns:ReadMeeting" />
   </wsdl:message>
   <wsdl:message name="IMeetingService_ReadMeeting_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReadMeetingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMeetingService_ReadMeeting_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/System" name="detail" element="q2:ApplicationException" />
   </wsdl:message>
   <wsdl:message name="IMeetingService_UpdateMeeting_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateMeeting" />
@@ -25,11 +32,17 @@
   <wsdl:message name="IMeetingService_UpdateMeeting_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateMeetingResponse" />
   </wsdl:message>
+  <wsdl:message name="IMeetingService_UpdateMeeting_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/System" name="detail" element="q3:ApplicationException" />
+  </wsdl:message>
   <wsdl:message name="IMeetingService_DeleteMeeting_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteMeeting" />
   </wsdl:message>
   <wsdl:message name="IMeetingService_DeleteMeeting_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteMeetingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMeetingService_DeleteMeeting_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/System" name="detail" element="q4:ApplicationException" />
   </wsdl:message>
   <wsdl:message name="IMeetingService_ReadAllMeeting_InputMessage">
     <wsdl:part name="parameters" element="tns:ReadAllMeeting" />
@@ -37,11 +50,17 @@
   <wsdl:message name="IMeetingService_ReadAllMeeting_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReadAllMeetingResponse" />
   </wsdl:message>
+  <wsdl:message name="IMeetingService_ReadAllMeeting_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/System" name="detail" element="q5:ApplicationException" />
+  </wsdl:message>
   <wsdl:message name="IMeetingService_AddUserToMeeting_InputMessage">
     <wsdl:part name="parameters" element="tns:AddUserToMeeting" />
   </wsdl:message>
   <wsdl:message name="IMeetingService_AddUserToMeeting_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddUserToMeetingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMeetingService_AddUserToMeeting_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/System" name="detail" element="q6:ApplicationException" />
   </wsdl:message>
   <wsdl:message name="IMeetingService_ReadAllForUser_InputMessage">
     <wsdl:part name="parameters" element="tns:ReadAllForUser" />
@@ -49,34 +68,44 @@
   <wsdl:message name="IMeetingService_ReadAllForUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReadAllForUserResponse" />
   </wsdl:message>
+  <wsdl:message name="IMeetingService_ReadAllForUser_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/System" name="detail" element="q7:ApplicationException" />
+  </wsdl:message>
   <wsdl:portType name="IMeetingService">
     <wsdl:operation name="CreateMeeting">
       <wsdl:input wsaw:Action="http://tempuri.org/IMeetingService/CreateMeeting" message="tns:IMeetingService_CreateMeeting_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMeetingService/CreateMeetingResponse" message="tns:IMeetingService_CreateMeeting_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IMeetingService/CreateMeetingApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IMeetingService_CreateMeeting_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReadMeeting">
       <wsdl:input wsaw:Action="http://tempuri.org/IMeetingService/ReadMeeting" message="tns:IMeetingService_ReadMeeting_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMeetingService/ReadMeetingResponse" message="tns:IMeetingService_ReadMeeting_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IMeetingService/ReadMeetingApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IMeetingService_ReadMeeting_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateMeeting">
       <wsdl:input wsaw:Action="http://tempuri.org/IMeetingService/UpdateMeeting" message="tns:IMeetingService_UpdateMeeting_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMeetingService/UpdateMeetingResponse" message="tns:IMeetingService_UpdateMeeting_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IMeetingService/UpdateMeetingApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IMeetingService_UpdateMeeting_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteMeeting">
       <wsdl:input wsaw:Action="http://tempuri.org/IMeetingService/DeleteMeeting" message="tns:IMeetingService_DeleteMeeting_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMeetingService/DeleteMeetingResponse" message="tns:IMeetingService_DeleteMeeting_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IMeetingService/DeleteMeetingApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IMeetingService_DeleteMeeting_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReadAllMeeting">
       <wsdl:input wsaw:Action="http://tempuri.org/IMeetingService/ReadAllMeeting" message="tns:IMeetingService_ReadAllMeeting_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMeetingService/ReadAllMeetingResponse" message="tns:IMeetingService_ReadAllMeeting_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IMeetingService/ReadAllMeetingApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IMeetingService_ReadAllMeeting_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddUserToMeeting">
       <wsdl:input wsaw:Action="http://tempuri.org/IMeetingService/AddUserToMeeting" message="tns:IMeetingService_AddUserToMeeting_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMeetingService/AddUserToMeetingResponse" message="tns:IMeetingService_AddUserToMeeting_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IMeetingService/AddUserToMeetingApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IMeetingService_AddUserToMeeting_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReadAllForUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IMeetingService/ReadAllForUser" message="tns:IMeetingService_ReadAllForUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMeetingService/ReadAllForUserResponse" message="tns:IMeetingService_ReadAllForUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IMeetingService/ReadAllForUserApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IMeetingService_ReadAllForUser_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMeetingService" type="tns:IMeetingService">
@@ -89,6 +118,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ReadMeeting">
       <soap:operation soapAction="http://tempuri.org/IMeetingService/ReadMeeting" style="document" />
@@ -98,6 +130,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="UpdateMeeting">
       <soap:operation soapAction="http://tempuri.org/IMeetingService/UpdateMeeting" style="document" />
@@ -107,6 +142,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="DeleteMeeting">
       <soap:operation soapAction="http://tempuri.org/IMeetingService/DeleteMeeting" style="document" />
@@ -116,6 +154,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ReadAllMeeting">
       <soap:operation soapAction="http://tempuri.org/IMeetingService/ReadAllMeeting" style="document" />
@@ -125,6 +166,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="AddUserToMeeting">
       <soap:operation soapAction="http://tempuri.org/IMeetingService/AddUserToMeeting" style="document" />
@@ -134,6 +178,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ReadAllForUser">
       <soap:operation soapAction="http://tempuri.org/IMeetingService/ReadAllForUser" style="document" />
@@ -143,6 +190,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="MeetingService">

@@ -13,19 +13,25 @@ namespace WCF
     {
         // Implementing CRUD as a starting point.
         [OperationContract]
-        Material CreateMaterial(Material t);
+        [FaultContract(typeof(ApplicationException))]
+		Material CreateMaterial(Material t);
         [OperationContract]
-        Material ReadMaterial(Material t);
+        [FaultContract(typeof(ApplicationException))]
+		Material ReadMaterial(Material t);
         [OperationContract]
-        Material UpdateMaterial(Material t);
+        [FaultContract(typeof(ApplicationException))]
+		Material UpdateMaterial(Material t);
         [OperationContract]
-        Material DeleteMaterial(Material t);
+        [FaultContract(typeof(ApplicationException))]
+		Material DeleteMaterial(Material t);
         // Implementing ReadAll
         [OperationContract]
-        List<Material> ReadAllMaterial();
+        [FaultContract(typeof(ApplicationException))]
+		List<Material> ReadAllMaterial();
         [OperationContract]
         IList<Material> Search(string name);
         [OperationContract]
-        List<Material> ReadAllMaterialsForUser(User user);
+        [FaultContract(typeof(ApplicationException))]
+		List<Material> ReadAllMaterialsForUser(User user);
     }
 }

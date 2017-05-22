@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
@@ -13,37 +14,128 @@ namespace WCF
         MeetingController mc = new MeetingController();
         public Meeting CreateMeeting(Meeting t)
         {
-            return mc.Create(t);
-        }
+            try
+            {
+                return mc.Create(t);
+            }
+			catch (ApplicationException ex)
+            {
+	            throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+            }
+            catch (Exception ex)
+            {
+	            //log(ex);
+	            var ex2 = new ApplicationException(@"Unknown Error");
+	            throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+            }
+		}
 
         public Meeting DeleteMeeting(Meeting t)
         {
-            return mc.Delete(t);
-        }
+			try
+			{
+				return mc.Delete(t);
+			}
+			catch (ApplicationException ex)
+			{
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception ex)
+			{
+				//log(ex);
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
+		}
 
         public Meeting ReadMeeting(Meeting t)
         {
-            return mc.Read(t);
-        }
+			try
+			{
+				return mc.Read(t);
+			}
+			catch (ApplicationException ex)
+			{
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception ex)
+			{
+				//log(ex);
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
+		}
 
         public List<Meeting> ReadAllMeeting()
         {
-            return mc.ReadAll();
-        }
+			try
+			{
+				return mc.ReadAll();
+			}
+			catch (ApplicationException ex)
+			{
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception ex)
+			{
+				//log(ex);
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
+		}
 
         public Meeting UpdateMeeting(Meeting t)
         {
-            return mc.Update(t);
-        }
+			try
+			{
+				return mc.Update(t);
+			}
+			catch (ApplicationException ex)
+			{
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception ex)
+			{
+				//log(ex);
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
+		}
 
         public Meeting AddUserToMeeting(Meeting m, User u)
         {
-            return mc.AddUserToMeeting(m, u);
-        }
+			try
+			{
+				return mc.AddUserToMeeting(m,u);
+			}
+			catch (ApplicationException ex)
+			{
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception ex)
+			{
+				//log(ex);
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
+		}
 
         public List<Meeting> ReadAllForUser(User user)
         {
-            return mc.ReadAllForUser(user);
-        }
+			try
+			{
+				return mc.ReadAllForUser(user);
+			}
+			catch (ApplicationException ex)
+			{
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception ex)
+			{
+				//log(ex);
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
+		}
     }
 }
