@@ -59,7 +59,6 @@ namespace Testing.TestingWCF
 		{
 		}
 		#endregion
-
 		/*
 		 * did not consider tags.
 		 */
