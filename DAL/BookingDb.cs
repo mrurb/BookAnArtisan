@@ -8,7 +8,7 @@ using System.ServiceModel;
 
 namespace DAL
 {
-	public class RentingDb : IDataAccess<Booking>
+	public class BookingDb : IDataAccess<Booking>
 	{
 		static readonly string Connectionstring = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
 		public Booking Create(Booking t)

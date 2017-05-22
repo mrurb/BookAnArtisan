@@ -7,11 +7,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 using WCF;
 using System.ServiceModel;
+using DAL;
 
 namespace Testing.TestingWCF
 {
 	class TestBooking
 	{
+		private Booking bookingnew;
+		private BookingDb bDb;
 		#region setups + teardowns
 		[ClassInitialize]
 		public static void setUpBeforeClass(TestContext tc)
@@ -25,18 +28,6 @@ namespace Testing.TestingWCF
 		}
 		[TestInitialize]
 		public void setUp()
-		{
-
-		}
-		[TestCleanup]
-		public void tearDown()
-		{
-		}
-		#endregion
-		RentingService rs = new RentingService();
-
-		[TestMethod]
-		public void BookingIntegrationTest()
 		{
 			Booking bookingnew = new Booking()
 			{
@@ -76,16 +67,34 @@ namespace Testing.TestingWCF
 					Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3"
 				}
 			};
+			bDb = new BookingDb();
 			bookingnew.Id = rs.CreateBooking(bookingnew).Id;
+		}
+		[TestCleanup]
+		public void tearDown()
+		{
+			bDb.RemoveBooking(bookingnew);
+			bDb = null;
+			bookingnew = null;
+		}
+		#endregion
+		BookingService rs = new BookingService();
+
+		[TestMethod]
+		public void BookingIntegrationTest()
+		{
+			
+			
 			try
 			{
-						//test create
-				bookingnew =  rs.CreateBooking(bookingnew);
-				Booking dbBooking = rs.ReadBooking(bookingnew);
-				ComparisonBooking(bookingnew, dbBooking);
+				//test create
+				Booking bookingnewa = rs.CreateBooking(bookingnew);
+				Booking dbBooking = rs.ReadBooking(bookingnewa);
+				ComparisonBooking(bookingnewa, dbBooking);
+				bDb.RemoveBooking(bookingnewa);
 				//this also tests read.
 
-						//test update 
+				//test update 
 				bookingnew.StartTime = new DateTime(2014, 2, 13, 12, 00, 00);		//update starttime locally
 				bookingnew.EndTime = new DateTime(2014, 2, 21, 12, 00, 00);			//update endtime locally
 				rs.UpdateBooking(bookingnew);										//update in DB

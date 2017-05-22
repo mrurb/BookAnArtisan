@@ -352,5 +352,23 @@ namespace DAL
             }
             return default(T);
         }
-    }
+
+	    public Meeting RemoveMeeting(Meeting meeting)
+	    {
+		    var sql = "DELETE FROM Meetings WHERE id = @id";
+		    var theparam = new SqlParameter { ParameterName = "@id", SqlValue = meeting.Id, SqlDbType = SqlDbType.Int };
+		    using (var connection = new SqlConnection(connectionstring))
+		    {
+			    using (SqlCommand command = new SqlCommand(sql, connection))
+			    {
+				    command.Parameters.Add(theparam);
+				    command.Connection.Open();
+				    using (command.ExecuteReader())
+				    {
+				    }
+			    }
+		    }
+		    return meeting;
+	    }
+	}
 }

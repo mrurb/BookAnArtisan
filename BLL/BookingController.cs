@@ -6,9 +6,9 @@ using DAL;
 
 namespace BLL
 {
-    public class RentingController : IController<Booking>
+    public class BookingController : IController<Booking>
     {
-        RentingDb rdb = new RentingDb();
+        BookingDb rdb = new BookingDb();
         MaterialController mctr = new MaterialController();
         UserController uctr = new UserController();
         public Booking Create(Booking t)

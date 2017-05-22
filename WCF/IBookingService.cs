@@ -9,7 +9,7 @@ using System.ServiceModel;
 namespace WCF
 {
     [ServiceContract]
-    interface IRentingService
+    interface IBookingService
     {
         // Implementing CRUD as a starting point.
         [OperationContract]

@@ -17,7 +17,7 @@ namespace Testing.TestingDAL
 		private static Booking booking;
 		private static UserDB uDb;
 		private static MaterialDB mDb;
-		private static RentingDb bDb;
+		private static BookingDb bDb;
 
 		#region SetUp and TearDowns
 		[ClassInitialize]
@@ -39,7 +39,7 @@ namespace Testing.TestingDAL
 			{
 				uDb = new UserDB();
 				mDb = new MaterialDB();
-				bDb = new RentingDb();
+				bDb = new BookingDb();
 				booking = new Booking()
 				{
 					StartTime = new DateTime(2017, 5, 25, 10, 50, 00),
@@ -91,7 +91,7 @@ namespace Testing.TestingDAL
 		{
 			try
 			{
-				bDb.Delete(booking);
+				bDb.RemoveBooking(booking);
 				booking = null;
 				uDb = null;
 				bDb = null;
@@ -112,9 +112,10 @@ namespace Testing.TestingDAL
 		[TestMethod]
 		public void TestCreateBooking()
 		{
-			booking = bDb.Create(booking);
-			Booking dbBooking = bDb.Read(booking);
-			ComparisonBooking(booking,dbBooking);
+			Booking bookinga = bDb.Create(booking);
+			Booking dbBooking = bDb.Read(bookinga);
+			ComparisonBooking(bookinga,dbBooking);
+			bDb.RemoveBooking(bookinga);
 		}
 
 		[TestMethod]
@@ -181,12 +182,11 @@ namespace Testing.TestingDAL
 		[TestMethod]
 		public void BoundaryTestBooking()
 		{
-			//StartTime = new DateTime(2014, 2, 15, 12, 00, 00),
-			//EndTime = new DateTime(2014, 2, 20, 11, 59, 59),
+			//StartTime = new DateTime(2017, 5, 25, 10, 50, 00),
+			//EndTime = new DateTime(2017, 5, 28, 10, 10, 00),
 			try
 			{
-				//Assert.AreEqual(); how to do this assert bitch?
-				booking.EndTime = new DateTime(2014, 2, 15, 12, 00, 00);
+				booking.EndTime = new DateTime(2017, 5, 25, 10, 50, 00);
 				bDb.Update(booking);
 				Assert.IsFalse(true);
 			}
@@ -207,12 +207,35 @@ namespace Testing.TestingDAL
 		[TestMethod]
 		public void BoundaryTestBooking2()
 		{
-			//StartTime = new DateTime(2014, 2, 15, 12, 00, 00),
-			//EndTime = new DateTime(2014, 2, 20, 11, 59, 59),
+			//StartTime = new DateTime(2017, 5, 25, 10, 50, 00),
+			//EndTime = new DateTime(2017, 5, 28, 10, 10, 00),
 			try
 			{
-				//Assert.AreEqual(); how to do this assert bitch?
-				booking.StartTime = new DateTime(2014, 2, 25, 11, 59, 59);
+				booking.StartTime = new DateTime(2017, 5, 27, 11, 59, 59);
+				bDb.Update(booking);
+				Assert.IsFalse(true);
+			}
+			catch (ApplicationException ex)
+			{
+				Assert.IsFalse(false);
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception ex)
+			{
+				//log(ex);
+				Assert.IsFalse(false);
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
+		}
+		[TestMethod]
+		public void BoundaryTestBooking3()
+		{
+			//StartTime = new DateTime(2017, 5, 25, 10, 50, 00),
+			//EndTime = new DateTime(2017, 5, 28, 10, 10, 00),
+			try
+			{
+				booking.StartTime = new DateTime(2019, 5, 27, 11, 59, 59);
 				bDb.Update(booking);
 				Assert.IsFalse(true);
 			}
