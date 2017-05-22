@@ -112,9 +112,10 @@ namespace Testing.TestingDAL
 		[TestMethod]
 		public void TestCreateBooking()
 		{
-			booking = bDb.Create(booking);
-			Booking dbBooking = bDb.Read(booking);
-			ComparisonBooking(booking,dbBooking);
+			Booking bookinga = bDb.Create(booking);
+			Booking dbBooking = bDb.Read(bookinga);
+			ComparisonBooking(bookinga,dbBooking);
+			bDb.RemoveBooking(bookinga);
 		}
 
 		[TestMethod]
