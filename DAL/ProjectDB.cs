@@ -29,18 +29,27 @@ namespace DAL
 				new SqlParameter { ParameterName = "@Deleted", SqlValue = Convert.ToInt32(project.Deleted), SqlDbType = SqlDbType.Bit }
 			};
 
-			using (var connection = new SqlConnection(connectionString))
+			try
 			{
-				using (var command = new SqlCommand(sql, connection))
+				using (var connection = new SqlConnection(connectionString))
 				{
-					command.Parameters.AddRange(arrayOfParameters);
-					command.Connection.Open();
-					int rowsaffected = command.ExecuteNonQuery();
-					if (rowsaffected < 1)
+					using (var command = new SqlCommand(sql, connection))
 					{
-						throw new Exception("No rows affected. Insert failed");
+						command.Parameters.AddRange(arrayOfParameters);
+						command.Connection.Open();
+						var exsc = command.ExecuteScalar();
+						project.Id = (int)exsc;
+						if (project.Id == 0)
+						{
+							throw new Exception("No rows affected. Insert failed");
+						}
 					}
 				}
+			}
+			catch (Exception ex)
+			{
+
+				throw;
 			}
 			return project;
 		}
