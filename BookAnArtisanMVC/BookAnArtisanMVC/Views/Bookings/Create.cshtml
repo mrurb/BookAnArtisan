@@ -43,10 +43,9 @@
         <div class="form-group">
             @Html.LabelFor(model => Model.Item.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.Editor("material", new { htmlAttributes = new { @class = "form-control" } })
-                @Html.HiddenFor(model => model.Item.Id, new { @class = "form-control", id = "MaterialId" })
+                @Html.EditorFor(model => model.Item.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.Item.Id, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Item.Name, "", new { @class = "text-danger" })
-                @Html.EditorFor(model => model.Item.Name, new { @class = "form-control", Name = "Name" }) @*save me anders*@
             </div>
         </div>
 
@@ -59,10 +58,6 @@
 }
 
 <div>
-    @ViewBag.ErrorMessage
-</div>
-
-<div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
@@ -72,7 +67,7 @@
     <script type="text/javascript">
         $( document ).ready(function() {
             autoc($("#username"), $("#UserId"), "/Users/SearchByName");
-            autocMaterial($("#material"), $("#MaterialId"), "/Materials/SearchByName");
+            autocMaterial($("#Item_Name"), $("#Item_Id"), "/Materials/SearchByName");
         })
     </script>
 }
