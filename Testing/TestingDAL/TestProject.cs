@@ -43,8 +43,7 @@ namespace Testing.TestingDAL
 			{
 				testProject = new Project
 				{
-					// Need an ID for testing
-					Id = 20,
+					
 					Name = "Test",
 					CreatedBy = new User { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3", },
 					Contact = new User { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3" },
@@ -59,9 +58,9 @@ namespace Testing.TestingDAL
 				pDb = new ProjectDb();
 				testProject = pDb.Create(testProject);
 			}
-			catch
+			catch(Exception ex)
 			{
-				throw new Exception();
+				throw;
 			}
 		}
 		[TestCleanup]
@@ -69,7 +68,7 @@ namespace Testing.TestingDAL
 		{
 			try
 			{
-				pDb.Delete(testProject);
+				pDb.RemoveProject(testProject);
 				testProject = null;
 				pDb = null;
 			}
@@ -86,6 +85,7 @@ namespace Testing.TestingDAL
 			var project = pDb.Create(testProject);
 			var project1 = pDb.Read(testProject);
 			Assert.AreEqual(project, project1);
+			pDb.RemoveProject(project);
 		}
 
 		[TestMethod]
