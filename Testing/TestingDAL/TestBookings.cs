@@ -118,19 +118,61 @@ namespace Testing.TestingDAL
 		[TestMethod]
 		public void TestUpdateBooking()
 		{
-			//blablabla
+			booking.StartTime = new DateTime(2012, 1, 1, 12, 00, 00);
+			booking.EndTime = new DateTime(2014, 8, 28, 23, 59, 00);
+			bDb.Update(booking);
+			Booking dBooking = bDb.Read(booking);
+			ComparisonBooking(booking, dBooking);
 		}
 
 		[TestMethod]
 		public void TestReadBooking()
 		{
-			//blablabla
+			booking = new Booking() {
+			StartTime = new DateTime(2014, 2, 15, 12, 00, 00),
+			EndTime = new DateTime(2014, 2, 20, 11, 59, 59),
+			Deleted = false,
+			Item = new Material()
+			{
+				Name = "Traktor",
+				Description = "En rød traktor med hjul",
+				Condition = "Virker fint. Ryger lidt.",
+				Deleted = false,
+				Available = true,
+				Id = 1,
+				Owner = new User()
+				{
+					Id = "2083af25-f483-4a02-a62b-71c198147c84",
+					Email = "kaw@kaw.kaw",
+					FirstName = "Kaw",
+					LastName = "Bjorn",
+					Address = "Fake Street 123",
+					UserName = "kaw@kaw.kaw",
+					PhoneNumber = "13374201",
+					EmailConfirmed = false
+				}
+			},
+			User = new User()
+			{
+				Email = "stuff@stuff.com",
+				EmailConfirmed = false,
+				UserName = "stuff@stuff.stuff",
+				FirstName = "John",
+				LastName = "Doe",
+				Address = "New street",
+				Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3"
+			}
+		};
+			Booking dBooking = bDb.Read(booking);
 		}
 
 		[TestMethod]
 		public void TestDeleteBooking()
 		{
-			//blablabla
+			booking.Deleted = true;
+			bDb.Delete(booking); // needs id..
+			Booking dBooking = bDb.Read(booking);
+			Assert.AreEqual(booking.Deleted, dBooking.Deleted);
 		}
 		#endregion
 		private void ComparisonBooking(Booking expected, Booking actual)
