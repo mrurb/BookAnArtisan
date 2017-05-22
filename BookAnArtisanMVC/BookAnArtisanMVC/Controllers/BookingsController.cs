@@ -57,10 +57,10 @@ namespace BookAnArtisanMVC.Controllers
 			return View();
 		}
 		/*
-		public ActionResult Create(Material material)
+		public ActionResult Create(int id)
 		{
-			
-			return View(new Booking() {Item = material });
+			//ViewBag.MaterialId
+			return View();
 		}
 		*/
 		// POST: Booking/Create
