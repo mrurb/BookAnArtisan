@@ -117,10 +117,7 @@ namespace Testing.TestingDAL
 		public void TestReadAllBookings()
 		{
 			var list = _bDb.ReadAll();
-			foreach (var booking in list)
-			{
-				Assert.IsTrue(booking.User.Id != null);
-			}
+			Assert.IsTrue(list.Count != 0);
 		}
 
 
@@ -131,7 +128,6 @@ namespace Testing.TestingDAL
 			var oldUpdated = booking.Updated;
 			booking.StartTime = Convert.ToDateTime("2016-05-08 02:00:00.000");
 			booking.EndTime = Convert.ToDateTime("2016-05-10 02:00:00.000");
-			booking.Updated = DateTime.UtcNow;
 
 			_bDb.Update(booking); // do the update
 
