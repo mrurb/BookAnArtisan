@@ -104,8 +104,8 @@ namespace DAL
             {
                 new SqlParameter { ParameterName = "@Id", SqlValue = project.Id, SqlDbType = SqlDbType.Int },
                 new SqlParameter { ParameterName = "@Name", SqlValue = project.Name, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Created_by_ID", SqlValue = project.CreatedBy, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Contact_ID", SqlValue = project.Contact, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Created_by_ID", SqlValue = project.CreatedBy.Id, SqlDbType = SqlDbType.NVarChar },
+                new SqlParameter { ParameterName = "@Contact_ID", SqlValue = project.Contact.Id, SqlDbType = SqlDbType.NVarChar },
                 new SqlParameter { ParameterName = "@Project_status_ID", SqlValue = project.ProjectStatusID, SqlDbType = SqlDbType.Int },
                 new SqlParameter { ParameterName = "@Project_description", SqlValue = project.ProjectDescription, SqlDbType = SqlDbType.Text },
                 new SqlParameter { ParameterName = "@Street_Name", SqlValue = project.StreetName, SqlDbType = SqlDbType.NVarChar },
@@ -121,7 +121,7 @@ namespace DAL
             sqlcommand.Transaction = myTrans;
             sqlcommand.Parameters.AddRange(arrayOfParameters);
                 int affectedRows = sqlcommand.ExecuteNonQuery();
-                if (!(0 < affectedRows))
+                if (affectedRows < 1)
                 {
                     throw new Exception("No rows affected. Update failed.");
                 }
