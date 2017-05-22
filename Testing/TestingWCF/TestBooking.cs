@@ -11,7 +11,7 @@ using DAL;
 
 namespace Testing.TestingWCF
 {
-	class TestBooking
+	public class TestBooking
 	{
 		private Booking bookingnew;
 		private BookingDb bDb;
