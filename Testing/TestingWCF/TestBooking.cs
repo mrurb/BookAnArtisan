@@ -14,7 +14,7 @@ namespace Testing.TestingWCF
 	class TestBooking
 	{
 		private Booking bookingnew;
-		private RentingDb bDb;
+		private BookingDb bDb;
 		#region setups + teardowns
 		[ClassInitialize]
 		public static void setUpBeforeClass(TestContext tc)
@@ -67,7 +67,7 @@ namespace Testing.TestingWCF
 					Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3"
 				}
 			};
-			bDb = new RentingDb();
+			bDb = new BookingDb();
 			bookingnew.Id = rs.CreateBooking(bookingnew).Id;
 		}
 		[TestCleanup]

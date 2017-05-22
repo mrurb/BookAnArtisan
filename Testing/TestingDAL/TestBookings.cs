@@ -17,7 +17,7 @@ namespace Testing.TestingDAL
 		private static Booking booking;
 		private static UserDB uDb;
 		private static MaterialDB mDb;
-		private static RentingDb bDb;
+		private static BookingDb bDb;
 
 		#region SetUp and TearDowns
 		[ClassInitialize]
@@ -39,7 +39,7 @@ namespace Testing.TestingDAL
 			{
 				uDb = new UserDB();
 				mDb = new MaterialDB();
-				bDb = new RentingDb();
+				bDb = new BookingDb();
 				booking = new Booking()
 				{
 					StartTime = new DateTime(2017, 5, 25, 10, 50, 00),

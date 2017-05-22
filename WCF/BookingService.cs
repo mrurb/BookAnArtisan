@@ -11,7 +11,7 @@ namespace WCF
 {
     public class BookingService : IBookingService
     {
-        RentingController rc = new RentingController();
+        BookingController rc = new BookingController();
         public Booking CreateBooking(Booking t)
         {
             try
