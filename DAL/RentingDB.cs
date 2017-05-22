@@ -21,7 +21,7 @@ namespace DAL
 				new SqlParameter { ParameterName = "@materialID" , SqlValue = t.Item.Id, SqlDbType = SqlDbType.NVarChar }
 		   };
 			SqlConnection con = new SqlConnection(Connectionstring);
-			string query = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Bookings.Deleted = 0) BEGIN INSERT INTO Bookings(StartTime, EndTime, UserID, MaterialID) VALUES(@starttime, @endtime, @userID, @materialID) END";
+			string query = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Bookings.Deleted = 0) BEGIN INSERT INTO Bookings(StartTime, EndTime, UserID, MaterialID) VALUES(@starttime, @endtime, @userID, @materialID) SELECT SCOPE_IDENTITY() END";
 			SqlCommand sqlcommand = new SqlCommand(query, con);
 
 
@@ -31,8 +31,8 @@ namespace DAL
 				SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.Serializable);
 				sqlcommand.Transaction = myTrans;
 				sqlcommand.Parameters.AddRange(arrayOfParams);
-				var rowsaffected = sqlcommand.ExecuteNonQuery();
-				if (rowsaffected < 1)
+				t.Id = (int)sqlcommand.ExecuteScalar();
+				if (t.Id == 0)
 				{
 					throw new ApplicationException("Booking not created");
 				}
