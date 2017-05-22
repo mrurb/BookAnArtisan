@@ -147,15 +147,18 @@ namespace Testing.TestingDAL
 			{
 				//Assert.AreEqual(); how to do this assert bitch?
 				booking.EndTime = new DateTime(2014, 2, 15, 12, 00, 00);
-				bDb.Update(booking); // this should fail. would like to reverse, pls..
+				bDb.Update(booking);
+				Assert.IsFalse(true);
 			}
 			catch (ApplicationException ex)
 			{
+				Assert.IsFalse(false);
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
 			catch (Exception ex)
 			{
 				//log(ex);
+				Assert.IsFalse(false);
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
@@ -170,15 +173,18 @@ namespace Testing.TestingDAL
 			{
 				//Assert.AreEqual(); how to do this assert bitch?
 				booking.StartTime = new DateTime(2014, 2, 25, 11, 59, 59);
-				bDb.Update(booking); // this should fail. would like to reverse, pls..
+				bDb.Update(booking);
+				Assert.IsFalse(true);
 			}
 			catch (ApplicationException ex)
 			{
+				Assert.IsFalse(false);
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
 			catch (Exception ex)
 			{
 				//log(ex);
+				Assert.IsFalse(false);
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
