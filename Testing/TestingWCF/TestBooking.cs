@@ -78,7 +78,7 @@ namespace Testing.TestingWCF
 			bookingnew = null;
 		}
 		#endregion
-		RentingService rs = new RentingService();
+		BookingService rs = new BookingService();
 
 		[TestMethod]
 		public void BookingIntegrationTest()

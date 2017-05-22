@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 using WCF;
+using DAL;
 
 namespace Testing.TestingWCF
 {
@@ -9,6 +10,7 @@ namespace Testing.TestingWCF
 	{
 		private readonly ProjectService pSv = new ProjectService();
 		private Project project;
+		private ProjectDb pdb;
 		#region setups + teardowns
 		[ClassInitialize]
 		public static void SetUpBeforeClass(TestContext tc)
@@ -53,10 +55,16 @@ namespace Testing.TestingWCF
 				},
 				ProjectStatusID = 1
 			};
+			pdb = new ProjectDb();
+			pdb.Create(project);
+
 		}
 		[TestCleanup]
 		public void TearDown()
 		{
+			pdb.RemoveProject(project);
+			project = null;
+			pdb = null;
 		}
 		#endregion
 		/*
@@ -66,11 +74,11 @@ namespace Testing.TestingWCF
 		public void ProjectIntegrationTest()
 		{
 			//create
-			pSv.CreateProject(project);
-			var readProject = pSv.ReadProject(project);
-			project.Modified = readProject.Modified;
-			project.Created = readProject.Created;
-			ComparisonProject(project, readProject);
+			Project aproject = pSv.CreateProject(project);
+			var readProject = pSv.ReadProject(aproject);
+			ComparisonProject(aproject, readProject);
+			pdb.RemoveProject(aproject);
+
 
 			//update
 			project.Name = "bla-name";

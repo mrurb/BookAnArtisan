@@ -9,7 +9,7 @@ using BLL;
 
 namespace WCF
 {
-    public class RentingService : IRentingService
+    public class BookingService : IBookingService
     {
         RentingController rc = new RentingController();
         public Booking CreateBooking(Booking t)
