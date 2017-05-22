@@ -87,11 +87,10 @@ namespace Testing.TestingWCF
 		public void BookingIntegrationTest()
 		{
 			
-			
 			try
 			{
 				//test create
-				Booking bookingnewa = rs.CreateBooking(bookingnew);
+				Booking bookingnewa = rs.CreateBooking(bookingnew); // won't work... checks prevent it
 				Booking dbBooking = rs.ReadBooking(bookingnewa);
 				ComparisonBooking(bookingnewa, dbBooking);
 				bDb.RemoveBooking(bookingnewa);

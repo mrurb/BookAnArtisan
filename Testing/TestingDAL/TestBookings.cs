@@ -11,12 +11,7 @@ namespace Testing.TestingDAL
 	[TestClass]
 	class TestBookings
 	{
-		private static User user1;
-		private static User user2;
-		private static Material material;
 		private static Booking booking;
-		private static UserDB uDb;
-		private static MaterialDB mDb;
 		private static BookingDb bDb;
 
 		#region SetUp and TearDowns
@@ -37,8 +32,6 @@ namespace Testing.TestingDAL
 		{
 			try
 			{
-				uDb = new UserDB();
-				mDb = new MaterialDB();
 				bDb = new BookingDb();
 				booking = new Booking()
 				{
@@ -93,9 +86,7 @@ namespace Testing.TestingDAL
 			{
 				bDb.RemoveBooking(booking);
 				booking = null;
-				uDb = null;
 				bDb = null;
-				mDb = null;
 			}
 			catch
 			{
