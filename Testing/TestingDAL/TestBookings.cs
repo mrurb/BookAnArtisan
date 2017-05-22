@@ -91,7 +91,7 @@ namespace Testing.TestingDAL
 		{
 			try
 			{
-				bDb.Delete(booking);
+				bDb.RemoveBooking(booking);
 				booking = null;
 				uDb = null;
 				bDb = null;
