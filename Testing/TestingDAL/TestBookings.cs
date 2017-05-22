@@ -112,7 +112,7 @@ namespace Testing.TestingDAL
 		{
 			bDb.Create(booking);
 			Booking dbBooking = bDb.Read(booking);
-			// TODO
+			ComparisonBooking(booking,dbBooking);
 		}
 
 		[TestMethod]
@@ -133,6 +133,39 @@ namespace Testing.TestingDAL
 			//blablabla
 		}
 		#endregion
+		private void ComparisonBooking(Booking expected, Booking actual)
+		{
+			//base details of booking
+			Assert.AreEqual(expected.Deleted, actual.Deleted);
+			Assert.AreEqual(expected.StartTime, actual.StartTime);
+			Assert.AreEqual(expected.EndTime, actual.EndTime);
+			//Assert.AreEqual(expected.Created, actual.Created);
+			//Assert.AreEqual(expected.Updated, actual.Updated);
+			//base details of item
+			Assert.AreEqual(expected.Item.Id, actual.Item.Id);
+			Assert.AreEqual(expected.Item.Name, actual.Item.Name);
+			Assert.AreEqual(expected.Item.Deleted, actual.Item.Deleted);
+			Assert.AreEqual(expected.Item.Available, actual.Item.Available);
+			Assert.AreEqual(expected.Item.Condition, actual.Item.Condition);
+			Assert.AreEqual(expected.Item.Description, actual.Item.Description);
+			//owner of item
+			Assert.AreEqual(expected.Item.Owner.UserName, actual.Item.Owner.UserName);
+			Assert.AreEqual(expected.Item.Owner.Email, actual.Item.Owner.Email);
+			Assert.AreEqual(expected.Item.Owner.Address, actual.Item.Owner.Address);
+			Assert.AreEqual(expected.Item.Owner.FirstName, actual.Item.Owner.FirstName);
+			Assert.AreEqual(expected.Item.Owner.LastName, actual.Item.Owner.LastName);
+			Assert.AreEqual(expected.Item.Owner.Id, actual.Item.Owner.Id);
+			Assert.AreEqual(expected.Item.Owner.PhoneNumber, actual.Item.Owner.PhoneNumber);
+			//the renter
+			Assert.AreEqual(expected.User.UserName, actual.User.UserName);
+			Assert.AreEqual(expected.User.Email, actual.User.Email);
+			Assert.AreEqual(expected.User.Address, actual.User.Address);
+			Assert.AreEqual(expected.User.FirstName, actual.User.FirstName);
+			Assert.AreEqual(expected.User.LastName, actual.User.LastName);
+			Assert.AreEqual(expected.User.Id, actual.User.Id);
+			Assert.AreEqual(expected.User.PhoneNumber, actual.User.PhoneNumber);
+		}
+
 		#region BoundaryTests
 
 		[TestMethod]
