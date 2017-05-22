@@ -9,7 +9,7 @@ namespace Testing.TestingDAL
 	public class TestProject
 	{
 		private static Project testProject;
-		private static ProjectDB pDb;
+		private static ProjectDb pDb;
 
 		#region setups + teardowns
 		[ClassInitialize]
@@ -56,7 +56,7 @@ namespace Testing.TestingDAL
 					Modified = new DateTime(2017, 04, 19, 17, 09, 21, 0),
 					Deleted = false
 				};
-				pDb = new ProjectDB();
+				pDb = new ProjectDb();
 				testProject = pDb.Create(testProject);
 			}
 			catch
@@ -134,7 +134,6 @@ namespace Testing.TestingDAL
 			}
 		}
 		#endregion
-
 		#region Boundary Tests
 
 		[TestMethod]
