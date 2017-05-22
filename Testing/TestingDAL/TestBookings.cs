@@ -42,8 +42,9 @@ namespace Testing.TestingDAL
 				bDb = new RentingDb();
 				Booking bookingnew = new Booking()
 				{
-					StartTime = new DateTime(2014, 2, 15, 12, 00, 00),
-					EndTime = new DateTime(2014, 2, 20, 11, 59, 59),
+					Id = 2,
+					StartTime = new DateTime(2017, 5, 25, 10, 50, 00),
+					EndTime = new DateTime(2017, 5, 28, 10, 10, 00),
 					//Created = DateTime.Now, // I don't control this
 					Deleted = false,
 					//Updated = DateTime.Now, // I don't control this. (should be nowutc)
@@ -110,7 +111,7 @@ namespace Testing.TestingDAL
 		[TestMethod]
 		public void TestCreateBooking()
 		{
-			bDb.Create(booking);
+			bDb.Create(booking); //can't, already exists...
 			Booking dbBooking = bDb.Read(booking);
 			ComparisonBooking(booking,dbBooking);
 		}
@@ -128,42 +129,8 @@ namespace Testing.TestingDAL
 		[TestMethod]
 		public void TestReadBooking()
 		{
-			booking = new Booking() {
-			StartTime = new DateTime(2014, 2, 15, 12, 00, 00),
-			EndTime = new DateTime(2014, 2, 20, 11, 59, 59),
-			Deleted = false,
-			Item = new Material()
-			{
-				Name = "Traktor",
-				Description = "En rød traktor med hjul",
-				Condition = "Virker fint. Ryger lidt.",
-				Deleted = false,
-				Available = true,
-				Id = 1,
-				Owner = new User()
-				{
-					Id = "2083af25-f483-4a02-a62b-71c198147c84",
-					Email = "kaw@kaw.kaw",
-					FirstName = "Kaw",
-					LastName = "Bjorn",
-					Address = "Fake Street 123",
-					UserName = "kaw@kaw.kaw",
-					PhoneNumber = "13374201",
-					EmailConfirmed = false
-				}
-			},
-			User = new User()
-			{
-				Email = "stuff@stuff.com",
-				EmailConfirmed = false,
-				UserName = "stuff@stuff.stuff",
-				FirstName = "John",
-				LastName = "Doe",
-				Address = "New street",
-				Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3"
-			}
-		};
 			Booking dBooking = bDb.Read(booking);
+			ComparisonBooking(booking, dBooking);
 		}
 
 		[TestMethod]

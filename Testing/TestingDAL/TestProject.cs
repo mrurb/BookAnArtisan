@@ -9,7 +9,7 @@ namespace Testing.TestingDAL
 	public class TestProject
 	{
 		private static Project testProject;
-		private static ProjectDB pDb;
+		private static ProjectDb pDb;
 
 		#region setups + teardowns
 		[ClassInitialize]
@@ -29,7 +29,7 @@ namespace Testing.TestingDAL
 		{
 			try
 			{
-				pDb = null;
+				// odakdwa
 			}
 			catch
 			{
@@ -41,11 +41,13 @@ namespace Testing.TestingDAL
 		{
 			try
 			{
-				testProject = new Project()
+				testProject = new Project
 				{
+					// Need an ID for testing
+					Id = 20,
 					Name = "Test",
-					CreatedBy = new User() { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3", },
-					Contact = new User() { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3" },
+					CreatedBy = new User { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3", },
+					Contact = new User { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3" },
 					ProjectStatusID = 1,
 					ProjectDescription = "Something",
 					StreetName = "Test street",
@@ -54,7 +56,8 @@ namespace Testing.TestingDAL
 					Modified = new DateTime(2017, 04, 19, 17, 09, 21, 0),
 					Deleted = false
 				};
-				pDb = new ProjectDB();
+				pDb = new ProjectDb();
+				testProject = pDb.Create(testProject);
 			}
 			catch
 			{
@@ -66,6 +69,7 @@ namespace Testing.TestingDAL
 		{
 			try
 			{
+				pDb.Delete(testProject);
 				testProject = null;
 				pDb = null;
 			}
@@ -93,15 +97,15 @@ namespace Testing.TestingDAL
 		[TestMethod]
 		public void TestUpdateProject()
 		{
-			// TODO
-			testProject.StreetName = "New street";
-			Assert.IsTrue("New street".Equals(pDb.Update(testProject).StreetName));
+			var rand = new Random();
+			int genNum = rand.Next(1, 100);
+			testProject.StreetName = $"New Street#{genNum}";
+			Assert.IsTrue($"New Street#{genNum}".Equals(pDb.Update(testProject).StreetName));
 		}
 
 		[TestMethod]
 		public void TestDeleteProject()
 		{
-			// TODO
 			pDb.Delete(testProject);
 			Assert.IsTrue(pDb.Read(testProject).Deleted);
 		}
@@ -109,7 +113,6 @@ namespace Testing.TestingDAL
 		[TestMethod]
 		public void TestReadAllProject()
 		{
-			// TODO
 			var list = pDb.ReadAll();
 			Assert.IsTrue(0 < list.Count);
 			foreach (var p in list)
@@ -118,8 +121,19 @@ namespace Testing.TestingDAL
 			}
 
 		}
-		#endregion
 
+		[TestMethod]
+		public void TestProjectReadAllForUser()
+		{
+			var user = new User { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3" };
+			var list = pDb.ReadAllForUser(user);
+			Assert.IsTrue(0 < list.Count);
+			foreach (var p in list)
+			{
+				Assert.IsTrue(p.Id != 0);
+			}
+		}
+		#endregion
 		#region Boundary Tests
 
 		[TestMethod]
