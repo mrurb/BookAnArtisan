@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
 using DAL;
 
@@ -10,9 +7,9 @@ namespace BLL
 {
 	public class ProjectController : IController<Project>
 	{
-		ProjectDB db = new ProjectDB();
-		SearchDB dba = new SearchDB();
-		UserController uctr = new UserController();
+		private readonly ProjectDb db = new ProjectDb();
+		private readonly SearchDB dba = new SearchDB();
+		private readonly UserController uctr = new UserController();
 		public Project Create(Project project)
 		{
 			var a = uctr.Read(project.Contact);
@@ -58,11 +55,11 @@ namespace BLL
 			}
 			return db.ReadAllForUser(user);
 		}
-		/*
-		public List<Project> SearchByTag(string search_tag)
-		{
-			return dba.SearchByTag(search_tag);
-		}*/
+
+		//public List<Project> SearchByTag(string search_tag)
+		//{
+		//	return dba.SearchByTag(search_tag);
+		//}
 
 		public List<Project> SearchByProjectAddress(Project p)
 		{

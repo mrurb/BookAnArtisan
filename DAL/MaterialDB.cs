@@ -227,5 +227,22 @@ namespace DAL
             }
             return list;
         }
-    }
+	    public Material RemoveMaterial(Material material)
+	    {
+		    string sql = "DELETE FROM Materials_Unique WHERE id = @id";
+		    SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = material.Id, SqlDbType = SqlDbType.Int };
+			using (SqlConnection conn = new SqlConnection(connectionstring))
+			{
+			    using (SqlCommand command = new SqlCommand(sql, conn))
+			    {
+				    command.Parameters.Add(theparam);
+				    command.Connection.Open();
+				    using (command.ExecuteReader())
+				    {
+				    }
+			    }
+		    }
+		    return material;
+	    }
+	}
 }
