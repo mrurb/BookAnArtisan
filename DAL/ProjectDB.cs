@@ -152,9 +152,22 @@ namespace DAL
 			return project;
 		}
 
-		public void Remove(Project project)
+		public Project RemoveProject(Project project)
 		{
-			// TODO
+			string sql = "DELETE FROM Projects WHERE id = @id";
+			SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = project.Id, SqlDbType = SqlDbType.Int };
+			using (var connection = new SqlConnection(connectionString)) 
+			{
+				using (SqlCommand command = new SqlCommand(sql, connection))
+				{
+					command.Parameters.Add(theparam);
+					command.Connection.Open();
+					using (command.ExecuteReader())
+					{
+					}
+				}
+			}
+			return project;
 		}
 
 		public List<Project> ReadAll()
