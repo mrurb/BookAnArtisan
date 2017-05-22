@@ -60,6 +60,47 @@ namespace Testing.TestingWCF
 		}
 		#endregion
 
+		#region CRUDs
+
+		[TestMethod]
+		public void TestCreateProject()
+		{
+			// TODO
+		}
+
+		[TestMethod]
+		public void TestReadProject()
+		{
+			// TODO
+			Assert.AreEqual(project, pSv.ReadProject(project));
+		}
+
+		[TestMethod]
+		public void TestUpdateProject()
+		{
+			// TODO
+		}
+
+		[TestMethod]
+		public void TestDeleteProject()
+		{
+			// TODO
+		}
+
+		[TestMethod]
+		public void TestReadAllProjects()
+		{
+			// TODO
+			var list = pSv.ReadAllProject();
+			if (list.Count == 0) return;
+			foreach (var p in list)
+			{
+				Assert.IsTrue(p.Id != 0);
+			}
+		}
+
+		#endregion
+
 		/*
 		 * did not consider tags.
 		 */
