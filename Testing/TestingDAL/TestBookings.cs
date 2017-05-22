@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ServiceModel;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 using DAL;
@@ -7,45 +9,27 @@ using WCF;
 namespace Testing.TestingDAL
 {
 	[TestClass]
-	public class TestBookings
+	class TestBookings
 	{
-		private static User _user1;
-		private static Material _material;
-		private static Booking _booking;
-		private static UserDB _uDb;
-		private static MaterialDB _mDb;
-		private static RentingDb _bDb;
+		private static User user1;
+		private static User user2;
+		private static Material material;
+		private static Booking booking;
+		private static UserDB uDb;
+		private static MaterialDB mDb;
+		private static RentingDb bDb;
 
 		#region SetUp and TearDowns
 		[ClassInitialize]
 		public static void SetUpBeforeClass(TestContext tc)
 		{
-			try
-			{
-				//nothing
-			}
-			catch
-			{
-				throw new Exception();
-			}
+			//nothing, I guess? maybe local db?
 		}
 
 		[ClassCleanup]
 		public static void TearDownAfterClass()
 		{
-			try
-			{
-				_booking = null;
-				_bDb = null;
-				_uDb = null;
-				_mDb = null;
-				_user1 = null;
-				_material = null;
-			}
-			catch
-			{
-				throw new Exception();
-			}
+			//nothing, I guess? maybe local db?
 		}
 
 		[TestInitialize]
@@ -53,23 +37,46 @@ namespace Testing.TestingDAL
 		{
 			try
 			{
-				_uDb = new UserDB();
-				_mDb = new MaterialDB();
-				_bDb = new RentingDb();
-				new RentingService();
-				_user1 = _uDb.Read(new User { Id = "2083af25-f483-4a02-a62b-71c198147c84" });
-				_uDb.Read(new User { Id = "ef32f29e-1afd-4591-b42c-d0b3838fe6bd" });
-				_material = _mDb.Read(new Material { Id = 4 });
-				_booking = new Booking
+				uDb = new UserDB();
+				mDb = new MaterialDB();
+				bDb = new RentingDb();
+				Booking bookingnew = new Booking()
 				{
-					Id = 95035,
-					Created = DateTime.UtcNow,
+					StartTime = new DateTime(2014, 2, 15, 12, 00, 00),
+					EndTime = new DateTime(2014, 2, 20, 11, 59, 59),
+					//Created = DateTime.Now, // I don't control this
 					Deleted = false,
-					StartTime = Convert.ToDateTime("2023-11-12 02:05:00.000"),
-					EndTime = Convert.ToDateTime("2023-11-12 03:00:00.000"),
-					Item = _material,
-					Updated = DateTime.UtcNow,
-					User = _user1
+					//Updated = DateTime.Now, // I don't control this. (should be nowutc)
+					Item = new Material()
+					{
+						Name = "Traktor",
+						Description = "En rød traktor med hjul",
+						Condition = "Virker fint. Ryger lidt.",
+						Deleted = false,
+						Available = true,
+						Id = 1,
+						Owner = new User()
+						{
+							Id = "2083af25-f483-4a02-a62b-71c198147c84",
+							Email = "kaw@kaw.kaw",
+							FirstName = "Kaw",
+							LastName = "Bjorn",
+							Address = "Fake Street 123",
+							UserName = "kaw@kaw.kaw",
+							PhoneNumber = "13374201",
+							EmailConfirmed = false
+						}
+					},
+					User = new User()
+					{
+						Email = "stuff@stuff.com",
+						EmailConfirmed = false,
+						UserName = "stuff@stuff.stuff",
+						FirstName = "John",
+						LastName = "Doe",
+						Address = "New street",
+						Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3"
+					}
 				};
 			}
 			catch
@@ -83,13 +90,10 @@ namespace Testing.TestingDAL
 		{
 			try
 			{
-				_booking = null;
-				_uDb = null;
-				_bDb = null;
-				_mDb = null;
-				_user1 = null;
-				_material = null;
-
+				booking = null;
+				uDb = null;
+				bDb = null;
+				mDb = null;
 			}
 			catch
 			{
@@ -100,41 +104,164 @@ namespace Testing.TestingDAL
 
 		#region  Test Methods
 
+
+		#region CRUD tests
+		
 		[TestMethod]
 		public void TestCreateBooking()
 		{
-			Assert.IsNotNull(_bDb.Create(_booking));
+			bDb.Create(booking);
+			Booking dbBooking = bDb.Read(booking);
+			ComparisonBooking(booking,dbBooking);
+		}
+
+		[TestMethod]
+		public void TestUpdateBooking()
+		{
+			booking.StartTime = new DateTime(2012, 1, 1, 12, 00, 00);
+			booking.EndTime = new DateTime(2014, 8, 28, 23, 59, 00);
+			bDb.Update(booking);
+			Booking dBooking = bDb.Read(booking);
+			ComparisonBooking(booking, dBooking);
 		}
 
 		[TestMethod]
 		public void TestReadBooking()
 		{
-			var booking = _bDb.Read(new Booking { Id = 1 });
-			Assert.IsTrue(booking.User.Id != null);
+			booking = new Booking() {
+			StartTime = new DateTime(2014, 2, 15, 12, 00, 00),
+			EndTime = new DateTime(2014, 2, 20, 11, 59, 59),
+			Deleted = false,
+			Item = new Material()
+			{
+				Name = "Traktor",
+				Description = "En rød traktor med hjul",
+				Condition = "Virker fint. Ryger lidt.",
+				Deleted = false,
+				Available = true,
+				Id = 1,
+				Owner = new User()
+				{
+					Id = "2083af25-f483-4a02-a62b-71c198147c84",
+					Email = "kaw@kaw.kaw",
+					FirstName = "Kaw",
+					LastName = "Bjorn",
+					Address = "Fake Street 123",
+					UserName = "kaw@kaw.kaw",
+					PhoneNumber = "13374201",
+					EmailConfirmed = false
+				}
+			},
+			User = new User()
+			{
+				Email = "stuff@stuff.com",
+				EmailConfirmed = false,
+				UserName = "stuff@stuff.stuff",
+				FirstName = "John",
+				LastName = "Doe",
+				Address = "New street",
+				Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3"
+			}
+		};
+			Booking dBooking = bDb.Read(booking);
 		}
 
 		[TestMethod]
-		public void TestReadAllBookings()
+		public void TestDeleteBooking()
 		{
-			var list = _bDb.ReadAll();
-			Assert.IsTrue(list.Count != 0);
+			booking.Deleted = true;
+			bDb.Delete(booking); // needs id..
+			Booking dBooking = bDb.Read(booking);
+			Assert.AreEqual(booking.Deleted, dBooking.Deleted);
+		}
+		#endregion
+		private void ComparisonBooking(Booking expected, Booking actual)
+		{
+			//base details of booking
+			Assert.AreEqual(expected.Deleted, actual.Deleted);
+			Assert.AreEqual(expected.StartTime, actual.StartTime);
+			Assert.AreEqual(expected.EndTime, actual.EndTime);
+			//Assert.AreEqual(expected.Created, actual.Created);
+			//Assert.AreEqual(expected.Updated, actual.Updated);
+			//base details of item
+			Assert.AreEqual(expected.Item.Id, actual.Item.Id);
+			Assert.AreEqual(expected.Item.Name, actual.Item.Name);
+			Assert.AreEqual(expected.Item.Deleted, actual.Item.Deleted);
+			Assert.AreEqual(expected.Item.Available, actual.Item.Available);
+			Assert.AreEqual(expected.Item.Condition, actual.Item.Condition);
+			Assert.AreEqual(expected.Item.Description, actual.Item.Description);
+			//owner of item
+			Assert.AreEqual(expected.Item.Owner.UserName, actual.Item.Owner.UserName);
+			Assert.AreEqual(expected.Item.Owner.Email, actual.Item.Owner.Email);
+			Assert.AreEqual(expected.Item.Owner.Address, actual.Item.Owner.Address);
+			Assert.AreEqual(expected.Item.Owner.FirstName, actual.Item.Owner.FirstName);
+			Assert.AreEqual(expected.Item.Owner.LastName, actual.Item.Owner.LastName);
+			Assert.AreEqual(expected.Item.Owner.Id, actual.Item.Owner.Id);
+			Assert.AreEqual(expected.Item.Owner.PhoneNumber, actual.Item.Owner.PhoneNumber);
+			//the renter
+			Assert.AreEqual(expected.User.UserName, actual.User.UserName);
+			Assert.AreEqual(expected.User.Email, actual.User.Email);
+			Assert.AreEqual(expected.User.Address, actual.User.Address);
+			Assert.AreEqual(expected.User.FirstName, actual.User.FirstName);
+			Assert.AreEqual(expected.User.LastName, actual.User.LastName);
+			Assert.AreEqual(expected.User.Id, actual.User.Id);
+			Assert.AreEqual(expected.User.PhoneNumber, actual.User.PhoneNumber);
 		}
 
+		#region BoundaryTests
 
 		[TestMethod]
-		public void TestUpdateBooking()
+		public void BoundaryTestBooking()
 		{
-			var booking = _bDb.Read(new Booking { Id = 1 });
-			var oldUpdated = booking.Updated;
-			booking.StartTime = Convert.ToDateTime("2016-05-08 02:00:00.000");
-			booking.EndTime = Convert.ToDateTime("2016-05-10 02:00:00.000");
-
-			_bDb.Update(booking); // do the update
-
-			var booking2 = _bDb.Read(new Booking { Id = 1 }); // read updated entry
-			Assert.IsTrue(booking2.Updated != oldUpdated); // is different = success
+			//StartTime = new DateTime(2014, 2, 15, 12, 00, 00),
+			//EndTime = new DateTime(2014, 2, 20, 11, 59, 59),
+			try
+			{
+				//Assert.AreEqual(); how to do this assert bitch?
+				booking.EndTime = new DateTime(2014, 2, 15, 12, 00, 00);
+				bDb.Update(booking);
+				Assert.IsFalse(true);
+			}
+			catch (ApplicationException ex)
+			{
+				Assert.IsFalse(false);
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception ex)
+			{
+				//log(ex);
+				Assert.IsFalse(false);
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
 		}
 
+		[TestMethod]
+		public void BoundaryTestBooking2()
+		{
+			//StartTime = new DateTime(2014, 2, 15, 12, 00, 00),
+			//EndTime = new DateTime(2014, 2, 20, 11, 59, 59),
+			try
+			{
+				//Assert.AreEqual(); how to do this assert bitch?
+				booking.StartTime = new DateTime(2014, 2, 25, 11, 59, 59);
+				bDb.Update(booking);
+				Assert.IsFalse(true);
+			}
+			catch (ApplicationException ex)
+			{
+				Assert.IsFalse(false);
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception ex)
+			{
+				//log(ex);
+				Assert.IsFalse(false);
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
+		}
+		#endregion
 
 		#endregion
 	}
