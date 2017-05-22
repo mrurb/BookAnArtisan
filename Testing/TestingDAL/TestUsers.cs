@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 using DAL;
-using System.Collections.Generic;
 using WCF;
 
 namespace Testing.TestingDAL
@@ -10,18 +9,13 @@ namespace Testing.TestingDAL
     [TestClass]
     public class TestUsers
     {
-        static private User testUser;
-        static private UserDB db;
-        static private MeetingService ms;
-
-        public TestUsers()
-        {
-            //do nothing?
-        }
+        private static User _testUser;
+        private static UserDB _db;
+        private static MeetingService _ms;
 
         #region setups and teardowns
         [ClassInitialize]
-        public static void setUpBeforeClass(TestContext tc)
+        public static void SetUpBeforeClass(TestContext tc)
         {
             try
             {
@@ -34,12 +28,13 @@ namespace Testing.TestingDAL
         }
 
         [ClassCleanup]
-        public static  void tearDownAfterClass()
+        public static  void TearDownAfterClass()
         {
             try
             {
-                db = null;
-                testUser = null;
+                _db = null;
+                _testUser = null;
+                _ms = null;
             }
             catch
             {
@@ -48,11 +43,11 @@ namespace Testing.TestingDAL
         }
 
         [TestInitialize]
-        public void setUp()
+        public void SetUp()
         {
             try
             {
-                testUser = new User
+                _testUser = new User
                 {
                     Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3",
                     Email = "stuff@stuff.com",
@@ -71,8 +66,8 @@ namespace Testing.TestingDAL
                     Address = "Downing Street",
                     ApiKey = "apistuff",
                 };
-                db = new UserDB();
-                ms = new MeetingService();
+                _db = new UserDB();
+                _ms = new MeetingService();
             }
             catch
             {
@@ -81,12 +76,13 @@ namespace Testing.TestingDAL
         }
 
         [TestCleanup]
-        public void tearDown()
+        public void TearDown()
         {
             try
             {
-                db = null;
-                testUser = null;
+                _db = null;
+                _testUser = null;
+
             }
             catch
             {
@@ -98,37 +94,37 @@ namespace Testing.TestingDAL
         [TestMethod]
         public void TestCreateUsers()
         {
-            Assert.IsNotNull(db.Create(testUser));
+            Assert.IsNotNull(_db.Create(_testUser));
         }
 
         [TestMethod]
         public void TestReadUsers()
         {
-            Assert.AreEqual(testUser, db.Read(testUser));
+            Assert.AreEqual(_testUser, _db.Read(_testUser));
         }
 
         [TestMethod]
         public void TestUpdateUsers()
         {
-            testUser.Address = "New street";
-            db.Update(testUser);
-            Assert.AreEqual(testUser.Address, db.Read(testUser).Address);
+            _testUser.Address = "New street";
+            _db.Update(_testUser);
+            Assert.AreEqual(_testUser.Address, _db.Read(_testUser).Address);
         }
 
         [TestMethod]
         public void TestDeleteUsers()
         {
-            Assert.AreEqual(testUser, db.Delete(testUser));
+            Assert.AreEqual(_testUser, _db.Delete(_testUser));
         }
         #endregion
 
         [TestMethod]
         public void TestReadAllUsers()
         {
-            List<User> list = db.ReadAll();
+            var list = _db.ReadAll();
             if (list.Count > 0)
             {
-                foreach (User u in list)
+                foreach (var u in list)
                 {
                     if (u.Id.Length == 0)
                     {
@@ -147,7 +143,7 @@ namespace Testing.TestingDAL
         public void TestReadAllMeetingsForUser()
         {
 
-            List<Meeting> list = ms.ReadAllForUser(testUser);
+            var list = _ms.ReadAllForUser(_testUser);
             Assert.IsNotNull(list);
             if (list.Count == 0)
             {

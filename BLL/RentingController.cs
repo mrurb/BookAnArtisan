@@ -48,7 +48,7 @@ namespace BLL
         }
 
         public Booking Update(Booking t)
-        {
+        { 
             if (t.StartTime >= t.EndTime)
             {
                 throw new ApplicationException("Dates Overlapping");
