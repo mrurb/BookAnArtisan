@@ -154,11 +154,11 @@ namespace DAL
 
 		public Project RemoveProject(Project project)
 		{
-			string sql = "DELETE FROM Projects WHERE id = @id";
-			SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = project.Id, SqlDbType = SqlDbType.Int };
+			const string sql = "DELETE FROM Projects WHERE id = @id";
+			var theparam = new SqlParameter { ParameterName = "@id", SqlValue = project.Id, SqlDbType = SqlDbType.Int };
 			using (var connection = new SqlConnection(connectionString)) 
 			{
-				using (SqlCommand command = new SqlCommand(sql, connection))
+				using (var command = new SqlCommand(sql, connection))
 				{
 					command.Parameters.Add(theparam);
 					command.Connection.Open();
