@@ -215,5 +215,23 @@ namespace DAL
 			}
 			return t;
 		}
+
+		public Booking RemoveBooking(Booking booking)
+		{
+			string sql = "DELETE FROM Bookings WHERE id = @id";
+			SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = booking.Id, SqlDbType = SqlDbType.Int };
+			using (SqlConnection connection = new SqlConnection(Connectionstring))
+			{
+				using (SqlCommand command = new SqlCommand(sql, connection))
+				{
+					command.Parameters.Add(theparam);
+					command.Connection.Open();
+					using (command.ExecuteReader())
+					{
+					}
+				}
+			}
+			return booking;
+		}
 	}
 }
