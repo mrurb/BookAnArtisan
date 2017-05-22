@@ -80,12 +80,10 @@ namespace Testing.TestingWCF
 			try
 			{
 						//test create
-				rs.CreateBooking(bookingnew);
+				bookingnew =  rs.CreateBooking(bookingnew);
 				Booking dbBooking = rs.ReadBooking(bookingnew);
-				bookingnew.Updated = dbBooking.Updated;	// THESE MIGHT BE WRONG?
-				bookingnew.Created = dbBooking.Created; // THESE MIGHT BE WRONG?
 				ComparisonBooking(bookingnew, dbBooking);
-				//this also tests read.		what if read is wrong ? Test with pre-existent object in DB
+				//this also tests read.
 
 						//test update 
 				bookingnew.StartTime = new DateTime(2014, 2, 13, 12, 00, 00);		//update starttime locally

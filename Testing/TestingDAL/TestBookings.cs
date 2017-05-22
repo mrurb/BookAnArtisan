@@ -138,7 +138,7 @@ namespace Testing.TestingDAL
 		public void TestDeleteBooking()
 		{
 			booking.Deleted = true;
-			bDb.Delete(booking); // needs id..
+			bDb.Delete(booking);
 			Booking dBooking = bDb.Read(booking);
 			Assert.AreEqual(booking.Deleted, dBooking.Deleted);
 		}
