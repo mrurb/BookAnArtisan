@@ -1,40 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 using WCF;
 
 namespace Testing.TestingWCF
 {
-	class TestProject
+	public class TestProject
 	{
-		ProjectService pSv = new ProjectService();
+		private readonly ProjectService pSv = new ProjectService();
 		private Project project;
 		#region setups + teardowns
 		[ClassInitialize]
-		public static void setUpBeforeClass(TestContext tc)
+		public static void SetUpBeforeClass(TestContext tc)
 		{
 			//do nothing? make local db?
 		}
 		[ClassCleanup]
-		public static void tearDownAfterClass()
+		public static void TearDownAfterClass()
 		{
 
 		}
 		[TestInitialize]
-		public void setUp()
+		public void SetUp()
 		{
-			project = new Project()
+			project = new Project
 			{
 				Deleted = false,
 				Name = "Integration Test Name",
 				ProjectDescription = "The description of the integration test",
 				StartTime = DateTime.UtcNow,
 				StreetName = "Integration Street Name",
-				Contact = new User()
+				Contact = new User
 				{
 					Id = "2083af25-f483-4a02-a62b-71c198147c84",
 					Email = "kaw@kaw.kaw",
@@ -45,7 +41,7 @@ namespace Testing.TestingWCF
 					PhoneNumber = "13374201",
 					EmailConfirmed = false
 				},
-				CreatedBy = new User()
+				CreatedBy = new User
 				{
 					Email = "stuff@stuff.com",
 					EmailConfirmed = false,
@@ -59,7 +55,7 @@ namespace Testing.TestingWCF
 			};
 		}
 		[TestCleanup]
-		public void tearDown()
+		public void TearDown()
 		{
 		}
 		#endregion
@@ -70,34 +66,34 @@ namespace Testing.TestingWCF
 		[TestMethod]
 		public void ProjectIntegrationTest()
 		{
-				//create
+			//create
 			pSv.CreateProject(project);
-			Project projectdb = pSv.ReadProject(project);
-			project.Modified = projectdb.Modified;
-			project.Created = projectdb.Created;
-			ComparisonProject(project, projectdb);
+			var readProject = pSv.ReadProject(project);
+			project.Modified = readProject.Modified;
+			project.Created = readProject.Created;
+			ComparisonProject(project, readProject);
 
-				//update
+			//update
 			project.Name = "bla-name";
 			project.StartTime = new DateTime(2014, 3, 15, 12, 00, 00);
 			project.ProjectDescription = "bla-description";
 			project.StreetName = "some street bla";
 			project.ProjectStatusID = 2;
 			pSv.UpdateProject(project);
-			projectdb = pSv.ReadProject(project);
-			ComparisonProject(project, projectdb);
+			readProject = pSv.ReadProject(project);
+			ComparisonProject(project, readProject);
 
-				//delete
+			//delete
 			project.Deleted = true;
 			pSv.DeleteProject(project);
-			projectdb = pSv.ReadProject(project);
-			Assert.AreEqual(project.Deleted, projectdb.Deleted);
+			readProject = pSv.ReadProject(project);
+			Assert.AreEqual(project.Deleted, readProject.Deleted);
 		}
 
-		private void ComparisonProject(Project expected, Project actual)
+		public void ComparisonProject(Project expected, Project actual)
 		{
 			//base details
-			Assert.AreEqual(expected.Name,actual.Name);
+			Assert.AreEqual(expected.Name, actual.Name);
 			Assert.AreEqual(expected.StartTime, actual.StartTime);
 			Assert.AreEqual(expected.ProjectDescription, actual.ProjectDescription);
 			Assert.AreEqual(expected.StreetName, actual.StreetName);
