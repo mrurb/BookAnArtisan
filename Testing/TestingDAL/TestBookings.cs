@@ -40,9 +40,8 @@ namespace Testing.TestingDAL
 				uDb = new UserDB();
 				mDb = new MaterialDB();
 				bDb = new RentingDb();
-				Booking bookingnew = new Booking()
+				booking = new Booking()
 				{
-					Id = 2,
 					StartTime = new DateTime(2017, 5, 25, 10, 50, 00),
 					EndTime = new DateTime(2017, 5, 28, 10, 10, 00),
 					//Created = DateTime.Now, // I don't control this
@@ -79,6 +78,7 @@ namespace Testing.TestingDAL
 						Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3"
 					}
 				};
+				booking.Id = bDb.Create(booking).Id;
 			}
 			catch
 			{
@@ -91,6 +91,7 @@ namespace Testing.TestingDAL
 		{
 			try
 			{
+				bDb.Delete(booking);
 				booking = null;
 				uDb = null;
 				bDb = null;
@@ -111,7 +112,7 @@ namespace Testing.TestingDAL
 		[TestMethod]
 		public void TestCreateBooking()
 		{
-			bDb.Create(booking); //can't, already exists...
+			booking = bDb.Create(booking);
 			Booking dbBooking = bDb.Read(booking);
 			ComparisonBooking(booking,dbBooking);
 		}

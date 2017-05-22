@@ -40,8 +40,8 @@ namespace Testing.TestingWCF
 		{
 			Booking bookingnew = new Booking()
 			{
-				StartTime = new DateTime(2014, 2, 15, 12, 00, 00),
-				EndTime = new DateTime(2014, 2, 20, 11, 59, 59),
+				StartTime = new DateTime(2017, 5, 25, 10, 50, 00),
+				EndTime = new DateTime(2017, 5, 28, 10, 10, 00),
 				//Created = DateTime.Now, // I don't control this
 				Deleted = false,
 				//Updated = DateTime.Now, // I don't control this. (should be nowutc)
@@ -76,6 +76,7 @@ namespace Testing.TestingWCF
 					Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3"
 				}
 			};
+			bookingnew.Id = rs.CreateBooking(bookingnew).Id;
 			try
 			{
 						//test create
