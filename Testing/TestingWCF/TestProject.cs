@@ -56,7 +56,7 @@ namespace Testing.TestingWCF
 				ProjectStatusID = 1
 			};
 			pdb = new ProjectDb();
-			pdb.Create(project);
+			project.Id = pdb.Create(project).Id;
 
 		}
 		[TestCleanup]
@@ -78,7 +78,6 @@ namespace Testing.TestingWCF
 			var readProject = pSv.ReadProject(aproject);
 			ComparisonProject(aproject, readProject);
 			pdb.RemoveProject(aproject);
-
 
 			//update
 			project.Name = "bla-name";
