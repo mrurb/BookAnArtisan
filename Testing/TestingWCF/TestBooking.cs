@@ -40,8 +40,8 @@ namespace Testing.TestingWCF
 		{
 			Booking bookingnew = new Booking()
 			{
-				StartTime = new DateTime(2014, 2, 15, 12, 00, 00),
-				EndTime = new DateTime(2014, 2, 20, 11, 59, 59),
+				StartTime = new DateTime(2017, 5, 25, 10, 50, 00),
+				EndTime = new DateTime(2017, 5, 28, 10, 10, 00),
 				//Created = DateTime.Now, // I don't control this
 				Deleted = false,
 				//Updated = DateTime.Now, // I don't control this. (should be nowutc)
@@ -76,15 +76,14 @@ namespace Testing.TestingWCF
 					Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3"
 				}
 			};
+			bookingnew.Id = rs.CreateBooking(bookingnew).Id;
 			try
 			{
 						//test create
-				rs.CreateBooking(bookingnew);
+				bookingnew =  rs.CreateBooking(bookingnew);
 				Booking dbBooking = rs.ReadBooking(bookingnew);
-				bookingnew.Updated = dbBooking.Updated;	// THESE MIGHT BE WRONG?
-				bookingnew.Created = dbBooking.Created; // THESE MIGHT BE WRONG?
 				ComparisonBooking(bookingnew, dbBooking);
-				//this also tests read.		what if read is wrong ? Test with pre-existent object in DB
+				//this also tests read.
 
 						//test update 
 				bookingnew.StartTime = new DateTime(2014, 2, 13, 12, 00, 00);		//update starttime locally
