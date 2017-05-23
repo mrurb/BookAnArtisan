@@ -10,7 +10,7 @@
         <TabControl x:Name="TabControl" HorizontalAlignment="Left" Height="364" VerticalAlignment="Top" Width="742">
             <TabItem Header="Show All">
                 <Grid Background="#FFE5E5E5">
-                    <Button x:Name="RefreshBtn" Content="Get Bookings" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Width="75" Click="Get_All_Bookings"/>
+                    <Button x:Name="RefreshBtn" Content="Refresh Bookings" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Width="96" Click="GetAllBookings"/>
                     <Label x:Name="DetailsEditLabel" Content="Details/edit:" HorizontalAlignment="Left" Margin="510,16,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.579,0.524"/>
                     <Label x:Name="Renterlabel" Content="Renter" HorizontalAlignment="Left" Margin="405,121,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="ToDateTimeLabel" Content="To" HorizontalAlignment="Left" Margin="405,210,0,0" VerticalAlignment="Top"/>
@@ -31,13 +31,13 @@
                     <wpfTool:DateTimePicker Name="FromDateTimeTxt" Margin="484,171,130,143" TimeFormat="FullDateTime" Kind="Local" />
                     <wpfTool:DateTimePicker Name="ToDateTimeTxt" Margin="484,216,130,98" TimeFormat="FullDateTime" Kind="Local" />
                     <TextBox x:Name="OwnerTxt" HorizontalAlignment="Left" Height="23" Margin="484,254,0,0" TextWrapping="Wrap" Text="Choose Something.." VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-                    <Button x:Name="DeleteButton" Content="Delete" HorizontalAlignment="Left" Margin="529,298,0,0" VerticalAlignment="Top" Width="75" Click="btn_delete"/>
-                    <Button x:Name="SubmitBtn" Content="submit changes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="635,298,0,0" Click="SubmitBtn_Click"/>
+                    <Button x:Name="DeleteBtn" Content="Delete" HorizontalAlignment="Left" Margin="529,298,0,0" VerticalAlignment="Top" Width="75" Click="Delete"/>
+                    <Button x:Name="SubmitBtn" Content="submit changes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="635,298,0,0" Click="Update"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Create New">
                 <Grid Background="#FFE5E5E5">
-                    <Button x:Name="CreateButton" Content="create" HorizontalAlignment="Left" Margin="338,242,0,0" VerticalAlignment="Top" Width="75" Click="Create"/>
+                    <Button x:Name="CreateBtn" Content="Create" HorizontalAlignment="Left" Margin="338,242,0,0" VerticalAlignment="Top" Width="75" Click="Create"/>
                     <Label x:Name="CreateRenterLbl" Content="Renter" HorizontalAlignment="Left" Margin="256,72,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="ToDateTimeLbl" Content="To" HorizontalAlignment="Left" Margin="256,161,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="FromDateTimeLbl" Content="From" HorizontalAlignment="Left" Margin="256,116,0,0" VerticalAlignment="Top"/>
@@ -63,8 +63,8 @@
                         </ListView.View>
                     </ListView>
                     <wpfTool:DateTimePicker Name="ToDateTime" Margin="338,167,279,147" TimeFormat="FullDateTime" Kind="Local" />
-                    <Button x:Name="GetAllUsers" Content="Refresh Users" HorizontalAlignment="Left" Margin="79,6,0,0" VerticalAlignment="Top" Width="85" Click="GetAllUsers_Click"/>
-                    <Button x:Name="GetAllMaterials" Content="Refresh Materials" HorizontalAlignment="Left" Margin="553,6,0,0" VerticalAlignment="Top" Width="101" Click="GetAllMaterials_Click"/>
+                    <Button x:Name="RefreshUsersBtn" Content="Refresh Users" HorizontalAlignment="Left" Margin="79,6,0,0" VerticalAlignment="Top" Width="85" Click="GetAllUsers"/>
+                    <Button x:Name="RefreshMaterialsBtn" Content="Refresh Materials" HorizontalAlignment="Left" Margin="553,6,0,0" VerticalAlignment="Top" Width="101" Click="GetAllMaterials"/>
                     <wpfTool:DateTimePicker x:Name="FromDateTime" Margin="338,122,279,192" TimeFormat="FullDateTime" Kind="Local" />
                     <Label x:Name="HiddenIdMatLbl" Content="Label" HorizontalAlignment="Left" Margin="297,202,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
                     <Label x:Name="HiddenIdRenLbl" Content="Label" HorizontalAlignment="Left" Margin="400,202,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
