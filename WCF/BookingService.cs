@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
 using BLL;
 
@@ -11,12 +8,12 @@ namespace WCF
 {
 	public class BookingService : IBookingService
 	{
-		BookingController rc = new BookingController();
+		private readonly BookingController bookingController = new BookingController();
 		public Booking CreateBooking(Booking t)
 		{
 			try
 			{
-				return rc.Create(t);
+				return bookingController.Create(t);
 			}
 			catch (ApplicationException ex)
 			{
@@ -34,7 +31,7 @@ namespace WCF
 		{
 			try
 			{
-				return rc.Delete(t);
+				return bookingController.Delete(t);
 			}
 			catch (ApplicationException ex)
 			{
@@ -52,7 +49,7 @@ namespace WCF
 		{
 			try
 			{
-				return rc.Read(t);
+				return bookingController.Read(t);
 			}
 			catch (ApplicationException ex)
 			{
@@ -70,7 +67,7 @@ namespace WCF
 		{
 			try
 			{
-				return rc.ReadAll();
+				return bookingController.ReadAll();
 			}
 			catch (ApplicationException ex)
 			{
@@ -87,7 +84,7 @@ namespace WCF
 
 		public Page<Booking> ReadPageBooking(int? page, int? pageSize)
 		{
-			var paget = rc.ReadPage(page, pageSize);
+			var paget = bookingController.ReadPage(page, pageSize);
 			return paget;
 		} 
 
@@ -95,7 +92,7 @@ namespace WCF
 		{
 			try
 			{
-				return rc.Update(t);
+				return bookingController.Update(t);
 			}
 			catch (ApplicationException ex)
 			{
