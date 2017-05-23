@@ -21,21 +21,24 @@
   <MetadataSources>
     <MetadataSource Address="http://localhost:8733/WCF/UserService/mex" Protocol="mex" SourceId="1" />
     <MetadataSource Address="http://localhost:8733/WCF/MaterialService/mex" Protocol="mex" SourceId="2" />
-    <MetadataSource Address="http://localhost:8733/WCF/RentingService/mex" Protocol="mex" SourceId="3" />
+    <MetadataSource Address="http://localhost:8733/WCF/BookingService/mex" Protocol="mex" SourceId="3" />
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="951f02de-4fd4-48b7-a30a-ff29fd535dd4" SourceId="1" SourceUrl="http://localhost:8733/WCF/UserService/mex" />
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="c5aac117-6f08-4166-9b7a-a9d7e645a31a" SourceId="1" SourceUrl="http://localhost:8733/WCF/UserService/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="352b971b-97bf-49b4-a6d0-0ff5c8a9993a" SourceId="1" SourceUrl="http://localhost:8733/WCF/UserService/mex" />
     <MetadataFile FileName="Model.xsd" MetadataType="Schema" ID="16aab830-e746-4f88-85df-0e24f06f8461" SourceId="1" SourceUrl="http://localhost:8733/WCF/UserService/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="b5d3ca6d-c800-4752-b457-d90daec4c687" SourceId="1" SourceUrl="http://localhost:8733/WCF/UserService/mex" />
     <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="c4a2424f-33f5-4d25-9ce2-b7c54ae65e42" SourceId="2" SourceUrl="http://localhost:8733/WCF/MaterialService/mex" />
     <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="1452f984-b050-49a0-9334-3c452651873b" SourceId="2" SourceUrl="http://localhost:8733/WCF/MaterialService/mex" />
     <MetadataFile FileName="service3.xsd" MetadataType="Schema" ID="423316ac-00da-449a-91cb-e4414cb2418c" SourceId="2" SourceUrl="http://localhost:8733/WCF/MaterialService/mex" />
     <MetadataFile FileName="Model1.xsd" MetadataType="Schema" ID="afb5dc5b-5d74-4b1e-a1f7-e8551ec7c7af" SourceId="2" SourceUrl="http://localhost:8733/WCF/MaterialService/mex" />
-    <MetadataFile FileName="service2.wsdl" MetadataType="Wsdl" ID="16653153-1a9e-49ae-82f3-6bccfaba7329" SourceId="3" SourceUrl="http://localhost:8733/WCF/RentingService/mex" />
-    <MetadataFile FileName="service4.xsd" MetadataType="Schema" ID="784eca96-1f71-4fd6-842e-5325a9cd6c0a" SourceId="3" SourceUrl="http://localhost:8733/WCF/RentingService/mex" />
-    <MetadataFile FileName="service5.xsd" MetadataType="Schema" ID="6f5aad82-953f-44fe-ad56-3f05cee0fc31" SourceId="3" SourceUrl="http://localhost:8733/WCF/RentingService/mex" />
-    <MetadataFile FileName="Model2.xsd" MetadataType="Schema" ID="38115680-cadf-4bae-8f39-2e3e175fc166" SourceId="3" SourceUrl="http://localhost:8733/WCF/RentingService/mex" />
+    <MetadataFile FileName="System1.xsd" MetadataType="Schema" ID="8074d708-e29f-4ad9-8239-87deba8fe1b5" SourceId="2" SourceUrl="http://localhost:8733/WCF/MaterialService/mex" />
+    <MetadataFile FileName="service3.wsdl" MetadataType="Wsdl" ID="831d17b2-7f9e-44bd-aa28-c15a40bfd4eb" SourceId="3" SourceUrl="http://localhost:8733/WCF/BookingService/mex" />
+    <MetadataFile FileName="service6.xsd" MetadataType="Schema" ID="f3b7bf39-d2f6-4022-8870-d6cab56b38bd" SourceId="3" SourceUrl="http://localhost:8733/WCF/BookingService/mex" />
+    <MetadataFile FileName="service61.xsd" MetadataType="Schema" ID="fc151e2a-04d6-49c7-85f0-ac30f0716d3b" SourceId="3" SourceUrl="http://localhost:8733/WCF/BookingService/mex" />
+    <MetadataFile FileName="Model3.xsd" MetadataType="Schema" ID="0241809a-f68d-4e34-916d-1267cb5b04f7" SourceId="3" SourceUrl="http://localhost:8733/WCF/BookingService/mex" />
+    <MetadataFile FileName="System2.xsd" MetadataType="Schema" ID="80e4e530-85a8-4b8b-9846-fdae143a8042" SourceId="3" SourceUrl="http://localhost:8733/WCF/BookingService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
