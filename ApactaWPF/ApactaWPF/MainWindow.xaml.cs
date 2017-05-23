@@ -23,9 +23,18 @@ namespace ApactaWPF
 		public MainWindow()
 		{
 			InitializeComponent();
-			var list = bookingServiceClient.ReadAllBooking();
-			foreach (var booking in list)
+
+			var bookingsList = bookingServiceClient.ReadAllBooking();
+			foreach (var booking in bookingsList)
 				ShowAllView.Items.Add(booking);
+
+			var usersList = userServiceClient.ReadAllUser();
+			foreach (var user in usersList)
+				ListViewUsers.Items.Add(user);
+
+			var materialsList = materialServiceClient.ReadAllMaterial();
+			foreach (var material in materialsList)
+				ListViewMaterials.Items.Add(material);
 		}
 
 		private void GetAllBookings(object sender, RoutedEventArgs e)
@@ -51,8 +60,8 @@ namespace ApactaWPF
 		{
 			var item = (sender as ListView)?.SelectedItem;
 			if (item == null) return;
-			booking1 = (Booking) item;
-			var bla = (Booking) item;
+			booking1 = (Booking)item;
+			var bla = (Booking)item;
 			bla = bookingServiceClient.ReadBooking(bla);
 			MaterialTxt.Text = bla.Item.Name;
 			RenterTxt.Text = bla.User.UserName;
@@ -86,8 +95,8 @@ namespace ApactaWPF
 				var bla2 = new Booking
 				{
 					Id = booking1.Id,
-					StartTime = (DateTime) FromDateTimeTxt.Value,
-					EndTime = (DateTime) ToDateTimeTxt.Value,
+					StartTime = (DateTime)FromDateTimeTxt.Value,
+					EndTime = (DateTime)ToDateTimeTxt.Value,
 					Updated = booking1.Updated,
 					Item = booking1.Item,
 					User = booking1.User
@@ -111,8 +120,8 @@ namespace ApactaWPF
 				if (material1 == null || user1 == null || FromDateTime.Value == null || ToDateTime.Value == null) return;
 				booking2 = new Booking
 				{
-					Item = materialServiceClient.ReadMaterial(new Material {Id = Convert.ToInt32(HiddenIdMatLbl.Content)}),
-					User = userServiceClient.ReadUser(new User {Id = HiddenIdRenLbl.Content.ToString()}),
+					Item = materialServiceClient.ReadMaterial(new Material { Id = Convert.ToInt32(HiddenIdMatLbl.Content) }),
+					User = userServiceClient.ReadUser(new User { Id = HiddenIdRenLbl.Content.ToString() }),
 					StartTime = Convert.ToDateTime(FromDateTime.Value),
 					EndTime = Convert.ToDateTime(ToDateTime.Value)
 				};
@@ -170,7 +179,7 @@ namespace ApactaWPF
 		{
 			var item = (sender as ListView)?.SelectedItem;
 			if (item == null) return;
-			user1 = (User) item;
+			user1 = (User)item;
 			user1 = userServiceClient.ReadUser(user1);
 			CreateRenterTxt.Text = user1.Email;
 			HiddenIdRenLbl.Content = user1.Id;
@@ -180,7 +189,7 @@ namespace ApactaWPF
 		{
 			var item = (sender as ListView)?.SelectedItem;
 			if (item == null) return;
-			material1 = (Material) item;
+			material1 = (Material)item;
 			material1 = materialServiceClient.ReadMaterial(material1);
 			CreateMaterialTxt.Text = material1.Name;
 			HiddenIdMatLbl.Content = material1.Id;
