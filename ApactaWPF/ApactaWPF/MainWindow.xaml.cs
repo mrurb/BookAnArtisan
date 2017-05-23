@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.ServiceModel;
-using System.ServiceModel.Channels;
-using System.ServiceModel.Dispatcher;
 using System.Windows;
 using System.Windows.Controls;
 using ApactaWPF.ServiceReferences;
@@ -12,7 +10,7 @@ namespace ApactaWPF
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : IErrorHandler
+	public partial class MainWindow
 	{
 		private Booking booking1;
 		private Booking booking2;
@@ -30,11 +28,22 @@ namespace ApactaWPF
 
 		private void Get_All_Bookings(object sender, RoutedEventArgs e)
 		{
-			ShowAllView.Items.Clear();
-			var mylist = rCl.ReadAllBooking();
-			foreach (var stuff in mylist)
+			try
 			{
-				ShowAllView.Items.Add(stuff);
+				ShowAllView.Items.Clear();
+				var mylist = rCl.ReadAllBooking();
+				foreach (var stuff in mylist)
+				{
+					ShowAllView.Items.Add(stuff);
+				}
+			}
+			catch (FaultException)
+			{
+				MessageBox.Show("A service error occured.", "Service Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("An error occured.", "Unknown error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 
@@ -54,25 +63,47 @@ namespace ApactaWPF
 
 		private void btn_delete(object sender, RoutedEventArgs e)
 		{
-			if (booking1 != null)
+			try
 			{
-				rCl.DeleteBooking(booking1);
+				if (booking1 != null)
+				{
+					rCl.DeleteBooking(booking1);
+				}
+			}
+			catch (FaultException)
+			{
+				MessageBox.Show("A service error occured.", "Service Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("An error occured.", "Unknown error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 
 		private void SubmitBtn_Click(object sender, RoutedEventArgs e)
 		{
 			if (booking1 == null || FromDateTimeTxt.Value == null || ToDateTimeTxt.Value == null) return;
-			var bla2 = new Booking
+			try
 			{
-				Id = booking1.Id,
-				StartTime = (DateTime)FromDateTimeTxt.Value,
-				EndTime = (DateTime)ToDateTimeTxt.Value,
-				Updated = booking1.Updated,
-				Item = booking1.Item,
-				User = booking1.User
-			};
-			rCl.UpdateBooking(bla2);
+				var bla2 = new Booking
+				{
+					Id = booking1.Id,
+					StartTime = (DateTime)FromDateTimeTxt.Value,
+					EndTime = (DateTime)ToDateTimeTxt.Value,
+					Updated = booking1.Updated,
+					Item = booking1.Item,
+					User = booking1.User
+				};
+				rCl.UpdateBooking(bla2);
+			}
+			catch (FaultException)
+			{
+				MessageBox.Show("A service error occured.", "Service Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("An error occured.", "Unknown error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
 		}
 
 		private void Create(object sender, RoutedEventArgs e)
@@ -82,8 +113,8 @@ namespace ApactaWPF
 				if (material1 == null || user1 == null || FromDateTime.Value == null || ToDateTime.Value == null) return;
 				booking2 = new Booking
 				{
-					Item = mCl.ReadMaterial(new Material {Id = Convert.ToInt32(HiddenIdMatLbl.Content)}),
-					User = sCl.ReadUser(new User {Id = HiddenIdRenLbl.Content.ToString()}),
+					Item = mCl.ReadMaterial(new Material { Id = Convert.ToInt32(HiddenIdMatLbl.Content) }),
+					User = sCl.ReadUser(new User { Id = HiddenIdRenLbl.Content.ToString() }),
 					StartTime = Convert.ToDateTime(FromDateTime.Value),
 					EndTime = Convert.ToDateTime(ToDateTime.Value)
 				};
@@ -91,31 +122,53 @@ namespace ApactaWPF
 			}
 			catch (FaultException)
 			{
-				MessageBox.Show("Service error occured.", "Service Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show("A service error occured.", "Service Error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			catch (Exception)
 			{
-				MessageBox.Show("An error occured.", "Unknown error", MessageBoxButton.OK, MessageBoxImage.Error);	
+				MessageBox.Show("An error occured.", "Unknown error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 
 		private void GetAllUsers_Click(object sender, RoutedEventArgs e)
 		{
-			ListViewUsers.Items.Clear();
-			var mylist = sCl.ReadAllUser();
-			foreach (var stuff in mylist)
+			try
 			{
-				ListViewUsers.Items.Add(stuff);
+				ListViewUsers.Items.Clear();
+				var mylist = sCl.ReadAllUser();
+				foreach (var stuff in mylist)
+				{
+					ListViewUsers.Items.Add(stuff);
+				}
+			}
+			catch (FaultException)
+			{
+				MessageBox.Show("A service error occured.", "Service Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("An error occured.", "Unknown error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 
 		private void GetAllMaterials_Click(object sender, RoutedEventArgs e)
 		{
-			ListViewMaterials.Items.Clear();
-			var mylist = mCl.ReadAllMaterial();
-			foreach (var stuff in mylist)
+			try
 			{
-				ListViewMaterials.Items.Add(stuff);
+				ListViewMaterials.Items.Clear();
+				var mylist = mCl.ReadAllMaterial();
+				foreach (var stuff in mylist)
+				{
+					ListViewMaterials.Items.Add(stuff);
+				}
+			}
+			catch (FaultException)
+			{
+				MessageBox.Show("A service error occured.", "Service Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("An error occured.", "Unknown error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 
@@ -139,14 +192,5 @@ namespace ApactaWPF
 			HiddenIdMatLbl.Content = material1.Id;
 		}
 
-		public void ProvideFault(Exception error, MessageVersion version, ref Message fault)
-		{
-			MessageBox.Show("Service error occured.", "Service Error", MessageBoxButton.OK, MessageBoxImage.Error);
-		}
-
-		public bool HandleError(Exception error)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }
