@@ -59,6 +59,11 @@ namespace BookAnArtisanMVC.Controllers
 		{
 			return View();
 		}
+
+		public ActionResult CreateWithInput(Booking mat)
+		{
+			return View("Create", mat);
+		}
 		/*
 		public ActionResult Create(int id)
 		{

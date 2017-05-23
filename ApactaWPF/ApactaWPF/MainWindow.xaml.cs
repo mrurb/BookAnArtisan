@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using ApactaWPF.ServiceReferences;
@@ -8,15 +9,17 @@ namespace ApactaWPF
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class MainWindow
 	{
-		private Booking bla1 = null;
-		private Booking blacreate = null;
-		private Material blacreate2 = null;
-		private User blacreate3 = null;
-		private readonly RentingServiceClient rCl = new RentingServiceClient();
+		private Booking booking1;
+		private Booking booking2;
+		private Material material1;
+		private User user1;
+
+		private readonly BookingServiceClient rCl = new BookingServiceClient();
 		private readonly UserServiceClient sCl = new UserServiceClient();
 		private readonly MaterialServiceClient mCl = new MaterialServiceClient();
+
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -24,119 +27,100 @@ namespace ApactaWPF
 
 		private void Get_All_Bookings(object sender, RoutedEventArgs e)
 		{
-			showAllView.Items.Clear();
+			ShowAllView.Items.Clear();
 			var mylist = rCl.ReadAllBooking();
 			foreach (var stuff in mylist)
 			{
-				showAllView.Items.Add(stuff);
+				ShowAllView.Items.Add(stuff);
 			}
 		}
 
 		private void listView_Click(object sender, RoutedEventArgs e)
 		{
-			var item = (sender as ListView).SelectedItem;
-			if (item != null)
-			{
-				bla1 = (Booking)item;
-				Booking bla = (Booking)item;
-				bla = rCl.ReadBooking(bla);
-				//add data to labels
-				materialtxt.Text = bla.Item.Name;
-				rentertxt.Text = bla.User.UserName;
-				totxt.Text = bla.EndTime.ToString();
-				fromtxt.Text = bla.StartTime.ToString();
-				ownertxt.Text = bla.Item.Owner.UserName;
-			}
-		}
-
-		private void showAllView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			//listView_Click(sender, e);
+			var item = (sender as ListView)?.SelectedItem;
+			if (item == null) return;
+			booking1 = (Booking)item;
+			var bla = (Booking)item;
+			bla = rCl.ReadBooking(bla);
+			MaterialTxt.Text = bla.Item.Name;
+			RenterTxt.Text = bla.User.UserName;
+			ToDateTimeTxt.Text = bla.EndTime.ToString(CultureInfo.InvariantCulture);
+			FromDateTimeTxt.Text = bla.StartTime.ToString(CultureInfo.InvariantCulture);
+			OwnerTxt.Text = bla.Item.Owner.UserName;
 		}
 
 		private void btn_delete(object sender, RoutedEventArgs e)
 		{
-			if (bla1 != null)
+			if (booking1 != null)
 			{
-				rCl.DeleteBooking(bla1);
+				rCl.DeleteBooking(booking1);
 			}
 		}
 
-		private void SUBMITBTN_Click(object sender, RoutedEventArgs e)
+		private void SubmitBtn_Click(object sender, RoutedEventArgs e)
 		{
-			if (bla1 != null && (fromtxt.Value != null && totxt.Value != null))
+			if (booking1 == null || FromDateTimeTxt.Value == null || ToDateTimeTxt.Value == null) return;
+			var bla2 = new Booking
 			{
-				Booking bla2 = new Booking()
-				{
-					Id = bla1.Id,
-					StartTime = (DateTime)fromtxt.Value,
-					EndTime = (DateTime)totxt.Value,
-					Updated = bla1.Updated,
-					//User = sCl.ReadUser(new User() { Id = bla1.User.Id})
-					Item = bla1.Item,
-					User = bla1.User
-				};
-				rCl.UpdateBooking(bla2);
-			}
+				Id = booking1.Id,
+				StartTime = (DateTime)FromDateTimeTxt.Value,
+				EndTime = (DateTime)ToDateTimeTxt.Value,
+				Updated = booking1.Updated,
+				Item = booking1.Item,
+				User = booking1.User
+			};
+			rCl.UpdateBooking(bla2);
 		}
 
 		private void Create(object sender, RoutedEventArgs e)
 		{
-			if (blacreate2 != null && blacreate3 !=null && (fromdatetime.Value != null && todatetime.Value != null))
+			if (material1 == null || user1 == null || FromDateTime.Value == null || ToDateTime.Value == null) return;
+			booking2 = new Booking
 			{
-				blacreate = new Booking()
-				{
-					Item = mCl.ReadMaterial(new Material() { Id = Convert.ToInt32(materialtxt_create.Text) }),
-					User = sCl.ReadUser(new User() { Id = rentertxt_create.Text}),
-					StartTime = (DateTime)fromdatetime.Value,
-					EndTime = (DateTime)todatetime.Value
-				};
-				rCl.CreateBooking(blacreate);
-			}
+				Item = mCl.ReadMaterial(new Material { Id = Convert.ToInt32(CreateMaterialTxt.Text) }),
+				User = sCl.ReadUser(new User { Id = CreateRenterTxt.Text}),
+				StartTime = (DateTime)FromDateTime.Value,
+				EndTime = (DateTime)ToDateTime.Value
+			};
+			rCl.CreateBooking(booking2);
 		}
 
 		private void GetAllUsers_Click(object sender, RoutedEventArgs e)
 		{
-			listView_Users.Items.Clear();
+			ListViewUsers.Items.Clear();
 			var mylist = sCl.ReadAllUser();
 			foreach (var stuff in mylist)
 			{
-				listView_Users.Items.Add(stuff);
+				ListViewUsers.Items.Add(stuff);
 			}
 		}
 
 		private void GetAllMaterials_Click(object sender, RoutedEventArgs e)
 		{
-			listView_Materials.Items.Clear();
+			ListViewMaterials.Items.Clear();
 			var mylist = mCl.ReadAllMaterial();
 			foreach (var stuff in mylist)
 			{
-				listView_Materials.Items.Add(stuff);
+				ListViewMaterials.Items.Add(stuff);
 			}
 		}
 
 		private void listViewUsers_Click(object sender, RoutedEventArgs e)
 		{
-			var item = (sender as ListView).SelectedItem;
-			if (item != null)
-			{
-				blacreate3 = (User)item;
-				blacreate3 = sCl.ReadUser(blacreate3);
-				//add data to labels
-				rentertxt_create.Text = blacreate3.Id;
-			}
+			var item = (sender as ListView)?.SelectedItem;
+			if (item == null) return;
+			user1 = (User)item;
+			user1 = sCl.ReadUser(user1);
+			CreateRenterTxt.Text = user1.Id;
 		}
 
 		private void listViewMaterial_Click(object sender, RoutedEventArgs e)
 		{
-			var item = (sender as ListView).SelectedItem;
-			if (item != null)
-			{
-				blacreate2 = (Material)item;
-				blacreate2 = mCl.ReadMaterial(blacreate2);
-				//add data to labels
-				materialtxt_create.Text = blacreate2.Id.ToString();
-			}
+			var item = (sender as ListView)?.SelectedItem;
+			if (item == null) return;
+			material1 = (Material)item;
+			material1 = mCl.ReadMaterial(material1);
+			CreateMaterialTxt.Text = material1.Id.ToString();
 		}
 	}
 }
