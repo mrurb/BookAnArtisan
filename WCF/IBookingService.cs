@@ -28,5 +28,7 @@ namespace WCF
         [OperationContract]
         [FaultContract(typeof(ApplicationException))]
         List<Booking> ReadAllBooking();
+	    [OperationContract]
+		Page<Booking> ReadPageBooking(int? page, int? pageSize);
     }
 }

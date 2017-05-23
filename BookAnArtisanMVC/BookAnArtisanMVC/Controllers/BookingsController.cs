@@ -60,9 +60,17 @@ namespace BookAnArtisanMVC.Controllers
 			return View();
 		}
 
-		public ActionResult CreateWithInput(Booking mat)
+		public ActionResult CreateById(int id, string name)
 		{
-			return View("Create", mat);
+			Booking booking = new Booking()
+			{
+				Item = new Material()
+				{
+					Name = name,
+					Id = id
+				}
+			};
+			return View("Create", booking);
 		}
 		/*
 		public ActionResult Create(int id)
