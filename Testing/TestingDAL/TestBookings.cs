@@ -9,7 +9,7 @@ using WCF;
 namespace Testing.TestingDAL
 {
 	[TestClass]
-	class TestBookings
+	public class TestBookings
 	{
 		private static Booking booking;
 		private static BookingDb bDb;
