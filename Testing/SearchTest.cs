@@ -86,8 +86,8 @@ namespace Testing
         [TestMethod]
         public void TestDBCon()
         {
-            SearchDB dba = new SearchDB();
-            bool worked = dba.DBConnectionTest();
+            SearchDb dba = new SearchDb();
+            bool worked = dba.DbConnectionTest();
             Assert.AreEqual(true, worked);
         }
         /*

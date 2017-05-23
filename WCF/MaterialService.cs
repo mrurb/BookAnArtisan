@@ -1,38 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
 using BLL;
 using System.ServiceModel;
 
 namespace WCF
 {
-    public class MaterialService : IMaterialService
-    {
-        MaterialController mc = new MaterialController();
-        public Material CreateMaterial(Material t)
-        {
-	        try
-	        {
+	public class MaterialService : IMaterialService
+	{
+		private readonly MaterialController mc = new MaterialController();
+		public Material CreateMaterial(Material t)
+		{
+			try
+			{
 				return mc.Create(t);
 			}
-	        catch (ApplicationException ex)
-	        {
-		        throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
-	        }
-	        catch (Exception ex)
-	        {
-		        //log(ex);
-		        var ex2 = new ApplicationException(@"Unknown Error");
-		        throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
-	        }
+			catch (ApplicationException ex)
+			{
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch
+			{
+				
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
 			
-        }
+		}
 
-        public Material DeleteMaterial(Material t)
-        {
+		public Material DeleteMaterial(Material t)
+		{
 			try
 			{
 				return mc.Delete(t);
@@ -41,16 +38,16 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public Material ReadMaterial(Material t)
-        {
+		public Material ReadMaterial(Material t)
+		{
 			try
 			{
 				return mc.Read(t);
@@ -59,16 +56,16 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public List<Material> ReadAllMaterial()
-        {
+		public List<Material> ReadAllMaterial()
+		{
 			try
 			{
 				return mc.ReadAll();
@@ -77,21 +74,21 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public IList<Material> Search(string name)
-        {
-            return mc.Search(name);
-        }
+		public IList<Material> Search(string name)
+		{
+			return mc.Search(name);
+		}
 
-        public Material UpdateMaterial(Material t)
-        {
+		public Material UpdateMaterial(Material t)
+		{
 			try
 			{
 				return mc.Update(t);
@@ -100,16 +97,16 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public List<Material> ReadAllMaterialsForUser(User user)
-        {
+		public List<Material> ReadAllMaterialsForUser(User user)
+		{
 			try
 			{
 				return mc.ReadAllForUser(user);
@@ -118,12 +115,22 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
-    }
+
+		public Page<Material> ReadPage(int? page, int? pageSize)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Page<Material> ReadPageForUser(int? page, int? pageSize)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

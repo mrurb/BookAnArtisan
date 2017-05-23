@@ -69,7 +69,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReadPageBooking">
+  <xs:element name="ReadPage">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="page" nillable="true" type="xs:int" />
@@ -77,10 +77,25 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReadPageBookingResponse">
+  <xs:element name="ReadPageResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadPageBookingResult" nillable="true" type="q10:PageOfBookingYgFqSxnr" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadPageResult" nillable="true" type="q10:PageOfBookingYgFqSxnr" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadPageForUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="page" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadPageForUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadPageForUserResult" nillable="true" type="q11:PageOfBookingYgFqSxnr" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

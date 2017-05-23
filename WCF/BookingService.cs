@@ -19,9 +19,8 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch
 			{
-				//log(ex);
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
@@ -37,9 +36,8 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch
 			{
-				//log(ex);
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
@@ -55,9 +53,9 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
@@ -71,18 +69,22 @@ namespace WCF
 			}
 			catch (ApplicationException ex)
 			{
-				//log(ex);
+				
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch
 			{
-				//log(ex);
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-		public Page<Booking> ReadPageBooking(int? page, int? pageSize)
+		public Page<Booking> ReadPageForUser(int? page, int? pageSize)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Page<Booking> ReadPage(int? page, int? pageSize)
 		{
 			var paget = bookingController.ReadPage(page, pageSize);
 			return paget;
@@ -98,9 +100,9 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}

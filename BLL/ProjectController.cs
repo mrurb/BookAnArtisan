@@ -8,7 +8,7 @@ namespace BLL
 	public class ProjectController : IController<Project>
 	{
 		private readonly ProjectDb db = new ProjectDb();
-		private readonly SearchDB dba = new SearchDB();
+		private readonly SearchDb dba = new SearchDb();
 		private readonly UserController uctr = new UserController();
 		public Project Create(Project project)
 		{

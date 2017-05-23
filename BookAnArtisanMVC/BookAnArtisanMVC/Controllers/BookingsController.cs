@@ -18,10 +18,9 @@ namespace BookAnArtisanMVC.Controllers
 		{
 			try
 			{
-				var data = ms.ReadPageBooking(page, 10);
 				var viewModel = new IndexViewModel
 				{
-					Pager = data
+					Pager = ms.ReadPageBooking(page, 10)
 				};
 				return View(viewModel);
 			}
