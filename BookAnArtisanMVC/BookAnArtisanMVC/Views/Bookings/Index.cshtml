@@ -63,27 +63,45 @@
         @if (Model.Pager.CurrentPage > 1)
         {
             <li>
-                <a href="~/Home/Index">First</a>
+                <a href="~/Bookings/Index">First</a>
             </li>
             <li>
-                <a href="~/Home/Index?page=@(Model.Pager.CurrentPage - 1)">Previous</a>
+                <a href="~/Bookings/Index?page=@(Model.Pager.CurrentPage - 1)">Previous</a>
+            </li>
+        }
+        else
+        {
+            <li class="disabled">
+                <a href="#">First</a>
+            </li>
+            <li class="disabled">
+                <a href="#">Previous</a>
             </li>
         }
 
         @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
         {
             <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
-                <a href="~/Home/Index?page=@page">@page</a>
+                <a href="~/Bookings/Index?page=@page">@page</a>
             </li>
         }
 
         @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
         {
             <li>
-                <a href="~/Home/Index?page=@(Model.Pager.CurrentPage + 1)">Next</a>
+                <a href="~/Bookings/Index?page=@(Model.Pager.CurrentPage + 1)">Next</a>
             </li>
             <li>
-                <a href="~/Home/Index?page=@(Model.Pager.TotalPages)">Last</a>
+                <a href="~/Bookings/Index?page=@(Model.Pager.TotalPages)">Last</a>
+            </li>
+        }
+        else
+        {
+            <li class="disabled">
+                <a href="#">Next</a>
+            </li>
+            <li  class="disabled">
+                <a href="#">Last</a>
             </li>
         }
     </ul>
