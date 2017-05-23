@@ -79,12 +79,12 @@ namespace WCF
 			}
 		}
 
-		public Page<Booking> ReadPageForUser(int? page, int? pageSize)
+		public Page<Booking> ReadPageForUserBooking(int? page, int? pageSize)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Page<Booking> ReadPage(int? page, int? pageSize)
+		public Page<Booking> ReadPageBooking(int? page, int? pageSize)
 		{
 			var paget = bookingController.ReadPage(page, pageSize);
 			return paget;

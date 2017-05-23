@@ -123,12 +123,12 @@ namespace WCF
 			}
 		}
 
-		public Page<Material> ReadPage(int? page, int? pageSize)
+		public Page<Material> ReadMaterialPage(int? page, int? pageSize)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Page<Material> ReadPageForUser(int? page, int? pageSize)
+		public Page<Material> ReadMaterialPageForUser(int? page, int? pageSize)
 		{
 			throw new NotImplementedException();
 		}

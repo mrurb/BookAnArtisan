@@ -8,28 +8,28 @@ using Model;
 
 namespace WCF
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IUserService" in both code and config file together.
-    [ServiceContract]
-    public interface IUserService
-    {
-        // Implementing CRUD as a starting point.
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+	// NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IUserService" in both code and config file together.
+	[ServiceContract]
+	public interface IUserService
+	{
+		// Implementing CRUD as a starting point.
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		User CreateUser(User t);
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		User ReadUser(User t);
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		User UpdateUser(User t);
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		User DeleteUser(User t);
-        // Implementing ReadAll
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+		// Implementing ReadAll
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		List<User> ReadAllUser();
-        [OperationContract]
-        IList<User> SearchByName(string name);
-    }
+		[OperationContract]
+		IList<User> SearchByName(string name);
+	}
 }

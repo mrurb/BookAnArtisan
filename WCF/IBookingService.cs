@@ -30,9 +30,9 @@ namespace WCF
         List<Booking> ReadAllBooking();
 	    [OperationContract]
 	    [FaultContract(typeof(ApplicationException))]
-		Page<Booking> ReadPage(int? page, int? pageSize);
+		Page<Booking> ReadPageBooking(int? page, int? pageSize);
 	    [OperationContract]
 	    [FaultContract(typeof(ApplicationException))]
-	    Page<Booking> ReadPageForUser(int? page, int? pageSize);
+	    Page<Booking> ReadPageForUserBooking(int? page, int? pageSize);
 	}
 }

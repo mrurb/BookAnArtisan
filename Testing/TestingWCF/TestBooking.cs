@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 using WCF;
@@ -18,12 +14,12 @@ namespace Testing.TestingWCF
 		BookingService rs;
 		#region setups + teardowns
 		[ClassInitialize]
-		public static void setUpBeforeClass(TestContext tc)
+		public static void SetUpBeforeClass(TestContext tc)
 		{
 			//do nothing
 		}
 		[ClassCleanup]
-		public static void tearDownAfterClass()
+		public static void TearDownAfterClass()
 		{
 
 		}
