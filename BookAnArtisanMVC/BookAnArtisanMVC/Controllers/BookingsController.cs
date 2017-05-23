@@ -18,7 +18,7 @@ namespace BookAnArtisanMVC.Controllers
 			try
 			{
 				var data = ms.ReadAllBooking();
-				var pager = new Pager(, page);
+				//var pager = new Pager(, page);
 				return View(data);
 			}
 			catch (FaultException e)
@@ -58,6 +58,11 @@ namespace BookAnArtisanMVC.Controllers
 		public ActionResult Create()
 		{
 			return View();
+		}
+
+		public ActionResult CreateWithInput(Booking mat)
+		{
+			return View("Create", mat);
 		}
 		/*
 		public ActionResult Create(int id)
