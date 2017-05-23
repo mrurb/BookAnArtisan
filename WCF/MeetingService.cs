@@ -135,12 +135,12 @@ namespace WCF
 			}
 		}
 
-		public Page<Booking> ReadPage(int? page, int? pageSize)
+		public Page<Meeting> ReadMeetingPage(int? page, int? pageSize)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Page<Booking> ReadPageForUser(int? page, int? pageSize)
+		public Page<Meeting> ReadMeetingPageForUser(int? page, int? pageSize)
 		{
 			throw new NotImplementedException();
 		}

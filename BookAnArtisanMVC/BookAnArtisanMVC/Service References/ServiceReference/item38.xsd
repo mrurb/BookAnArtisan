@@ -43,23 +43,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfProject" nillable="true" type="tns:ArrayOfProject" />
-  <xs:complexType name="PageOfProjectYgFqSxnr">
-    <xs:annotation>
-      <xs:appinfo>
-        <GenericType Name="PageOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Model" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
-          <GenericParameter Name="Project" Namespace="http://schemas.datacontract.org/2004/07/Model" />
-        </GenericType>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CurrentPage" type="xs:int" />
-      <xs:element minOccurs="0" name="EndPage" type="xs:int" />
-      <xs:element minOccurs="0" name="PageList" nillable="true" type="tns:ArrayOfProject" />
-      <xs:element minOccurs="0" name="PageSize" type="xs:int" />
-      <xs:element minOccurs="0" name="StartPage" type="xs:int" />
-      <xs:element minOccurs="0" name="TotalItems" type="xs:int" />
-      <xs:element minOccurs="0" name="TotalPages" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="PageOfProjectYgFqSxnr" nillable="true" type="tns:PageOfProjectYgFqSxnr" />
 </xs:schema>

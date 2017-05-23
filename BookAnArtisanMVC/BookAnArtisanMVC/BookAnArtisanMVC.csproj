@@ -294,6 +294,9 @@
     <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.Meeting.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.PageOfMaterialYgFqSxnr.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.Project.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -303,13 +306,26 @@
     <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.PageOfBookingYgFqSxnr.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.PageOfMeetingYgFqSxnr.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.PageOfProjectYgFqSxnr.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\ServiceReference\BookingService.wsdl" />
+    <None Include="Service References\ServiceReference\BookingService1.wsdl" />
     <None Include="Service References\ServiceReference\configuration91.svcinfo" />
     <None Include="Service References\ServiceReference\configuration.svcinfo" />
     <None Include="Service References\ServiceReference\item.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item11.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference\item12.xsd">
@@ -331,6 +347,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference\item16.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item17.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference\item18.xsd">
@@ -357,7 +376,64 @@
     <None Include="Service References\ServiceReference\item2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceReference\item20.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item22.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item23.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item24.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item25.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item26.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item27.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item28.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item29.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceReference\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item30.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item33.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item34.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item35.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item36.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item37.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item38.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference\item4.xsd">
@@ -375,10 +451,17 @@
     <None Include="Service References\ServiceReference\item8.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceReference\item9.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceReference\MaterialService.wsdl" />
+    <None Include="Service References\ServiceReference\MaterialService1.wsdl" />
     <None Include="Service References\ServiceReference\MeetingService.wsdl" />
+    <None Include="Service References\ServiceReference\MeetingService1.wsdl" />
     <None Include="Service References\ServiceReference\ProjectSearch.wsdl" />
+    <None Include="Service References\ServiceReference\ProjectSearch1.wsdl" />
     <None Include="Service References\ServiceReference\ProjectService.wsdl" />
+    <None Include="Service References\ServiceReference\ProjectService1.wsdl" />
     <None Include="Service References\ServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -389,6 +472,12 @@
     <None Include="Service References\ServiceReference\item4.disco" />
     <None Include="Service References\ServiceReference\item5.disco" />
     <None Include="Service References\ServiceReference\item6.disco" />
+    <None Include="Service References\ServiceReference\item3.disco" />
+    <None Include="Service References\ServiceReference\item7.disco" />
+    <None Include="Service References\ServiceReference\item8.disco" />
+    <None Include="Service References\ServiceReference\item9.disco" />
+    <None Include="Service References\ServiceReference\item10.disco" />
+    <None Include="Service References\ServiceReference\item11.disco" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -457,6 +546,7 @@
     <Content Include="Views\Projects\MyProjects.cshtml" />
     <Content Include="Views\Shared\CustError.cshtml" />
     <Content Include="Views\Shared\_Pagination.cshtml" />
+    <None Include="Service References\ServiceReference\UserService1.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

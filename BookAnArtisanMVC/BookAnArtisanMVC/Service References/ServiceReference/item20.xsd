@@ -98,7 +98,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReadPage">
+  <xs:element name="ReadMeetingPage">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="page" nillable="true" type="xs:int" />
@@ -106,14 +106,14 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReadPageResponse">
+  <xs:element name="ReadMeetingPageResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadPageResult" nillable="true" type="q15:PageOfMeetingYgFqSxnr" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadMeetingPageResult" nillable="true" type="q15:PageOfMeetingYgFqSxnr" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReadPageForUser">
+  <xs:element name="ReadMeetingPageForUser">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="page" nillable="true" type="xs:int" />
@@ -121,10 +121,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReadPageForUserResponse">
+  <xs:element name="ReadMeetingPageForUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadPageForUserResult" nillable="true" type="q16:PageOfMeetingYgFqSxnr" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadMeetingPageForUserResult" nillable="true" type="q16:PageOfMeetingYgFqSxnr" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
