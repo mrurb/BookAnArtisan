@@ -7,8 +7,8 @@ namespace BLL
 {
 	public class ProjectController : IController<Project>
 	{
-		private readonly ProjectDb db = new ProjectDb();
-		private readonly SearchDb dba = new SearchDb();
+		private readonly ProjectDb projectDb = new ProjectDb();
+		private readonly SearchDb searchDb = new SearchDb();
 		private readonly UserController uctr = new UserController();
 		public Project Create(Project project)
 		{
@@ -22,30 +22,29 @@ namespace BLL
 			{
 				throw new ApplicationException("User: CreatedBy invalid.");
 			}
-			db.Create(project);
-			return db.Read(project);
+			projectDb.Create(project);
+			return projectDb.Read(project);
 		}
 
 		public Project Read(Project project)
 		{
-			return db.Read(project);
+			return projectDb.Read(project);
 		}
 
 		public Project Update(Project project)
 		{
-			return db.Update(project);
+			return projectDb.Update(project);
 		}
 
 		public Project Delete(Project project)
 		{
-			return db.Delete(project);
+			return projectDb.Delete(project);
 		}
 
 		public List<Project> ReadAll()
 		{
-			return db.ReadAll();
+			return projectDb.ReadAll();
 		}
-
 
 		public List<Project> ReadAllForUser(User user)
 		{
@@ -53,17 +52,12 @@ namespace BLL
 			{
 				throw new ApplicationException("No user selected.");
 			}
-			return db.ReadAllForUser(user);
+			return projectDb.ReadAllForUser(user);
 		}
-
-		//public List<Project> SearchByTag(string search_tag)
-		//{
-		//	return dba.SearchByTag(search_tag);
-		//}
 
 		public List<Project> SearchByProjectAddress(Project p)
 		{
-			return dba.SearchByProjectAddress(p);
+			return searchDb.SearchByProjectAddress(p);
 		}
 	}
 }
