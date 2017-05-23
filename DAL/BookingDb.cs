@@ -4,13 +4,13 @@ using Model;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
-using System.ServiceModel;
+using static System.Int32;
 
 namespace DAL
 {
 	public class BookingDb : IDataAccess<Booking>
 	{
-		static readonly string Connectionstring = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
+		private static readonly string Connectionstring = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
 		public Booking Create(Booking t)
 		{
 			SqlParameter[] arrayOfParams =
@@ -18,20 +18,20 @@ namespace DAL
 				new SqlParameter { ParameterName = "@starttime", SqlValue = t.StartTime, SqlDbType = SqlDbType.DateTime },
 				new SqlParameter { ParameterName = "@endtime", SqlValue = t.EndTime, SqlDbType = SqlDbType.DateTime },
 				new SqlParameter { ParameterName = "@userID", SqlValue = t.User.Id, SqlDbType = SqlDbType.NVarChar },
-				new SqlParameter { ParameterName = "@materialID" , SqlValue = t.Item.Id, SqlDbType = SqlDbType.NVarChar }
+				new SqlParameter { ParameterName = "@materialID" , SqlValue = t.Item.Id, SqlDbType = SqlDbType.Int }
 		   };
-			SqlConnection con = new SqlConnection(Connectionstring);
-			string query = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Bookings.Deleted = 0) BEGIN INSERT INTO Bookings(StartTime, EndTime, UserID, MaterialID) VALUES(@starttime, @endtime, @userID, @materialID) SELECT SCOPE_IDENTITY() END";
-			SqlCommand sqlcommand = new SqlCommand(query, con);
+			var con = new SqlConnection(Connectionstring);
+			const string query = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Bookings.Deleted = 0) BEGIN INSERT INTO Bookings(StartTime, EndTime, UserID, MaterialID) VALUES(@starttime, @endtime, @userID, @materialID) SELECT SCOPE_IDENTITY() END";
+			var sqlcommand = new SqlCommand(query, con);
 
 
 			try
 			{
 				con.Open();
-				SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.Serializable);
+				var myTrans = con.BeginTransaction(IsolationLevel.Serializable);
 				sqlcommand.Transaction = myTrans;
 				sqlcommand.Parameters.AddRange(arrayOfParams);
-				t.Id = (int)sqlcommand.ExecuteScalar();
+				t.Id = Parse(sqlcommand.ExecuteScalar().ToString());
 				if (t.Id == 0)
 				{
 					throw new ApplicationException("Booking not created");
@@ -47,11 +47,11 @@ namespace DAL
 
 		public Booking Delete(Booking t)
 		{
-			string sql = "UPDATE Bookings SET Deleted = 1 WHERE id = @id";
-			SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int };
-			using (SqlConnection connection = new SqlConnection(Connectionstring))
+			const string sql = "UPDATE Bookings SET Deleted = 1 WHERE id = @id";
+			var theparam = new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int };
+			using (var connection = new SqlConnection(Connectionstring))
 			{
-				using (SqlCommand command = new SqlCommand(sql, connection))
+				using (var command = new SqlCommand(sql, connection))
 				{
 					command.Parameters.Add(theparam);
 					command.Connection.Open();
@@ -65,16 +65,16 @@ namespace DAL
 
 		public Booking Read(Booking t)
 		{
-			string sql = "SELECT Bookings.ID bookingID, Bookings.updated, Bookings.StartTime starttime, Bookings.Deleted deleted, Bookings.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description,materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address, materialOwner.Id ownerId, materialOwner.UserName ownerUserName, Bookings.Created FROM Bookings JOIN Materials_Unique materials ON Bookings.MaterialID = materials.ID JOIN AspNetUsers materialOwner ON materialOwner.Id = materials.OwnerID JOIN AspNetUsers users ON Bookings.UserID = users.Id WHERE bookings.ID = @id";
+			const string sql = "SELECT Bookings.ID bookingID, Bookings.updated, Bookings.StartTime starttime, Bookings.Deleted deleted, Bookings.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description,materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address, materialOwner.Id ownerId, materialOwner.UserName ownerUserName, Bookings.Created FROM Bookings JOIN Materials_Unique materials ON Bookings.MaterialID = materials.ID JOIN AspNetUsers materialOwner ON materialOwner.Id = materials.OwnerID JOIN AspNetUsers users ON Bookings.UserID = users.Id WHERE bookings.ID = @id";
 			Booking material = null;
-			SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int };
-			using (SqlConnection connection = new SqlConnection(Connectionstring))
+			var theparam = new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int };
+			using (var connection = new SqlConnection(Connectionstring))
 			{
-				using (SqlCommand command = new SqlCommand(sql, connection))
+				using (var command = new SqlCommand(sql, connection))
 				{
 					command.Parameters.Add(theparam);
 					command.Connection.Open();
-					using (SqlDataReader reader = command.ExecuteReader())
+					using (var reader = command.ExecuteReader())
 					{
 						while (reader.Read())
 						{
@@ -118,17 +118,17 @@ namespace DAL
 
 		public List<Booking> ReadAll()
 		{
-			List<Booking> materials = new List<Booking>();
+			var materials = new List<Booking>();
 
-			string sql = "SELECT booking.updated, booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0";
-			SqlConnection con = new SqlConnection(Connectionstring);
-			SqlCommand command = new SqlCommand(sql, con);
+			const string sql = "SELECT booking.updated, booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0";
+			var con = new SqlConnection(Connectionstring);
+			var command = new SqlCommand(sql, con);
 			try
 			{
 				con.Open();
-				SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadUncommitted);
+				var myTrans = con.BeginTransaction(IsolationLevel.ReadUncommitted);
 				command.Transaction = myTrans;
-				using (SqlDataReader reader = command.ExecuteReader())
+				using (var reader = command.ExecuteReader())
 				{
 					while (reader.Read())
 					{
@@ -175,7 +175,7 @@ namespace DAL
 
 		public Booking Update(Booking t)
 		{
-			var sql = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Deleted = 0 AND Bookings.ID <> @id) BEGIN UPDATE Bookings SET StartTime = @starttime, EndTime = @endtime, UserID = @userID, Updated = GETUTCDATE() WHERE Bookings.ID = @id AND Bookings.Updated = @Updated END";
+			const string sql = "if not exists(SELECT StartTime, EndTime FROM Bookings WHERE (@starttime <= EndTime AND @endtime >= StartTime) AND @starttime < @endtime AND MaterialID = @materialID AND Deleted = 0 AND Bookings.ID <> @id) BEGIN UPDATE Bookings SET StartTime = @starttime, EndTime = @endtime, UserID = @userID, Updated = GETUTCDATE() WHERE Bookings.ID = @id AND Bookings.Updated = @Updated END";
 
 			SqlParameter[] sqlparams =
 			{
@@ -186,10 +186,10 @@ namespace DAL
 				new SqlParameter { ParameterName = "@updated", SqlValue = t.Updated, SqlDbType = SqlDbType.DateTime },
 				new SqlParameter { ParameterName = "@id", SqlValue = t.Id, SqlDbType = SqlDbType.Int }
 			};
-			SqlConnection con = new SqlConnection(Connectionstring);
-			SqlCommand sqlcommand = new SqlCommand(sql, con);
+			var con = new SqlConnection(Connectionstring);
+			var sqlcommand = new SqlCommand(sql, con);
 			con.Open();
-			SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadCommitted);
+			var myTrans = con.BeginTransaction(IsolationLevel.ReadCommitted);
 			try
 			{
 
@@ -218,11 +218,11 @@ namespace DAL
 
 		public Booking RemoveBooking(Booking booking)
 		{
-			string sql = "DELETE FROM Bookings WHERE id = @id";
-			SqlParameter theparam = new SqlParameter { ParameterName = "@id", SqlValue = booking.Id, SqlDbType = SqlDbType.Int };
-			using (SqlConnection connection = new SqlConnection(Connectionstring))
+			const string sql = "DELETE FROM Bookings WHERE id = @id";
+			var theparam = new SqlParameter { ParameterName = "@id", SqlValue = booking.Id, SqlDbType = SqlDbType.Int };
+			using (var connection = new SqlConnection(Connectionstring))
 			{
-				using (SqlCommand command = new SqlCommand(sql, connection))
+				using (var command = new SqlCommand(sql, connection))
 				{
 					command.Parameters.Add(theparam);
 					command.Connection.Open();
@@ -238,12 +238,12 @@ namespace DAL
 		{
 			page = page ?? 1;
 			pageSize = pageSize ?? 10;
-			List<Booking> materials = new List<Booking>();
+			var materials = new List<Booking>();
 			var totalRows = 0;
 			var rowStart = (((page - 1) * pageSize) + 1);
 
-			string sql = "SELECT booking.updated, booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0 ORDER BY booking.ID OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
-			string sql2 = "SELECT COUNT(*) AS total FROM Bookings WHERE Deleted = 1";
+			const string sql = "SELECT booking.updated, booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0 ORDER BY booking.ID OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
+			const string sql2 = "SELECT COUNT(*) AS total FROM Bookings WHERE Deleted = 1";
 			SqlParameter[] sqlparams =
 			{
 				new SqlParameter { ParameterName = "@page", SqlValue = rowStart, SqlDbType = SqlDbType.Int },
@@ -251,15 +251,15 @@ namespace DAL
 			};
 
 
-			SqlConnection con = new SqlConnection(Connectionstring);
-			SqlCommand command = new SqlCommand(sql, con);
+			var con = new SqlConnection(Connectionstring);
+			var command = new SqlCommand(sql, con);
 			try
 			{
 				con.Open();
-				SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadUncommitted);
+				var myTrans = con.BeginTransaction(IsolationLevel.ReadUncommitted);
 				command.Parameters.AddRange(sqlparams);
 				command.Transaction = myTrans;
-				using (SqlDataReader reader = command.ExecuteReader())
+				using (var reader = command.ExecuteReader())
 				{
 					while (reader.Read())
 					{
@@ -292,11 +292,11 @@ namespace DAL
 				}
 
 				command.CommandText = sql2;
-				using (SqlDataReader reader = command.ExecuteReader())
+				using (var reader = command.ExecuteReader())
 				{
 					if (reader.Read())
 					{
-						totalRows = (int) reader["total"];
+						totalRows = (int)reader["total"];
 					}
 				}
 				myTrans.Commit();
@@ -310,7 +310,7 @@ namespace DAL
 			{
 				con.Close();
 			}
-			Page<Booking> pages = new Page<Booking>(totalRows, materials, page, pageSize);
+			var pages = new Page<Booking>(totalRows, materials, page, pageSize);
 			return pages;
 		}
 	}
