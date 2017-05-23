@@ -4,7 +4,6 @@ using System.Linq;
 using System.ServiceModel;
 using System.Web;
 using System.Web.Mvc;
-using BookAnArtisanMVC.BLL;
 using BookAnArtisanMVC.Models;
 using BookAnArtisanMVC.ServiceReference;
 
