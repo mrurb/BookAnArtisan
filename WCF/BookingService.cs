@@ -32,75 +32,75 @@ namespace WCF
 
         public Booking DeleteBooking(Booking t)
         {
-	        try
-	        {
-		        return rc.Delete(t);
-			}
-			catch (ApplicationException ex)
-	        {
-		        throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
-	        }
-	        catch (Exception ex)
-	        {
-		        //log(ex);
-		        var ex2 = new ApplicationException(@"Unknown Error");
-		        throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
-	        }
+            try
+            {
+                return rc.Delete(t);
+            }
+            catch (ApplicationException ex)
+            {
+                throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+            }
+            catch (Exception ex)
+            {
+                //log(ex);
+                var ex2 = new ApplicationException(@"Unknown Error");
+                throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+            }
         }
 
         public Booking ReadBooking(Booking t)
         {
-			try
-			{
-				return rc.Read(t);
-			}
-			catch (ApplicationException ex)
-			{
-				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
-			}
-			catch (Exception ex)
-			{
-				//log(ex);
-				var ex2 = new ApplicationException(@"Unknown Error");
-				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
-			}
-		}
+            try
+            {
+                return rc.Read(t);
+            }
+            catch (ApplicationException ex)
+            {
+                throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+            }
+            catch (Exception ex)
+            {
+                //log(ex);
+                var ex2 = new ApplicationException(@"Unknown Error");
+                throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+            }
+        }
 
         public List<Booking> ReadAllBooking()
         {
-			try
-			{
-				return rc.ReadAll();
-			}
-			catch (ApplicationException ex)
-			{
-				//log(ex);
-				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
-			}
-			catch (Exception ex)
-			{
-				//log(ex);
-				var ex2 = new ApplicationException(@"Unknown Error");
-				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
-			}
-		}
+            try
+            {
+                return rc.ReadAll();
+            }
+            catch (ApplicationException ex)
+            {
+                //log(ex);
+                throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+            }
+            catch (Exception ex)
+            {
+                //log(ex);
+                var ex2 = new ApplicationException(@"Unknown Error");
+                throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+            }
+        }
 
         public Booking UpdateBooking(Booking t)
         {
-			try
-			{
-				return rc.Update(t);
-			}
-			catch (ApplicationException ex)
-			{
-				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
-			}
-			catch (Exception ex)
-			{
-				//log(ex);
-				var ex2 = new ApplicationException(@"Unknown Error");
-				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
-			}
-		}
+            try
+            {
+                return rc.Update(t);
+            }
+            catch (ApplicationException ex)
+            {
+                throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+            }
+            catch (Exception ex)
+            {
+                //log(ex);
+                var ex2 = new ApplicationException(@"Unknown Error");
+                throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+            }
+        }
     }
 }
