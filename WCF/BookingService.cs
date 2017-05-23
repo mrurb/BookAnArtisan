@@ -89,7 +89,7 @@ namespace WCF
 		{
 			var paget = rc.ReadPage(page, pageSize);
 			return paget;
-		}
+		} 
 
 		public Booking UpdateBooking(Booking t)
 		{
