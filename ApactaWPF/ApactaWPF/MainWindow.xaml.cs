@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Globalization;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+using System.ServiceModel.Dispatcher;
 using System.Windows;
 using System.Windows.Controls;
 using ApactaWPF.ServiceReferences;
@@ -9,7 +12,7 @@ namespace ApactaWPF
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow
+	public partial class MainWindow : IErrorHandler
 	{
 		private Booking booking1;
 		private Booking booking2;
@@ -44,8 +47,8 @@ namespace ApactaWPF
 			bla = rCl.ReadBooking(bla);
 			MaterialTxt.Text = bla.Item.Name;
 			RenterTxt.Text = bla.User.UserName;
-			ToDateTimeTxt.Text = bla.EndTime.ToString(CultureInfo.InvariantCulture);
-			FromDateTimeTxt.Text = bla.StartTime.ToString(CultureInfo.InvariantCulture);
+			ToDateTimeTxt.Text = bla.EndTime.ToString(CultureInfo.CurrentCulture);
+			FromDateTimeTxt.Text = bla.StartTime.ToString(CultureInfo.CurrentCulture);
 			OwnerTxt.Text = bla.Item.Owner.UserName;
 		}
 
@@ -74,15 +77,26 @@ namespace ApactaWPF
 
 		private void Create(object sender, RoutedEventArgs e)
 		{
-			if (material1 == null || user1 == null || FromDateTime.Value == null || ToDateTime.Value == null) return;
-			booking2 = new Booking
+			try
 			{
-				Item = mCl.ReadMaterial(new Material { Id = Convert.ToInt32(CreateMaterialTxt.Text) }),
-				User = sCl.ReadUser(new User { Id = CreateRenterTxt.Text}),
-				StartTime = (DateTime)FromDateTime.Value,
-				EndTime = (DateTime)ToDateTime.Value
-			};
-			rCl.CreateBooking(booking2);
+				if (material1 == null || user1 == null || FromDateTime.Value == null || ToDateTime.Value == null) return;
+				booking2 = new Booking
+				{
+					Item = mCl.ReadMaterial(new Material {Id = Convert.ToInt32(HiddenIdMatLbl.Content)}),
+					User = sCl.ReadUser(new User {Id = HiddenIdRenLbl.Content.ToString()}),
+					StartTime = Convert.ToDateTime(FromDateTime.Value),
+					EndTime = Convert.ToDateTime(ToDateTime.Value)
+				};
+				rCl.CreateBooking(booking2);
+			}
+			catch (FaultException)
+			{
+				MessageBox.Show("Service error occured.", "Service Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("An error occured.", "Unknown error", MessageBoxButton.OK, MessageBoxImage.Error);	
+			}
 		}
 
 		private void GetAllUsers_Click(object sender, RoutedEventArgs e)
@@ -111,7 +125,8 @@ namespace ApactaWPF
 			if (item == null) return;
 			user1 = (User)item;
 			user1 = sCl.ReadUser(user1);
-			CreateRenterTxt.Text = user1.Id;
+			CreateRenterTxt.Text = user1.Email;
+			HiddenIdRenLbl.Content = user1.Id;
 		}
 
 		private void listViewMaterial_Click(object sender, RoutedEventArgs e)
@@ -120,7 +135,18 @@ namespace ApactaWPF
 			if (item == null) return;
 			material1 = (Material)item;
 			material1 = mCl.ReadMaterial(material1);
-			CreateMaterialTxt.Text = material1.Id.ToString();
+			CreateMaterialTxt.Text = material1.Name;
+			HiddenIdMatLbl.Content = material1.Id;
+		}
+
+		public void ProvideFault(Exception error, MessageVersion version, ref Message fault)
+		{
+			MessageBox.Show("Service error occured.", "Service Error", MessageBoxButton.OK, MessageBoxImage.Error);
+		}
+
+		public bool HandleError(Exception error)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

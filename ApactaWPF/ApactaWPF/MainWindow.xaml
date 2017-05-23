@@ -66,6 +66,8 @@
                     <Button x:Name="GetAllUsers" Content="Refresh Users" HorizontalAlignment="Left" Margin="79,6,0,0" VerticalAlignment="Top" Width="85" Click="GetAllUsers_Click"/>
                     <Button x:Name="GetAllMaterials" Content="Refresh Materials" HorizontalAlignment="Left" Margin="553,6,0,0" VerticalAlignment="Top" Width="101" Click="GetAllMaterials_Click"/>
                     <wpfTool:DateTimePicker x:Name="FromDateTime" Margin="338,122,279,192" TimeFormat="FullDateTime" Kind="Local" />
+                    <Label x:Name="HiddenIdMatLbl" Content="Label" HorizontalAlignment="Left" Margin="297,202,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                    <Label x:Name="HiddenIdRenLbl" Content="Label" HorizontalAlignment="Left" Margin="400,202,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
                 </Grid>
             </TabItem>
         </TabControl>
