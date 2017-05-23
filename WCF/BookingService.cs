@@ -87,7 +87,8 @@ namespace WCF
 
 		public Page<Booking> ReadPageBooking(int? page, int? pageSize)
 		{
-			return rc.ReadPage(page, pageSize);
+			var paget = rc.ReadPage(page, pageSize);
+			return paget;
 		}
 
 		public Booking UpdateBooking(Booking t)

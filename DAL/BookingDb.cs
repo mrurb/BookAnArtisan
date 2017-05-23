@@ -236,15 +236,24 @@ namespace DAL
 
 		public Page<Booking> ReadPage(int? page, int? pageSize)
 		{
+			//skip(pager.CurrentPage - 1) * pager.PageSize)
 			List<Booking> materials = new List<Booking>();
 
-			string sql = "SELECT booking.updated, booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0 ORDER BY booking.ID OFFSET 10 ROWS FETCH NEXT 10 ROWS ONLY";
+			string sql = "SELECT booking.updated, booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0 ORDER BY booking.ID OFFSET @page ROWS FETCH NEXT pageSize ROWS ONLY";
+			SqlParameter[] sqlparams =
+			{
+				new SqlParameter { ParameterName = "@page", SqlValue = page-1, SqlDbType = SqlDbType.Int },
+				new SqlParameter { ParameterName = "@pageSize", SqlValue = pageSize, SqlDbType = SqlDbType.Int }
+			};
+
+
 			SqlConnection con = new SqlConnection(Connectionstring);
 			SqlCommand command = new SqlCommand(sql, con);
 			try
 			{
 				con.Open();
 				SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.ReadUncommitted);
+				command.Parameters.AddRange(sqlparams);
 				command.Transaction = myTrans;
 				using (SqlDataReader reader = command.ExecuteReader())
 				{
