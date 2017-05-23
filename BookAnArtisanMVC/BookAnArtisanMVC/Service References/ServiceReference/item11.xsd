@@ -108,7 +108,7 @@
   <xs:element name="ReadMaterialPageResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadMaterialPageResult" nillable="true" type="q13:PageOfMaterialYgFqSxnr" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadMaterialPageResult" nillable="true" type="q13:MaterialPage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -123,7 +123,7 @@
   <xs:element name="ReadMaterialPageForUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadMaterialPageForUserResult" nillable="true" type="q14:PageOfMaterialYgFqSxnr" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadMaterialPageForUserResult" nillable="true" type="q14:MaterialPage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

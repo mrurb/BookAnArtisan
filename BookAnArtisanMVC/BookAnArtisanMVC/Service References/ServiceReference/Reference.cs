@@ -441,9 +441,9 @@ namespace BookAnArtisanMVC.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PageOfMaterialYgFqSxnr", Namespace="http://schemas.datacontract.org/2004/07/Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MaterialPage", Namespace="http://schemas.datacontract.org/2004/07/Model")]
     [System.SerializableAttribute()]
-    public partial class PageOfMaterialYgFqSxnr : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class MaterialPage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -739,9 +739,9 @@ namespace BookAnArtisanMVC.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PageOfMeetingYgFqSxnr", Namespace="http://schemas.datacontract.org/2004/07/Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MeetingPage", Namespace="http://schemas.datacontract.org/2004/07/Model")]
     [System.SerializableAttribute()]
-    public partial class PageOfMeetingYgFqSxnr : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class MeetingPage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -1085,9 +1085,9 @@ namespace BookAnArtisanMVC.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PageOfProjectYgFqSxnr", Namespace="http://schemas.datacontract.org/2004/07/Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProjectPage", Namespace="http://schemas.datacontract.org/2004/07/Model")]
     [System.SerializableAttribute()]
-    public partial class PageOfProjectYgFqSxnr : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ProjectPage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -1383,9 +1383,9 @@ namespace BookAnArtisanMVC.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PageOfBookingYgFqSxnr", Namespace="http://schemas.datacontract.org/2004/07/Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BookingPage", Namespace="http://schemas.datacontract.org/2004/07/Model")]
     [System.SerializableAttribute()]
-    public partial class PageOfBookingYgFqSxnr : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class BookingPage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -1577,18 +1577,18 @@ namespace BookAnArtisanMVC.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadMaterialPage", ReplyAction="http://tempuri.org/IMaterialService/ReadMaterialPageResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMaterialService/ReadMaterialPageApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
-        BookAnArtisanMVC.ServiceReference.PageOfMaterialYgFqSxnr ReadMaterialPage(System.Nullable<int> page, System.Nullable<int> pageSize);
+        BookAnArtisanMVC.ServiceReference.MaterialPage ReadMaterialPage(System.Nullable<int> page, System.Nullable<int> pageSize);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadMaterialPage", ReplyAction="http://tempuri.org/IMaterialService/ReadMaterialPageResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfMaterialYgFqSxnr> ReadMaterialPageAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
+        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.MaterialPage> ReadMaterialPageAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadMaterialPageForUser", ReplyAction="http://tempuri.org/IMaterialService/ReadMaterialPageForUserResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMaterialService/ReadMaterialPageForUserApplicationExceptionFa" +
             "ult", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
-        BookAnArtisanMVC.ServiceReference.PageOfMaterialYgFqSxnr ReadMaterialPageForUser(System.Nullable<int> page, System.Nullable<int> pageSize);
+        BookAnArtisanMVC.ServiceReference.MaterialPage ReadMaterialPageForUser(System.Nullable<int> page, System.Nullable<int> pageSize);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadMaterialPageForUser", ReplyAction="http://tempuri.org/IMaterialService/ReadMaterialPageForUserResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfMaterialYgFqSxnr> ReadMaterialPageForUserAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
+        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.MaterialPage> ReadMaterialPageForUserAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1674,19 +1674,19 @@ namespace BookAnArtisanMVC.ServiceReference {
             return base.Channel.ReadAllMaterialsForUserAsync(user);
         }
         
-        public BookAnArtisanMVC.ServiceReference.PageOfMaterialYgFqSxnr ReadMaterialPage(System.Nullable<int> page, System.Nullable<int> pageSize) {
+        public BookAnArtisanMVC.ServiceReference.MaterialPage ReadMaterialPage(System.Nullable<int> page, System.Nullable<int> pageSize) {
             return base.Channel.ReadMaterialPage(page, pageSize);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfMaterialYgFqSxnr> ReadMaterialPageAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.MaterialPage> ReadMaterialPageAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
             return base.Channel.ReadMaterialPageAsync(page, pageSize);
         }
         
-        public BookAnArtisanMVC.ServiceReference.PageOfMaterialYgFqSxnr ReadMaterialPageForUser(System.Nullable<int> page, System.Nullable<int> pageSize) {
+        public BookAnArtisanMVC.ServiceReference.MaterialPage ReadMaterialPageForUser(System.Nullable<int> page, System.Nullable<int> pageSize) {
             return base.Channel.ReadMaterialPageForUser(page, pageSize);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfMaterialYgFqSxnr> ReadMaterialPageForUserAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.MaterialPage> ReadMaterialPageForUserAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
             return base.Channel.ReadMaterialPageForUserAsync(page, pageSize);
         }
     }
@@ -1746,18 +1746,18 @@ namespace BookAnArtisanMVC.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/ReadMeetingPage", ReplyAction="http://tempuri.org/IMeetingService/ReadMeetingPageResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMeetingService/ReadMeetingPageApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
-        BookAnArtisanMVC.ServiceReference.PageOfMeetingYgFqSxnr ReadMeetingPage(System.Nullable<int> page, System.Nullable<int> pageSize);
+        BookAnArtisanMVC.ServiceReference.MeetingPage ReadMeetingPage(System.Nullable<int> page, System.Nullable<int> pageSize);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/ReadMeetingPage", ReplyAction="http://tempuri.org/IMeetingService/ReadMeetingPageResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfMeetingYgFqSxnr> ReadMeetingPageAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
+        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.MeetingPage> ReadMeetingPageAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/ReadMeetingPageForUser", ReplyAction="http://tempuri.org/IMeetingService/ReadMeetingPageForUserResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMeetingService/ReadMeetingPageForUserApplicationExceptionFaul" +
             "t", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
-        BookAnArtisanMVC.ServiceReference.PageOfMeetingYgFqSxnr ReadMeetingPageForUser(System.Nullable<int> page, System.Nullable<int> pageSize);
+        BookAnArtisanMVC.ServiceReference.MeetingPage ReadMeetingPageForUser(System.Nullable<int> page, System.Nullable<int> pageSize);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMeetingService/ReadMeetingPageForUser", ReplyAction="http://tempuri.org/IMeetingService/ReadMeetingPageForUserResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfMeetingYgFqSxnr> ReadMeetingPageForUserAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
+        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.MeetingPage> ReadMeetingPageForUserAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1843,19 +1843,19 @@ namespace BookAnArtisanMVC.ServiceReference {
             return base.Channel.ReadAllForUserAsync(user);
         }
         
-        public BookAnArtisanMVC.ServiceReference.PageOfMeetingYgFqSxnr ReadMeetingPage(System.Nullable<int> page, System.Nullable<int> pageSize) {
+        public BookAnArtisanMVC.ServiceReference.MeetingPage ReadMeetingPage(System.Nullable<int> page, System.Nullable<int> pageSize) {
             return base.Channel.ReadMeetingPage(page, pageSize);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfMeetingYgFqSxnr> ReadMeetingPageAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.MeetingPage> ReadMeetingPageAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
             return base.Channel.ReadMeetingPageAsync(page, pageSize);
         }
         
-        public BookAnArtisanMVC.ServiceReference.PageOfMeetingYgFqSxnr ReadMeetingPageForUser(System.Nullable<int> page, System.Nullable<int> pageSize) {
+        public BookAnArtisanMVC.ServiceReference.MeetingPage ReadMeetingPageForUser(System.Nullable<int> page, System.Nullable<int> pageSize) {
             return base.Channel.ReadMeetingPageForUser(page, pageSize);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfMeetingYgFqSxnr> ReadMeetingPageForUserAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.MeetingPage> ReadMeetingPageForUserAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
             return base.Channel.ReadMeetingPageForUserAsync(page, pageSize);
         }
     }
@@ -1909,18 +1909,18 @@ namespace BookAnArtisanMVC.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/ReadProjectPage", ReplyAction="http://tempuri.org/IProjectService/ReadProjectPageResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IProjectService/ReadProjectPageApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
-        BookAnArtisanMVC.ServiceReference.PageOfProjectYgFqSxnr ReadProjectPage(System.Nullable<int> page, System.Nullable<int> pageSize);
+        BookAnArtisanMVC.ServiceReference.ProjectPage ReadProjectPage(System.Nullable<int> page, System.Nullable<int> pageSize);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/ReadProjectPage", ReplyAction="http://tempuri.org/IProjectService/ReadProjectPageResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfProjectYgFqSxnr> ReadProjectPageAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
+        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.ProjectPage> ReadProjectPageAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/ReadProjectPageForUser", ReplyAction="http://tempuri.org/IProjectService/ReadProjectPageForUserResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IProjectService/ReadProjectPageForUserApplicationExceptionFaul" +
             "t", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
-        BookAnArtisanMVC.ServiceReference.PageOfProjectYgFqSxnr ReadProjectPageForUser(System.Nullable<int> page, System.Nullable<int> pageSize);
+        BookAnArtisanMVC.ServiceReference.ProjectPage ReadProjectPageForUser(System.Nullable<int> page, System.Nullable<int> pageSize);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/ReadProjectPageForUser", ReplyAction="http://tempuri.org/IProjectService/ReadProjectPageForUserResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfProjectYgFqSxnr> ReadProjectPageForUserAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
+        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.ProjectPage> ReadProjectPageForUserAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1998,19 +1998,19 @@ namespace BookAnArtisanMVC.ServiceReference {
             return base.Channel.ReadAllProjectsForUserAsync(user);
         }
         
-        public BookAnArtisanMVC.ServiceReference.PageOfProjectYgFqSxnr ReadProjectPage(System.Nullable<int> page, System.Nullable<int> pageSize) {
+        public BookAnArtisanMVC.ServiceReference.ProjectPage ReadProjectPage(System.Nullable<int> page, System.Nullable<int> pageSize) {
             return base.Channel.ReadProjectPage(page, pageSize);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfProjectYgFqSxnr> ReadProjectPageAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.ProjectPage> ReadProjectPageAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
             return base.Channel.ReadProjectPageAsync(page, pageSize);
         }
         
-        public BookAnArtisanMVC.ServiceReference.PageOfProjectYgFqSxnr ReadProjectPageForUser(System.Nullable<int> page, System.Nullable<int> pageSize) {
+        public BookAnArtisanMVC.ServiceReference.ProjectPage ReadProjectPageForUser(System.Nullable<int> page, System.Nullable<int> pageSize) {
             return base.Channel.ReadProjectPageForUser(page, pageSize);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfProjectYgFqSxnr> ReadProjectPageForUserAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.ProjectPage> ReadProjectPageForUserAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
             return base.Channel.ReadProjectPageForUserAsync(page, pageSize);
         }
     }
@@ -2056,18 +2056,18 @@ namespace BookAnArtisanMVC.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadPageBooking", ReplyAction="http://tempuri.org/IBookingService/ReadPageBookingResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IBookingService/ReadPageBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
-        BookAnArtisanMVC.ServiceReference.PageOfBookingYgFqSxnr ReadPageBooking(System.Nullable<int> page, System.Nullable<int> pageSize);
+        BookAnArtisanMVC.ServiceReference.BookingPage ReadPageBooking(System.Nullable<int> page, System.Nullable<int> pageSize);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadPageBooking", ReplyAction="http://tempuri.org/IBookingService/ReadPageBookingResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfBookingYgFqSxnr> ReadPageBookingAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
+        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.BookingPage> ReadPageBookingAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadPageForUserBooking", ReplyAction="http://tempuri.org/IBookingService/ReadPageForUserBookingResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IBookingService/ReadPageForUserBookingApplicationExceptionFaul" +
             "t", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
-        BookAnArtisanMVC.ServiceReference.PageOfBookingYgFqSxnr ReadPageForUserBooking(System.Nullable<int> page, System.Nullable<int> pageSize);
+        BookAnArtisanMVC.ServiceReference.BookingPage ReadPageForUserBooking(System.Nullable<int> page, System.Nullable<int> pageSize);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadPageForUserBooking", ReplyAction="http://tempuri.org/IBookingService/ReadPageForUserBookingResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfBookingYgFqSxnr> ReadPageForUserBookingAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
+        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.BookingPage> ReadPageForUserBookingAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2137,19 +2137,19 @@ namespace BookAnArtisanMVC.ServiceReference {
             return base.Channel.ReadAllBookingAsync();
         }
         
-        public BookAnArtisanMVC.ServiceReference.PageOfBookingYgFqSxnr ReadPageBooking(System.Nullable<int> page, System.Nullable<int> pageSize) {
+        public BookAnArtisanMVC.ServiceReference.BookingPage ReadPageBooking(System.Nullable<int> page, System.Nullable<int> pageSize) {
             return base.Channel.ReadPageBooking(page, pageSize);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfBookingYgFqSxnr> ReadPageBookingAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.BookingPage> ReadPageBookingAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
             return base.Channel.ReadPageBookingAsync(page, pageSize);
         }
         
-        public BookAnArtisanMVC.ServiceReference.PageOfBookingYgFqSxnr ReadPageForUserBooking(System.Nullable<int> page, System.Nullable<int> pageSize) {
+        public BookAnArtisanMVC.ServiceReference.BookingPage ReadPageForUserBooking(System.Nullable<int> page, System.Nullable<int> pageSize) {
             return base.Channel.ReadPageForUserBooking(page, pageSize);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfBookingYgFqSxnr> ReadPageForUserBookingAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.BookingPage> ReadPageForUserBookingAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
             return base.Channel.ReadPageForUserBookingAsync(page, pageSize);
         }
     }

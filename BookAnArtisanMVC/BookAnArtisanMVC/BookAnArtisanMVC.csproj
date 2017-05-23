@@ -192,6 +192,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MetaDataTypes\MetaModels.cs" />
+    <Compile Include="Models\pager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\ServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -294,25 +295,27 @@
     <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.Meeting.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.PageOfMaterialYgFqSxnr.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.Project.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.PageOfBookingYgFqSxnr.datasource">
+    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.BookingPage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.PageOfMeetingYgFqSxnr.datasource">
+    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.MaterialPage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.PageOfProjectYgFqSxnr.datasource">
+    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.MeetingPage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\ServiceReference\BookingService.wsdl" />
+    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.ProjectPage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ServiceReference\BookingService.wsdl">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceReference\BookingService1.wsdl" />
     <None Include="Service References\ServiceReference\configuration91.svcinfo" />
     <None Include="Service References\ServiceReference\configuration.svcinfo" />

@@ -94,7 +94,7 @@
   <xs:element name="ReadProjectPageResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadProjectPageResult" nillable="true" type="q12:PageOfProjectYgFqSxnr" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadProjectPageResult" nillable="true" type="q12:ProjectPage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -109,7 +109,7 @@
   <xs:element name="ReadProjectPageForUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadProjectPageForUserResult" nillable="true" type="q13:PageOfProjectYgFqSxnr" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadProjectPageForUserResult" nillable="true" type="q13:ProjectPage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

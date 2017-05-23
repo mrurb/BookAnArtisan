@@ -1,4 +1,4 @@
-﻿@model BookAnArtisanMVC.Models.IndexViewModel
+﻿
 @if (Model.Pager.EndPage > 1)
 {
     <ul class="pagination">
@@ -24,7 +24,7 @@
         @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
         {
             <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
-                @Html.ActionLink(@page.ToString(), "Index", new { page = @page })
+                @Html.ActionLink((string)page.ToString(), "Index", new { page = @page })
             </li>
         }
 

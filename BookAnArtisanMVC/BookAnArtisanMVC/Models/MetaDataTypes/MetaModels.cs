@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using BookAnArtisanMVC.Models;
 
 namespace BookAnArtisanMVC.ServiceReference
 {
@@ -151,5 +152,10 @@ namespace BookAnArtisanMVC.ServiceReference
     {
 
     }
+
+	public partial class BookingPage : IPager<Booking>
+	{
+
+	}
 
 }

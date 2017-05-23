@@ -40,10 +40,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfMeeting" nillable="true" type="tns:ArrayOfMeeting" />
-  <xs:complexType name="PageOfMeetingYgFqSxnr">
+  <xs:complexType name="MeetingPage">
     <xs:annotation>
       <xs:appinfo>
-        <GenericType Name="PageOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Model" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+        <GenericType Name="{0}Page" Namespace="http://schemas.datacontract.org/2004/07/Model" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
           <GenericParameter Name="Meeting" Namespace="http://schemas.datacontract.org/2004/07/Model" />
         </GenericType>
       </xs:appinfo>
@@ -58,5 +58,5 @@
       <xs:element minOccurs="0" name="TotalPages" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="PageOfMeetingYgFqSxnr" nillable="true" type="tns:PageOfMeetingYgFqSxnr" />
+  <xs:element name="MeetingPage" nillable="true" type="tns:MeetingPage" />
 </xs:schema>

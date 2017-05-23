@@ -39,10 +39,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfMaterial" nillable="true" type="tns:ArrayOfMaterial" />
-  <xs:complexType name="PageOfMaterialYgFqSxnr">
+  <xs:complexType name="MaterialPage">
     <xs:annotation>
       <xs:appinfo>
-        <GenericType Name="PageOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Model" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+        <GenericType Name="{0}Page" Namespace="http://schemas.datacontract.org/2004/07/Model" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
           <GenericParameter Name="Material" Namespace="http://schemas.datacontract.org/2004/07/Model" />
         </GenericType>
       </xs:appinfo>
@@ -57,5 +57,5 @@
       <xs:element minOccurs="0" name="TotalPages" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="PageOfMaterialYgFqSxnr" nillable="true" type="tns:PageOfMaterialYgFqSxnr" />
+  <xs:element name="MaterialPage" nillable="true" type="tns:MaterialPage" />
 </xs:schema>

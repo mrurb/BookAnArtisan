@@ -80,7 +80,7 @@
   <xs:element name="ReadPageBookingResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadPageBookingResult" nillable="true" type="q10:PageOfBookingYgFqSxnr" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadPageBookingResult" nillable="true" type="q10:BookingPage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -95,7 +95,7 @@
   <xs:element name="ReadPageForUserBookingResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadPageForUserBookingResult" nillable="true" type="q11:PageOfBookingYgFqSxnr" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadPageForUserBookingResult" nillable="true" type="q11:BookingPage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

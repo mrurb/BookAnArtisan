@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-	[DataContract]
+	[DataContract(Name = "{0}Page")]
 	public class Page<T>
 	{
 		[DataMember]
