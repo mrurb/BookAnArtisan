@@ -280,7 +280,7 @@ namespace DAL
 		}
 
 
-		public T GetDataSafe<T>(SqlDataReader reader, int columnIndex, Func<int, T> getData)
+		private T GetDataSafe<T>(SqlDataReader reader, int columnIndex, Func<int, T> getData)
 		{
 			return !reader.IsDBNull(columnIndex) ? getData(columnIndex) : default(T);
 		}

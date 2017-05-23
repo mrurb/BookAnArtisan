@@ -33,5 +33,11 @@ namespace WCF
         [OperationContract]
         [FaultContract(typeof(ApplicationException))]
 		List<Material> ReadAllMaterialsForUser(User user);
-    }
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
+		Page<Material> ReadPage(int? page, int? pageSize);
+		[OperationContract]
+	    [FaultContract(typeof(ApplicationException))]
+	    Page<Material> ReadPageForUser(int? page, int? pageSize);
+	}
 }

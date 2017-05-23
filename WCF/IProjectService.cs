@@ -29,5 +29,12 @@ namespace WCF
         [OperationContract]
         [FaultContract(typeof(ApplicationException))]
 		List<Project> ReadAllProjectsForUser(User user);
-    }
+
+	    [OperationContract]
+	    [FaultContract(typeof(ApplicationException))]
+	    Page<Booking> ReadPage(int? page, int? pageSize);
+	    [OperationContract]
+	    [FaultContract(typeof(ApplicationException))]
+	    Page<Booking> ReadPageForUser(int? page, int? pageSize);
+	}
 }

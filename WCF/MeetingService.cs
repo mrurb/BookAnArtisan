@@ -1,37 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
 using BLL;
 
 namespace WCF
 {
-    public class MeetingService : IMeetingService
-    {
-        MeetingController mc = new MeetingController();
-        public Meeting CreateMeeting(Meeting t)
-        {
-            try
-            {
-                return mc.Create(t);
-            }
+	public class MeetingService : IMeetingService
+	{
+		private readonly MeetingController mc = new MeetingController();
+		public Meeting CreateMeeting(Meeting t)
+		{
+			try
+			{
+				return mc.Create(t);
+			}
 			catch (ApplicationException ex)
-            {
-	            throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
-            }
-            catch (Exception ex)
-            {
-	            //log(ex);
-	            var ex2 = new ApplicationException(@"Unknown Error");
-	            throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
-            }
+			{
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception)
+			{
+				
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
 		}
 
-        public Meeting DeleteMeeting(Meeting t)
-        {
+		public Meeting DeleteMeeting(Meeting t)
+		{
 			try
 			{
 				return mc.Delete(t);
@@ -40,16 +37,16 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public Meeting ReadMeeting(Meeting t)
-        {
+		public Meeting ReadMeeting(Meeting t)
+		{
 			try
 			{
 				return mc.Read(t);
@@ -58,16 +55,16 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public List<Meeting> ReadAllMeeting()
-        {
+		public List<Meeting> ReadAllMeeting()
+		{
 			try
 			{
 				return mc.ReadAll();
@@ -76,16 +73,16 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public Meeting UpdateMeeting(Meeting t)
-        {
+		public Meeting UpdateMeeting(Meeting t)
+		{
 			try
 			{
 				return mc.Update(t);
@@ -94,16 +91,16 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public Meeting AddUserToMeeting(Meeting m, User u)
-        {
+		public Meeting AddUserToMeeting(Meeting m, User u)
+		{
 			try
 			{
 				return mc.AddUserToMeeting(m,u);
@@ -112,16 +109,16 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public List<Meeting> ReadAllForUser(User user)
-        {
+		public List<Meeting> ReadAllForUser(User user)
+		{
 			try
 			{
 				return mc.ReadAllForUser(user);
@@ -130,12 +127,22 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
-    }
+
+		public Page<Booking> ReadPage(int? page, int? pageSize)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Page<Booking> ReadPageForUser(int? page, int? pageSize)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

@@ -53,11 +53,23 @@
   <wsdl:message name="IBookingService_ReadAllBooking_ApplicationExceptionFault_FaultMessage">
     <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/System" name="detail" element="q5:ApplicationException" />
   </wsdl:message>
-  <wsdl:message name="IBookingService_ReadPageBooking_InputMessage">
-    <wsdl:part name="parameters" element="tns:ReadPageBooking" />
+  <wsdl:message name="IBookingService_ReadPage_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadPage" />
   </wsdl:message>
-  <wsdl:message name="IBookingService_ReadPageBooking_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ReadPageBookingResponse" />
+  <wsdl:message name="IBookingService_ReadPage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_ReadPage_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/System" name="detail" element="q6:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_ReadPageForUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadPageForUser" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_ReadPageForUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadPageForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookingService_ReadPageForUser_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/System" name="detail" element="q7:ApplicationException" />
   </wsdl:message>
   <wsdl:portType name="IBookingService">
     <wsdl:operation name="CreateBooking">
@@ -85,9 +97,15 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/ReadAllBookingResponse" message="tns:IBookingService_ReadAllBooking_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IBookingService/ReadAllBookingApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IBookingService_ReadAllBooking_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ReadPageBooking">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/ReadPageBooking" message="tns:IBookingService_ReadPageBooking_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/ReadPageBookingResponse" message="tns:IBookingService_ReadPageBooking_OutputMessage" />
+    <wsdl:operation name="ReadPage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/ReadPage" message="tns:IBookingService_ReadPage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/ReadPageResponse" message="tns:IBookingService_ReadPage_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBookingService/ReadPageApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IBookingService_ReadPage_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadPageForUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookingService/ReadPageForUser" message="tns:IBookingService_ReadPageForUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookingService/ReadPageForUserResponse" message="tns:IBookingService_ReadPageForUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBookingService/ReadPageForUserApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IBookingService_ReadPageForUser_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBookingService" type="tns:IBookingService">
@@ -152,14 +170,29 @@
         <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="ReadPageBooking">
-      <soap:operation soapAction="http://tempuri.org/IBookingService/ReadPageBooking" style="document" />
+    <wsdl:operation name="ReadPage">
+      <soap:operation soapAction="http://tempuri.org/IBookingService/ReadPage" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReadPageForUser">
+      <soap:operation soapAction="http://tempuri.org/IBookingService/ReadPageForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="BookingService">
