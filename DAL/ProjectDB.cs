@@ -30,28 +30,20 @@ namespace DAL
 				new SqlParameter { ParameterName = "@Deleted", SqlValue = Convert.ToInt32(project.Deleted), SqlDbType = SqlDbType.Bit }
 			};
 
-			try
+			using (var connection = new SqlConnection(connectionString))
 			{
-				using (var connection = new SqlConnection(connectionString))
+				using (var command = new SqlCommand(sql, connection))
 				{
-					using (var command = new SqlCommand(sql, connection))
-					{
 						
-						command.Parameters.AddRange(arrayOfParameters);
-						command.Connection.Open();
-						// For some reason our ExecuteScalar could not be casted to int, so we made a dirty quick fix.
-						project.Id = Parse(command.ExecuteScalar().ToString());
-						if (project.Id == 0)
-						{
-							throw new Exception("No rows affected. Insert failed");
-						}
+					command.Parameters.AddRange(arrayOfParameters);
+					command.Connection.Open();
+					// For some reason our ExecuteScalar could not be casted to int, so we made a dirty quick fix.
+					project.Id = Parse(command.ExecuteScalar().ToString());
+					if (project.Id == 0)
+					{
+						throw new Exception("No rows affected. Insert failed");
 					}
 				}
-			}
-			catch (Exception ex)
-			{
-
-				throw;
 			}
 			return project;
 		}

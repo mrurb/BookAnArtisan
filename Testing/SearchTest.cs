@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BLL;
 using Model;
 using DAL;
 using WCF;
@@ -86,8 +84,8 @@ namespace Testing
         [TestMethod]
         public void TestDBCon()
         {
-            SearchDB dba = new SearchDB();
-            bool worked = dba.DBConnectionTest();
+            SearchDb dba = new SearchDb();
+            bool worked = dba.DbConnectionTest();
             Assert.AreEqual(true, worked);
         }
         /*
