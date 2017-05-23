@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Model
 {
-    [ServiceContract]
+    [DataContract]
     public class Booking
     {
 

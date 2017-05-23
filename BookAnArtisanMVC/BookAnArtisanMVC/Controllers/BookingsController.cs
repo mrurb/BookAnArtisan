@@ -18,7 +18,7 @@ namespace BookAnArtisanMVC.Controllers
 			try
 			{
 				var data = ms.ReadAllBooking();
-				var pager = new Pager(, page);
+				//var pager = new Pager(, page);
 				return View(data);
 			}
 			catch (FaultException e)
