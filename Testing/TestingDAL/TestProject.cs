@@ -39,29 +39,22 @@ namespace Testing.TestingDAL
 		[TestInitialize]
 		public void SetUp()
 		{
-			try
+			testProject = new Project
 			{
-				testProject = new Project
-				{
 					
-					Name = "Test",
-					CreatedBy = new User { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3", },
-					Contact = new User { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3" },
-					ProjectStatusID = 1,
-					ProjectDescription = "Something",
-					StreetName = "Test street",
-					StartTime = new DateTime(2017, 04, 19, 17, 09, 21, 0),
-					Created = new DateTime(2017, 04, 19, 17, 09, 21, 0),
-					Modified = new DateTime(2017, 04, 19, 17, 09, 21, 0),
-					Deleted = false
-				};
-				pDb = new ProjectDb();
-				testProject = pDb.Create(testProject);
-			}
-			catch(Exception ex)
-			{
-				throw;
-			}
+				Name = "Test",
+				CreatedBy = new User { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3", },
+				Contact = new User { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3" },
+				ProjectStatusID = 1,
+				ProjectDescription = "Something",
+				StreetName = "Test street",
+				StartTime = new DateTime(2017, 04, 19, 17, 09, 21, 0),
+				Created = new DateTime(2017, 04, 19, 17, 09, 21, 0),
+				Modified = new DateTime(2017, 04, 19, 17, 09, 21, 0),
+				Deleted = false
+			};
+			pDb = new ProjectDb();
+			testProject = pDb.Create(testProject);
 		}
 		[TestCleanup]
 		public void TearDown()

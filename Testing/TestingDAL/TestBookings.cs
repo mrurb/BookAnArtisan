@@ -1,10 +1,8 @@
 ﻿using System;
 using System.ServiceModel;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 using DAL;
-using WCF;
 
 namespace Testing.TestingDAL
 {
@@ -99,13 +97,13 @@ namespace Testing.TestingDAL
 
 
 		#region CRUD tests
-		
+
 		[TestMethod]
 		public void TestCreateBooking()
 		{
 			Booking bookinga = bDb.Create(booking);
 			Booking dbBooking = bDb.Read(bookinga);
-			ComparisonBooking(bookinga,dbBooking);
+			ComparisonBooking(bookinga, dbBooking);
 			bDb.RemoveBooking(bookinga);
 		}
 
@@ -186,9 +184,9 @@ namespace Testing.TestingDAL
 				Assert.IsFalse(false);
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+
 				Assert.IsFalse(false);
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
@@ -211,9 +209,9 @@ namespace Testing.TestingDAL
 				Assert.IsFalse(false);
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+
 				Assert.IsFalse(false);
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
@@ -235,9 +233,9 @@ namespace Testing.TestingDAL
 				Assert.IsFalse(false);
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+
 				Assert.IsFalse(false);
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));

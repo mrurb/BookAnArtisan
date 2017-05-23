@@ -83,8 +83,6 @@ namespace DAL
 		public List<Project> SearchByProjectAddress(Project pInput) //read uncommitted? hurtigere.
 		{
 			var results = new List<Project>();
-			var artisans = new List<User>();
-			var tags = new List<string>();
 			var query = "SELECT projects.id, projects.name pname, artisan.FirstName afirstname, client.FirstName cfirstname, Tags.Name tag FROM projects JOIN AspNetUsers client ON projects.Created_by_ID = client.Id JOIN AspNetUsers artisan ON projects.Contact_ID = artisan.id JOIN project_status ON project_status.id = projects.id JOIN Project_tags ON project_tags.Project_ID = projects.ID JOIN Tags ON Tags.ID = project_tags.Tag_ID WHERE street_name LIKE @address OR projects.name LIKE @name OR project_status.name LIKE @status";
 			SqlParameter[] arrayofparams =
 			{
