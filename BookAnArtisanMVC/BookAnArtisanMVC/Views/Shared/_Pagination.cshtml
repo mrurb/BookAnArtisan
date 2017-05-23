@@ -1,0 +1,50 @@
+﻿@model BookAnArtisanMVC.Models.IndexViewModel
+@if (Model.Pager.EndPage > 1)
+{
+    <ul class="pagination">
+        @if (Model.Pager.CurrentPage > 1)
+        {
+            <li>
+                @Html.ActionLink("First", "Index")
+            </li>
+            <li>
+                @Html.ActionLink("Previuos", "Index", new { page = @Model.Pager.CurrentPage - 1 })
+            </li>
+        }
+        else
+        {
+            <li class="disabled">
+                <a href="#">First</a>
+            </li>
+            <li class="disabled">
+                <a href="#">Previous</a>
+            </li>
+        }
+
+        @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+        {
+            <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                @Html.ActionLink(@page.ToString(), "Index", new { page = @page })
+            </li>
+        }
+
+        @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+        {
+            <li>
+                @Html.ActionLink("Next", "Index", new { page = @Model.Pager.CurrentPage + 1 })
+            </li>
+            <li>
+                @Html.ActionLink("Last", "Index", new { page = @Model.Pager.TotalPages })
+            </li>
+        }
+        else
+        {
+            <li class="disabled">
+                <a href="#">Next</a>
+            </li>
+            <li class="disabled">
+                <a href="#">Last</a>
+            </li>
+        }
+    </ul>
+}

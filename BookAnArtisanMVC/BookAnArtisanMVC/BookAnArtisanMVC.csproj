@@ -456,6 +456,7 @@
     <Content Include="Views\Materials\MyMaterials.cshtml" />
     <Content Include="Views\Projects\MyProjects.cshtml" />
     <Content Include="Views\Shared\CustError.cshtml" />
+    <Content Include="Views\Shared\_Pagination.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
