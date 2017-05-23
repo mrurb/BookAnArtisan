@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using BookAnArtisanMVC.ServiceReference;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
@@ -12,6 +13,8 @@ namespace BookAnArtisanMVC.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+	    public object Items { get; set; }
+	    public PageOfBookingYgFqSxnr Pager { get; set; }
     }
 
     public class ManageLoginsViewModel

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<BookAnArtisanMVC.ServiceReference.Booking>
+﻿@using Microsoft.Ajax.Utilities
+@model BookAnArtisanMVC.Models.IndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -12,24 +13,24 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Item.Name)
+            @Html.DisplayNameFor(model => model.Pager.PageList[0].Item.Name)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.StartTime)
+            @Html.DisplayNameFor(model => model.Pager.PageList[0].StartTime)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.EndTime)
+            @Html.DisplayNameFor(model => model.Pager.PageList[0].EndTime)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.User.UserName)
+            @Html.DisplayNameFor(model => model.Pager.PageList[0].User.UserName)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Pager.PageList) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Item.Name)

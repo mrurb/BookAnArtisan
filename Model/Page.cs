@@ -25,9 +25,10 @@ namespace Model
 		public int StartPage { get; private set; }
 		[DataMember]
 		public int EndPage { get; private set; }
-		public Page(int totalItems, IList<T> pageList, int? page, int? pageSize = 10)
+		public Page(int totalItems, IList<T> pageList, int? page = 1, int? pageSize = 10)
 		{
 			// calculate total, start and end pages
+			PageList = pageList;
 			PageSize = pageSize ?? 10;
 			var totalPages = (int)Math.Ceiling((decimal)totalItems / (decimal)pageSize);
 			var currentPage = page ?? 1;

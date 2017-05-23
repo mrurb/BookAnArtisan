@@ -301,6 +301,9 @@
     <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.PageOfBookingYgFqSxnr.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\ServiceReference\BookingService.wsdl" />
     <None Include="Service References\ServiceReference\configuration91.svcinfo" />
     <None Include="Service References\ServiceReference\configuration.svcinfo" />

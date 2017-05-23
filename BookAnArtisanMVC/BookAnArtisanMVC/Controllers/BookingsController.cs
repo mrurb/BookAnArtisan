@@ -5,6 +5,7 @@ using System.ServiceModel;
 using System.Web;
 using System.Web.Mvc;
 using BookAnArtisanMVC.BLL;
+using BookAnArtisanMVC.Models;
 using BookAnArtisanMVC.ServiceReference;
 
 namespace BookAnArtisanMVC.Controllers
@@ -13,13 +14,17 @@ namespace BookAnArtisanMVC.Controllers
 	{
 		private BookingServiceClient ms = new BookingServiceClient();
 		// GET: Booking
+		[HttpGet]
 		public ActionResult Index(int? page)
 		{
 			try
 			{
-				var data = ms.ReadAllBooking();
-				//var pager = new Pager(, page);
-				return View(data);
+				var data = ms.ReadPageBooking(page, 10);
+				var viewModel = new IndexViewModel
+				{
+					Pager = data
+				};
+				return View(viewModel);
 			}
 			catch (FaultException e)
 			{

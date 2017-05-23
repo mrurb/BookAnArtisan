@@ -958,6 +958,147 @@ namespace BookAnArtisanMVC.ServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PageOfBookingYgFqSxnr", Namespace="http://schemas.datacontract.org/2004/07/Model")]
+    [System.SerializableAttribute()]
+    public partial class PageOfBookingYgFqSxnr : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CurrentPageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EndPageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Booking> PageListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PageSizeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StartPageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TotalItemsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TotalPagesField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CurrentPage {
+            get {
+                return this.CurrentPageField;
+            }
+            set {
+                if ((this.CurrentPageField.Equals(value) != true)) {
+                    this.CurrentPageField = value;
+                    this.RaisePropertyChanged("CurrentPage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EndPage {
+            get {
+                return this.EndPageField;
+            }
+            set {
+                if ((this.EndPageField.Equals(value) != true)) {
+                    this.EndPageField = value;
+                    this.RaisePropertyChanged("EndPage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Booking> PageList {
+            get {
+                return this.PageListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PageListField, value) != true)) {
+                    this.PageListField = value;
+                    this.RaisePropertyChanged("PageList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PageSize {
+            get {
+                return this.PageSizeField;
+            }
+            set {
+                if ((this.PageSizeField.Equals(value) != true)) {
+                    this.PageSizeField = value;
+                    this.RaisePropertyChanged("PageSize");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StartPage {
+            get {
+                return this.StartPageField;
+            }
+            set {
+                if ((this.StartPageField.Equals(value) != true)) {
+                    this.StartPageField = value;
+                    this.RaisePropertyChanged("StartPage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TotalItems {
+            get {
+                return this.TotalItemsField;
+            }
+            set {
+                if ((this.TotalItemsField.Equals(value) != true)) {
+                    this.TotalItemsField = value;
+                    this.RaisePropertyChanged("TotalItems");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TotalPages {
+            get {
+                return this.TotalPagesField;
+            }
+            set {
+                if ((this.TotalPagesField.Equals(value) != true)) {
+                    this.TotalPagesField = value;
+                    this.RaisePropertyChanged("TotalPages");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IMaterialService")]
     public interface IMaterialService {
@@ -1396,6 +1537,12 @@ namespace BookAnArtisanMVC.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadAllBooking", ReplyAction="http://tempuri.org/IBookingService/ReadAllBookingResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Booking>> ReadAllBookingAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadPageBooking", ReplyAction="http://tempuri.org/IBookingService/ReadPageBookingResponse")]
+        BookAnArtisanMVC.ServiceReference.PageOfBookingYgFqSxnr ReadPageBooking(System.Nullable<int> page, System.Nullable<int> pageSize);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadPageBooking", ReplyAction="http://tempuri.org/IBookingService/ReadPageBookingResponse")]
+        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfBookingYgFqSxnr> ReadPageBookingAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1463,6 +1610,14 @@ namespace BookAnArtisanMVC.ServiceReference {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Booking>> ReadAllBookingAsync() {
             return base.Channel.ReadAllBookingAsync();
+        }
+        
+        public BookAnArtisanMVC.ServiceReference.PageOfBookingYgFqSxnr ReadPageBooking(System.Nullable<int> page, System.Nullable<int> pageSize) {
+            return base.Channel.ReadPageBooking(page, pageSize);
+        }
+        
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.PageOfBookingYgFqSxnr> ReadPageBookingAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
+            return base.Channel.ReadPageBookingAsync(page, pageSize);
         }
     }
     
