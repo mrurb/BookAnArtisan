@@ -24,7 +24,7 @@
     <MetadataSource Address="http://localhost:8733/WCF/MaterialService/" Protocol="http" SourceId="1" />
     <MetadataSource Address="http://localhost:8733/WCF/MeetingService/" Protocol="http" SourceId="2" />
     <MetadataSource Address="http://localhost:8733/WCF/ProjectService/" Protocol="http" SourceId="3" />
-    <MetadataSource Address="http://localhost:8733/WCF/RentingService/" Protocol="http" SourceId="4" />
+    <MetadataSource Address="http://localhost:8733/WCF/BookingService/" Protocol="http" SourceId="4" />
     <MetadataSource Address="http://localhost:8733/WCF/UserService/" Protocol="http" SourceId="5" />
     <MetadataSource Address="http://localhost:8733/WCF/ProjectSearch/" Protocol="http" SourceId="6" />
   </MetadataSources>
@@ -47,12 +47,12 @@
     <MetadataFile FileName="item8.xsd" MetadataType="Schema" ID="66701028-e9e4-4c5a-b82b-7f30cf52ac55" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd0" />
     <MetadataFile FileName="ProjectService.wsdl" MetadataType="Wsdl" ID="ce0f2555-a876-4b96-a2e0-be0c6f106d0c" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?wsdl" />
     <MetadataFile FileName="item6.xsd" MetadataType="Schema" ID="d9c968d7-f181-4032-866a-c325d7125710" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd2" />
-    <MetadataFile FileName="item3.disco" MetadataType="Disco" ID="530558ab-b1be-4b86-8b03-6b8a417c83a2" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?disco" />
-    <MetadataFile FileName="item10.xsd" MetadataType="Schema" ID="35ce0017-e218-406d-b14b-432843c36ab9" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd1" />
-    <MetadataFile FileName="item9.xsd" MetadataType="Schema" ID="c489473b-aa8d-450f-9fad-64996c45ef31" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd0" />
-    <MetadataFile FileName="item17.xsd" MetadataType="Schema" ID="510525d7-1380-43f7-945e-568c0d6a62d5" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd3" />
-    <MetadataFile FileName="item11.xsd" MetadataType="Schema" ID="b0e1662f-bd2a-4177-a76c-d4ec43a89aea" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd2" />
-    <MetadataFile FileName="RentingService.wsdl" MetadataType="Wsdl" ID="1eeb2c6e-1bd9-4279-a1d4-ff49f2763e11" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?wsdl" />
+    <MetadataFile FileName="item6.disco" MetadataType="Disco" ID="72e4de20-fa4b-48ae-9b24-e6333e39274d" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?disco" />
+    <MetadataFile FileName="item19.xsd" MetadataType="Schema" ID="d39dcc7d-a328-49e0-9827-5e12765289b2" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?xsd=xsd2" />
+    <MetadataFile FileName="item191.xsd" MetadataType="Schema" ID="b3adfecf-e930-459c-8e29-48bee7f5f664" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?xsd=xsd3" />
+    <MetadataFile FileName="item192.xsd" MetadataType="Schema" ID="9f725520-30d1-4d04-ab41-d54f47af3d0c" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?xsd=xsd0" />
+    <MetadataFile FileName="item193.xsd" MetadataType="Schema" ID="a8dda2f0-5451-4297-8c4b-c2806192f22f" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?xsd=xsd1" />
+    <MetadataFile FileName="BookingService.wsdl" MetadataType="Wsdl" ID="48fd75d2-09be-40ba-8500-d5db00c51d0b" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?wsdl" />
     <MetadataFile FileName="item14.xsd" MetadataType="Schema" ID="f9614db1-152c-4dc9-8880-e700179fa581" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd1" />
     <MetadataFile FileName="UserService.wsdl" MetadataType="Wsdl" ID="4585457f-828b-4619-87eb-2515b3d152ee" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?wsdl" />
     <MetadataFile FileName="item13.xsd" MetadataType="Schema" ID="85cbfd90-b2d5-423e-bd03-5d320fb228ac" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd2" />

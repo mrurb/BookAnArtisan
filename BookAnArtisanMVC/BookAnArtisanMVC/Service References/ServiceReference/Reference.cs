@@ -1359,69 +1359,69 @@ namespace BookAnArtisanMVC.ServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IRentingService")]
-    public interface IRentingService {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IBookingService")]
+    public interface IBookingService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/CreateBooking", ReplyAction="http://tempuri.org/IRentingService/CreateBookingResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IRentingService/CreateBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/CreateBooking", ReplyAction="http://tempuri.org/IBookingService/CreateBookingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IBookingService/CreateBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Booking CreateBooking(BookAnArtisanMVC.ServiceReference.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/CreateBooking", ReplyAction="http://tempuri.org/IRentingService/CreateBookingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/CreateBooking", ReplyAction="http://tempuri.org/IBookingService/CreateBookingResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Booking> CreateBookingAsync(BookAnArtisanMVC.ServiceReference.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/ReadBooking", ReplyAction="http://tempuri.org/IRentingService/ReadBookingResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IRentingService/ReadBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadBooking", ReplyAction="http://tempuri.org/IBookingService/ReadBookingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IBookingService/ReadBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Booking ReadBooking(BookAnArtisanMVC.ServiceReference.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/ReadBooking", ReplyAction="http://tempuri.org/IRentingService/ReadBookingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadBooking", ReplyAction="http://tempuri.org/IBookingService/ReadBookingResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Booking> ReadBookingAsync(BookAnArtisanMVC.ServiceReference.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/UpdateBooking", ReplyAction="http://tempuri.org/IRentingService/UpdateBookingResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IRentingService/UpdateBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/UpdateBooking", ReplyAction="http://tempuri.org/IBookingService/UpdateBookingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IBookingService/UpdateBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Booking UpdateBooking(BookAnArtisanMVC.ServiceReference.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/UpdateBooking", ReplyAction="http://tempuri.org/IRentingService/UpdateBookingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/UpdateBooking", ReplyAction="http://tempuri.org/IBookingService/UpdateBookingResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Booking> UpdateBookingAsync(BookAnArtisanMVC.ServiceReference.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/DeleteBooking", ReplyAction="http://tempuri.org/IRentingService/DeleteBookingResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IRentingService/DeleteBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/DeleteBooking", ReplyAction="http://tempuri.org/IBookingService/DeleteBookingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IBookingService/DeleteBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         BookAnArtisanMVC.ServiceReference.Booking DeleteBooking(BookAnArtisanMVC.ServiceReference.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/DeleteBooking", ReplyAction="http://tempuri.org/IRentingService/DeleteBookingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/DeleteBooking", ReplyAction="http://tempuri.org/IBookingService/DeleteBookingResponse")]
         System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.Booking> DeleteBookingAsync(BookAnArtisanMVC.ServiceReference.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/ReadAllBooking", ReplyAction="http://tempuri.org/IRentingService/ReadAllBookingResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IRentingService/ReadAllBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadAllBooking", ReplyAction="http://tempuri.org/IBookingService/ReadAllBookingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IBookingService/ReadAllBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Booking> ReadAllBooking();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/ReadAllBooking", ReplyAction="http://tempuri.org/IRentingService/ReadAllBookingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadAllBooking", ReplyAction="http://tempuri.org/IBookingService/ReadAllBookingResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<BookAnArtisanMVC.ServiceReference.Booking>> ReadAllBookingAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IRentingServiceChannel : BookAnArtisanMVC.ServiceReference.IRentingService, System.ServiceModel.IClientChannel {
+    public interface IBookingServiceChannel : BookAnArtisanMVC.ServiceReference.IBookingService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class RentingServiceClient : System.ServiceModel.ClientBase<BookAnArtisanMVC.ServiceReference.IRentingService>, BookAnArtisanMVC.ServiceReference.IRentingService {
+    public partial class BookingServiceClient : System.ServiceModel.ClientBase<BookAnArtisanMVC.ServiceReference.IBookingService>, BookAnArtisanMVC.ServiceReference.IBookingService {
         
-        public RentingServiceClient() {
+        public BookingServiceClient() {
         }
         
-        public RentingServiceClient(string endpointConfigurationName) : 
+        public BookingServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public RentingServiceClient(string endpointConfigurationName, string remoteAddress) : 
+        public BookingServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public RentingServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public BookingServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public RentingServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public BookingServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         

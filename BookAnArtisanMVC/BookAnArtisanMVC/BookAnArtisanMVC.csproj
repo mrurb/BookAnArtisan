@@ -176,6 +176,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="BLL\Pager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -300,18 +301,13 @@
     <Content Include="Service References\ServiceReference\BookAnArtisanMVC.ServiceReference.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\ServiceReference\BookingService.wsdl" />
     <None Include="Service References\ServiceReference\configuration91.svcinfo" />
     <None Include="Service References\ServiceReference\configuration.svcinfo" />
     <None Include="Service References\ServiceReference\item.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference\item1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference\item10.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference\item11.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference\item12.xsd">
@@ -335,9 +331,6 @@
     <None Include="Service References\ServiceReference\item16.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference\item17.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\ServiceReference\item18.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -345,6 +338,18 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference\item182.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item19.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item191.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item192.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item193.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference\item2.xsd">
@@ -368,9 +373,6 @@
     <None Include="Service References\ServiceReference\item8.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference\item9.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\ServiceReference\MaterialService.wsdl" />
     <None Include="Service References\ServiceReference\MeetingService.wsdl" />
     <None Include="Service References\ServiceReference\ProjectSearch.wsdl" />
@@ -382,9 +384,9 @@
     <None Include="Service References\ServiceReference\item.disco" />
     <None Include="Service References\ServiceReference\item1.disco" />
     <None Include="Service References\ServiceReference\item2.disco" />
-    <None Include="Service References\ServiceReference\item3.disco" />
     <None Include="Service References\ServiceReference\item4.disco" />
     <None Include="Service References\ServiceReference\item5.disco" />
+    <None Include="Service References\ServiceReference\item6.disco" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -445,7 +447,6 @@
     <Content Include="Views\Bookings\Delete.cshtml" />
     <Content Include="Views\Bookings\Details.cshtml" />
     <Content Include="Views\Bookings\Index.cshtml" />
-    <None Include="Service References\ServiceReference\RentingService.wsdl" />
     <None Include="Service References\ServiceReference\UserService.wsdl" />
     <Content Include="Views\Projects\ProjectSearch.cshtml" />
     <Content Include="Views\Bookings\MyBooking.cshtml" />

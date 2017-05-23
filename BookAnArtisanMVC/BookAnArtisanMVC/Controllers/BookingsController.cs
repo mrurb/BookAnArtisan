@@ -4,19 +4,21 @@ using System.Linq;
 using System.ServiceModel;
 using System.Web;
 using System.Web.Mvc;
+using BookAnArtisanMVC.BLL;
 using BookAnArtisanMVC.ServiceReference;
 
 namespace BookAnArtisanMVC.Controllers
 {
 	public class BookingsController : Controller
 	{
-		private RentingServiceClient ms = new RentingServiceClient();
+		private BookingServiceClient ms = new BookingServiceClient();
 		// GET: Booking
-		public ActionResult Index()
+		public ActionResult Index(int? page)
 		{
 			try
 			{
 				var data = ms.ReadAllBooking();
+				var pager = new Pager(, page);
 				return View(data);
 			}
 			catch (FaultException e)
@@ -30,6 +32,7 @@ namespace BookAnArtisanMVC.Controllers
 				return View();
 			}
 		}
+
 
 		// GET: Booking/Details/5
 		public ActionResult Details(Booking mat)
