@@ -9,7 +9,7 @@ using Model;
 namespace DAL
 {
 	/*
-	 * Note that no exception handling has been made for these functions 
+	 * Note that no exception handling has been made for these functions, 
 	 * this is mainly due to the fact that this class remains mostly unused.
 	 */
 	public class UserDb : IDataAccess<User>
