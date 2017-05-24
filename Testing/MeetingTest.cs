@@ -134,7 +134,7 @@ namespace Testing
                 Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3"
             };
             ms.AddUserToMeeting(m, u);
-            MeetingDB mdb = new MeetingDB();
+            MeetingDb mdb = new MeetingDb();
             Meeting m2 = mdb.ReadDetails(m);
             foreach (User u1 in m2.AppendedUsers)
             {
