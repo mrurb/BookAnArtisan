@@ -13,7 +13,7 @@ namespace Testing.TestingDAL
     public class TestRole
     {
         static private Role testRole;
-        static private RoleDB db;
+        static private RoleDb db;
 
         public TestRole()
         {
@@ -53,7 +53,7 @@ namespace Testing.TestingDAL
             try
             {
                 testRole = new Role { Id = "1234", Name = "Admin" };
-                db = new RoleDB();
+                db = new RoleDb();
             }
             catch
             {

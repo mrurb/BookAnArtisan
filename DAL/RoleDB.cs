@@ -1,155 +1,142 @@
-﻿using Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
+using Model;
 
 namespace DAL
 {
-    public class RoleDB : IDataAccess<Role>
-    {
-        private string connectionString;
+	public class RoleDb : IDataAccess<Role>
+	{
+		private readonly string connectionString;
 
-        public RoleDB()
-        {
-            connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
-        }
+		public RoleDb()
+		{
+			connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
+		}
 
-        public Role Create(Role role)
-        {
-            string sql = "INSERT INTO AspNetRoles VALUES(@Id, @Name)";
+		public Role Create(Role role)
+		{
+			const string sql = "INSERT INTO AspNetRoles VALUES(@Id, @Name)";
 
-            SqlParameter[] arrayOfParameters =
-            {
-                new SqlParameter { ParameterName = "@Id", SqlValue = role.Id, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Name", SqlValue = role.Name, SqlDbType = SqlDbType.NVarChar }
-            };
+			SqlParameter[] arrayOfParameters =
+			{
+				new SqlParameter {ParameterName = "@Id", SqlValue = role.Id, SqlDbType = SqlDbType.NVarChar},
+				new SqlParameter {ParameterName = "@Name", SqlValue = role.Name, SqlDbType = SqlDbType.NVarChar}
+			};
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand(sql, connection))
-                {
-                    command.Parameters.AddRange(arrayOfParameters);
-                    command.Connection.Open();
-                    role.Id = Convert.ToString(command.ExecuteScalar());
-                }
-            }
+			using (var connection = new SqlConnection(connectionString))
+			{
+				using (var command = new SqlCommand(sql, connection))
+				{
+					command.Parameters.AddRange(arrayOfParameters);
+					command.Connection.Open();
+					role.Id = Convert.ToString(command.ExecuteScalar());
+				}
+			}
 
-            return role;
-        }
+			return role;
+		}
 
-        public Role Read(Role role)
-        {
-            string sql = "SELECT Name FROM AspNetRoles WHERE Id = @Id";
+		public Role Read(Role role)
+		{
+			const string sql = "SELECT Name FROM AspNetRoles WHERE Id = @Id";
 
-            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = role.Id, SqlDbType = SqlDbType.NVarChar };
+			var idParameter = new SqlParameter {ParameterName = "@Id", SqlValue = role.Id, SqlDbType = SqlDbType.NVarChar};
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand(sql, connection))
-                {
-                    command.Parameters.Add(idParameter);
-                    command.Connection.Open();
+			using (var connection = new SqlConnection(connectionString))
+			{
+				using (var command = new SqlCommand(sql, connection))
+				{
+					command.Parameters.Add(idParameter);
+					command.Connection.Open();
 
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        int NameCol = reader.GetOrdinal("Name");
+					using (var reader = command.ExecuteReader())
+					{
+						int nameCol = reader.GetOrdinal("Name");
 
-                        if(reader.Read())
-                        {
-                            role.Name = reader.GetString(NameCol);
-                        }
-                    }
-                }
-            }
+						if (reader.Read())
+							role.Name = reader.GetString(nameCol);
+					}
+				}
+			}
 
-            return role;
-        }
+			return role;
+		}
 
-        public Role Update(Role role)
-        {
-            string sql = "UPDATE AspNetRoles SET Name = @Name WHERE Id = @Id";
+		public Role Update(Role role)
+		{
+			const string sql = "UPDATE AspNetRoles SET Name = @Name WHERE Id = @Id";
 
-            SqlParameter[] arrayOfParameters =
-            {
-                new SqlParameter { ParameterName = "@Id", SqlValue = role.Id, SqlDbType = SqlDbType.NVarChar },
-                new SqlParameter { ParameterName = "@Name" , SqlValue = role.Name, SqlDbType = SqlDbType.NVarChar}
-            };
-            SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand sqlcommand = new SqlCommand(sql, con);
-            con.Open();
-            SqlTransaction myTrans = con.BeginTransaction(IsolationLevel.RepeatableRead);
-            sqlcommand.Parameters.AddRange(arrayOfParameters);
-            sqlcommand.Connection.Open();
-            sqlcommand.Transaction = myTrans;
-            int affectedRows = sqlcommand.ExecuteNonQuery();
-                if (affectedRows < 1)
-                {
-                    throw new System.Exception("No rows affected");
-                }
-            myTrans.Commit();
-            return role;
-        }
-        public Role Delete(Role role)
-        {
-            string sql = "DELETE FROM AspNetRoles WHERE Id = @Id";
+			SqlParameter[] arrayOfParameters =
+			{
+				new SqlParameter {ParameterName = "@Id", SqlValue = role.Id, SqlDbType = SqlDbType.NVarChar},
+				new SqlParameter {ParameterName = "@Name", SqlValue = role.Name, SqlDbType = SqlDbType.NVarChar}
+			};
+			var con = new SqlConnection(connectionString);
+			var sqlcommand = new SqlCommand(sql, con);
+			con.Open();
+			var myTrans = con.BeginTransaction(IsolationLevel.RepeatableRead);
+			sqlcommand.Parameters.AddRange(arrayOfParameters);
+			sqlcommand.Connection.Open();
+			sqlcommand.Transaction = myTrans;
+			int affectedRows = sqlcommand.ExecuteNonQuery();
+			if (affectedRows < 1)
+				throw new Exception("No rows affected");
+			myTrans.Commit();
+			return role;
+		}
 
-            SqlParameter idParameter = new SqlParameter { ParameterName = "@Id", SqlValue = role.Id, SqlDbType = SqlDbType.NVarChar };
+		public Role Delete(Role role)
+		{
+			const string sql = "DELETE FROM AspNetRoles WHERE Id = @Id";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand(sql, connection))
-                {
-                    command.Parameters.Add(idParameter);
-                    command.Connection.Open();
-                    int affectedRows = command.ExecuteNonQuery();
-                    if (affectedRows < 1)
-                    {
-                        return role;
-                    }
-                }
-            }
+			var idParameter = new SqlParameter {ParameterName = "@Id", SqlValue = role.Id, SqlDbType = SqlDbType.NVarChar};
 
-            return role;
-        }
+			using (var connection = new SqlConnection(connectionString))
+			{
+				using (var command = new SqlCommand(sql, connection))
+				{
+					command.Parameters.Add(idParameter);
+					command.Connection.Open();
+					int affectedRows = command.ExecuteNonQuery();
+					if (affectedRows < 1)
+						return role;
+				}
+			}
 
-        public List<Role> ReadAll()
-        {
-            List<Role> roles = new List<Role>();
+			return role;
+		}
 
-            string sql = "SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; BEGIN TRANSACTION SELECT * FROM AspNetRoles; COMMIT";
+		public List<Role> ReadAll()
+		{
+			var roles = new List<Role>();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand(sql, connection))
-                {
-                    command.Connection.Open();
+			const string sql = "SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; BEGIN TRANSACTION SELECT * FROM AspNetRoles; COMMIT";
 
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if(reader.HasRows)
-                        {
-                            int IdCol = reader.GetOrdinal("Id");
-                            int NameCol = reader.GetOrdinal("Name");
+			using (var connection = new SqlConnection(connectionString))
+			{
+				using (var command = new SqlCommand(sql, connection))
+				{
+					command.Connection.Open();
 
-                            while (reader.Read())
-                            {
-                                roles.Add(new Role
-                                {
-                                    Id = reader.GetString(IdCol),
-                                    Name = reader.GetString(NameCol)
-                                });
-                            }
-                        }
-                    }
-                } 
-            }
-            return roles;
-        }
-    }
+					using (var reader = command.ExecuteReader())
+					{
+						if (!reader.HasRows) return roles;
+						int idCol = reader.GetOrdinal("Id");
+						int nameCol = reader.GetOrdinal("Name");
+
+						while (reader.Read())
+							roles.Add(new Role
+							{
+								Id = reader.GetString(idCol),
+								Name = reader.GetString(nameCol)
+							});
+					}
+				}
+			}
+			return roles;
+		}
+	}
 }

@@ -6,7 +6,7 @@ namespace BLL
 {
 	public class RoleController : IController<Role>
 	{
-		private readonly RoleDB roleDb = new RoleDB();
+		private readonly RoleDb roleDb = new RoleDb();
 		public Role Create(Role role)
 		{
 			return roleDb.Create(role);
