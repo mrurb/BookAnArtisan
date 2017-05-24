@@ -1,27 +1,25 @@
-﻿using Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
+using Model;
 
 namespace WCF
 {
-    [ServiceContract]
-    public interface ITagService
-    {
-        // Implementing CRUD as a starting point.
-        [OperationContract]
-        Tag CreateTag(Tag t);
-        [OperationContract]
-        Tag ReadTag(Tag t);
-        [OperationContract]
-        Tag UpdateTag(Tag t);
-        [OperationContract]
-        Tag DeleteTag(Tag t);
-        // Implementing ReadAll
-        [OperationContract]
-        List<Tag> ReadAllTag();
-    }
+	[ServiceContract]
+	public interface ITagService
+	{
+		[OperationContract]
+		Tag CreateTag(Tag t);
+
+		[OperationContract]
+		Tag ReadTag(Tag t);
+
+		[OperationContract]
+		Tag UpdateTag(Tag t);
+
+		[OperationContract]
+		Tag DeleteTag(Tag t);
+
+		[OperationContract]
+		List<Tag> ReadAllTag();
+	}
 }
