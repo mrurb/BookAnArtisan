@@ -22,7 +22,7 @@ namespace WCF
 			catch
 			{
 				var ex2 = new ApplicationException(@"Unknown Error");
-				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Unknown Error"));
 			}
 		}
 
@@ -39,7 +39,7 @@ namespace WCF
 			catch
 			{
 				var ex2 = new ApplicationException(@"Unknown Error");
-				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Unknown Error"));
 			}
 		}
 
@@ -57,7 +57,7 @@ namespace WCF
 			{
 				
 				var ex2 = new ApplicationException(@"Unknown Error");
-				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Unknown Error"));
 			}
 		}
 
@@ -75,7 +75,7 @@ namespace WCF
 			catch
 			{
 				var ex2 = new ApplicationException(@"Unknown Error");
-				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Unknown Error"));
 			}
 		}
 
@@ -86,7 +86,7 @@ namespace WCF
 
 		public Page<Booking> ReadPageBooking(int? page, int? pageSize)
 		{
-			return bookingController.ReadPage(page, pageSize); ;
+			return bookingController.ReadPage(page, pageSize);
 		} 
 
 		public Booking UpdateBooking(Booking t)
