@@ -129,7 +129,7 @@ namespace WCF
 
 		}
 
-		public Page<Material> ReadMaterialPage(string userId, int? page, int? pageSize)
+		public Page<Material> ReadMaterialPageForUser(string userId, int? page, int? pageSize)
 		{
 			return mc.ReadMaterialPage(userId, page, pageSize);
 		}
