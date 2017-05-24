@@ -8,30 +8,36 @@ using System.ServiceModel;
 
 namespace WCF
 {
-    [ServiceContract]
-    interface IMaterialService
-    {
-        // Implementing CRUD as a starting point.
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+	[ServiceContract]
+	interface IMaterialService
+	{
+		// Implementing CRUD as a starting point.
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		Material CreateMaterial(Material t);
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		Material ReadMaterial(Material t);
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		Material UpdateMaterial(Material t);
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		Material DeleteMaterial(Material t);
-        // Implementing ReadAll
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+		// Implementing ReadAll
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		List<Material> ReadAllMaterial();
-        [OperationContract]
-        IList<Material> Search(string name);
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+		[OperationContract]
+		IList<Material> Search(string name);
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		List<Material> ReadAllMaterialsForUser(User user);
-    }
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
+		Page<Material> ReadMaterialPage(int? page, int? pageSize);
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
+		Page<Material> ReadMaterialPageForUser(string userId, int? page, int? pageSize);
+	}
 }

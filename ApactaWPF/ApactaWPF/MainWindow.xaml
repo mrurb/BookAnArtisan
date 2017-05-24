@@ -3,49 +3,47 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ApactaWPF"
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="395.092" Width="749.744">
+        Title="MainWindow" Height="395.092" Width="749.744" ResizeMode="NoResize">
     <Grid>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="364" VerticalAlignment="Top" Width="742">
+        <TabControl x:Name="TabControl" HorizontalAlignment="Left" Height="364" VerticalAlignment="Top" Width="742">
             <TabItem Header="Show All">
                 <Grid Background="#FFE5E5E5">
-                    <Button x:Name="RefreshBtn" Content="Get Bookings" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Width="75" Click="Get_All_Bookings"/>
-                    <Label x:Name="label" Content="Details/edit:" HorizontalAlignment="Left" Margin="510,16,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.579,0.524"/>
-                    <Label x:Name="renterlbl" Content="Renter" HorizontalAlignment="Left" Margin="405,121,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="tolbl" Content="To" HorizontalAlignment="Left" Margin="405,210,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="ownerlbl" Content="Owner" HorizontalAlignment="Left" Margin="405,254,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="fromlbl" Content="From" HorizontalAlignment="Left" Margin="405,165,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="materiallbl" Content="Material" HorizontalAlignment="Left" Margin="405,75,0,0" VerticalAlignment="Top"/>
-                    <ListView x:Name="showAllView" HorizontalAlignment="Left" Height="277" Margin="10,47,0,0" VerticalAlignment="Top" Width="366" PreviewMouseLeftButtonUp="listView_Click" SelectionChanged="showAllView_SelectionChanged">
+                    <Button x:Name="RefreshBtn" Content="Refresh Bookings" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="96" Click="GetAllBookings"/>
+                    <Label x:Name="DetailsEditLabel" Content="Details/edit:" HorizontalAlignment="Left" Margin="484,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.579,0.524"/>
+                    <Label x:Name="Renterlabel" Content="Renter" HorizontalAlignment="Left" Margin="405,88,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="ToDateTimeLabel" Content="To" HorizontalAlignment="Left" Margin="405,185,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="OwnerLabel" Content="Owner" HorizontalAlignment="Left" Margin="405,228,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="FromDateTimeLabel" Content="From" HorizontalAlignment="Left" Margin="405,138,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="MaterialLabel" Content="Material" HorizontalAlignment="Left" Margin="405,44,0,0" VerticalAlignment="Top"/>
+                    <ListView x:Name="ShowAllView" HorizontalAlignment="Left" Height="277" Margin="10,35,0,0" VerticalAlignment="Top" Width="366" PreviewMouseLeftButtonUp="listView_Click">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Renter" DisplayMemberBinding="{Binding User.UserName}"/>
                                 <GridViewColumn Header="Material" DisplayMemberBinding="{Binding Item.Name}"/>
-                                <GridViewColumn Header="Deleted" DisplayMemberBinding="{Binding Deleted}" />
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <TextBox x:Name="materialtxt" HorizontalAlignment="Left" Height="23" Margin="484,78,0,0" TextWrapping="Wrap" Text="Choose Something.." VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-                    <TextBox x:Name="rentertxt" HorizontalAlignment="Left" Height="23" Margin="484,121,0,0" TextWrapping="Wrap" Text="Choose Something.." VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-                    <wpfTool:DateTimePicker Name="fromtxt" Margin="484,171,130,143" TimeFormat="FullDateTime" Kind="Local" />
-                    <wpfTool:DateTimePicker Name="totxt" Margin="484,216,130,98" TimeFormat="FullDateTime" Kind="Local" />
-                    <TextBox x:Name="ownertxt" HorizontalAlignment="Left" Height="23" Margin="484,254,0,0" TextWrapping="Wrap" Text="Choose Something.." VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-                    <Button x:Name="button" Content="Delete" HorizontalAlignment="Left" Margin="529,298,0,0" VerticalAlignment="Top" Width="75" Click="btn_delete"/>
-                    <Button x:Name="SUBMITBTN" Content="submit changes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="635,298,0,0" Click="SUBMITBTN_Click"/>
+                    <TextBox x:Name="MaterialTxt" HorizontalAlignment="Left" Height="23" Margin="463,47,0,0" TextWrapping="Wrap" Text="Choose Something.." VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+                    <TextBox x:Name="RenterTxt" HorizontalAlignment="Left" Height="23" Margin="463,92,0,0" TextWrapping="Wrap" Text="Choose Something.." VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+                    <wpfTool:DateTimePicker Name="FromDateTimeTxt" Margin="463,142,151,172" TimeFormat="FullDateTime" Kind="Local" />
+                    <wpfTool:DateTimePicker Name="ToDateTimeTxt" Margin="463,185,151,129" TimeFormat="FullDateTime" Kind="Local" />
+                    <TextBox x:Name="OwnerTxt" HorizontalAlignment="Left" Height="23" Margin="463,231,0,0" TextWrapping="Wrap" Text="Choose Something.." VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+                    <Button x:Name="DeleteBtn" Content="Delete" HorizontalAlignment="Left" Margin="405,288,0,0" VerticalAlignment="Top" Width="75" Click="Delete"/>
+                    <Button x:Name="SubmitBtn" Content="submit changes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="496,288,0,0" Click="Update"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Create New">
                 <Grid Background="#FFE5E5E5">
-                    <Button x:Name="button1" Content="create" HorizontalAlignment="Left" Margin="338,242,0,0" VerticalAlignment="Top" Width="75" Click="Create"/>
-                    <Label x:Name="renterlbl_Copy" Content="Renter" HorizontalAlignment="Left" Margin="256,72,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="tolbl_Copy" Content="To" HorizontalAlignment="Left" Margin="256,161,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="fromlbl_Copy" Content="From" HorizontalAlignment="Left" Margin="256,116,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="materiallbl_Copy" Content="Material" HorizontalAlignment="Left" Margin="256,26,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="materialtxt_create" HorizontalAlignment="Left" Height="23" Margin="335,29,0,0" TextWrapping="Wrap" Text="Choose Something.." VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-                    <TextBox x:Name="rentertxt_create" HorizontalAlignment="Left" Height="23" Margin="335,72,0,0" TextWrapping="Wrap" Text="Choose Something.." VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-                    <ListView x:Name="listView_Users" HorizontalAlignment="Left" Height="283" Margin="10,26,0,0" VerticalAlignment="Top" Width="230" PreviewMouseLeftButtonUp="listViewUsers_Click">
+                    <Button x:Name="CreateBtn" Content="Create" HorizontalAlignment="Left" Margin="306,182,0,0" VerticalAlignment="Top" Width="75" Click="Create"/>
+                    <Label x:Name="CreateRenterLbl" Content="Renter" HorizontalAlignment="Left" Margin="245,69,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="ToDateTimeLbl" Content="To" HorizontalAlignment="Left" Margin="247,134,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="FromDateTimeLbl" Content="From" HorizontalAlignment="Left" Margin="247,103,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="MatLbl" Content="Material" HorizontalAlignment="Left" Margin="245,35,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="CreateMaterialTxt" HorizontalAlignment="Left" Height="23" Margin="303,39,0,0" TextWrapping="Wrap" Text="Choose Something.." VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+                    <TextBox x:Name="CreateRenterTxt" HorizontalAlignment="Left" Height="23" Margin="303,72,0,0" TextWrapping="Wrap" Text="Choose Something.." VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+                    <ListView x:Name="ListViewUsers" HorizontalAlignment="Left" Height="233" Margin="10,35,0,0" VerticalAlignment="Top" Width="230" PreviewMouseLeftButtonUp="listViewUsers_Click">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"/>
@@ -55,7 +53,7 @@
                         </ListView.View>
                     </ListView>
 
-                    <ListView x:Name="listView_Materials" HorizontalAlignment="Left" Height="283" Margin="465,26,0,0" VerticalAlignment="Top" Width="259" PreviewMouseLeftButtonUp="listViewMaterial_Click">
+                    <ListView x:Name="ListViewMaterials" HorizontalAlignment="Left" Height="233" Margin="467,35,0,0" VerticalAlignment="Top" Width="259" PreviewMouseLeftButtonUp="listViewMaterial_Click">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
@@ -63,10 +61,12 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <wpfTool:DateTimePicker Name="todatetime" Margin="338,167,279,147" TimeFormat="FullDateTime" Kind="Local" />
-                    <Button x:Name="GetAllUsers" Content="Refresh Users" HorizontalAlignment="Left" Margin="79,6,0,0" VerticalAlignment="Top" Width="85" Click="GetAllUsers_Click"/>
-                    <Button x:Name="GetAllMaterials" Content="Refresh Materials" HorizontalAlignment="Left" Margin="553,6,0,0" VerticalAlignment="Top" Width="101" Click="GetAllMaterials_Click"/>
-                    <wpfTool:DateTimePicker x:Name="fromdatetime" Margin="338,122,279,192" TimeFormat="FullDateTime" Kind="Local" />
+                    <wpfTool:DateTimePicker Name="ToDateTime" Margin="306,138,311,176" TimeFormat="FullDateTime" Kind="Local" />
+                    <Button x:Name="RefreshUsersBtn" Content="Refresh Users" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="85" Click="GetAllUsers"/>
+                    <Button x:Name="RefreshMaterialsBtn" Content="Refresh Materials" HorizontalAlignment="Left" Margin="625,10,0,0" VerticalAlignment="Top" Width="101" Click="GetAllMaterials"/>
+                    <wpfTool:DateTimePicker x:Name="FromDateTime" Margin="306,107,311,207" TimeFormat="FullDateTime" Kind="Local" />
+                    <Label x:Name="HiddenIdMatLbl" Content="Label" HorizontalAlignment="Left" Margin="297,202,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                    <Label x:Name="HiddenIdRenLbl" Content="Label" HorizontalAlignment="Left" Margin="400,202,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
                 </Grid>
             </TabItem>
         </TabControl>

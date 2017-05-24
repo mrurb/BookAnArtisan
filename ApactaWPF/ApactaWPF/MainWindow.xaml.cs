@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
 using ApactaWPF.ServiceReferences;
@@ -6,137 +8,191 @@ using ApactaWPF.ServiceReferences;
 namespace ApactaWPF
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	///     Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class MainWindow
 	{
-		private Booking bla1 = null;
-		private Booking blacreate = null;
-		private Material blacreate2 = null;
-		private User blacreate3 = null;
-		private readonly RentingServiceClient rCl = new RentingServiceClient();
-		private readonly UserServiceClient sCl = new UserServiceClient();
-		private readonly MaterialServiceClient mCl = new MaterialServiceClient();
+		private readonly BookingServiceClient bookingServiceClient = new BookingServiceClient();
+		private readonly MaterialServiceClient materialServiceClient = new MaterialServiceClient();
+		private readonly UserServiceClient userServiceClient = new UserServiceClient();
+		private Booking booking1;
+		private Booking booking2;
+		private Material material1;
+		private User user1;
+
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			var bookingsList = bookingServiceClient.ReadAllBooking();
+			foreach (var booking in bookingsList)
+				ShowAllView.Items.Add(booking);
+
+			var usersList = userServiceClient.ReadAllUser();
+			foreach (var user in usersList)
+				ListViewUsers.Items.Add(user);
+
+			var materialsList = materialServiceClient.ReadAllMaterial();
+			foreach (var material in materialsList)
+				ListViewMaterials.Items.Add(material);
 		}
 
-		private void Get_All_Bookings(object sender, RoutedEventArgs e)
+		private void GetAllBookings(object sender, RoutedEventArgs e)
 		{
-			showAllView.Items.Clear();
-			var mylist = rCl.ReadAllBooking();
-			foreach (var stuff in mylist)
+			try
 			{
-				showAllView.Items.Add(stuff);
+				ShowAllView.Items.Clear();
+				var mylist = bookingServiceClient.ReadAllBooking();
+				foreach (var stuff in mylist)
+					ShowAllView.Items.Add(stuff);
+			}
+			catch (FaultException)
+			{
+				MessageBox.Show("A service error occured.", "Service Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("An error occured.", "Unknown error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 
 		private void listView_Click(object sender, RoutedEventArgs e)
 		{
-			var item = (sender as ListView).SelectedItem;
-			if (item != null)
+			var item = (sender as ListView)?.SelectedItem;
+			if (item == null) return;
+			booking1 = (Booking)item;
+			var bla = (Booking)item;
+			bla = bookingServiceClient.ReadBooking(bla);
+			MaterialTxt.Text = bla.Item.Name;
+			RenterTxt.Text = bla.User.UserName;
+			ToDateTimeTxt.Text = bla.EndTime.ToString(CultureInfo.CurrentCulture);
+			FromDateTimeTxt.Text = bla.StartTime.ToString(CultureInfo.CurrentCulture);
+			OwnerTxt.Text = bla.Item.Owner.UserName;
+		}
+
+		private void Delete(object sender, RoutedEventArgs e)
+		{
+			try
 			{
-				bla1 = (Booking)item;
-				Booking bla = (Booking)item;
-				bla = rCl.ReadBooking(bla);
-				//add data to labels
-				materialtxt.Text = bla.Item.Name;
-				rentertxt.Text = bla.User.UserName;
-				totxt.Text = bla.EndTime.ToString();
-				fromtxt.Text = bla.StartTime.ToString();
-				ownertxt.Text = bla.Item.Owner.UserName;
+				if (booking1 != null)
+					bookingServiceClient.DeleteBooking(booking1);
+			}
+			catch (FaultException)
+			{
+				MessageBox.Show("A service error occured.", "Service Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("An error occured.", "Unknown error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 
-		private void showAllView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void Update(object sender, RoutedEventArgs e)
 		{
-			//listView_Click(sender, e);
-		}
-
-		private void btn_delete(object sender, RoutedEventArgs e)
-		{
-			if (bla1 != null)
+			if (booking1 == null || FromDateTimeTxt.Value == null || ToDateTimeTxt.Value == null) return;
+			try
 			{
-				rCl.DeleteBooking(bla1);
-			}
-		}
-
-		private void SUBMITBTN_Click(object sender, RoutedEventArgs e)
-		{
-			if (bla1 != null && (fromtxt.Value != null && totxt.Value != null))
-			{
-				Booking bla2 = new Booking()
+				var bla2 = new Booking
 				{
-					Id = bla1.Id,
-					StartTime = (DateTime)fromtxt.Value,
-					EndTime = (DateTime)totxt.Value,
-					Updated = bla1.Updated,
-					//User = sCl.ReadUser(new User() { Id = bla1.User.Id})
-					Item = bla1.Item,
-					User = bla1.User
+					Id = booking1.Id,
+					StartTime = (DateTime)FromDateTimeTxt.Value,
+					EndTime = (DateTime)ToDateTimeTxt.Value,
+					Updated = booking1.Updated,
+					Item = booking1.Item,
+					User = booking1.User
 				};
-				rCl.UpdateBooking(bla2);
+				bookingServiceClient.UpdateBooking(bla2);
+			}
+			catch (FaultException)
+			{
+				MessageBox.Show("A service error occured.", "Service Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("An error occured.", "Unknown error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 
 		private void Create(object sender, RoutedEventArgs e)
 		{
-			if (blacreate2 != null && blacreate3 !=null && (fromdatetime.Value != null && todatetime.Value != null))
+			try
 			{
-				blacreate = new Booking()
+				if (material1 == null || user1 == null || FromDateTime.Value == null || ToDateTime.Value == null) return;
+				booking2 = new Booking
 				{
-					Item = mCl.ReadMaterial(new Material() { Id = Convert.ToInt32(materialtxt_create.Text) }),
-					User = sCl.ReadUser(new User() { Id = rentertxt_create.Text}),
-					StartTime = (DateTime)fromdatetime.Value,
-					EndTime = (DateTime)todatetime.Value
+					Item = materialServiceClient.ReadMaterial(new Material { Id = Convert.ToInt32(HiddenIdMatLbl.Content) }),
+					User = userServiceClient.ReadUser(new User { Id = HiddenIdRenLbl.Content.ToString() }),
+					StartTime = Convert.ToDateTime(FromDateTime.Value),
+					EndTime = Convert.ToDateTime(ToDateTime.Value)
 				};
-				rCl.CreateBooking(blacreate);
+				bookingServiceClient.CreateBooking(booking2);
+			}
+			catch (FaultException)
+			{
+				MessageBox.Show("A service error occured.", "Service Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("An error occured.", "Unknown error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 
-		private void GetAllUsers_Click(object sender, RoutedEventArgs e)
+		private void GetAllUsers(object sender, RoutedEventArgs e)
 		{
-			listView_Users.Items.Clear();
-			var mylist = sCl.ReadAllUser();
-			foreach (var stuff in mylist)
+			try
 			{
-				listView_Users.Items.Add(stuff);
+				ListViewUsers.Items.Clear();
+				var mylist = userServiceClient.ReadAllUser();
+				foreach (var stuff in mylist)
+					ListViewUsers.Items.Add(stuff);
+			}
+			catch (FaultException)
+			{
+				MessageBox.Show("A service error occured.", "Service Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("An error occured.", "Unknown error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 
-		private void GetAllMaterials_Click(object sender, RoutedEventArgs e)
+		private void GetAllMaterials(object sender, RoutedEventArgs e)
 		{
-			listView_Materials.Items.Clear();
-			var mylist = mCl.ReadAllMaterial();
-			foreach (var stuff in mylist)
+			try
 			{
-				listView_Materials.Items.Add(stuff);
+				ListViewMaterials.Items.Clear();
+				var mylist = materialServiceClient.ReadAllMaterial();
+				foreach (var stuff in mylist)
+					ListViewMaterials.Items.Add(stuff);
+			}
+			catch (FaultException)
+			{
+				MessageBox.Show("A service error occured.", "Service Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("An error occured.", "Unknown error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 
 		private void listViewUsers_Click(object sender, RoutedEventArgs e)
 		{
-			var item = (sender as ListView).SelectedItem;
-			if (item != null)
-			{
-				blacreate3 = (User)item;
-				blacreate3 = sCl.ReadUser(blacreate3);
-				//add data to labels
-				rentertxt_create.Text = blacreate3.Id;
-			}
+			var item = (sender as ListView)?.SelectedItem;
+			if (item == null) return;
+			user1 = (User)item;
+			user1 = userServiceClient.ReadUser(user1);
+			CreateRenterTxt.Text = user1.Email;
+			HiddenIdRenLbl.Content = user1.Id;
 		}
 
 		private void listViewMaterial_Click(object sender, RoutedEventArgs e)
 		{
-			var item = (sender as ListView).SelectedItem;
-			if (item != null)
-			{
-				blacreate2 = (Material)item;
-				blacreate2 = mCl.ReadMaterial(blacreate2);
-				//add data to labels
-				materialtxt_create.Text = blacreate2.Id.ToString();
-			}
+			var item = (sender as ListView)?.SelectedItem;
+			if (item == null) return;
+			material1 = (Material)item;
+			material1 = materialServiceClient.ReadMaterial(material1);
+			CreateMaterialTxt.Text = material1.Name;
+			HiddenIdMatLbl.Content = material1.Id;
 		}
 	}
 }

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Web;
 using System.Web.Mvc;
+using BookAnArtisanMVC.Models;
 using BookAnArtisanMVC.ServiceReference;
 using Microsoft.AspNet.Identity;
 
@@ -11,26 +9,28 @@ namespace BookAnArtisanMVC.Controllers
 {
     public class MeetingsController : Controller
     {
-        private MeetingServiceClient mCl = new MeetingServiceClient();
+        private readonly MeetingServiceClient meetingServiceClient = new MeetingServiceClient();
 
         // GET: Project
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             try
             {
-                var data = mCl.ReadAllMeeting();
-                mCl.Close();
-                return View(data);
+	            var viewModel = new IndexViewModel<Meeting>
+	            {
+		            Pager = meetingServiceClient.ReadMeetingPage(page, null)
+	            };
+                return View(viewModel);
             }
             catch (FaultException e)
             {
-                mCl.Abort();
+                meetingServiceClient.Abort();
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }
             catch (Exception e)
             {
-                mCl.Abort();
+                meetingServiceClient.Abort();
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }
@@ -40,19 +40,19 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = mCl.ReadMeeting(meeting);
-                mCl.Close();
+                var data = meetingServiceClient.ReadMeeting(meeting);
+                meetingServiceClient.Close();
                 return View(data);
             }
             catch (FaultException e)
             {
-                mCl.Abort();
+                meetingServiceClient.Abort();
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }
             catch (Exception e)
             {
-                mCl.Abort();
+                meetingServiceClient.Abort();
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }
@@ -70,18 +70,18 @@ namespace BookAnArtisanMVC.Controllers
             try
             {
                 meeting.CreatedBy.Id = User.Identity.GetUserId();
-                mCl.CreateMeeting(meeting);
+                meetingServiceClient.CreateMeeting(meeting);
                 return RedirectToAction("MyMeetings");
             }
         catch (FaultException e)
             {
-                mCl.Abort();
+                meetingServiceClient.Abort();
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }
             catch (Exception e)
             {
-                mCl.Abort();
+                meetingServiceClient.Abort();
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }
@@ -92,19 +92,19 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = mCl.ReadMeeting(meeting);
-                mCl.Close();
+                var data = meetingServiceClient.ReadMeeting(meeting);
+                meetingServiceClient.Close();
                 return View(data);
             }
             catch (FaultException e)
             {
-                mCl.Abort();
+                meetingServiceClient.Abort();
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }
             catch (Exception e)
             {
-                mCl.Abort();
+                meetingServiceClient.Abort();
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }
@@ -116,18 +116,18 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                mCl.UpdateMeeting(meeting);
+                meetingServiceClient.UpdateMeeting(meeting);
                 return RedirectToAction("MyMeetings"); 
             }
             catch (FaultException e)
             {
-                mCl.Abort();
+                meetingServiceClient.Abort();
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }
             catch (Exception e)
             {
-                mCl.Abort();
+                meetingServiceClient.Abort();
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }
@@ -138,19 +138,19 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                var data = mCl.ReadMeeting(meeting);
-                mCl.Close();
+                var data = meetingServiceClient.ReadMeeting(meeting);
+                meetingServiceClient.Close();
                 return View(data);
             }
             catch (FaultException e)
             {
-                mCl.Abort();
+                meetingServiceClient.Abort();
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }
             catch (Exception e)
             {
-                mCl.Abort();
+                meetingServiceClient.Abort();
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }
@@ -162,40 +162,42 @@ namespace BookAnArtisanMVC.Controllers
         {
             try
             {
-                mCl.DeleteMeeting(meeting);
+                meetingServiceClient.DeleteMeeting(meeting);
                 return RedirectToAction("MyMeetings");
             }
             catch (FaultException e)
             {
-                mCl.Abort();
+                meetingServiceClient.Abort();
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }
             catch (Exception e)
             {
-                mCl.Abort();
+                meetingServiceClient.Abort();
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }
         }
 
-        public ActionResult MyMeetings(User user)
+        public ActionResult MyMeetings(int? page)
         {
             try
             {
-                user.Id = HttpContext.User.Identity.GetUserId();
-                var data = mCl.ReadAllForUser(user);
-                return View(data);
+	            var viewModel = new IndexViewModel<Meeting>
+	            {
+					Pager = meetingServiceClient.ReadMeetingPageForUser(HttpContext.User.Identity.GetUserId(),page,null)
+	            };
+                return View(viewModel);
             }
             catch (FaultException e)
             {
-                mCl.Abort();
+                meetingServiceClient.Abort();
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }
             catch (Exception e)
             {
-                mCl.Abort();
+                meetingServiceClient.Abort();
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }

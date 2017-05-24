@@ -3,6 +3,7 @@
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Model" />
     </xsd:schema>
@@ -13,11 +14,17 @@
   <wsdl:message name="IUserService_CreateUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateUserResponse" />
   </wsdl:message>
+  <wsdl:message name="IUserService_CreateUser_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/System" name="detail" element="q1:ApplicationException" />
+  </wsdl:message>
   <wsdl:message name="IUserService_ReadUser_InputMessage">
     <wsdl:part name="parameters" element="tns:ReadUser" />
   </wsdl:message>
   <wsdl:message name="IUserService_ReadUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReadUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_ReadUser_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/System" name="detail" element="q2:ApplicationException" />
   </wsdl:message>
   <wsdl:message name="IUserService_UpdateUser_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUser" />
@@ -25,17 +32,26 @@
   <wsdl:message name="IUserService_UpdateUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
   </wsdl:message>
+  <wsdl:message name="IUserService_UpdateUser_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/System" name="detail" element="q3:ApplicationException" />
+  </wsdl:message>
   <wsdl:message name="IUserService_DeleteUser_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteUser" />
   </wsdl:message>
   <wsdl:message name="IUserService_DeleteUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
   </wsdl:message>
+  <wsdl:message name="IUserService_DeleteUser_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/System" name="detail" element="q4:ApplicationException" />
+  </wsdl:message>
   <wsdl:message name="IUserService_ReadAllUser_InputMessage">
     <wsdl:part name="parameters" element="tns:ReadAllUser" />
   </wsdl:message>
   <wsdl:message name="IUserService_ReadAllUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReadAllUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_ReadAllUser_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/System" name="detail" element="q5:ApplicationException" />
   </wsdl:message>
   <wsdl:message name="IUserService_SearchByName_InputMessage">
     <wsdl:part name="parameters" element="tns:SearchByName" />
@@ -47,22 +63,27 @@
     <wsdl:operation name="CreateUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/CreateUser" message="tns:IUserService_CreateUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/CreateUserResponse" message="tns:IUserService_CreateUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUserService/CreateUserApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IUserService_CreateUser_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReadUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/ReadUser" message="tns:IUserService_ReadUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/ReadUserResponse" message="tns:IUserService_ReadUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUserService/ReadUserApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IUserService_ReadUser_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/UpdateUser" message="tns:IUserService_UpdateUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/UpdateUserResponse" message="tns:IUserService_UpdateUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUserService/UpdateUserApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IUserService_UpdateUser_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/DeleteUser" message="tns:IUserService_DeleteUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/DeleteUserResponse" message="tns:IUserService_DeleteUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUserService/DeleteUserApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IUserService_DeleteUser_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReadAllUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/ReadAllUser" message="tns:IUserService_ReadAllUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/ReadAllUserResponse" message="tns:IUserService_ReadAllUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUserService/ReadAllUserApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IUserService_ReadAllUser_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="SearchByName">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/SearchByName" message="tns:IUserService_SearchByName_InputMessage" />
@@ -79,6 +100,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ReadUser">
       <soap:operation soapAction="http://tempuri.org/IUserService/ReadUser" style="document" />
@@ -88,6 +112,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="UpdateUser">
       <soap:operation soapAction="http://tempuri.org/IUserService/UpdateUser" style="document" />
@@ -97,6 +124,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="DeleteUser">
       <soap:operation soapAction="http://tempuri.org/IUserService/DeleteUser" style="document" />
@@ -106,6 +136,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ReadAllUser">
       <soap:operation soapAction="http://tempuri.org/IUserService/ReadAllUser" style="document" />
@@ -115,6 +148,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="SearchByName">
       <soap:operation soapAction="http://tempuri.org/IUserService/SearchByName" style="document" />

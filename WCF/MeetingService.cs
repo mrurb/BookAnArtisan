@@ -1,141 +1,148 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
 using BLL;
 
 namespace WCF
 {
-    public class MeetingService : IMeetingService
-    {
-        MeetingController mc = new MeetingController();
-        public Meeting CreateMeeting(Meeting t)
-        {
-            try
-            {
-                return mc.Create(t);
-            }
-			catch (ApplicationException ex)
-            {
-	            throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
-            }
-            catch (Exception ex)
-            {
-	            //log(ex);
-	            var ex2 = new ApplicationException(@"Unknown Error");
-	            throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
-            }
-		}
-
-        public Meeting DeleteMeeting(Meeting t)
-        {
+	public class MeetingService : IMeetingService
+	{
+		private readonly MeetingController meetingController = new MeetingController();
+		public Meeting CreateMeeting(Meeting t)
+		{
 			try
 			{
-				return mc.Delete(t);
+				return meetingController.Create(t);
 			}
 			catch (ApplicationException ex)
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public Meeting ReadMeeting(Meeting t)
-        {
+		public Meeting DeleteMeeting(Meeting t)
+		{
 			try
 			{
-				return mc.Read(t);
+				return meetingController.Delete(t);
 			}
 			catch (ApplicationException ex)
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public List<Meeting> ReadAllMeeting()
-        {
+		public Meeting ReadMeeting(Meeting t)
+		{
 			try
 			{
-				return mc.ReadAll();
+				return meetingController.Read(t);
 			}
 			catch (ApplicationException ex)
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public Meeting UpdateMeeting(Meeting t)
-        {
+		public List<Meeting> ReadAllMeeting()
+		{
 			try
 			{
-				return mc.Update(t);
+				return meetingController.ReadAll();
 			}
 			catch (ApplicationException ex)
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public Meeting AddUserToMeeting(Meeting m, User u)
-        {
+		public Meeting UpdateMeeting(Meeting t)
+		{
 			try
 			{
-				return mc.AddUserToMeeting(m,u);
+				return meetingController.Update(t);
 			}
 			catch (ApplicationException ex)
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public List<Meeting> ReadAllForUser(User user)
-        {
+		public Meeting AddUserToMeeting(Meeting m, User u)
+		{
 			try
 			{
-				return mc.ReadAllForUser(user);
+				return meetingController.AddUserToMeeting(m,u);
 			}
 			catch (ApplicationException ex)
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+				
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
-    }
+
+		public List<Meeting> ReadAllForUser(User user)
+		{
+			try
+			{
+				return meetingController.ReadAllForUser(user);
+			}
+			catch (ApplicationException ex)
+			{
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception)
+			{
+				
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
+		}
+
+		public Page<Meeting> ReadMeetingPage(int? page, int? pageSize)
+		{
+			return meetingController.ReadMeetingPage(page, pageSize);
+		}
+
+		public Page<Meeting> ReadMeetingPageForUser(string userId, int? page, int? pageSize)
+		{
+			return meetingController.ReadMeetingPageForUser(userId, page, pageSize);
+		}
+	}
 }

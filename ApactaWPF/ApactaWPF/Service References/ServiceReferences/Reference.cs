@@ -441,6 +441,147 @@ namespace ApactaWPF.ServiceReferences {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PageOfMaterialYgFqSxnr", Namespace="http://schemas.datacontract.org/2004/07/Model")]
+    [System.SerializableAttribute()]
+    public partial class PageOfMaterialYgFqSxnr : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CurrentPageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EndPageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ApactaWPF.ServiceReferences.Material[] PageListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PageSizeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StartPageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TotalItemsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TotalPagesField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CurrentPage {
+            get {
+                return this.CurrentPageField;
+            }
+            set {
+                if ((this.CurrentPageField.Equals(value) != true)) {
+                    this.CurrentPageField = value;
+                    this.RaisePropertyChanged("CurrentPage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EndPage {
+            get {
+                return this.EndPageField;
+            }
+            set {
+                if ((this.EndPageField.Equals(value) != true)) {
+                    this.EndPageField = value;
+                    this.RaisePropertyChanged("EndPage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ApactaWPF.ServiceReferences.Material[] PageList {
+            get {
+                return this.PageListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PageListField, value) != true)) {
+                    this.PageListField = value;
+                    this.RaisePropertyChanged("PageList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PageSize {
+            get {
+                return this.PageSizeField;
+            }
+            set {
+                if ((this.PageSizeField.Equals(value) != true)) {
+                    this.PageSizeField = value;
+                    this.RaisePropertyChanged("PageSize");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StartPage {
+            get {
+                return this.StartPageField;
+            }
+            set {
+                if ((this.StartPageField.Equals(value) != true)) {
+                    this.StartPageField = value;
+                    this.RaisePropertyChanged("StartPage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TotalItems {
+            get {
+                return this.TotalItemsField;
+            }
+            set {
+                if ((this.TotalItemsField.Equals(value) != true)) {
+                    this.TotalItemsField = value;
+                    this.RaisePropertyChanged("TotalItems");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TotalPages {
+            get {
+                return this.TotalPagesField;
+            }
+            set {
+                if ((this.TotalPagesField.Equals(value) != true)) {
+                    this.TotalPagesField = value;
+                    this.RaisePropertyChanged("TotalPages");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Booking", Namespace="http://schemas.datacontract.org/2004/07/Model")]
     [System.SerializableAttribute()]
     public partial class Booking : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -601,30 +742,35 @@ namespace ApactaWPF.ServiceReferences {
     public interface IUserService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/CreateUser", ReplyAction="http://tempuri.org/IUserService/CreateUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IUserService/CreateUserApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         ApactaWPF.ServiceReferences.User CreateUser(ApactaWPF.ServiceReferences.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/CreateUser", ReplyAction="http://tempuri.org/IUserService/CreateUserResponse")]
         System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.User> CreateUserAsync(ApactaWPF.ServiceReferences.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ReadUser", ReplyAction="http://tempuri.org/IUserService/ReadUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IUserService/ReadUserApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         ApactaWPF.ServiceReferences.User ReadUser(ApactaWPF.ServiceReferences.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ReadUser", ReplyAction="http://tempuri.org/IUserService/ReadUserResponse")]
         System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.User> ReadUserAsync(ApactaWPF.ServiceReferences.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IUserService/UpdateUserApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         ApactaWPF.ServiceReferences.User UpdateUser(ApactaWPF.ServiceReferences.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
         System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.User> UpdateUserAsync(ApactaWPF.ServiceReferences.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IUserService/DeleteUserApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         ApactaWPF.ServiceReferences.User DeleteUser(ApactaWPF.ServiceReferences.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
         System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.User> DeleteUserAsync(ApactaWPF.ServiceReferences.User t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ReadAllUser", ReplyAction="http://tempuri.org/IUserService/ReadAllUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IUserService/ReadAllUserApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         ApactaWPF.ServiceReferences.User[] ReadAllUser();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ReadAllUser", ReplyAction="http://tempuri.org/IUserService/ReadAllUserResponse")]
@@ -718,30 +864,35 @@ namespace ApactaWPF.ServiceReferences {
     public interface IMaterialService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/CreateMaterial", ReplyAction="http://tempuri.org/IMaterialService/CreateMaterialResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMaterialService/CreateMaterialApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         ApactaWPF.ServiceReferences.Material CreateMaterial(ApactaWPF.ServiceReferences.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/CreateMaterial", ReplyAction="http://tempuri.org/IMaterialService/CreateMaterialResponse")]
         System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.Material> CreateMaterialAsync(ApactaWPF.ServiceReferences.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadMaterial", ReplyAction="http://tempuri.org/IMaterialService/ReadMaterialResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMaterialService/ReadMaterialApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         ApactaWPF.ServiceReferences.Material ReadMaterial(ApactaWPF.ServiceReferences.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadMaterial", ReplyAction="http://tempuri.org/IMaterialService/ReadMaterialResponse")]
         System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.Material> ReadMaterialAsync(ApactaWPF.ServiceReferences.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/UpdateMaterial", ReplyAction="http://tempuri.org/IMaterialService/UpdateMaterialResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMaterialService/UpdateMaterialApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         ApactaWPF.ServiceReferences.Material UpdateMaterial(ApactaWPF.ServiceReferences.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/UpdateMaterial", ReplyAction="http://tempuri.org/IMaterialService/UpdateMaterialResponse")]
         System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.Material> UpdateMaterialAsync(ApactaWPF.ServiceReferences.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/DeleteMaterial", ReplyAction="http://tempuri.org/IMaterialService/DeleteMaterialResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMaterialService/DeleteMaterialApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         ApactaWPF.ServiceReferences.Material DeleteMaterial(ApactaWPF.ServiceReferences.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/DeleteMaterial", ReplyAction="http://tempuri.org/IMaterialService/DeleteMaterialResponse")]
         System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.Material> DeleteMaterialAsync(ApactaWPF.ServiceReferences.Material t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadAllMaterial", ReplyAction="http://tempuri.org/IMaterialService/ReadAllMaterialResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMaterialService/ReadAllMaterialApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         ApactaWPF.ServiceReferences.Material[] ReadAllMaterial();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadAllMaterial", ReplyAction="http://tempuri.org/IMaterialService/ReadAllMaterialResponse")]
@@ -754,10 +905,26 @@ namespace ApactaWPF.ServiceReferences {
         System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.Material[]> SearchAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadAllMaterialsForUser", ReplyAction="http://tempuri.org/IMaterialService/ReadAllMaterialsForUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMaterialService/ReadAllMaterialsForUserApplicationExceptionFa" +
+            "ult", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         ApactaWPF.ServiceReferences.Material[] ReadAllMaterialsForUser(ApactaWPF.ServiceReferences.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadAllMaterialsForUser", ReplyAction="http://tempuri.org/IMaterialService/ReadAllMaterialsForUserResponse")]
         System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.Material[]> ReadAllMaterialsForUserAsync(ApactaWPF.ServiceReferences.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadPage", ReplyAction="http://tempuri.org/IMaterialService/ReadPageResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMaterialService/ReadPageApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
+        ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr ReadPage(System.Nullable<int> page, System.Nullable<int> pageSize);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadPage", ReplyAction="http://tempuri.org/IMaterialService/ReadPageResponse")]
+        System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr> ReadPageAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadPageForUser", ReplyAction="http://tempuri.org/IMaterialService/ReadPageForUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IMaterialService/ReadPageForUserApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
+        ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr ReadPageForUser(System.Nullable<int> page, System.Nullable<int> pageSize);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMaterialService/ReadPageForUser", ReplyAction="http://tempuri.org/IMaterialService/ReadPageForUserResponse")]
+        System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr> ReadPageForUserAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -842,67 +1009,102 @@ namespace ApactaWPF.ServiceReferences {
         public System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.Material[]> ReadAllMaterialsForUserAsync(ApactaWPF.ServiceReferences.User user) {
             return base.Channel.ReadAllMaterialsForUserAsync(user);
         }
+        
+        public ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr ReadPage(System.Nullable<int> page, System.Nullable<int> pageSize) {
+            return base.Channel.ReadPage(page, pageSize);
+        }
+        
+        public System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr> ReadPageAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
+            return base.Channel.ReadPageAsync(page, pageSize);
+        }
+        
+        public ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr ReadPageForUser(System.Nullable<int> page, System.Nullable<int> pageSize) {
+            return base.Channel.ReadPageForUser(page, pageSize);
+        }
+        
+        public System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr> ReadPageForUserAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
+            return base.Channel.ReadPageForUserAsync(page, pageSize);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReferences.IRentingService")]
-    public interface IRentingService {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReferences.IBookingService")]
+    public interface IBookingService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/CreateBooking", ReplyAction="http://tempuri.org/IRentingService/CreateBookingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/CreateBooking", ReplyAction="http://tempuri.org/IBookingService/CreateBookingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IBookingService/CreateBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         ApactaWPF.ServiceReferences.Booking CreateBooking(ApactaWPF.ServiceReferences.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/CreateBooking", ReplyAction="http://tempuri.org/IRentingService/CreateBookingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/CreateBooking", ReplyAction="http://tempuri.org/IBookingService/CreateBookingResponse")]
         System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.Booking> CreateBookingAsync(ApactaWPF.ServiceReferences.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/ReadBooking", ReplyAction="http://tempuri.org/IRentingService/ReadBookingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadBooking", ReplyAction="http://tempuri.org/IBookingService/ReadBookingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IBookingService/ReadBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         ApactaWPF.ServiceReferences.Booking ReadBooking(ApactaWPF.ServiceReferences.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/ReadBooking", ReplyAction="http://tempuri.org/IRentingService/ReadBookingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadBooking", ReplyAction="http://tempuri.org/IBookingService/ReadBookingResponse")]
         System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.Booking> ReadBookingAsync(ApactaWPF.ServiceReferences.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/UpdateBooking", ReplyAction="http://tempuri.org/IRentingService/UpdateBookingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/UpdateBooking", ReplyAction="http://tempuri.org/IBookingService/UpdateBookingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IBookingService/UpdateBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         ApactaWPF.ServiceReferences.Booking UpdateBooking(ApactaWPF.ServiceReferences.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/UpdateBooking", ReplyAction="http://tempuri.org/IRentingService/UpdateBookingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/UpdateBooking", ReplyAction="http://tempuri.org/IBookingService/UpdateBookingResponse")]
         System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.Booking> UpdateBookingAsync(ApactaWPF.ServiceReferences.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/DeleteBooking", ReplyAction="http://tempuri.org/IRentingService/DeleteBookingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/DeleteBooking", ReplyAction="http://tempuri.org/IBookingService/DeleteBookingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IBookingService/DeleteBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         ApactaWPF.ServiceReferences.Booking DeleteBooking(ApactaWPF.ServiceReferences.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/DeleteBooking", ReplyAction="http://tempuri.org/IRentingService/DeleteBookingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/DeleteBooking", ReplyAction="http://tempuri.org/IBookingService/DeleteBookingResponse")]
         System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.Booking> DeleteBookingAsync(ApactaWPF.ServiceReferences.Booking t);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/ReadAllBooking", ReplyAction="http://tempuri.org/IRentingService/ReadAllBookingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadAllBooking", ReplyAction="http://tempuri.org/IBookingService/ReadAllBookingResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IBookingService/ReadAllBookingApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         ApactaWPF.ServiceReferences.Booking[] ReadAllBooking();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentingService/ReadAllBooking", ReplyAction="http://tempuri.org/IRentingService/ReadAllBookingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadAllBooking", ReplyAction="http://tempuri.org/IBookingService/ReadAllBookingResponse")]
         System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.Booking[]> ReadAllBookingAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadPage", ReplyAction="http://tempuri.org/IBookingService/ReadPageResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IBookingService/ReadPageApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
+        ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr ReadPage(System.Nullable<int> page, System.Nullable<int> pageSize);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadPage", ReplyAction="http://tempuri.org/IBookingService/ReadPageResponse")]
+        System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr> ReadPageAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadPageForUser", ReplyAction="http://tempuri.org/IBookingService/ReadPageForUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IBookingService/ReadPageForUserApplicationExceptionFault", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
+        ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr ReadPageForUser(System.Nullable<int> page, System.Nullable<int> pageSize);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadPageForUser", ReplyAction="http://tempuri.org/IBookingService/ReadPageForUserResponse")]
+        System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr> ReadPageForUserAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IRentingServiceChannel : ApactaWPF.ServiceReferences.IRentingService, System.ServiceModel.IClientChannel {
+    public interface IBookingServiceChannel : ApactaWPF.ServiceReferences.IBookingService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class RentingServiceClient : System.ServiceModel.ClientBase<ApactaWPF.ServiceReferences.IRentingService>, ApactaWPF.ServiceReferences.IRentingService {
+    public partial class BookingServiceClient : System.ServiceModel.ClientBase<ApactaWPF.ServiceReferences.IBookingService>, ApactaWPF.ServiceReferences.IBookingService {
         
-        public RentingServiceClient() {
+        public BookingServiceClient() {
         }
         
-        public RentingServiceClient(string endpointConfigurationName) : 
+        public BookingServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public RentingServiceClient(string endpointConfigurationName, string remoteAddress) : 
+        public BookingServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public RentingServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public BookingServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public RentingServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public BookingServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
@@ -944,6 +1146,22 @@ namespace ApactaWPF.ServiceReferences {
         
         public System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.Booking[]> ReadAllBookingAsync() {
             return base.Channel.ReadAllBookingAsync();
+        }
+        
+        public ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr ReadPage(System.Nullable<int> page, System.Nullable<int> pageSize) {
+            return base.Channel.ReadPage(page, pageSize);
+        }
+        
+        public System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr> ReadPageAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
+            return base.Channel.ReadPageAsync(page, pageSize);
+        }
+        
+        public ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr ReadPageForUser(System.Nullable<int> page, System.Nullable<int> pageSize) {
+            return base.Channel.ReadPageForUser(page, pageSize);
+        }
+        
+        public System.Threading.Tasks.Task<ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr> ReadPageForUserAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
+            return base.Channel.ReadPageForUserAsync(page, pageSize);
         }
     }
 }

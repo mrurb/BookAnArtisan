@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Booking">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Deleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="EndTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Item" nillable="true" type="tns:Material" />
+      <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Updated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Booking" nillable="true" type="tns:Booking" />
+  <xs:complexType name="Material">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Available" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Condition" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Deleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Owner" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Material" nillable="true" type="tns:Material" />
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccessFailedCount" type="xs:int" />
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApiKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailConfirmed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LockoutEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LockoutEndDateUtc" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PasswordHash" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNumberConfirmed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SecurityStamp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TwoFactorEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="ArrayOfBooking">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Booking" nillable="true" type="tns:Booking" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBooking" nillable="true" type="tns:ArrayOfBooking" />
+  <xs:complexType name="BookingPage">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="{0}Page" Namespace="http://schemas.datacontract.org/2004/07/Model" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Booking" Namespace="http://schemas.datacontract.org/2004/07/Model" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CurrentPage" type="xs:int" />
+      <xs:element minOccurs="0" name="EndPage" type="xs:int" />
+      <xs:element minOccurs="0" name="PageList" nillable="true" type="tns:ArrayOfBooking" />
+      <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+      <xs:element minOccurs="0" name="StartPage" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalItems" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalPages" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BookingPage" nillable="true" type="tns:BookingPage" />
+</xs:schema>

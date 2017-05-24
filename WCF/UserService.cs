@@ -1,37 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
 using BLL;
 using System.ServiceModel;
 
 namespace WCF
 {
-    public class UserService : IUserService
-    {
-        UserController userController = new UserController();
-        public User CreateUser(User user)
-        {
-	        try
-	        {
-		        return userController.Create(user);
+	public class UserService : IUserService
+	{
+		private readonly UserController userController = new UserController();
+		public User CreateUser(User user)
+		{
+			try
+			{
+				return userController.Create(user);
 			}
 			catch (ApplicationException ex)
-	        {
-		        throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
-	        }
-	        catch (Exception ex)
-	        {
-		        //log(ex);
-		        var ex2 = new ApplicationException(@"Unknown Error");
-		        throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
-	        }
-        }
+			{
+				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
+			}
+			catch (Exception)
+			{
 
-        public User ReadUser(User user)
-        {
+				var ex2 = new ApplicationException(@"Unknown Error");
+				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
+			}
+		}
+
+		public User ReadUser(User user)
+		{
 			try
 			{
 				return userController.Read(user);
@@ -40,16 +37,16 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public User UpdateUser(User user)
-        {
+		public User UpdateUser(User user)
+		{
 			try
 			{
 				return userController.Update(user);
@@ -58,16 +55,16 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public User DeleteUser(User user)
-        {
+		public User DeleteUser(User user)
+		{
 			try
 			{
 				return userController.Delete(user);
@@ -76,16 +73,16 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public List<User> ReadAllUser()
-        {
+		public List<User> ReadAllUser()
+		{
 			try
 			{
 				return userController.ReadAll();
@@ -94,17 +91,17 @@ namespace WCF
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-        public IList<User> SearchByName(string name)
-        {
-            return userController.SearchByName(name);
-        }
-    }
+		public IList<User> SearchByName(string name)
+		{
+			return userController.SearchByName(name);
+		}
+	}
 }

@@ -62,6 +62,24 @@
   <wsdl:message name="IProjectService_ReadAllProjectsForUser_ApplicationExceptionFault_FaultMessage">
     <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/System" name="detail" element="q6:ApplicationException" />
   </wsdl:message>
+  <wsdl:message name="IProjectService_ReadPage_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadPage" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadPage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadPage_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/System" name="detail" element="q7:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadPageForUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadPageForUser" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadPageForUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadPageForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadPageForUser_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/System" name="detail" element="q8:ApplicationException" />
+  </wsdl:message>
   <wsdl:portType name="IProjectService">
     <wsdl:operation name="CreateProject">
       <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/CreateProject" message="tns:IProjectService_CreateProject_InputMessage" />
@@ -92,6 +110,16 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/ReadAllProjectsForUser" message="tns:IProjectService_ReadAllProjectsForUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/ReadAllProjectsForUserResponse" message="tns:IProjectService_ReadAllProjectsForUser_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IProjectService/ReadAllProjectsForUserApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IProjectService_ReadAllProjectsForUser_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadPage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/ReadPage" message="tns:IProjectService_ReadPage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/ReadPageResponse" message="tns:IProjectService_ReadPage_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IProjectService/ReadPageApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IProjectService_ReadPage_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadPageForUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/ReadPageForUser" message="tns:IProjectService_ReadPageForUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/ReadPageForUserResponse" message="tns:IProjectService_ReadPageForUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IProjectService/ReadPageForUserApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IProjectService_ReadPageForUser_ApplicationExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IProjectService" type="tns:IProjectService">
@@ -158,6 +186,30 @@
     </wsdl:operation>
     <wsdl:operation name="ReadAllProjectsForUser">
       <soap:operation soapAction="http://tempuri.org/IProjectService/ReadAllProjectsForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReadPage">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/ReadPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReadPageForUser">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/ReadPageForUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

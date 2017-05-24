@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BookAnArtisanMVC.ServiceReference.Meeting>
+﻿@model BookAnArtisanMVC.Models.IndexViewModel<BookAnArtisanMVC.ServiceReference.Meeting>
 
 @{
     ViewBag.Title = "View";
@@ -18,24 +18,24 @@
             @Html.DisplayName("Oprettet af")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Pager.PageList[0].Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EndTime)
+            @Html.DisplayNameFor(model => model.Pager.PageList[0].EndTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StartTime)
+            @Html.DisplayNameFor(model => model.Pager.PageList[0].StartTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.Pager.PageList[0].Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Deleted)
+            @Html.DisplayNameFor(model => model.Pager.PageList[0].Deleted)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Pager.PageList) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Contact.UserName)
@@ -67,3 +67,4 @@
 }
 
 </table>
+@Html.Partial("_Pagination")

@@ -9,7 +9,7 @@ namespace Testing.TestingDAL
 	public class TestProject
 	{
 		private static Project testProject;
-		private static ProjectDB db;
+		private static ProjectDb pDb;
 
 		#region setups + teardowns
 		[ClassInitialize]
@@ -29,7 +29,7 @@ namespace Testing.TestingDAL
 		{
 			try
 			{
-				db = null;
+				// odakdwa
 			}
 			catch
 			{
@@ -39,37 +39,31 @@ namespace Testing.TestingDAL
 		[TestInitialize]
 		public void SetUp()
 		{
-			try
+			testProject = new Project
 			{
-				testProject = new Project()
-				{
-					// Below ID is set only for testing whether it changes when created in DB.
-					Id = 20,
-					Name = "Test",
-					CreatedBy = new User() { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3", },
-					Contact = new User() { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3" },
-					ProjectStatusID = 1,
-					ProjectDescription = "Something",
-					StreetName = "Test street",
-					StartTime = new DateTime(2017, 04, 19, 17, 09, 21, 0),
-					Created = new DateTime(2017, 04, 19, 17, 09, 21, 0),
-					Modified = new DateTime(2017, 04, 19, 17, 09, 21, 0),
-					Deleted = false
-				};
-				db = new ProjectDB();
-			}
-			catch
-			{
-				throw new Exception();
-			}
+					
+				Name = "Test",
+				CreatedBy = new User { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3", },
+				Contact = new User { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3" },
+				ProjectStatusId = 1,
+				ProjectDescription = "Something",
+				StreetName = "Test street",
+				StartTime = new DateTime(2017, 04, 19, 17, 09, 21, 0),
+				Created = new DateTime(2017, 04, 19, 17, 09, 21, 0),
+				Modified = new DateTime(2017, 04, 19, 17, 09, 21, 0),
+				Deleted = false
+			};
+			pDb = new ProjectDb();
+			testProject = pDb.Create(testProject);
 		}
 		[TestCleanup]
 		public void TearDown()
 		{
 			try
 			{
+				pDb.RemoveProject(testProject);
 				testProject = null;
-				db = null;
+				pDb = null;
 			}
 			catch
 			{
@@ -81,45 +75,58 @@ namespace Testing.TestingDAL
 		[TestMethod]
 		public void TestCreateProject()
 		{
-			int earlierId = testProject.Id;
-			int returnedId = db.Create(testProject).Id;
-			Assert.AreNotEqual(earlierId, returnedId);
-			testProject.Id = returnedId;
+			var project = pDb.Create(testProject);
+			var project1 = pDb.Read(testProject);
+			Assert.AreEqual(project, project1);
+			pDb.RemoveProject(project);
 		}
 
 		[TestMethod]
 		public void TestReadProject()
 		{
-			Assert.AreEqual(testProject, db.Read(testProject));
+			Assert.AreEqual(testProject, pDb.Read(testProject));
 		}
 
 		[TestMethod]
 		public void TestUpdateProject()
 		{
-			testProject.StreetName = "New street";
-			Assert.IsTrue("New street".Equals(db.Update(testProject).StreetName));
+			var rand = new Random();
+			int genNum = rand.Next(1, 100);
+			testProject.StreetName = $"New Street#{genNum}";
+			Assert.IsTrue($"New Street#{genNum}".Equals(pDb.Update(testProject).StreetName));
 		}
 
 		[TestMethod]
 		public void TestDeleteProject()
 		{
-			db.Delete(testProject);
-			Assert.IsTrue(db.Read(testProject).Deleted);
+			pDb.Delete(testProject);
+			Assert.IsTrue(pDb.Read(testProject).Deleted);
 		}
-		#endregion
 
 		[TestMethod]
 		public void TestReadAllProject()
 		{
-			Assert.IsTrue(0 < db.ReadAll().Count);
-			var list = db.ReadAll();
+			var list = pDb.ReadAll();
+			Assert.IsTrue(0 < list.Count);
 			foreach (var p in list)
 			{
-				Assert.IsFalse(0 == p.Id); //list?
+				Assert.IsTrue(p.Id != 0);
 			}
 
 		}
 
+		[TestMethod]
+		public void TestProjectReadAllForUser()
+		{
+			var user = new User { Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3" };
+			var list = pDb.ReadAllForUser(user);
+			Assert.IsTrue(0 < list.Count);
+			foreach (var p in list)
+			{
+				Assert.IsTrue(p.Id != 0);
+			}
+		}
+		#endregion
 		#region Boundary Tests
 
 		[TestMethod]

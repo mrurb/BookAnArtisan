@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using BookAnArtisanMVC.Models;
 
 namespace BookAnArtisanMVC.ServiceReference
 {
@@ -127,7 +128,7 @@ namespace BookAnArtisanMVC.ServiceReference
         [Display(Name = "Kontakt")]
         public User Contact { get; set; }
         [Display(Name = "Projekt status")]
-        public int ProjectStatusID { get; set; }
+        public int ProjectStatusId { get; set; }
         [Display(Name = "Beskrivelse")]
         public string ProjectDescription { get; set; }
         [Display(Name = "Vej navn")]
@@ -151,5 +152,25 @@ namespace BookAnArtisanMVC.ServiceReference
     {
 
     }
+
+	public partial class BookingPage : IPager<Booking>
+	{
+
+	}
+
+	public partial class ProjectPage : IPager<Project>
+	{
+		
+	}
+
+	public partial class MeetingPage : IPager<Meeting>
+	{
+		
+	}
+
+	public partial class MaterialPage : IPager<Material>
+	{
+		
+	}
 
 }

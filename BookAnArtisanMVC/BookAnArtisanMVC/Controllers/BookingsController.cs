@@ -1,23 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Web;
 using System.Web.Mvc;
+using BookAnArtisanMVC.Models;
 using BookAnArtisanMVC.ServiceReference;
+using Microsoft.AspNet.Identity;
 
 namespace BookAnArtisanMVC.Controllers
 {
 	public class BookingsController : Controller
 	{
-		private RentingServiceClient ms = new RentingServiceClient();
+		private readonly BookingServiceClient bookingServiceClient = new BookingServiceClient();
+
 		// GET: Booking
-		public ActionResult Index()
+		[HttpGet]
+		public ActionResult Index(int? page)
 		{
 			try
 			{
-				var data = ms.ReadAllBooking();
-				return View(data);
+				var viewModel = new IndexViewModel<Booking>
+				{
+					Pager = bookingServiceClient.ReadPageBooking(page, 10)
+				};
+				return View(viewModel);
 			}
 			catch (FaultException e)
 			{
@@ -31,12 +35,13 @@ namespace BookAnArtisanMVC.Controllers
 			}
 		}
 
+
 		// GET: Booking/Details/5
 		public ActionResult Details(Booking mat)
 		{
 			try
 			{
-				var data = ms.ReadBooking(mat);
+				var data = bookingServiceClient.ReadBooking(mat);
 				return View(data);
 			}
 			catch (FaultException e)
@@ -56,20 +61,27 @@ namespace BookAnArtisanMVC.Controllers
 		{
 			return View();
 		}
-		/*
-		public ActionResult Create(Material material)
+
+		public ActionResult CreateById(int id, string name)
 		{
-			
-			return View(new Booking() {Item = material });
+			var booking = new Booking()
+			{
+				Item = new Material()
+				{
+					Name = name,
+					Id = id
+				}
+			};
+			return View("Create", booking);
 		}
-		*/
+
 		// POST: Booking/Create
 		[HttpPost]
 		public ActionResult Create(Booking mat)
 		{
 			try
 			{
-				ms.CreateBooking(mat);
+				bookingServiceClient.CreateBooking(mat);
 				return RedirectToAction("Index");
 			}
 			catch (FaultException e)
@@ -89,7 +101,7 @@ namespace BookAnArtisanMVC.Controllers
 		{
 			try
 			{
-				var data = ms.ReadBooking(mat);
+				var data = bookingServiceClient.ReadBooking(mat);
 				return View(data);
 			}
 			catch (FaultException e)
@@ -110,7 +122,7 @@ namespace BookAnArtisanMVC.Controllers
 		{
 			try
 			{
-				ms.UpdateBooking(mat);
+				bookingServiceClient.UpdateBooking(mat);
 				return RedirectToAction("Index");
 			}
 			catch (FaultException e)
@@ -130,7 +142,7 @@ namespace BookAnArtisanMVC.Controllers
 		{
 			try
 			{
-				var data = ms.ReadBooking(mat);
+				var data = bookingServiceClient.ReadBooking(mat);
 				return View(data);
 			}
 			catch (FaultException e)
@@ -151,7 +163,7 @@ namespace BookAnArtisanMVC.Controllers
 		{
 			try
 			{
-				ms.DeleteBooking(mat);
+				bookingServiceClient.DeleteBooking(mat);
 				return RedirectToAction("Index");
 			}
 			catch (FaultException e)
@@ -166,11 +178,16 @@ namespace BookAnArtisanMVC.Controllers
 			}
 		}
 
-		public ActionResult MyBooking(User user)
+		public ActionResult MyBooking(int? page)
 		{
 			try
 			{
-				return View(ms.ReadAllBooking());
+				var viewModel = new IndexViewModel<Booking>
+				{
+					Pager = bookingServiceClient.ReadPageForUserBooking(HttpContext.User.Identity.GetUserId(), page, 10)
+				};
+
+				return View(viewModel);
 			}
 			catch (FaultException e)
 			{

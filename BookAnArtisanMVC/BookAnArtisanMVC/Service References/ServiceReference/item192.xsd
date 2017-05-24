@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/Model" />
+  <xs:import schemaLocation="http://localhost:8733/WCF/BookingService/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Model" />
   <xs:element name="CreateBooking">
     <xs:complexType>
       <xs:sequence>
@@ -66,6 +66,36 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadAllBookingResult" nillable="true" type="q9:ArrayOfBooking" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadPage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="page" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadPageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadPageResult" nillable="true" type="q10:PageOfBookingYgFqSxnr" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadPageForUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="page" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadPageForUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Model" minOccurs="0" name="ReadPageForUserResult" nillable="true" type="q11:PageOfBookingYgFqSxnr" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

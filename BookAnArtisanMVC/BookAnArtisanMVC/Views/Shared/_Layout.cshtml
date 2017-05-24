@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/jqueryui")
     @RenderSection("styles", required: false)
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 </head>
 <body>
@@ -28,54 +28,62 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projekter<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Alle Projekter", "Index", "Projects")</li>
-                            <li>@Html.ActionLink("Mine Projekter", "MyProjects", "Projects")</li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink("Mine Projekter", "MyProjects", "Projects")</li>}
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Møder<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Alle Møder", "Index", "Meetings")</li>
-                            <li>@Html.ActionLink("Mine Møder", "MyMeetings", "Meetings")</li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink("Mine Møder", "MyMeetings", "Meetings")</li>}
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Materialer<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Alle Materialer", "Index", "Materials")</li>
-                            <li>@Html.ActionLink("Mine Materialer", "MyMaterials", "Materials")</li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink("Mine Materialer", "MyMaterials", "Materials")</li> }
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Udlejning<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Alle Udlejninger", "Index", "Bookings")</li>
-                            <li>@Html.ActionLink("Mine Udlejninger", "MyBooking", "Bookings")</li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink("Mine Udlejninger", "MyBooking", "Bookings")</li> }
+
                         </ul>
                     </li>
                     <li>@Html.ActionLink("Brugere", "Index", "Users")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-<div class="container body-content">
-    @if (@ViewBag.ErrorMessage != null)
-    {
-        <br/>
-        <div class="alert alert-danger" role="alert">
-            @ViewBag.ErrorMessage
-        </div>
-    }
-    @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - Book An Artisan</p>
-    </footer>
-</div>
+    <div class="container body-content">
+        @if (@ViewBag.ErrorMessage != null)
+        {
+            <br />
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Book An Artisan</p>
+        </footer>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 

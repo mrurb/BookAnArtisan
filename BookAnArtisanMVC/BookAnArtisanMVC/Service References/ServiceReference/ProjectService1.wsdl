@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ProjectService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8733/WCF/ProjectService/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8733/WCF/ProjectService/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://localhost:8733/WCF/ProjectService/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8733/WCF/ProjectService/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Model" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IProjectService_CreateProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateProject" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_CreateProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_CreateProject_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/System" name="detail" element="q1:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadProject" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadProject_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/System" name="detail" element="q2:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_UpdateProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProject" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_UpdateProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_UpdateProject_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/System" name="detail" element="q3:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_DeleteProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProject" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_DeleteProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_DeleteProject_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/System" name="detail" element="q4:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadAllProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadAllProject" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadAllProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadAllProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadAllProject_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/System" name="detail" element="q5:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadAllProjectsForUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadAllProjectsForUser" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadAllProjectsForUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadAllProjectsForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadAllProjectsForUser_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/System" name="detail" element="q6:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadProjectPage_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadProjectPage" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadProjectPage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadProjectPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadProjectPage_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/System" name="detail" element="q7:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadProjectPageForUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadProjectPageForUser" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadProjectPageForUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadProjectPageForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_ReadProjectPageForUser_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/System" name="detail" element="q8:ApplicationException" />
+  </wsdl:message>
+  <wsdl:portType name="IProjectService">
+    <wsdl:operation name="CreateProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/CreateProject" message="tns:IProjectService_CreateProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/CreateProjectResponse" message="tns:IProjectService_CreateProject_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IProjectService/CreateProjectApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IProjectService_CreateProject_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/ReadProject" message="tns:IProjectService_ReadProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/ReadProjectResponse" message="tns:IProjectService_ReadProject_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IProjectService/ReadProjectApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IProjectService_ReadProject_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/UpdateProject" message="tns:IProjectService_UpdateProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/UpdateProjectResponse" message="tns:IProjectService_UpdateProject_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IProjectService/UpdateProjectApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IProjectService_UpdateProject_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/DeleteProject" message="tns:IProjectService_DeleteProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/DeleteProjectResponse" message="tns:IProjectService_DeleteProject_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IProjectService/DeleteProjectApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IProjectService_DeleteProject_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadAllProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/ReadAllProject" message="tns:IProjectService_ReadAllProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/ReadAllProjectResponse" message="tns:IProjectService_ReadAllProject_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IProjectService/ReadAllProjectApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IProjectService_ReadAllProject_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadAllProjectsForUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/ReadAllProjectsForUser" message="tns:IProjectService_ReadAllProjectsForUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/ReadAllProjectsForUserResponse" message="tns:IProjectService_ReadAllProjectsForUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IProjectService/ReadAllProjectsForUserApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IProjectService_ReadAllProjectsForUser_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadProjectPage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/ReadProjectPage" message="tns:IProjectService_ReadProjectPage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/ReadProjectPageResponse" message="tns:IProjectService_ReadProjectPage_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IProjectService/ReadProjectPageApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IProjectService_ReadProjectPage_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadProjectPageForUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/ReadProjectPageForUser" message="tns:IProjectService_ReadProjectPageForUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/ReadProjectPageForUserResponse" message="tns:IProjectService_ReadProjectPageForUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IProjectService/ReadProjectPageForUserApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IProjectService_ReadProjectPageForUser_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IProjectService" type="tns:IProjectService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateProject">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/CreateProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReadProject">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/ReadProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProject">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/UpdateProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/DeleteProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReadAllProject">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/ReadAllProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReadAllProjectsForUser">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/ReadAllProjectsForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReadProjectPage">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/ReadProjectPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReadProjectPageForUser">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/ReadProjectPageForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProjectService">
+    <wsdl:port name="BasicHttpBinding_IProjectService" binding="tns:BasicHttpBinding_IProjectService">
+      <soap:address location="http://localhost:8733/WCF/ProjectService/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

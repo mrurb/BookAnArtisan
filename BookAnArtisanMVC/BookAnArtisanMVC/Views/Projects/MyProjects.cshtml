@@ -1,7 +1,7 @@
-﻿@model IEnumerable<BookAnArtisanMVC.ServiceReference.Project>
-
+﻿@model BookAnArtisanMVC.Models.IndexViewModel<BookAnArtisanMVC.ServiceReference.Project>
 @{
     ViewBag.Title = "MyProjects";
+    var projectList = Model.Pager.PageList;
 }
 
 <h2>Mine projekter</h2>
@@ -12,33 +12,33 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => projectList[0].Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Created)
+            @Html.DisplayNameFor(model => projectList[0].Created)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Deleted)
+            @Html.DisplayNameFor(model => projectList[0].Deleted)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Modified)
+            @Html.DisplayNameFor(model => projectList[0].Modified)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProjectDescription)
+            @Html.DisplayNameFor(model => projectList[0].ProjectDescription)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProjectStatusID)
+            @Html.DisplayNameFor(model => projectList[0].ProjectStatusId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StartTime)
+            @Html.DisplayNameFor(model => projectList[0].StartTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StreetName)
+            @Html.DisplayNameFor(model => projectList[0].StreetName)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in projectList) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -56,7 +56,7 @@
             @Html.DisplayFor(modelItem => item.ProjectDescription)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ProjectStatusID)
+            @Html.DisplayFor(modelItem => item.ProjectStatusId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StartTime)
@@ -73,3 +73,4 @@
 }
 
 </table>
+@Html.Partial("_Pagination")

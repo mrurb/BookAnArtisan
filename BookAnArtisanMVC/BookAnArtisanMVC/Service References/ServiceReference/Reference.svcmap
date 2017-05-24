@@ -24,46 +24,46 @@
     <MetadataSource Address="http://localhost:8733/WCF/MaterialService/" Protocol="http" SourceId="1" />
     <MetadataSource Address="http://localhost:8733/WCF/MeetingService/" Protocol="http" SourceId="2" />
     <MetadataSource Address="http://localhost:8733/WCF/ProjectService/" Protocol="http" SourceId="3" />
-    <MetadataSource Address="http://localhost:8733/WCF/RentingService/" Protocol="http" SourceId="4" />
+    <MetadataSource Address="http://localhost:8733/WCF/BookingService/" Protocol="http" SourceId="4" />
     <MetadataSource Address="http://localhost:8733/WCF/UserService/" Protocol="http" SourceId="5" />
     <MetadataSource Address="http://localhost:8733/WCF/ProjectSearch/" Protocol="http" SourceId="6" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="307bc260-1412-4a84-9536-b823fdb8e321" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd2" />
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="ef2f8770-490f-4ccd-964e-9f5a185cbb2e" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?disco" />
-    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="b66ac18a-4300-4852-938b-a16355cf4c10" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd1" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="be155fc3-422a-4d2e-a442-1fe7f0ae6a2c" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd0" />
-    <MetadataFile FileName="item18.xsd" MetadataType="Schema" ID="19381635-085d-4667-a95d-73ee4420e2d1" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd3" />
-    <MetadataFile FileName="MaterialService.wsdl" MetadataType="Wsdl" ID="1875d3eb-0aac-4e85-b613-5e94765d55be" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?wsdl" />
-    <MetadataFile FileName="MeetingService.wsdl" MetadataType="Wsdl" ID="3ca6f11d-0ef9-4d25-819e-49cfaeedbf77" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?wsdl" />
-    <MetadataFile FileName="item1.disco" MetadataType="Disco" ID="6c704f02-3b12-45a7-b1ee-744b77428e5a" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?disco" />
-    <MetadataFile FileName="item4.xsd" MetadataType="Schema" ID="eb758722-94b7-401c-ae17-d0c81d44768b" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd0" />
-    <MetadataFile FileName="item5.xsd" MetadataType="Schema" ID="5f3c4a21-e55d-4bbe-8628-f82e29b69799" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd1" />
-    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="8dd08bfe-5b8d-438b-bd22-e15c54261eba" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd2" />
-    <MetadataFile FileName="item16.xsd" MetadataType="Schema" ID="f4e14cd5-6b30-4f73-a743-19d15b07d888" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd3" />
-    <MetadataFile FileName="item2.disco" MetadataType="Disco" ID="c13016f8-d30c-43f6-b388-310242970171" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?disco" />
-    <MetadataFile FileName="item7.xsd" MetadataType="Schema" ID="f634a502-2060-4675-8138-dcfd6b9e8ee5" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd1" />
-    <MetadataFile FileName="item181.xsd" MetadataType="Schema" ID="03a3f47f-6496-4b69-83ef-39ed417f1dc4" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd3" />
-    <MetadataFile FileName="item8.xsd" MetadataType="Schema" ID="66701028-e9e4-4c5a-b82b-7f30cf52ac55" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd0" />
-    <MetadataFile FileName="ProjectService.wsdl" MetadataType="Wsdl" ID="ce0f2555-a876-4b96-a2e0-be0c6f106d0c" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?wsdl" />
-    <MetadataFile FileName="item6.xsd" MetadataType="Schema" ID="d9c968d7-f181-4032-866a-c325d7125710" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd2" />
-    <MetadataFile FileName="item3.disco" MetadataType="Disco" ID="530558ab-b1be-4b86-8b03-6b8a417c83a2" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?disco" />
-    <MetadataFile FileName="item10.xsd" MetadataType="Schema" ID="35ce0017-e218-406d-b14b-432843c36ab9" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd1" />
-    <MetadataFile FileName="item9.xsd" MetadataType="Schema" ID="c489473b-aa8d-450f-9fad-64996c45ef31" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd0" />
-    <MetadataFile FileName="item17.xsd" MetadataType="Schema" ID="510525d7-1380-43f7-945e-568c0d6a62d5" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd3" />
-    <MetadataFile FileName="item11.xsd" MetadataType="Schema" ID="b0e1662f-bd2a-4177-a76c-d4ec43a89aea" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?xsd=xsd2" />
-    <MetadataFile FileName="RentingService.wsdl" MetadataType="Wsdl" ID="1eeb2c6e-1bd9-4279-a1d4-ff49f2763e11" SourceId="4" SourceUrl="http://localhost:8733/WCF/RentingService/?wsdl" />
-    <MetadataFile FileName="item14.xsd" MetadataType="Schema" ID="f9614db1-152c-4dc9-8880-e700179fa581" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd1" />
-    <MetadataFile FileName="UserService.wsdl" MetadataType="Wsdl" ID="4585457f-828b-4619-87eb-2515b3d152ee" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?wsdl" />
-    <MetadataFile FileName="item13.xsd" MetadataType="Schema" ID="85cbfd90-b2d5-423e-bd03-5d320fb228ac" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd2" />
-    <MetadataFile FileName="item182.xsd" MetadataType="Schema" ID="f4a9482f-44b4-4a09-a4b1-7b7f73a17460" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd3" />
-    <MetadataFile FileName="item4.disco" MetadataType="Disco" ID="4989cca4-f65b-4625-b71f-3ad1364dd83e" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?disco" />
-    <MetadataFile FileName="item12.xsd" MetadataType="Schema" ID="3d95791d-36f7-4442-9f0c-9e6438c26a88" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd0" />
-    <MetadataFile FileName="item15.xsd" MetadataType="Schema" ID="5de9fcad-000a-4f00-9741-364b301e68bf" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?xsd=xsd0" />
-    <MetadataFile FileName="ProjectSearch.wsdl" MetadataType="Wsdl" ID="8d6e9a87-2f1d-4521-950d-c16e2b4e3363" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?wsdl" />
-    <MetadataFile FileName="item151.xsd" MetadataType="Schema" ID="bec5855a-c14a-4ff0-877b-3a1ae2ab24a5" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?xsd=xsd1" />
-    <MetadataFile FileName="item152.xsd" MetadataType="Schema" ID="9d7d61a1-2fe1-40a9-9730-55cd6ba901f3" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?xsd=xsd2" />
-    <MetadataFile FileName="item5.disco" MetadataType="Disco" ID="cd69591d-879b-46c2-8080-3f1354be8614" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?disco" />
+    <MetadataFile FileName="item9.xsd" MetadataType="Schema" ID="f64cc1bd-6608-4101-9357-d04c4336acdd" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd2" />
+    <MetadataFile FileName="item3.disco" MetadataType="Disco" ID="17b8385a-1c4f-4ac5-9102-4cf8b7a74ec5" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?disco" />
+    <MetadataFile FileName="item10.xsd" MetadataType="Schema" ID="445b365b-bd5e-42db-be84-a717ba060591" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd1" />
+    <MetadataFile FileName="item11.xsd" MetadataType="Schema" ID="2a9e28ab-5056-41be-80e5-6df6a6b924f6" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd0" />
+    <MetadataFile FileName="item17.xsd" MetadataType="Schema" ID="04bc606c-6c96-4a55-9312-423e985aeb70" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd3" />
+    <MetadataFile FileName="MaterialService1.wsdl" MetadataType="Wsdl" ID="2651a899-fea6-4c6c-b145-5bfc006f91ef" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?wsdl" />
+    <MetadataFile FileName="MeetingService1.wsdl" MetadataType="Wsdl" ID="da8a1902-dbc9-4174-9db2-013119d1cda7" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?wsdl" />
+    <MetadataFile FileName="item7.disco" MetadataType="Disco" ID="dfe5539f-9171-4cfe-9530-19da6eba8045" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?disco" />
+    <MetadataFile FileName="item20.xsd" MetadataType="Schema" ID="5dbde581-5075-4737-ba35-bfb8d18ba5ee" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd0" />
+    <MetadataFile FileName="item21.xsd" MetadataType="Schema" ID="742a47f7-d5ff-4129-b517-4dab79caf28c" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd1" />
+    <MetadataFile FileName="item22.xsd" MetadataType="Schema" ID="6fcd1283-fa66-4bd7-80c4-45f98008b9b2" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd2" />
+    <MetadataFile FileName="item23.xsd" MetadataType="Schema" ID="84555f14-034e-41c1-9b77-f83c9063ca7f" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd3" />
+    <MetadataFile FileName="item8.disco" MetadataType="Disco" ID="8dc61a1a-83dd-4b0d-8a19-75bec4258f6b" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?disco" />
+    <MetadataFile FileName="item24.xsd" MetadataType="Schema" ID="645466fe-2714-40bc-a032-c22cff807fc1" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd1" />
+    <MetadataFile FileName="item25.xsd" MetadataType="Schema" ID="6a264819-7244-48c4-83c4-8fbd8dcac7d0" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd3" />
+    <MetadataFile FileName="item26.xsd" MetadataType="Schema" ID="b156292b-fb09-434a-bbd1-4ec759a7389d" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd0" />
+    <MetadataFile FileName="ProjectService1.wsdl" MetadataType="Wsdl" ID="ac5c6cb7-92bf-4994-b124-97dc4d9453b4" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?wsdl" />
+    <MetadataFile FileName="item27.xsd" MetadataType="Schema" ID="ecab43fb-3131-4d09-a43c-689b750ce7da" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd2" />
+    <MetadataFile FileName="item9.disco" MetadataType="Disco" ID="3a7d7300-3dbd-457d-8de1-2717765b71f1" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?disco" />
+    <MetadataFile FileName="item28.xsd" MetadataType="Schema" ID="7df94d80-6e71-4730-851a-396806f4670a" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?xsd=xsd2" />
+    <MetadataFile FileName="item29.xsd" MetadataType="Schema" ID="79be813e-6caa-4cb7-9f15-a4ad067edc8a" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?xsd=xsd3" />
+    <MetadataFile FileName="item30.xsd" MetadataType="Schema" ID="9f700053-8a89-432f-9622-ae2cb0d6fee3" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?xsd=xsd0" />
+    <MetadataFile FileName="item31.xsd" MetadataType="Schema" ID="770d9aa0-0f26-46a6-ba7e-0642f70c1902" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?xsd=xsd1" />
+    <MetadataFile FileName="BookingService1.wsdl" MetadataType="Wsdl" ID="5fd3e30c-a2bf-4c91-b663-450193b43495" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?wsdl" />
+    <MetadataFile FileName="item32.xsd" MetadataType="Schema" ID="9254486c-b068-4f88-b69b-4405f6722221" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd1" />
+    <MetadataFile FileName="UserService1.wsdl" MetadataType="Wsdl" ID="92108348-3381-4461-9d29-7147d7a35957" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?wsdl" />
+    <MetadataFile FileName="item33.xsd" MetadataType="Schema" ID="8c3aaca1-de86-474b-8832-515f052f4913" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd2" />
+    <MetadataFile FileName="item34.xsd" MetadataType="Schema" ID="8c8ddcde-c33c-4a9b-8980-a0aa0fa27ff6" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd3" />
+    <MetadataFile FileName="item10.disco" MetadataType="Disco" ID="121dab57-388e-44e4-bc08-a4ef00d578a0" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?disco" />
+    <MetadataFile FileName="item35.xsd" MetadataType="Schema" ID="4a1e2f9e-1925-44d5-abb2-ae1a6038e8d9" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd0" />
+    <MetadataFile FileName="item36.xsd" MetadataType="Schema" ID="82bf0e04-d220-43de-8fc3-4df2e9dda666" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?xsd=xsd0" />
+    <MetadataFile FileName="ProjectSearch1.wsdl" MetadataType="Wsdl" ID="20a81306-5a3d-4209-a252-59dfb74910f7" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?wsdl" />
+    <MetadataFile FileName="item37.xsd" MetadataType="Schema" ID="e0532b04-8639-4599-a3c9-beb420cc48d9" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?xsd=xsd1" />
+    <MetadataFile FileName="item38.xsd" MetadataType="Schema" ID="686dfa44-bd92-4994-9631-d37fcb782650" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?xsd=xsd2" />
+    <MetadataFile FileName="item11.disco" MetadataType="Disco" ID="bc660044-f910-4caa-9f73-4c3a42dac98e" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

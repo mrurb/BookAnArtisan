@@ -1,47 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 using WCF;
 using System.ServiceModel;
+using DAL;
 
 namespace Testing.TestingWCF
 {
-	class TestBooking
+	public class TestBooking
 	{
+		private Booking testBooking;
+		private BookingDb bookingDb;
+		private BookingService bookingService;
+
 		#region setups + teardowns
 		[ClassInitialize]
-		public static void setUpBeforeClass(TestContext tc)
+		public static void SetUpBeforeClass(TestContext tc)
 		{
 			//do nothing
 		}
 		[ClassCleanup]
-		public static void tearDownAfterClass()
+		public static void TearDownAfterClass()
 		{
 
 		}
 		[TestInitialize]
-		public void setUp()
+		public void SetUp()
 		{
-
-		}
-		[TestCleanup]
-		public void tearDown()
-		{
-		}
-		#endregion
-		RentingService rs = new RentingService();
-
-		[TestMethod]
-		public void BookingIntegrationTest()
-		{
-			Booking bookingnew = new Booking()
+			var bookingnew = new Booking()
 			{
-				StartTime = new DateTime(2014, 2, 15, 12, 00, 00),
-				EndTime = new DateTime(2014, 2, 20, 11, 59, 59),
+				StartTime = new DateTime(2017, 5, 25, 10, 50, 00),
+				EndTime = new DateTime(2017, 5, 28, 10, 10, 00),
 				//Created = DateTime.Now, // I don't control this
 				Deleted = false,
 				//Updated = DateTime.Now, // I don't control this. (should be nowutc)
@@ -76,42 +65,60 @@ namespace Testing.TestingWCF
 					Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3"
 				}
 			};
+			bookingDb = new BookingDb();
+			bookingService = new BookingService();
+			bookingnew.Id = bookingService.CreateBooking(bookingnew).Id;
+		}
+		[TestCleanup]
+		public void TearDown()
+		{
+			bookingDb.RemoveBooking(testBooking);
+			bookingDb = null;
+			bookingService = null;
+			testBooking = null;
+		}
+		#endregion
+
+
+		[TestMethod]
+		public void BookingIntegrationTest()
+		{
+
 			try
 			{
-						//test create
-				rs.CreateBooking(bookingnew);
-				Booking dbBooking = rs.ReadBooking(bookingnew);
-				bookingnew.Updated = dbBooking.Updated;	// THESE MIGHT BE WRONG?
-				bookingnew.Created = dbBooking.Created; // THESE MIGHT BE WRONG?
-				ComparisonBooking(bookingnew, dbBooking);
-				//this also tests read.		what if read is wrong ? Test with pre-existent object in DB
+				//test create
+				var bookingnewa = bookingService.CreateBooking(testBooking); // won't work... checks prevent it
+				var dbBooking = bookingService.ReadBooking(bookingnewa);
+				ComparisonBooking(bookingnewa, dbBooking);
+				bookingDb.RemoveBooking(bookingnewa);
+				//this also tests read.
 
-						//test update 
-				bookingnew.StartTime = new DateTime(2014, 2, 13, 12, 00, 00);		//update starttime locally
-				bookingnew.EndTime = new DateTime(2014, 2, 21, 12, 00, 00);			//update endtime locally
-				rs.UpdateBooking(bookingnew);										//update in DB
-				dbBooking = rs.ReadBooking(bookingnew);
-				Assert.AreEqual(bookingnew.StartTime, dbBooking.StartTime);			//compare.
-				Assert.AreEqual(bookingnew.EndTime, dbBooking.EndTime);				//compare.
+				//test update 
+				testBooking.StartTime = new DateTime(2014, 2, 13, 12, 00, 00);      //update starttime locally
+				testBooking.EndTime = new DateTime(2014, 2, 21, 12, 00, 00);            //update endtime locally
+				bookingService.UpdateBooking(testBooking);                                      //update in DB
+				dbBooking = bookingService.ReadBooking(testBooking);
+				Assert.AreEqual(testBooking.StartTime, dbBooking.StartTime);            //compare.
+				Assert.AreEqual(testBooking.EndTime, dbBooking.EndTime);                //compare.
 
-						//test delete
-				bookingnew.Deleted = true;											//delete locally
-				rs.DeleteBooking(bookingnew);										//delete in DB
-				Assert.AreEqual(bookingnew.Deleted, rs.ReadBooking(bookingnew).Deleted); //compare.
+				//test delete
+				testBooking.Deleted = true;                                         //delete locally
+				bookingService.DeleteBooking(testBooking);                                      //delete in DB
+				Assert.AreEqual(testBooking.Deleted, bookingService.ReadBooking(testBooking).Deleted); //compare.
 			}
 			catch (ApplicationException ex)
 			{
 				throw new FaultException<ApplicationException>(ex, new FaultReason(ex.Message), new FaultCode("Sender"));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				//log(ex);
+
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-		private void ComparisonBooking(Booking expected, Booking actual)
+		public void ComparisonBooking(Booking expected, Booking actual)
 		{
 			//base details of booking
 			Assert.AreEqual(expected.Deleted, actual.Deleted);
