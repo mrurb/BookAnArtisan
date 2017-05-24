@@ -360,5 +360,166 @@ namespace DAL
 		{
 			return !reader.IsDBNull(columnIndex) ? getData(columnIndex) : default(T);
 		}
+
+		public Page<Meeting> ReadMeetingPage(int? page, int? pageSize)
+		{
+			page = page ?? 1;
+			pageSize = pageSize ?? 10;
+			var meetings = new List<Meeting>();
+			var totalRows = 0;
+			var rowStart = ((page - 1) * pageSize);
+
+			const string sql = "SELECT DISTINCT Meetings.Id mId, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID  FROM Meetings JOIN AspNetUsers User1 ON Meetings.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meetings.ContactID = User2.Id WHERE Deleted = 0 ORDER BY Meetings.Id OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
+			const string sql2 = "SELECT COUNT(*) AS total FROM Meetings WHERE Deleted = 0";
+			SqlParameter[] sqlparams =
+			{
+				new SqlParameter { ParameterName = "@page", SqlValue = rowStart, SqlDbType = SqlDbType.Int },
+				new SqlParameter { ParameterName = "@pageSize", SqlValue = pageSize, SqlDbType = SqlDbType.Int }
+			};
+
+
+			var con = new SqlConnection(Connectionstring);
+			var command = new SqlCommand(sql, con);
+			try
+			{
+				con.Open();
+				var myTrans = con.BeginTransaction(IsolationLevel.ReadUncommitted);
+				command.Parameters.AddRange(sqlparams);
+				command.Transaction = myTrans;
+				using (var reader = command.ExecuteReader())
+				{
+					int titleCol = reader.GetOrdinal("Title");
+					int startTimeCol = reader.GetOrdinal("StartTime");
+					int endTimeCol = reader.GetOrdinal("EndTime");
+					int descCol = reader.GetOrdinal("Description");
+					int createdByCol = reader.GetOrdinal("CreatedByID");
+					int contactCol = reader.GetOrdinal("ContactID");
+					int idCol = reader.GetOrdinal("mId");
+					int contactUserNameCol = reader.GetOrdinal("Contact");
+					int createdByUserNameCol = reader.GetOrdinal("CreatedBy");
+
+					while (reader.Read())
+						meetings.Add(new Meeting
+						{
+							Title = GetDataSafe(reader, titleCol, reader.GetString),
+							StartTime = (DateTime)GetDataSafe(reader, startTimeCol, reader.GetSqlDateTime),
+							EndTime = (DateTime)GetDataSafe(reader, endTimeCol, reader.GetSqlDateTime),
+							Description = GetDataSafe(reader, descCol, reader.GetString),
+							CreatedBy = new User
+							{
+								Id = GetDataSafe(reader, createdByCol, reader.GetString),
+								UserName = GetDataSafe(reader, createdByUserNameCol, reader.GetString)
+							},
+							Contact = new User
+							{
+								Id = GetDataSafe(reader, contactCol, reader.GetString),
+								UserName = GetDataSafe(reader, contactUserNameCol, reader.GetString)
+							},
+							Id = GetDataSafe(reader, idCol, reader.GetInt32)
+						});
+				}
+
+				command.CommandText = sql2;
+				using (var reader = command.ExecuteReader())
+				{
+					if (reader.Read())
+					{
+						totalRows = (int)reader["total"];
+					}
+				}
+				myTrans.Commit();
+			}
+			catch (Exception)
+			{
+				con.Close();
+				throw new Exception();
+			}
+			finally
+			{
+				con.Close();
+			}
+			return new Page<Meeting>(totalRows, meetings, page, pageSize);
+		}
+
+		public Page<Meeting> ReadMeetingPageForUser(string userId, int? page, int? pageSize)
+		{
+			page = page ?? 1;
+			pageSize = pageSize ?? 10;
+			var meetings = new List<Meeting>();
+			var totalRows = 0;
+			var rowStart = ((page - 1) * pageSize);
+
+			const string sql = "SELECT DISTINCT Meetings.Id mId, StartTime, EndTime, Title, Description, User1.UserName CreatedBy, User1.Id CreatedByID, User2.UserName Contact, User2.Id ContactID  FROM Meetings JOIN AspNetUsers User1 ON Meetings.CreatedByID = User1.Id JOIN AspNetUsers User2 ON Meetings.ContactID = User2.Id WHERE Deleted = 0 AND (Meetings.CreatedByID = @Id OR Meetings.ContactID = @Id) ORDER BY Meetings.Id OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
+			const string sql2 = "SELECT COUNT(*) AS total FROM Meetings WHERE Deleted = 0 AND (Meetings.CreatedByID = @Id OR Meetings.ContactID = @Id)";
+			SqlParameter[] sqlparams =
+			{
+				new SqlParameter { ParameterName =  "@Id", SqlValue = userId, SqlDbType = SqlDbType.NVarChar},
+				new SqlParameter { ParameterName = "@page", SqlValue = rowStart, SqlDbType = SqlDbType.Int },
+				new SqlParameter { ParameterName = "@pageSize", SqlValue = pageSize, SqlDbType = SqlDbType.Int }
+			};
+
+
+			var con = new SqlConnection(Connectionstring);
+			var command = new SqlCommand(sql, con);
+			try
+			{
+				con.Open();
+				var myTrans = con.BeginTransaction(IsolationLevel.ReadUncommitted);
+				command.Parameters.AddRange(sqlparams);
+				command.Transaction = myTrans;
+				using (var reader = command.ExecuteReader())
+				{
+					int titleCol = reader.GetOrdinal("Title");
+					int startTimeCol = reader.GetOrdinal("StartTime");
+					int endTimeCol = reader.GetOrdinal("EndTime");
+					int descCol = reader.GetOrdinal("Description");
+					int createdByCol = reader.GetOrdinal("CreatedByID");
+					int contactCol = reader.GetOrdinal("ContactID");
+					int idCol = reader.GetOrdinal("mId");
+					int contactUserNameCol = reader.GetOrdinal("Contact");
+					int createdByUserNameCol = reader.GetOrdinal("CreatedBy");
+
+					while (reader.Read())
+						meetings.Add(new Meeting
+						{
+							Title = GetDataSafe(reader, titleCol, reader.GetString),
+							StartTime = (DateTime)GetDataSafe(reader, startTimeCol, reader.GetSqlDateTime),
+							EndTime = (DateTime)GetDataSafe(reader, endTimeCol, reader.GetSqlDateTime),
+							Description = GetDataSafe(reader, descCol, reader.GetString),
+							CreatedBy = new User
+							{
+								Id = GetDataSafe(reader, createdByCol, reader.GetString),
+								UserName = GetDataSafe(reader, createdByUserNameCol, reader.GetString)
+							},
+							Contact = new User
+							{
+								Id = GetDataSafe(reader, contactCol, reader.GetString),
+								UserName = GetDataSafe(reader, contactUserNameCol, reader.GetString)
+							},
+							Id = GetDataSafe(reader, idCol, reader.GetInt32)
+						});
+				}
+
+				command.CommandText = sql2;
+				using (var reader = command.ExecuteReader())
+				{
+					if (reader.Read())
+					{
+						totalRows = (int)reader["total"];
+					}
+				}
+				myTrans.Commit();
+			}
+			catch (Exception)
+			{
+				con.Close();
+				throw new Exception();
+			}
+			finally
+			{
+				con.Close();
+			}
+			return new Page<Meeting>(totalRows, meetings, page, pageSize);
+		}
 	}
 }

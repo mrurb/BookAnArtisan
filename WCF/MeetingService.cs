@@ -8,12 +8,12 @@ namespace WCF
 {
 	public class MeetingService : IMeetingService
 	{
-		private readonly MeetingController mc = new MeetingController();
+		private readonly MeetingController meetingController = new MeetingController();
 		public Meeting CreateMeeting(Meeting t)
 		{
 			try
 			{
-				return mc.Create(t);
+				return meetingController.Create(t);
 			}
 			catch (ApplicationException ex)
 			{
@@ -31,7 +31,7 @@ namespace WCF
 		{
 			try
 			{
-				return mc.Delete(t);
+				return meetingController.Delete(t);
 			}
 			catch (ApplicationException ex)
 			{
@@ -49,7 +49,7 @@ namespace WCF
 		{
 			try
 			{
-				return mc.Read(t);
+				return meetingController.Read(t);
 			}
 			catch (ApplicationException ex)
 			{
@@ -67,7 +67,7 @@ namespace WCF
 		{
 			try
 			{
-				return mc.ReadAll();
+				return meetingController.ReadAll();
 			}
 			catch (ApplicationException ex)
 			{
@@ -85,7 +85,7 @@ namespace WCF
 		{
 			try
 			{
-				return mc.Update(t);
+				return meetingController.Update(t);
 			}
 			catch (ApplicationException ex)
 			{
@@ -103,7 +103,7 @@ namespace WCF
 		{
 			try
 			{
-				return mc.AddUserToMeeting(m,u);
+				return meetingController.AddUserToMeeting(m,u);
 			}
 			catch (ApplicationException ex)
 			{
@@ -121,7 +121,7 @@ namespace WCF
 		{
 			try
 			{
-				return mc.ReadAllForUser(user);
+				return meetingController.ReadAllForUser(user);
 			}
 			catch (ApplicationException ex)
 			{
@@ -137,12 +137,12 @@ namespace WCF
 
 		public Page<Meeting> ReadMeetingPage(int? page, int? pageSize)
 		{
-			throw new NotImplementedException();
+			return meetingController.ReadMeetingPage(page, pageSize);
 		}
 
 		public Page<Meeting> ReadMeetingPageForUser(string userId, int? page, int? pageSize)
 		{
-			throw new NotImplementedException();
+			return meetingController.ReadMeetingPageForUser(userId, page, pageSize);
 		}
 	}
 }

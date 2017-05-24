@@ -240,7 +240,7 @@ namespace DAL
 			pageSize = pageSize ?? 10;
 			var materials = new List<Booking>();
 			var totalRows = 0;
-			var rowStart = (((page - 1) * pageSize) + 1);
+			var rowStart = ((page - 1) * pageSize);
 
 			const string sql = "SELECT booking.updated, booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0 AND booking.UserId = @UserId ORDER BY booking.starttime OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
 			const string sql2 = "SELECT COUNT(*) AS total FROM Bookings WHERE Deleted = 0 AND UserId = @UserId";
@@ -321,7 +321,7 @@ namespace DAL
 			pageSize = pageSize ?? 10;
 			var materials = new List<Booking>();
 			var totalRows = 0;
-			var rowStart = (((page - 1) * pageSize) + 1);
+			var rowStart = ((page - 1) * pageSize);
 
 			const string sql = "SELECT booking.updated, booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0 ORDER BY booking.starttime OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
 			const string sql2 = "SELECT COUNT(*) AS total FROM Bookings WHERE Deleted = 0";

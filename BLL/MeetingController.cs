@@ -57,5 +57,15 @@ namespace BLL
 			}
 			return meetingDb.ReadAllForUser(user);
 		}
+
+		public Page<Meeting> ReadMeetingPage(int? page, int? pageSize)
+		{
+			return meetingDb.ReadMeetingPage(page, pageSize);
+		}
+
+		public Page<Meeting> ReadMeetingPageForUser(string userId, int? page, int? pageSize)
+		{
+			return meetingDb.ReadMeetingPageForUser(userId, page, pageSize);
+		}
 	}
 }
