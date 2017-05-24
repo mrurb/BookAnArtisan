@@ -74,7 +74,7 @@ namespace Testing.TestingWCF
 		public void ProjectIntegrationTest()
 		{
 			//create
-			Project aproject = pSv.CreateProject(project);
+			var aproject = pSv.CreateProject(project);
 			var readProject = pSv.ReadProject(aproject);
 			ComparisonProject(aproject, readProject);
 			pdb.RemoveProject(aproject);
