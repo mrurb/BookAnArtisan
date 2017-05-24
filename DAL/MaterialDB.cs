@@ -251,9 +251,9 @@ namespace DAL
 			pageSize = pageSize ?? 10;
 			var materials = new List<Material>();
 			var totalRows = 0;
-			var rowStart = (((page - 1) * pageSize) + 1);
+			var rowStart = ((page - 1) * pageSize);
 
-			const string sql = "SELECT Materials_Unique.ID, Materials_Unique.Name, Materials_Unique.Description, Materials_Unique.Condition, Materials_Unique.Deleted, Materials_Unique.Available, AspNetUsers.UserName OwnerUserName, Materials_Unique.OwnerID FROM Materials_Unique JOIN AspNetUsers ON OwnerID = AspNetUsers.Id WHERE Materials_Unique.Deleted = 0 AND OwnerId = @UserId ORDER BY Materials_unique.Id OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
+			const string sql = "SELECT Materials_Unique.ID, Materials_Unique.Name, Materials_Unique.Description, Materials_Unique.Condition, Materials_Unique.Deleted, Materials_Unique.Available, AspNetUsers.UserName OwnerUserName, Materials_Unique.OwnerID FROM Materials_Unique JOIN AspNetUsers ON OwnerID = AspNetUsers.Id WHERE Materials_Unique.Deleted = 0 AND Materials_Unique.OwnerId = @UserId ORDER BY Materials_unique.Id OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
 			const string sql2 = "SELECT COUNT(*) AS total FROM Materials_Unique WHERE Deleted = 0 AND OwnerId = @UserId";
 			SqlParameter[] sqlparams =
 			{
@@ -316,7 +316,7 @@ namespace DAL
 			pageSize = pageSize ?? 10;
 			var materials = new List<Material>();
 			var totalRows = 0;
-			var rowStart = (((page - 1) * pageSize) + 1);
+			var rowStart = ((page - 1) * pageSize);
 
 			const string sql = "SELECT Materials_Unique.ID, Materials_Unique.Name, Materials_Unique.Description, Materials_Unique.Condition, Materials_Unique.Deleted, Materials_Unique.Available, AspNetUsers.UserName OwnerUserName, Materials_Unique.OwnerID FROM Materials_Unique JOIN AspNetUsers ON OwnerID = AspNetUsers.Id WHERE Materials_Unique.Deleted = 0 ORDER BY Materials_unique.Id OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
 			const string sql2 = "SELECT COUNT(*) AS total FROM Materials_Unique WHERE Deleted = 0";

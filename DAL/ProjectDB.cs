@@ -291,7 +291,7 @@ namespace DAL
 			pageSize = pageSize ?? 10;
 			var projects = new List<Project>();
 			var totalRows = 0;
-			var rowStart = (((page - 1) * pageSize) + 1);
+			var rowStart = ((page - 1) * pageSize);
 
 			const string sql = "SELECT Projects.Name, Projects.ID, Projects.Created_by_ID, Projects.Contact_ID, Projects.Project_status_ID, Projects.Project_description, Projects.Street_Name,Projects.Start_time, Projects.Created, Projects.Modified, Projects.Deleted, CreatedBy.UserName CreatedByUserName, Contact.UserName ContactUserName FROM Projects JOIN AspNetUsers CreatedBy ON Projects.Created_by_ID = CreatedBy.Id JOIN AspNetUsers Contact ON Projects.Contact_ID = Contact.Id WHERE Deleted = 0 ORDER BY Projects.ID OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
 			const string sql2 = "SELECT COUNT(*) AS total FROM Projects WHERE Deleted = 0 ";
@@ -377,10 +377,10 @@ namespace DAL
 			pageSize = pageSize ?? 10;
 			var projects = new List<Project>();
 			var totalRows = 0;
-			var rowStart = (((page - 1) * pageSize) + 1);
+			var rowStart = ((page - 1) * pageSize);
 
-			const string sql = "SELECT Projects.Name, Projects.ID, Projects.Created_by_ID, Projects.Contact_ID, Projects.Project_status_ID, Projects.Project_description, Projects.Street_Name,Projects.Start_time, Projects.Created, Projects.Modified, Projects.Deleted, CreatedBy.UserName CreatedByUserName, Contact.UserName ContactUserName FROM Projects JOIN AspNetUsers CreatedBy ON Projects.Created_by_ID = CreatedBy.Id JOIN AspNetUsers Contact ON Projects.Contact_ID = Contact.Id WHERE Deleted = 0 AND Projects.Created_by_ID = @Id OR Projects.Contact_ID = @Id ORDER BY MProjects.ID OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
-			const string sql2 = "SELECT COUNT(*) AS total FROM Projects WHERE Deleted = 0 AND Projects.Created_by_ID = @Id OR Projects.Contact_ID = @Id ";
+			const string sql = "SELECT Projects.Name, Projects.ID, Projects.Created_by_ID, Projects.Contact_ID, Projects.Project_status_ID, Projects.Project_description, Projects.Street_Name,Projects.Start_time, Projects.Created, Projects.Modified, Projects.Deleted, CreatedBy.UserName CreatedByUserName, Contact.UserName ContactUserName FROM Projects JOIN AspNetUsers CreatedBy ON Projects.Created_by_ID = CreatedBy.Id JOIN AspNetUsers Contact ON Projects.Contact_ID = Contact.Id WHERE Deleted = 0 AND (Projects.Created_by_ID = @Id OR Projects.Contact_ID = @Id) ORDER BY Projects.ID OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
+			const string sql2 = "SELECT COUNT(*) AS total FROM Projects WHERE Deleted = 0 AND (Projects.Created_by_ID = @Id OR Projects.Contact_ID = @Id) ";
 			SqlParameter[] sqlparams =
 			{
 				new SqlParameter { ParameterName = "@Id", SqlValue = userId, SqlDbType = SqlDbType.NVarChar},
