@@ -22,7 +22,6 @@
                             <GridView>
                                 <GridViewColumn Header="Renter" DisplayMemberBinding="{Binding User.UserName}"/>
                                 <GridViewColumn Header="Material" DisplayMemberBinding="{Binding Item.Name}"/>
-                                <GridViewColumn Header="Deleted" DisplayMemberBinding="{Binding Deleted}" />
                             </GridView>
                         </ListView.View>
                     </ListView>

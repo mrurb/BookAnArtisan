@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
 namespace Model
@@ -34,15 +30,15 @@ namespace Model
         [DataMember]
         public string Address { get; set; }
         public string ApiKey { get; set; }
-        public User(string id, string first_name, string last_name, string email, string password, string phonenumber, string address)
+        public User(string id, string firstName, string lastName, string email, string password, string phonenumber, string address)
         {
-            this.Id = id;
-            this.FirstName = first_name;
-            this.Email = email;
-            this.PasswordHash = password;
-            this.PhoneNumber = phonenumber;
-            this.Address = address;
-            this.LastName = last_name;
+            Id = id;
+            FirstName = firstName;
+            Email = email;
+            PasswordHash = password;
+            PhoneNumber = phonenumber;
+            Address = address;
+            LastName = lastName;
         }
 
         public User()

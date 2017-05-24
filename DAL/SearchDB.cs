@@ -69,7 +69,7 @@ namespace DAL
 				new SqlParameter
 				{
 					ParameterName = "@status",
-					SqlValue = "%" + pInput.ProjectStatusID + "%",
+					SqlValue = "%" + pInput.ProjectStatusId + "%",
 					SqlDbType = SqlDbType.NVarChar
 				}
 			};

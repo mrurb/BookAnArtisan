@@ -21,7 +21,7 @@ namespace DAL
 				new SqlParameter { ParameterName = "@Name", SqlValue = project.Name, SqlDbType = SqlDbType.NVarChar },
 				new SqlParameter { ParameterName = "@Created_by_ID", SqlValue = project.CreatedBy.Id, SqlDbType = SqlDbType.NVarChar },
 				new SqlParameter { ParameterName = "@Contact_ID", SqlValue = project.Contact.Id, SqlDbType = SqlDbType.NVarChar },
-				new SqlParameter { ParameterName = "@Project_status_ID", SqlValue = project.ProjectStatusID, SqlDbType = SqlDbType.Int },
+				new SqlParameter { ParameterName = "@Project_status_ID", SqlValue = project.ProjectStatusId, SqlDbType = SqlDbType.Int },
 				new SqlParameter { ParameterName = "@Project_description", SqlValue = project.ProjectDescription, SqlDbType = SqlDbType.Text },
 				new SqlParameter { ParameterName = "@Street_Name", SqlValue = project.StreetName, SqlDbType = SqlDbType.NVarChar },
 				new SqlParameter { ParameterName = "@Start_time", SqlValue = project.StartTime, SqlDbType = SqlDbType.DateTime },
@@ -82,7 +82,7 @@ namespace DAL
 						project.Name = GetDataSafe(reader, nameCol, reader.GetString);
 						project.CreatedBy = new User { Id = GetDataSafe(reader, createdByIdCol, reader.GetString), UserName = GetDataSafe(reader, createdByUserNameCol, reader.GetString) };
 						project.Contact = new User { Id = GetDataSafe(reader, contactIdCol, reader.GetString), UserName = GetDataSafe(reader, contactUserNameCol, reader.GetString) };
-						project.ProjectStatusID = GetDataSafe(reader, projectStatusIdCol, reader.GetInt32);
+						project.ProjectStatusId = GetDataSafe(reader, projectStatusIdCol, reader.GetInt32);
 						project.ProjectDescription = GetDataSafe(reader, projectDescriptionCol, reader.GetString);
 						project.StreetName = GetDataSafe(reader, streetNameCol, reader.GetString);
 						project.StartTime = GetDataSafe(reader, startTimeCol, reader.GetDateTime);
@@ -105,7 +105,7 @@ namespace DAL
 				new SqlParameter { ParameterName = "@Name", SqlValue = project.Name, SqlDbType = SqlDbType.NVarChar },
 				new SqlParameter { ParameterName = "@Created_by_ID", SqlValue = project.CreatedBy.Id, SqlDbType = SqlDbType.NVarChar },
 				new SqlParameter { ParameterName = "@Contact_ID", SqlValue = project.Contact.Id, SqlDbType = SqlDbType.NVarChar },
-				new SqlParameter { ParameterName = "@Project_status_ID", SqlValue = project.ProjectStatusID, SqlDbType = SqlDbType.Int },
+				new SqlParameter { ParameterName = "@Project_status_ID", SqlValue = project.ProjectStatusId, SqlDbType = SqlDbType.Int },
 				new SqlParameter { ParameterName = "@Project_description", SqlValue = project.ProjectDescription, SqlDbType = SqlDbType.Text },
 				new SqlParameter { ParameterName = "@Street_Name", SqlValue = project.StreetName, SqlDbType = SqlDbType.NVarChar },
 				new SqlParameter { ParameterName = "@Start_time", SqlValue = project.StartTime, SqlDbType = SqlDbType.DateTime },
@@ -209,7 +209,7 @@ namespace DAL
 								Name = GetDataSafe(reader, nameCol, reader.GetString),
 								CreatedBy = new User { Id = GetDataSafe(reader, createdByIdCol, reader.GetString), UserName = GetDataSafe(reader, createdByUserNameCol, reader.GetString) },
 								Contact = new User { Id = GetDataSafe(reader, contactIdCol, reader.GetString), UserName = GetDataSafe(reader, contactUserNameCol, reader.GetString) },
-								ProjectStatusID = GetDataSafe(reader, projectStatusIdCol, reader.GetInt32),
+								ProjectStatusId = GetDataSafe(reader, projectStatusIdCol, reader.GetInt32),
 								ProjectDescription = GetDataSafe(reader, projectDescriptionCol, reader.GetString),
 								StreetName = GetDataSafe(reader, streetNameCol, reader.GetString),
 								StartTime = GetDataSafe(reader, startTimeCol, reader.GetDateTime),
@@ -264,7 +264,7 @@ namespace DAL
 								Name = GetDataSafe(reader, nameCol, reader.GetString),
 								CreatedBy = new User { Id = GetDataSafe(reader, createdByIdCol, reader.GetString), UserName = GetDataSafe(reader, createdByUserNameCol, reader.GetString) },
 								Contact = new User { Id = GetDataSafe(reader, contactIdCol, reader.GetString), UserName = GetDataSafe(reader, contactUserNameCol, reader.GetString) },
-								ProjectStatusID = GetDataSafe(reader, projectStatusIdCol, reader.GetInt32),
+								ProjectStatusId = GetDataSafe(reader, projectStatusIdCol, reader.GetInt32),
 								ProjectDescription = GetDataSafe(reader, projectDescriptionCol, reader.GetString),
 								StreetName = GetDataSafe(reader, streetNameCol, reader.GetString),
 								StartTime = GetDataSafe(reader, startTimeCol, reader.GetDateTime),
@@ -336,7 +336,7 @@ namespace DAL
 								Name = GetDataSafe(reader, nameCol, reader.GetString),
 								CreatedBy = new User { Id = GetDataSafe(reader, createdByIdCol, reader.GetString), UserName = GetDataSafe(reader, createdByUserNameCol, reader.GetString) },
 								Contact = new User { Id = GetDataSafe(reader, contactIdCol, reader.GetString), UserName = GetDataSafe(reader, contactUserNameCol, reader.GetString) },
-								ProjectStatusID = GetDataSafe(reader, projectStatusIdCol, reader.GetInt32),
+								ProjectStatusId = GetDataSafe(reader, projectStatusIdCol, reader.GetInt32),
 								ProjectDescription = GetDataSafe(reader, projectDescriptionCol, reader.GetString),
 								StreetName = GetDataSafe(reader, streetNameCol, reader.GetString),
 								StartTime = GetDataSafe(reader, startTimeCol, reader.GetDateTime),
@@ -423,7 +423,7 @@ namespace DAL
 								Name = GetDataSafe(reader, nameCol, reader.GetString),
 								CreatedBy = new User { Id = GetDataSafe(reader, createdByIdCol, reader.GetString), UserName = GetDataSafe(reader, createdByUserNameCol, reader.GetString) },
 								Contact = new User { Id = GetDataSafe(reader, contactIdCol, reader.GetString), UserName = GetDataSafe(reader, contactUserNameCol, reader.GetString) },
-								ProjectStatusID = GetDataSafe(reader, projectStatusIdCol, reader.GetInt32),
+								ProjectStatusId = GetDataSafe(reader, projectStatusIdCol, reader.GetInt32),
 								ProjectDescription = GetDataSafe(reader, projectDescriptionCol, reader.GetString),
 								StreetName = GetDataSafe(reader, streetNameCol, reader.GetString),
 								StartTime = GetDataSafe(reader, startTimeCol, reader.GetDateTime),
