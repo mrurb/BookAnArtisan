@@ -10,7 +10,7 @@
       <xs:element minOccurs="0" name="Modified" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ProjectDescription" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ProjectStatusID" type="xs:int" />
+      <xs:element minOccurs="0" name="ProjectStatusId" type="xs:int" />
       <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
       <xs:element minOccurs="0" name="StreetName" nillable="true" type="xs:string" />
     </xs:sequence>

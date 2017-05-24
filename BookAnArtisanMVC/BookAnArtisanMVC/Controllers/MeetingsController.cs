@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
 using System.Web.Mvc;
+using BookAnArtisanMVC.Models;
 using BookAnArtisanMVC.ServiceReference;
 using Microsoft.AspNet.Identity;
 
@@ -11,13 +12,15 @@ namespace BookAnArtisanMVC.Controllers
         private readonly MeetingServiceClient meetingServiceClient = new MeetingServiceClient();
 
         // GET: Project
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             try
             {
-                var data = meetingServiceClient.ReadAllMeeting();
-                meetingServiceClient.Close();
-                return View(data);
+	            var viewModel = new IndexViewModel<Meeting>
+	            {
+		            Pager = meetingServiceClient.ReadMeetingPage(page, null)
+	            };
+                return View(viewModel);
             }
             catch (FaultException e)
             {
