@@ -184,7 +184,7 @@ namespace BookAnArtisanMVC.Controllers
 			{
 				var viewModel = new IndexViewModel<Booking>
 				{
-					Pager = ms.ReadPageForUserBooking(HttpContext.User.Identity.GetUserId(), page, 10)
+					Pager = bookingServiceClient.ReadPageForUserBooking(HttpContext.User.Identity.GetUserId(), page, 10)
 				};
 
 				return View(viewModel);
