@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
 using System.Web.Mvc;
+using BookAnArtisanMVC.Models;
 using BookAnArtisanMVC.ServiceReference;
 using Microsoft.AspNet.Identity;
 
@@ -11,12 +12,15 @@ namespace BookAnArtisanMVC.Controllers
 		private readonly MaterialServiceClient materialServiceClient = new MaterialServiceClient();
 
 		// GET: Material
-		public ActionResult Index()
+		public ActionResult Index(int? page)
 		{
 			try
 			{
-				var data = materialServiceClient.ReadAllMaterial();
-				return View(data);
+				var viewModel = new IndexViewModel<Material>
+				{
+					Pager = materialServiceClient.ReadMaterialPage(page,null)
+				};
+				return View(viewModel);
 			}
 			catch (FaultException e)
 			{
@@ -164,13 +168,15 @@ namespace BookAnArtisanMVC.Controllers
 			return Json(materialServiceClient.Search(name), JsonRequestBehavior.AllowGet);
 		}
 
-		public ActionResult MyMaterials(User user)
+		public ActionResult MyMaterials(int? page)
 		{
 			try
 			{
-				user.Id = HttpContext.User.Identity.GetUserId();
-				var data = materialServiceClient.ReadAllMaterialsForUser(user);
-				return View(data);
+				var viewModel = new IndexViewModel<Material>
+				{
+					Pager = materialServiceClient.ReadMaterialPageForUser(HttpContext.User.Identity.GetUserId(),page, null)
+				};
+				return View(viewModel);
 			}
 			catch (FaultException e)
 			{

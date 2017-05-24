@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using BookAnArtisanMVC.ServiceReference;
 using Microsoft.AspNet.Identity;
 using System.ServiceModel;
+using BookAnArtisanMVC.Models;
 
 namespace BookAnArtisanMVC.Controllers
 {
@@ -12,13 +13,15 @@ namespace BookAnArtisanMVC.Controllers
 		private readonly ProjectSearchClient projectSearchClient = new ProjectSearchClient();
 
 		// GET: Project
-		public ActionResult Index()
+		public ActionResult Index(int? page)
 		{
 			try
 			{
-				var data = projectServiceClient.ReadAllProject();
-				projectServiceClient.Close();
-				return View(data);
+				var viewModel = new IndexViewModel<Project>
+				{
+					Pager = projectServiceClient.ReadProjectPage(page, null)
+				};
+				return View(viewModel);
 			}
 			catch (FaultException e)
 			{
@@ -193,13 +196,15 @@ namespace BookAnArtisanMVC.Controllers
 			return View(data);
 		}
 
-		public ActionResult MyProjects(User user)
+		public ActionResult MyProjects(int? page)
 		{
 			try
 			{
-				user.Id = HttpContext.User.Identity.GetUserId();
-				var data = projectServiceClient.ReadAllProjectsForUser(user);
-				return View(data);
+				var viewModel = new IndexViewModel<Project>()
+				{
+					Pager = projectServiceClient.ReadProjectPageForUser(HttpContext.User.Identity.GetUserId(), page, null)
+				};
+				return View(viewModel);
 			}
 			catch (FaultException e)
 			{
