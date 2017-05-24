@@ -6,30 +6,30 @@ namespace BLL
 {
 	public class RoleController : IController<Role>
 	{
-		private readonly RoleDb roleDb = new RoleDb();
+		private readonly UserRoleDb userRoleDb = new UserRoleDb();
 		public Role Create(Role role)
 		{
-			return roleDb.Create(role);
+			return userRoleDb.Create(role);
 		}
 
 		public Role Read(Role role)
 		{
-			return roleDb.Read(role);
+			return userRoleDb.Read(role);
 		}
 
 		public Role Update(Role role)
 		{
-			return roleDb.Update(role);
+			return userRoleDb.Update(role);
 		}
 
 		public Role Delete(Role role)
 		{
-			return roleDb.Delete(role);
+			return userRoleDb.Delete(role);
 		}
 
 		public List<Role> ReadAll()
 		{
-			return roleDb.ReadAll();
+			return userRoleDb.ReadAll();
 		}
 	}
 }

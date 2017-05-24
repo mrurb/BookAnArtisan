@@ -7,11 +7,11 @@ using Model;
 
 namespace DAL
 {
-	public class RoleDb : IDataAccess<Role>
+	public class UserRoleDb : IDataAccess<Role>
 	{
 		private readonly string connectionString;
 
-		public RoleDb()
+		public UserRoleDb()
 		{
 			connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
 		}
