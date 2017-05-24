@@ -122,7 +122,7 @@ namespace WCF
 			return projectController.ReadProjectPage(page, pageSize);
 		}
 
-		public Page<Project> ReadProjectPage(string userId, int? page, int? pageSize)
+		public Page<Project> ReadProjectPageForUser(string userId, int? page, int? pageSize)
 		{
 			return projectController.ReadProjectPage(userId, page, pageSize);
 		}

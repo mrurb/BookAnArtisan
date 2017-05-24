@@ -140,7 +140,7 @@ namespace WCF
 			throw new NotImplementedException();
 		}
 
-		public Page<Meeting> ReadMeetingPage(string userId, int? page, int? pageSize)
+		public Page<Meeting> ReadMeetingPageForUser(string userId, int? page, int? pageSize)
 		{
 			throw new NotImplementedException();
 		}
