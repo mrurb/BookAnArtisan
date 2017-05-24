@@ -10,7 +10,7 @@ namespace Testing.TestingDAL
     public class TestUsers
     {
         private static User _testUser;
-        private static UserDB _db;
+        private static UserDb _db;
         private static MeetingService _ms;
 
         #region setups and teardowns
@@ -66,7 +66,7 @@ namespace Testing.TestingDAL
                     Address = "Downing Street",
                     ApiKey = "apistuff",
                 };
-                _db = new UserDB();
+                _db = new UserDb();
                 _ms = new MeetingService();
             }
             catch

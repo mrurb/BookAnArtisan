@@ -6,7 +6,7 @@ namespace BLL
 {
 	public class StatusController : IController<Status>
 	{
-		private readonly StatusDB statusDb = new StatusDB();
+		private readonly StatusDb statusDb = new StatusDb();
 		public Status Create(Status status)
 		{
 			return statusDb.Create(status);

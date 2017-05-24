@@ -7,7 +7,7 @@ namespace BLL
 {
 	public class MeetingController : IController<Meeting>
 	{
-		private readonly MeetingDB meetingDb = new MeetingDB();
+		private readonly MeetingDb meetingDb = new MeetingDb();
 		private readonly UserController userController = new UserController();
 		public Meeting Create(Meeting t)
 		{

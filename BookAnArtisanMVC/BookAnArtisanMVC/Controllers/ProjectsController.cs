@@ -8,27 +8,27 @@ namespace BookAnArtisanMVC.Controllers
 {
 	public class ProjectsController : Controller
 	{
-		private readonly ProjectServiceClient pCl = new ProjectServiceClient();
-		private readonly ProjectSearchClient psCl = new ProjectSearchClient();
+		private readonly ProjectServiceClient projectServiceClient = new ProjectServiceClient();
+		private readonly ProjectSearchClient projectSearchClient = new ProjectSearchClient();
 
 		// GET: Project
 		public ActionResult Index()
 		{
 			try
 			{
-				var data = pCl.ReadAllProject();
-				pCl.Close();
+				var data = projectServiceClient.ReadAllProject();
+				projectServiceClient.Close();
 				return View(data);
 			}
 			catch (FaultException e)
 			{
-				pCl.Abort();
+				projectServiceClient.Abort();
 				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
 			catch (Exception e)
 			{
-				pCl.Abort();
+				projectServiceClient.Abort();
 				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
@@ -38,19 +38,19 @@ namespace BookAnArtisanMVC.Controllers
 		{
 			try
 			{
-				var data = pCl.ReadProject(project);
-				pCl.Close();
+				var data = projectServiceClient.ReadProject(project);
+				projectServiceClient.Close();
 				return View(data);
 			}
 			catch (FaultException e)
 			{
-				pCl.Abort();
+				projectServiceClient.Abort();
 				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
 			catch (Exception e)
 			{
-				pCl.Abort();
+				projectServiceClient.Abort();
 				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
@@ -68,18 +68,18 @@ namespace BookAnArtisanMVC.Controllers
 			try
 			{
 				project.CreatedBy = new User { Id = HttpContext.User.Identity.GetUserId() };
-				pCl.CreateProject(project);
+				projectServiceClient.CreateProject(project);
 				return RedirectToAction("Index");
 			}
 			catch (FaultException e)
 			{
-				pCl.Abort();
+				projectServiceClient.Abort();
 				ViewBag.ErrorMessage = e.Message;
 				return View(project);
 			}
 			catch (Exception e)
 			{
-				pCl.Abort();
+				projectServiceClient.Abort();
 				ViewBag.ErrorMessage = e.Message;
 				return View(project);
 			}
@@ -90,19 +90,19 @@ namespace BookAnArtisanMVC.Controllers
 		{
 			try
 			{
-				var data = pCl.ReadProject(project);
-				pCl.Close();
+				var data = projectServiceClient.ReadProject(project);
+				projectServiceClient.Close();
 				return View(data);
 			}
 			catch (FaultException e)
 			{
-				pCl.Abort();
+				projectServiceClient.Abort();
 				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
 			catch (Exception e)
 			{
-				pCl.Abort();
+				projectServiceClient.Abort();
 				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
@@ -114,18 +114,18 @@ namespace BookAnArtisanMVC.Controllers
 		{
 			try
 			{
-				pCl.UpdateProject(project);
+				projectServiceClient.UpdateProject(project);
 				return RedirectToAction("Index");
 			}
 			catch (FaultException e)
 			{
-				pCl.Abort();
+				projectServiceClient.Abort();
 				ViewBag.ErrorMessage = e.Message;
 				return View(project);
 			}
 			catch (Exception e)
 			{
-				pCl.Abort();
+				projectServiceClient.Abort();
 				ViewBag.ErrorMessage = e.Message;
 				return View(project);
 			}
@@ -136,19 +136,19 @@ namespace BookAnArtisanMVC.Controllers
 		{
 			try
 			{
-				var data = pCl.ReadProject(project);
-				pCl.Close();
+				var data = projectServiceClient.ReadProject(project);
+				projectServiceClient.Close();
 				return View(data);
 			}
 			catch (FaultException e)
 			{
-				pCl.Abort();
+				projectServiceClient.Abort();
 				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
 			catch (Exception e)
 			{
-				pCl.Abort();
+				projectServiceClient.Abort();
 				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
@@ -160,18 +160,18 @@ namespace BookAnArtisanMVC.Controllers
 		{
 			try
 			{
-				pCl.DeleteProject(project);
+				projectServiceClient.DeleteProject(project);
 				return RedirectToAction("Index");
 			}
 			catch (FaultException e)
 			{
-				pCl.Abort();
+				projectServiceClient.Abort();
 				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
 			catch (Exception e)
 			{
-				pCl.Abort();
+				projectServiceClient.Abort();
 				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
@@ -180,16 +180,16 @@ namespace BookAnArtisanMVC.Controllers
 		public ActionResult ProjectSearch()
 		{
 			var p = new Project { Name = "a" };
-			var data = psCl.SearchByProjectAddress(p);
+			var data = projectSearchClient.SearchByProjectAddress(p);
 			return View(data);
-			//return View(pCl.ReadAllProject());
+			//return View(projectServiceClient.ReadAllProject());
 		}
 
 		[HttpPost, ActionName("ProjectSearch")]
 		public ActionResult ProjectSearch(Project projects)
 		{
 			var p = new Project { Name = "a" };
-			var data = psCl.SearchByProjectAddress(p);
+			var data = projectSearchClient.SearchByProjectAddress(p);
 			return View(data);
 		}
 
@@ -198,18 +198,18 @@ namespace BookAnArtisanMVC.Controllers
 			try
 			{
 				user.Id = HttpContext.User.Identity.GetUserId();
-				var data = pCl.ReadAllProjectsForUser(user);
+				var data = projectServiceClient.ReadAllProjectsForUser(user);
 				return View(data);
 			}
 			catch (FaultException e)
 			{
-				pCl.Abort();
+				projectServiceClient.Abort();
 				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
 			catch (Exception e)
 			{
-				pCl.Abort();
+				projectServiceClient.Abort();
 				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}

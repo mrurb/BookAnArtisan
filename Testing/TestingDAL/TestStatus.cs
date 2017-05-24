@@ -13,7 +13,7 @@ namespace Testing.TestingDAL
     public class TestStatus
     {
         static private Status testStatus;
-        static private StatusDB db;
+        static private StatusDb db;
 
         public TestStatus()
         {
@@ -52,7 +52,7 @@ namespace Testing.TestingDAL
         {
             try
             {
-                db = new StatusDB();
+                db = new StatusDb();
                 testStatus = new Status { Id = 2, Name = "OK" };
             }
             catch

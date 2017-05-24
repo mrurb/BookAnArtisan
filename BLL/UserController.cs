@@ -6,7 +6,7 @@ namespace BLL
 {
 	public class UserController : IController<User>
 	{
-		private readonly UserDB userDb = new UserDB();
+		private readonly UserDb userDb = new UserDb();
 		public User Create(User user)
 		{
 			return userDb.Create(user);

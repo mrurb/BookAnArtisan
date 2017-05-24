@@ -8,7 +8,7 @@ namespace WCF
 {
 	public class ProjectService : IProjectService
 	{
-		readonly ProjectController projectController = new ProjectController();
+		private readonly ProjectController projectController = new ProjectController();
 		public Project CreateProject(Project t)
 		{
 			try

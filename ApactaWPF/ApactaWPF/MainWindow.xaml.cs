@@ -8,34 +8,43 @@ using ApactaWPF.ServiceReferences;
 namespace ApactaWPF
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	///     Interaction logic for MainWindow.xaml
 	/// </summary>
 	public partial class MainWindow
 	{
+		private readonly BookingServiceClient bookingServiceClient = new BookingServiceClient();
+		private readonly MaterialServiceClient materialServiceClient = new MaterialServiceClient();
+		private readonly UserServiceClient userServiceClient = new UserServiceClient();
 		private Booking booking1;
 		private Booking booking2;
 		private Material material1;
 		private User user1;
 
-		private readonly BookingServiceClient rCl = new BookingServiceClient();
-		private readonly UserServiceClient sCl = new UserServiceClient();
-		private readonly MaterialServiceClient mCl = new MaterialServiceClient();
-
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			var bookingsList = bookingServiceClient.ReadAllBooking();
+			foreach (var booking in bookingsList)
+				ShowAllView.Items.Add(booking);
+
+			var usersList = userServiceClient.ReadAllUser();
+			foreach (var user in usersList)
+				ListViewUsers.Items.Add(user);
+
+			var materialsList = materialServiceClient.ReadAllMaterial();
+			foreach (var material in materialsList)
+				ListViewMaterials.Items.Add(material);
 		}
 
-		private void Get_All_Bookings(object sender, RoutedEventArgs e)
+		private void GetAllBookings(object sender, RoutedEventArgs e)
 		{
 			try
 			{
 				ShowAllView.Items.Clear();
-				var mylist = rCl.ReadAllBooking();
+				var mylist = bookingServiceClient.ReadAllBooking();
 				foreach (var stuff in mylist)
-				{
 					ShowAllView.Items.Add(stuff);
-				}
 			}
 			catch (FaultException)
 			{
@@ -53,7 +62,7 @@ namespace ApactaWPF
 			if (item == null) return;
 			booking1 = (Booking)item;
 			var bla = (Booking)item;
-			bla = rCl.ReadBooking(bla);
+			bla = bookingServiceClient.ReadBooking(bla);
 			MaterialTxt.Text = bla.Item.Name;
 			RenterTxt.Text = bla.User.UserName;
 			ToDateTimeTxt.Text = bla.EndTime.ToString(CultureInfo.CurrentCulture);
@@ -61,14 +70,12 @@ namespace ApactaWPF
 			OwnerTxt.Text = bla.Item.Owner.UserName;
 		}
 
-		private void btn_delete(object sender, RoutedEventArgs e)
+		private void Delete(object sender, RoutedEventArgs e)
 		{
 			try
 			{
 				if (booking1 != null)
-				{
-					rCl.DeleteBooking(booking1);
-				}
+					bookingServiceClient.DeleteBooking(booking1);
 			}
 			catch (FaultException)
 			{
@@ -80,7 +87,7 @@ namespace ApactaWPF
 			}
 		}
 
-		private void SubmitBtn_Click(object sender, RoutedEventArgs e)
+		private void Update(object sender, RoutedEventArgs e)
 		{
 			if (booking1 == null || FromDateTimeTxt.Value == null || ToDateTimeTxt.Value == null) return;
 			try
@@ -94,7 +101,7 @@ namespace ApactaWPF
 					Item = booking1.Item,
 					User = booking1.User
 				};
-				rCl.UpdateBooking(bla2);
+				bookingServiceClient.UpdateBooking(bla2);
 			}
 			catch (FaultException)
 			{
@@ -113,12 +120,12 @@ namespace ApactaWPF
 				if (material1 == null || user1 == null || FromDateTime.Value == null || ToDateTime.Value == null) return;
 				booking2 = new Booking
 				{
-					Item = mCl.ReadMaterial(new Material { Id = Convert.ToInt32(HiddenIdMatLbl.Content) }),
-					User = sCl.ReadUser(new User { Id = HiddenIdRenLbl.Content.ToString() }),
+					Item = materialServiceClient.ReadMaterial(new Material { Id = Convert.ToInt32(HiddenIdMatLbl.Content) }),
+					User = userServiceClient.ReadUser(new User { Id = HiddenIdRenLbl.Content.ToString() }),
 					StartTime = Convert.ToDateTime(FromDateTime.Value),
 					EndTime = Convert.ToDateTime(ToDateTime.Value)
 				};
-				rCl.CreateBooking(booking2);
+				bookingServiceClient.CreateBooking(booking2);
 			}
 			catch (FaultException)
 			{
@@ -130,16 +137,14 @@ namespace ApactaWPF
 			}
 		}
 
-		private void GetAllUsers_Click(object sender, RoutedEventArgs e)
+		private void GetAllUsers(object sender, RoutedEventArgs e)
 		{
 			try
 			{
 				ListViewUsers.Items.Clear();
-				var mylist = sCl.ReadAllUser();
+				var mylist = userServiceClient.ReadAllUser();
 				foreach (var stuff in mylist)
-				{
 					ListViewUsers.Items.Add(stuff);
-				}
 			}
 			catch (FaultException)
 			{
@@ -151,16 +156,14 @@ namespace ApactaWPF
 			}
 		}
 
-		private void GetAllMaterials_Click(object sender, RoutedEventArgs e)
+		private void GetAllMaterials(object sender, RoutedEventArgs e)
 		{
 			try
 			{
 				ListViewMaterials.Items.Clear();
-				var mylist = mCl.ReadAllMaterial();
+				var mylist = materialServiceClient.ReadAllMaterial();
 				foreach (var stuff in mylist)
-				{
 					ListViewMaterials.Items.Add(stuff);
-				}
 			}
 			catch (FaultException)
 			{
@@ -177,7 +180,7 @@ namespace ApactaWPF
 			var item = (sender as ListView)?.SelectedItem;
 			if (item == null) return;
 			user1 = (User)item;
-			user1 = sCl.ReadUser(user1);
+			user1 = userServiceClient.ReadUser(user1);
 			CreateRenterTxt.Text = user1.Email;
 			HiddenIdRenLbl.Content = user1.Id;
 		}
@@ -187,10 +190,9 @@ namespace ApactaWPF
 			var item = (sender as ListView)?.SelectedItem;
 			if (item == null) return;
 			material1 = (Material)item;
-			material1 = mCl.ReadMaterial(material1);
+			material1 = materialServiceClient.ReadMaterial(material1);
 			CreateMaterialTxt.Text = material1.Name;
 			HiddenIdMatLbl.Content = material1.Id;
 		}
-
 	}
 }

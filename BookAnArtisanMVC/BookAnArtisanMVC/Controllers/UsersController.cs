@@ -1,79 +1,75 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using BookAnArtisanMVC.ServiceReference;
 
 namespace BookAnArtisanMVC.Controllers
 {
 
-    public class UsersController : Controller
-    {
-        UserServiceClient uCl = new UserServiceClient();
+	public class UsersController : Controller
+	{
+		private readonly UserServiceClient userServiceClient = new UserServiceClient();
 
-        public ActionResult Index()
-        {
-            return View(uCl.ReadAllUser());
-        }
+		public ActionResult Index()
+		{
+			return View(userServiceClient.ReadAllUser());
+		}
 
-        public ActionResult Edit(User user)
-        {
-            return View(uCl.ReadUser(user));
-        }
+		public ActionResult Edit(User user)
+		{
+			return View(userServiceClient.ReadUser(user));
+		}
 
-        [HttpPost, ActionName("Edit")]
-        public ActionResult EditConfirmed(User user)
-        {
-            return View(uCl.UpdateUser(user));
-        }
+		[HttpPost, ActionName("Edit")]
+		public ActionResult EditConfirmed(User user)
+		{
+			return View(userServiceClient.UpdateUser(user));
+		}
 
-        public ActionResult Delete(User user)
-        {
-            return View(uCl.ReadUser(user));
-        }
-
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(User user)
-        {
-            uCl.DeleteUser(user);
-            return RedirectToAction("Index");
-        }
+		public ActionResult Delete(User user)
+		{
+			return View(userServiceClient.ReadUser(user));
+		}
 
 
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Create(User user)
-        {
-            if (ModelState.IsValid)
-            {
-                uCl.CreateUser(user);
-
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return View(user);
-            }
+		[HttpPost, ActionName("Delete")]
+		[ValidateAntiForgeryToken]
+		public ActionResult DeleteConfirmed(User user)
+		{
+			userServiceClient.DeleteUser(user);
+			return RedirectToAction("Index");
+		}
 
 
-        }
+		public ActionResult Create()
+		{
+			return View();
+		}
 
-        public ActionResult Details(User user)
-        {
-            return View(uCl.ReadUser(user));
-        }
+		[HttpPost]
+		public ActionResult Create(User user)
+		{
+			if (ModelState.IsValid)
+			{
+				userServiceClient.CreateUser(user);
 
-        [HttpPost]
-        public JsonResult SearchByName(string name)
-        {
-            return Json(uCl.SearchByName(name), JsonRequestBehavior.AllowGet);
-        }
-    }
+				return RedirectToAction("Index");
+			}
+			else
+			{
+				return View(user);
+			}
+
+
+		}
+
+		public ActionResult Details(User user)
+		{
+			return View(userServiceClient.ReadUser(user));
+		}
+
+		[HttpPost]
+		public JsonResult SearchByName(string name)
+		{
+			return Json(userServiceClient.SearchByName(name), JsonRequestBehavior.AllowGet);
+		}
+	}
 }

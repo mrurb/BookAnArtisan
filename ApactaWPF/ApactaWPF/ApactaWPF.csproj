@@ -129,6 +129,9 @@
     <None Include="Service References\ServiceReferences\ApactaWPF.ServiceReferences.Material.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ServiceReferences\ApactaWPF.ServiceReferences.PageOfMaterialYgFqSxnr1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ServiceReferences\ApactaWPF.ServiceReferences.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

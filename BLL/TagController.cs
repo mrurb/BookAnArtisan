@@ -6,7 +6,7 @@ namespace BLL
 {
 	public class TagController : IController<Tag>
 	{
-		private readonly TagDB tagDb = new TagDB();
+		private readonly TagDb tagDb = new TagDb();
 		public Tag Create(Tag tag)
 		{
 			return tagDb.Create(tag);

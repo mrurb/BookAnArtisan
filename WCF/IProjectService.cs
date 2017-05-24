@@ -1,33 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Model;
 using System.ServiceModel;
+using Model;
 
 namespace WCF
 {
-    [ServiceContract]
-    public interface IProjectService
-    {
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+	[ServiceContract]
+	public interface IProjectService
+	{
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		Project CreateProject(Project t);
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		Project ReadProject(Project t);
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		Project UpdateProject(Project t);
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		Project DeleteProject(Project t);
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		List<Project> ReadAllProject();
-        [OperationContract]
-        [FaultContract(typeof(ApplicationException))]
+
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
 		List<Project> ReadAllProjectsForUser(User user);
 
 	    [OperationContract]
