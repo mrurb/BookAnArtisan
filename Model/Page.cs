@@ -23,32 +23,39 @@ namespace Model
 		public int EndPage { get; private set; }
 		public Page(int totalItems, IList<T> pageList, int? page = 1, int? pageSize = 10)
 		{
-			// calculate total, start and end pages
+			// calculate total, start, and end pages
 			PageList = pageList;
 			PageSize = pageSize ?? 10;
-			var totalPages = (int)Math.Ceiling((decimal)totalItems / (decimal)pageSize);
-			var currentPage = page ?? 1;
-			var startPage = currentPage - 5;
-			var endPage = currentPage + 4;
-			if (startPage <= 0)
+			if (pageSize != null)
 			{
-				endPage -= (startPage - 1);
-				startPage = 1;
-			}
-			if (endPage > totalPages)
-			{
-				endPage = totalPages;
-				if (endPage > 10)
+				var totalPages = (int) Math.Ceiling(totalItems / (decimal) pageSize);
+				int currentPage = page ?? 1;
+				int startPage = currentPage - 5;
+				int endPage = currentPage + 4;
+				if (startPage <= 0)
 				{
-					startPage = endPage - 9;
+					endPage -= (startPage - 1);
+					startPage = 1;
 				}
-			}
+				if (endPage > totalPages)
+				{
+					endPage = totalPages;
+					if (endPage > 10)
+					{
+						startPage = endPage - 9;
+					}
+				}
 
-			TotalItems = totalItems;
-			CurrentPage = currentPage;
-			TotalPages = totalPages;
-			StartPage = startPage;
-			EndPage = endPage;
+				TotalItems = totalItems;
+				CurrentPage = currentPage;
+				TotalPages = totalPages;
+				StartPage = startPage;
+				EndPage = endPage;
+			}
+			else
+			{
+				throw new ApplicationException("Invalid page size.");
+			}
 		}
 	}
 }
