@@ -87,6 +87,7 @@
   <xs:element name="ReadPageForUserBooking">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="page" nillable="true" type="xs:int" />
         <xs:element minOccurs="0" name="pageSize" nillable="true" type="xs:int" />
       </xs:sequence>

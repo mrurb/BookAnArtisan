@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using BookAnArtisanMVC.Models;
 using BookAnArtisanMVC.ServiceReference;
+using Microsoft.AspNet.Identity;
 
 namespace BookAnArtisanMVC.Controllers
 {
@@ -18,12 +19,9 @@ namespace BookAnArtisanMVC.Controllers
 		{
 			try
 			{
-				var varpage = ms.ReadPageBooking(page, 10);
-				var list = varpage.PageList;
 				var viewModel = new IndexViewModel<Booking>
 				{
-					//Pager = ms.ReadPageBooking(page, 10)
-					Pager = varpage
+					Pager = ms.ReadPageBooking(page, 10)
 				};
 				return View(viewModel);
 			}
@@ -188,11 +186,16 @@ namespace BookAnArtisanMVC.Controllers
 			}
 		}
 
-		public ActionResult MyBooking(User user)
+		public ActionResult MyBooking(int? page)
 		{
 			try
 			{
-				return View(ms.ReadAllBooking());
+				var viewModel = new IndexViewModel<Booking>
+				{
+					Pager = ms.ReadPageForUserBooking(HttpContext.User.Identity.GetUserId(), page, 10)
+				};
+
+				return View(viewModel);
 			}
 			catch (FaultException e)
 			{

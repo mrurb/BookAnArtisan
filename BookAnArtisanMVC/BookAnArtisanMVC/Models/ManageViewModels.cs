@@ -6,17 +6,26 @@ using Microsoft.Owin.Security;
 
 namespace BookAnArtisanMVC.Models
 {
-    public class IndexViewModel<T>
+    public class IndexViewModel
     {
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
-	    public IPager<T> Pager { get; set; }
     }
 
-    public class ManageLoginsViewModel
+	public class IndexViewModel<T>
+	{
+		public bool HasPassword { get; set; }
+		public IList<UserLoginInfo> Logins { get; set; }
+		public string PhoneNumber { get; set; }
+		public bool TwoFactor { get; set; }
+		public bool BrowserRemembered { get; set; }
+		public IPager<T> Pager { get; set; }
+	}
+
+	public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
         public IList<AuthenticationDescription> OtherLogins { get; set; }

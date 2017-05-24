@@ -65,5 +65,10 @@ namespace BLL
 			}
 			return rdb.Update(t);
 		}
+
+		public Page<Booking> ReadPage(string userId, int? page, int? pageSize)
+		{
+			return rdb.ReadPage(userId, page, pageSize);
+		}
 	}
 }

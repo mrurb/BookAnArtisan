@@ -38,6 +38,6 @@ namespace WCF
 		Page<Material> ReadMaterialPage(int? page, int? pageSize);
 		[OperationContract]
 		[FaultContract(typeof(ApplicationException))]
-		Page<Material> ReadMaterialPageForUser(int? page, int? pageSize);
+		Page<Material> ReadMaterialPage(string userId, int? page, int? pageSize);
 	}
 }

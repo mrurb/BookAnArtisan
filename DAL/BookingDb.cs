@@ -234,6 +234,87 @@ namespace DAL
 			return booking;
 		}
 
+		public Page<Booking> ReadPage(string userId, int? page, int? pageSize)
+		{
+			page = page ?? 1;
+			pageSize = pageSize ?? 10;
+			var materials = new List<Booking>();
+			var totalRows = 0;
+			var rowStart = (((page - 1) * pageSize) + 1);
+
+			const string sql = "SELECT booking.updated, booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0 AND booking.UserId = @UserId ORDER BY booking.starttime OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
+			const string sql2 = "SELECT COUNT(*) AS total FROM Bookings WHERE Deleted = 0 AND UserId = @UserId";
+			SqlParameter[] sqlparams =
+			{
+				new SqlParameter { ParameterName =  "@UserId", SqlValue = userId, SqlDbType = SqlDbType.NVarChar},
+				new SqlParameter { ParameterName = "@page", SqlValue = rowStart, SqlDbType = SqlDbType.Int },
+				new SqlParameter { ParameterName = "@pageSize", SqlValue = pageSize, SqlDbType = SqlDbType.Int }
+			};
+
+
+			var con = new SqlConnection(Connectionstring);
+			var command = new SqlCommand(sql, con);
+			try
+			{
+				con.Open();
+				var myTrans = con.BeginTransaction(IsolationLevel.ReadUncommitted);
+				command.Parameters.AddRange(sqlparams);
+				command.Transaction = myTrans;
+				using (var reader = command.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						materials.Add(new Booking
+						{
+							Updated = (DateTime)reader["updated"],
+							Id = (int)reader["bookingID"],
+							EndTime = (DateTime)reader["endtime"],
+							StartTime = (DateTime)reader["starttime"],
+							Deleted = (bool)reader["deleted"],
+							User = new User()
+							{
+								Id = reader["userID"].ToString(),
+								FirstName = reader["firstname"].ToString(),
+								LastName = reader["lastname"].ToString(),
+								Email = reader["email"].ToString(),
+								PhoneNumber = reader["phonenumber"].ToString(),
+								Address = reader["address"].ToString(),
+								UserName = reader["username"].ToString()
+							},
+							Item = new Material()
+							{
+								Id = (int)reader["materialID"],
+								Name = reader["materialsname"].ToString(),
+								Description = reader["description"].ToString(),
+								Condition = reader["condition"].ToString(),
+							}
+						});
+					}
+				}
+
+				command.CommandText = sql2;
+				using (var reader = command.ExecuteReader())
+				{
+					if (reader.Read())
+					{
+						totalRows = (int)reader["total"];
+					}
+				}
+				myTrans.Commit();
+			}
+			catch (Exception)
+			{
+				con.Close();
+				throw new Exception();
+			}
+			finally
+			{
+				con.Close();
+			}
+			var pages = new Page<Booking>(totalRows, materials, page, pageSize);
+			return pages;
+		}
+
 		public Page<Booking> ReadPage(int? page, int? pageSize)
 		{
 			page = page ?? 1;
@@ -242,8 +323,8 @@ namespace DAL
 			var totalRows = 0;
 			var rowStart = (((page - 1) * pageSize) + 1);
 
-			const string sql = "SELECT booking.updated, booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0 ORDER BY booking.ID OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
-			const string sql2 = "SELECT COUNT(*) AS total FROM Bookings WHERE Deleted = 1";
+			const string sql = "SELECT booking.updated, booking.ID bookingID, booking.StartTime starttime, booking.Deleted deleted, booking.EndTime endtime, materials.ID materialID, materials.Name materialsname, materials.Description description, materials.Condition condition, users.ID userID, users.Email email, users.PhoneNumber phonenumber, users.UserName username, users.FirstName firstname, users.LastName lastname, users.Address address FROM Bookings booking JOIN Materials_Unique materials ON booking.MaterialID = materials.ID JOIN AspNetUsers users ON booking.UserID = users.Id WHERE booking.deleted = 0 ORDER BY booking.starttime OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
+			const string sql2 = "SELECT COUNT(*) AS total FROM Bookings WHERE Deleted = 0";
 			SqlParameter[] sqlparams =
 			{
 				new SqlParameter { ParameterName = "@page", SqlValue = rowStart, SqlDbType = SqlDbType.Int },

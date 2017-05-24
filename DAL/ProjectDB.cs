@@ -284,5 +284,177 @@ namespace DAL
 		{
 			return !reader.IsDBNull(columnIndex) ? getData(columnIndex) : default(T);
 		}
+
+		public Page<Project> ReadProjectPage(int? page, int? pageSize)
+		{
+			page = page ?? 1;
+			pageSize = pageSize ?? 10;
+			var projects = new List<Project>();
+			var totalRows = 0;
+			var rowStart = (((page - 1) * pageSize) + 1);
+
+			const string sql = "SELECT Projects.Name, Projects.ID, Projects.Created_by_ID, Projects.Contact_ID, Projects.Project_status_ID, Projects.Project_description, Projects.Street_Name,Projects.Start_time, Projects.Created, Projects.Modified, Projects.Deleted, CreatedBy.UserName CreatedByUserName, Contact.UserName ContactUserName FROM Projects JOIN AspNetUsers CreatedBy ON Projects.Created_by_ID = CreatedBy.Id JOIN AspNetUsers Contact ON Projects.Contact_ID = Contact.Id WHERE Deleted = 0 ORDER BY Projects.ID OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
+			const string sql2 = "SELECT COUNT(*) AS total FROM Projects WHERE Deleted = 0 ";
+			SqlParameter[] sqlparams =
+			{
+				new SqlParameter { ParameterName = "@page", SqlValue = rowStart, SqlDbType = SqlDbType.Int },
+				new SqlParameter { ParameterName = "@pageSize", SqlValue = pageSize, SqlDbType = SqlDbType.Int }
+			};
+
+
+			var con = new SqlConnection(connectionString);
+			var command = new SqlCommand(sql, con);
+			try
+			{
+				con.Open();
+				var myTrans = con.BeginTransaction(IsolationLevel.ReadUncommitted);
+				command.Parameters.AddRange(sqlparams);
+				command.Transaction = myTrans;
+				using (var reader = command.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						int idCol = reader.GetOrdinal("ID");
+						int nameCol = reader.GetOrdinal("Name");
+						int createdByIdCol = reader.GetOrdinal("Created_by_ID");
+						int contactIdCol = reader.GetOrdinal("Contact_ID");
+						int projectStatusIdCol = reader.GetOrdinal("Project_status_ID");
+						int projectDescriptionCol = reader.GetOrdinal("Project_description");
+						int streetNameCol = reader.GetOrdinal("Street_Name");
+						int startTimeCol = reader.GetOrdinal("Start_time");
+						int createdCol = reader.GetOrdinal("Created");
+						int modifiedCol = reader.GetOrdinal("Modified");
+						int deletedCol = reader.GetOrdinal("Deleted");
+						int createdByUserNameCol = reader.GetOrdinal("CreatedByUserName");
+						int contactUserNameCol = reader.GetOrdinal("ContactUserName");
+
+						while (reader.Read())
+						{
+							projects.Add(new Project
+							{
+								Id = GetDataSafe(reader, idCol, reader.GetInt32),
+								Name = GetDataSafe(reader, nameCol, reader.GetString),
+								CreatedBy = new User { Id = GetDataSafe(reader, createdByIdCol, reader.GetString), UserName = GetDataSafe(reader, createdByUserNameCol, reader.GetString) },
+								Contact = new User { Id = GetDataSafe(reader, contactIdCol, reader.GetString), UserName = GetDataSafe(reader, contactUserNameCol, reader.GetString) },
+								ProjectStatusID = GetDataSafe(reader, projectStatusIdCol, reader.GetInt32),
+								ProjectDescription = GetDataSafe(reader, projectDescriptionCol, reader.GetString),
+								StreetName = GetDataSafe(reader, streetNameCol, reader.GetString),
+								StartTime = GetDataSafe(reader, startTimeCol, reader.GetDateTime),
+								Created = GetDataSafe(reader, createdCol, reader.GetDateTime),
+								Modified = GetDataSafe(reader, modifiedCol, reader.GetDateTime),
+								Deleted = GetDataSafe(reader, deletedCol, reader.GetBoolean),
+							});
+						}
+					}
+				}
+
+				command.CommandText = sql2;
+				using (var reader = command.ExecuteReader())
+				{
+					if (reader.Read())
+					{
+						totalRows = (int)reader["total"];
+					}
+				}
+				myTrans.Commit();
+			}
+			catch (Exception)
+			{
+				con.Close();
+				throw new Exception();
+			}
+			finally
+			{
+				con.Close();
+			}
+			return new Page<Project>(totalRows, projects, page, pageSize);
+		}
+
+
+		public Page<Project> ReadProjectPage(string userId, int? page, int? pageSize)
+		{
+			page = page ?? 1;
+			pageSize = pageSize ?? 10;
+			var projects = new List<Project>();
+			var totalRows = 0;
+			var rowStart = (((page - 1) * pageSize) + 1);
+
+			const string sql = "SELECT Projects.Name, Projects.ID, Projects.Created_by_ID, Projects.Contact_ID, Projects.Project_status_ID, Projects.Project_description, Projects.Street_Name,Projects.Start_time, Projects.Created, Projects.Modified, Projects.Deleted, CreatedBy.UserName CreatedByUserName, Contact.UserName ContactUserName FROM Projects JOIN AspNetUsers CreatedBy ON Projects.Created_by_ID = CreatedBy.Id JOIN AspNetUsers Contact ON Projects.Contact_ID = Contact.Id WHERE Deleted = 0 AND Projects.Created_by_ID = @Id OR Projects.Contact_ID = @Id ORDER BY MProjects.ID OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
+			const string sql2 = "SELECT COUNT(*) AS total FROM Projects WHERE Deleted = 0 AND Projects.Created_by_ID = @Id OR Projects.Contact_ID = @Id ";
+			SqlParameter[] sqlparams =
+			{
+				new SqlParameter { ParameterName = "@Id", SqlValue = userId, SqlDbType = SqlDbType.NVarChar},
+				new SqlParameter { ParameterName = "@page", SqlValue = rowStart, SqlDbType = SqlDbType.Int },
+				new SqlParameter { ParameterName = "@pageSize", SqlValue = pageSize, SqlDbType = SqlDbType.Int }
+			};
+
+
+			var con = new SqlConnection(connectionString);
+			var command = new SqlCommand(sql, con);
+			try
+			{
+				con.Open();
+				var myTrans = con.BeginTransaction(IsolationLevel.ReadUncommitted);
+				command.Parameters.AddRange(sqlparams);
+				command.Transaction = myTrans;
+				using (var reader = command.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						int idCol = reader.GetOrdinal("ID");
+						int nameCol = reader.GetOrdinal("Name");
+						int createdByIdCol = reader.GetOrdinal("Created_by_ID");
+						int contactIdCol = reader.GetOrdinal("Contact_ID");
+						int projectStatusIdCol = reader.GetOrdinal("Project_status_ID");
+						int projectDescriptionCol = reader.GetOrdinal("Project_description");
+						int streetNameCol = reader.GetOrdinal("Street_Name");
+						int startTimeCol = reader.GetOrdinal("Start_time");
+						int createdCol = reader.GetOrdinal("Created");
+						int modifiedCol = reader.GetOrdinal("Modified");
+						int deletedCol = reader.GetOrdinal("Deleted");
+						int createdByUserNameCol = reader.GetOrdinal("CreatedByUserName");
+						int contactUserNameCol = reader.GetOrdinal("ContactUserName");
+
+						while (reader.Read())
+						{
+							projects.Add(new Project
+							{
+								Id = GetDataSafe(reader, idCol, reader.GetInt32),
+								Name = GetDataSafe(reader, nameCol, reader.GetString),
+								CreatedBy = new User { Id = GetDataSafe(reader, createdByIdCol, reader.GetString), UserName = GetDataSafe(reader, createdByUserNameCol, reader.GetString) },
+								Contact = new User { Id = GetDataSafe(reader, contactIdCol, reader.GetString), UserName = GetDataSafe(reader, contactUserNameCol, reader.GetString) },
+								ProjectStatusID = GetDataSafe(reader, projectStatusIdCol, reader.GetInt32),
+								ProjectDescription = GetDataSafe(reader, projectDescriptionCol, reader.GetString),
+								StreetName = GetDataSafe(reader, streetNameCol, reader.GetString),
+								StartTime = GetDataSafe(reader, startTimeCol, reader.GetDateTime),
+								Created = GetDataSafe(reader, createdCol, reader.GetDateTime),
+								Modified = GetDataSafe(reader, modifiedCol, reader.GetDateTime),
+								Deleted = GetDataSafe(reader, deletedCol, reader.GetBoolean),
+							});
+						}
+					}
+				}
+
+				command.CommandText = sql2;
+				using (var reader = command.ExecuteReader())
+				{
+					if (reader.Read())
+					{
+						totalRows = (int)reader["total"];
+					}
+				}
+				myTrans.Commit();
+			}
+			catch (Exception)
+			{
+				con.Close();
+				throw new Exception();
+			}
+			finally
+			{
+				con.Close();
+			}
+			return new Page<Project>(totalRows, projects, page, pageSize);
+		}
 	}
 }

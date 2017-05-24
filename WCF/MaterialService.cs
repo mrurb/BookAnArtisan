@@ -21,11 +21,11 @@ namespace WCF
 			}
 			catch
 			{
-				
+
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
-			
+
 		}
 
 		public Material DeleteMaterial(Material t)
@@ -40,7 +40,7 @@ namespace WCF
 			}
 			catch
 			{
-				
+
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
@@ -58,7 +58,7 @@ namespace WCF
 			}
 			catch
 			{
-				
+
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
@@ -76,7 +76,7 @@ namespace WCF
 			}
 			catch
 			{
-				
+
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
@@ -99,7 +99,7 @@ namespace WCF
 			}
 			catch
 			{
-				
+
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
@@ -117,7 +117,7 @@ namespace WCF
 			}
 			catch
 			{
-				
+
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
@@ -125,12 +125,13 @@ namespace WCF
 
 		public Page<Material> ReadMaterialPage(int? page, int? pageSize)
 		{
-			throw new NotImplementedException();
+			return mc.ReadMaterialPage(page, pageSize);
+
 		}
 
-		public Page<Material> ReadMaterialPageForUser(int? page, int? pageSize)
+		public Page<Material> ReadMaterialPage(string userId, int? page, int? pageSize)
 		{
-			throw new NotImplementedException();
+			return mc.ReadMaterialPage(userId, page, pageSize);
 		}
 	}
 }

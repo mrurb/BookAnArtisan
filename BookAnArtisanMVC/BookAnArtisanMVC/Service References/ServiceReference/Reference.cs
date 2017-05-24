@@ -2064,10 +2064,10 @@ namespace BookAnArtisanMVC.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadPageForUserBooking", ReplyAction="http://tempuri.org/IBookingService/ReadPageForUserBookingResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.ApplicationException), Action="http://tempuri.org/IBookingService/ReadPageForUserBookingApplicationExceptionFaul" +
             "t", Name="ApplicationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
-        BookAnArtisanMVC.ServiceReference.BookingPage ReadPageForUserBooking(System.Nullable<int> page, System.Nullable<int> pageSize);
+        BookAnArtisanMVC.ServiceReference.BookingPage ReadPageForUserBooking(string userId, System.Nullable<int> page, System.Nullable<int> pageSize);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookingService/ReadPageForUserBooking", ReplyAction="http://tempuri.org/IBookingService/ReadPageForUserBookingResponse")]
-        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.BookingPage> ReadPageForUserBookingAsync(System.Nullable<int> page, System.Nullable<int> pageSize);
+        System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.BookingPage> ReadPageForUserBookingAsync(string userId, System.Nullable<int> page, System.Nullable<int> pageSize);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2145,12 +2145,12 @@ namespace BookAnArtisanMVC.ServiceReference {
             return base.Channel.ReadPageBookingAsync(page, pageSize);
         }
         
-        public BookAnArtisanMVC.ServiceReference.BookingPage ReadPageForUserBooking(System.Nullable<int> page, System.Nullable<int> pageSize) {
-            return base.Channel.ReadPageForUserBooking(page, pageSize);
+        public BookAnArtisanMVC.ServiceReference.BookingPage ReadPageForUserBooking(string userId, System.Nullable<int> page, System.Nullable<int> pageSize) {
+            return base.Channel.ReadPageForUserBooking(userId, page, pageSize);
         }
         
-        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.BookingPage> ReadPageForUserBookingAsync(System.Nullable<int> page, System.Nullable<int> pageSize) {
-            return base.Channel.ReadPageForUserBookingAsync(page, pageSize);
+        public System.Threading.Tasks.Task<BookAnArtisanMVC.ServiceReference.BookingPage> ReadPageForUserBookingAsync(string userId, System.Nullable<int> page, System.Nullable<int> pageSize) {
+            return base.Channel.ReadPageForUserBookingAsync(userId, page, pageSize);
         }
     }
     

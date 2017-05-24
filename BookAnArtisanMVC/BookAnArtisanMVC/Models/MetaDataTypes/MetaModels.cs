@@ -158,4 +158,19 @@ namespace BookAnArtisanMVC.ServiceReference
 
 	}
 
+	public partial class ProjectPage : IPager<Project>
+	{
+		
+	}
+
+	public partial class MeetingPage : IPager<Meeting>
+	{
+		
+	}
+
+	public partial class MaterialPage : IPager<Material>
+	{
+		
+	}
+
 }

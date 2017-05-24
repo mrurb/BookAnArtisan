@@ -35,6 +35,6 @@ namespace WCF
 	    Page<Project> ReadProjectPage(int? page, int? pageSize);
 	    [OperationContract]
 	    [FaultContract(typeof(ApplicationException))]
-	    Page<Project> ReadProjectPageForUser(int? page, int? pageSize);
+	    Page<Project> ReadProjectPageForUser(string userId, int? page, int? pageSize);
 	}
 }

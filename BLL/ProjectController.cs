@@ -59,6 +59,16 @@ namespace BLL
 		{
 			return searchDb.SearchByProjectAddress(p);
 		}
+
+		public Page<Project> ReadProjectPage(int? page, int? pageSize)
+		{
+			return projectDb.ReadProjectPage(page, pageSize);
+		}
+
+		public Page<Project> ReadProjectPage(string userId, int? page, int? pageSize)
+		{
+			return projectDb.ReadProjectPage(userId, page, pageSize);
+		}
 	}
 }
 

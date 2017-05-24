@@ -5,10 +5,11 @@
         @if (Model.Pager.CurrentPage > 1)
         {
             <li>
-                @Html.ActionLink("First", "Index")
+                @* ReSharper disable Mvc.ActionNotResolved *@
+                @Html.ActionLink("First", null)
             </li>
             <li>
-                @Html.ActionLink("Previuos", "Index", new { page = @Model.Pager.CurrentPage - 1 })
+                @Html.ActionLink("Previuos", null, new { page = @Model.Pager.CurrentPage - 1 })
             </li>
         }
         else
@@ -24,17 +25,17 @@
         @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
         {
             <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
-                @Html.ActionLink((string)page.ToString(), "Index", new { page = @page })
+                @Html.ActionLink((string)page.ToString(), null, new { page = @page })
             </li>
         }
 
         @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
         {
             <li>
-                @Html.ActionLink("Next", "Index", new { page = @Model.Pager.CurrentPage + 1 })
+                @Html.ActionLink("Next", null, new { page = @Model.Pager.CurrentPage + 1 })
             </li>
             <li>
-                @Html.ActionLink("Last", "Index", new { page = @Model.Pager.TotalPages })
+                @Html.ActionLink("Last", null, new { page = @Model.Pager.TotalPages })
             </li>
         }
         else

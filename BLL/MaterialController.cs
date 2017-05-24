@@ -48,5 +48,15 @@ namespace BLL
 			}
 			return materialDb.ReadAllForUser(user);
 		}
+
+		public Page<Material> ReadMaterialPage(int? page, int? pageSize)
+		{
+			return materialDb.ReadPage(page, pageSize);
+		}
+
+		public Page<Material> ReadMaterialPage(string userId, int? page, int? pageSize)
+		{
+			return materialDb.ReadPage(userId, page, pageSize);
+		}
 	}
 }

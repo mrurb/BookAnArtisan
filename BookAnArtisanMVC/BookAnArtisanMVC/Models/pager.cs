@@ -10,7 +10,7 @@ namespace BookAnArtisanMVC.Models
 	{
 
 
-		IList<T> PageList { get; set; }
+		List<T> PageList { get; set; }
 		int TotalItems { get; set; }
 		int CurrentPage { get; set; }
 		int PageSize { get;  set; }
