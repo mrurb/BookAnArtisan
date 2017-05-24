@@ -9,9 +9,10 @@ namespace Testing.TestingWCF
 {
 	public class TestBooking
 	{
-		private Booking bookingnew;
-		private BookingDb bDb;
-		BookingService rs;
+		private Booking testBooking;
+		private BookingDb bookingDb;
+		private BookingService bookingService;
+
 		#region setups + teardowns
 		[ClassInitialize]
 		public static void SetUpBeforeClass(TestContext tc)
@@ -24,9 +25,9 @@ namespace Testing.TestingWCF
 
 		}
 		[TestInitialize]
-		public void setUp()
+		public void SetUp()
 		{
-			Booking bookingnew = new Booking()
+			var bookingnew = new Booking()
 			{
 				StartTime = new DateTime(2017, 5, 25, 10, 50, 00),
 				EndTime = new DateTime(2017, 5, 28, 10, 10, 00),
@@ -64,46 +65,46 @@ namespace Testing.TestingWCF
 					Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3"
 				}
 			};
-			bDb = new BookingDb();
-			rs = new BookingService();
-			bookingnew.Id = rs.CreateBooking(bookingnew).Id;
+			bookingDb = new BookingDb();
+			bookingService = new BookingService();
+			bookingnew.Id = bookingService.CreateBooking(bookingnew).Id;
 		}
 		[TestCleanup]
-		public void tearDown()
+		public void TearDown()
 		{
-			bDb.RemoveBooking(bookingnew);
-			bDb = null;
-			rs = null;
-			bookingnew = null;
+			bookingDb.RemoveBooking(testBooking);
+			bookingDb = null;
+			bookingService = null;
+			testBooking = null;
 		}
 		#endregion
-		
+
 
 		[TestMethod]
 		public void BookingIntegrationTest()
 		{
-			
+
 			try
 			{
 				//test create
-				Booking bookingnewa = rs.CreateBooking(bookingnew); // won't work... checks prevent it
-				Booking dbBooking = rs.ReadBooking(bookingnewa);
+				var bookingnewa = bookingService.CreateBooking(testBooking); // won't work... checks prevent it
+				var dbBooking = bookingService.ReadBooking(bookingnewa);
 				ComparisonBooking(bookingnewa, dbBooking);
-				bDb.RemoveBooking(bookingnewa);
+				bookingDb.RemoveBooking(bookingnewa);
 				//this also tests read.
 
 				//test update 
-				bookingnew.StartTime = new DateTime(2014, 2, 13, 12, 00, 00);		//update starttime locally
-				bookingnew.EndTime = new DateTime(2014, 2, 21, 12, 00, 00);			//update endtime locally
-				rs.UpdateBooking(bookingnew);										//update in DB
-				dbBooking = rs.ReadBooking(bookingnew);
-				Assert.AreEqual(bookingnew.StartTime, dbBooking.StartTime);			//compare.
-				Assert.AreEqual(bookingnew.EndTime, dbBooking.EndTime);				//compare.
+				testBooking.StartTime = new DateTime(2014, 2, 13, 12, 00, 00);      //update starttime locally
+				testBooking.EndTime = new DateTime(2014, 2, 21, 12, 00, 00);            //update endtime locally
+				bookingService.UpdateBooking(testBooking);                                      //update in DB
+				dbBooking = bookingService.ReadBooking(testBooking);
+				Assert.AreEqual(testBooking.StartTime, dbBooking.StartTime);            //compare.
+				Assert.AreEqual(testBooking.EndTime, dbBooking.EndTime);                //compare.
 
 				//test delete
-				bookingnew.Deleted = true;											//delete locally
-				rs.DeleteBooking(bookingnew);										//delete in DB
-				Assert.AreEqual(bookingnew.Deleted, rs.ReadBooking(bookingnew).Deleted); //compare.
+				testBooking.Deleted = true;                                         //delete locally
+				bookingService.DeleteBooking(testBooking);                                      //delete in DB
+				Assert.AreEqual(testBooking.Deleted, bookingService.ReadBooking(testBooking).Deleted); //compare.
 			}
 			catch (ApplicationException ex)
 			{
@@ -111,13 +112,13 @@ namespace Testing.TestingWCF
 			}
 			catch (Exception)
 			{
-				
+
 				var ex2 = new ApplicationException(@"Unknown Error");
 				throw new FaultException<ApplicationException>(ex2, new FaultReason(ex2.Message), new FaultCode("Uknown Error"));
 			}
 		}
 
-		private void ComparisonBooking(Booking expected, Booking actual)
+		public void ComparisonBooking(Booking expected, Booking actual)
 		{
 			//base details of booking
 			Assert.AreEqual(expected.Deleted, actual.Deleted);

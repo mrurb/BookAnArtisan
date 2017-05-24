@@ -53,7 +53,7 @@ namespace Testing.TestingWCF
 					Address = "New street",
 					Id = "f93e4146-0ef5-45fb-8088-d1150e91dea3"
 				},
-				ProjectStatusID = 1
+				ProjectStatusId = 1
 			};
 			pdb = new ProjectDb();
 			project.Id = pdb.Create(project).Id;
@@ -74,7 +74,7 @@ namespace Testing.TestingWCF
 		public void ProjectIntegrationTest()
 		{
 			//create
-			Project aproject = pSv.CreateProject(project);
+			var aproject = pSv.CreateProject(project);
 			var readProject = pSv.ReadProject(aproject);
 			ComparisonProject(aproject, readProject);
 			pdb.RemoveProject(aproject);
@@ -84,7 +84,7 @@ namespace Testing.TestingWCF
 			project.StartTime = new DateTime(2014, 3, 15, 12, 00, 00);
 			project.ProjectDescription = "bla-description";
 			project.StreetName = "some street bla";
-			project.ProjectStatusID = 2;
+			project.ProjectStatusId = 2;
 			pSv.UpdateProject(project);
 			readProject = pSv.ReadProject(project);
 			ComparisonProject(project, readProject);
@@ -103,7 +103,7 @@ namespace Testing.TestingWCF
 			Assert.AreEqual(expected.StartTime, actual.StartTime);
 			Assert.AreEqual(expected.ProjectDescription, actual.ProjectDescription);
 			Assert.AreEqual(expected.StreetName, actual.StreetName);
-			Assert.AreEqual(expected.ProjectStatusID, actual.ProjectStatusID);
+			Assert.AreEqual(expected.ProjectStatusId, actual.ProjectStatusId);
 			//contact person details
 			Assert.AreEqual(expected.Contact.UserName, actual.Contact.UserName);
 			Assert.AreEqual(expected.Contact.FirstName, actual.Contact.FirstName);
