@@ -20,7 +20,7 @@ namespace BLL
 			var b = uctr.Read(project.CreatedBy);
 			if (b.UserName != project.CreatedBy.UserName)
 			{
-				throw new ApplicationException("User: CreatedBy invalid.");
+				throw new ApplicationException("User: CreatedBy invalid."); 
 			}
 			projectDb.Create(project);
 			return projectDb.Read(project);
