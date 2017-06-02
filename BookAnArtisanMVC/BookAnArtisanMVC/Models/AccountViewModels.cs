@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BookAnArtisanMVC.Models
 {
@@ -143,4 +144,10 @@ namespace BookAnArtisanMVC.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+	public class AddRoleToUserViewModel
+	{
+		public IdentityRole Role { get; set; }
+		public string UserId { get; set; }
+	}
 }

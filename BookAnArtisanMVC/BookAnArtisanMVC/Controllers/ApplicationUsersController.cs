@@ -12,27 +12,33 @@ namespace BookAnArtisanMVC.Controllers
 {
 	public class ApplicationUsersController : Controller
 	{
-		private ApplicationUserManager userManager;
+		readonly ApplicationDbContext dbcontext = new ApplicationDbContext();
+		private ApplicationUserManager userManager = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+
+		public ApplicationUsersController()
+		{
+			
+		}
+		public ApplicationUsersController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+		{
+			this.userManager = userManager;
+		}
 
 
 		private ApplicationUserManager UserManager
 		{
-			get
-			{
-				return userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-			}
-			set
-			{
-				userManager = value;
-			}
+			get { return userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+			set { userManager = value; }
 		}
 
+		[Authorize]
 		// GET: ApplicationUsers
-		public async Task<ActionResult> Index()
+		public ActionResult Index()
 		{
-			return View(await userManager.Users.ToListAsync());
+			return View(dbcontext.Users.ToList());
 		}
 
+		[Authorize]
 		// GET: ApplicationUsers/Details/5
 		public ActionResult Details(string id)
 		{
@@ -48,6 +54,7 @@ namespace BookAnArtisanMVC.Controllers
 			return View(applicationUser);
 		}
 
+		[Authorize]
 		// GET: ApplicationUsers/Create
 		public ActionResult Create()
 		{
@@ -55,6 +62,7 @@ namespace BookAnArtisanMVC.Controllers
 			return View(model);
 		}
 
+		[Authorize]
 		// POST: ApplicationUsers/Create
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -62,8 +70,7 @@ namespace BookAnArtisanMVC.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<ActionResult> Create([Bind(Include = "Email, Password")] CreateUserViewModel model)
 		{
-
-			var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+			var user = new ApplicationUser {UserName = model.Email, Email = model.Email};
 			var result = await UserManager.CreateAsync(user, model.Password);
 			if (result.Succeeded)
 			{
@@ -73,6 +80,7 @@ namespace BookAnArtisanMVC.Controllers
 			return View(model);
 		}
 
+		[Authorize]
 		// GET: ApplicationUsers/Edit/5
 		public ActionResult Edit(string id)
 		{
@@ -89,6 +97,7 @@ namespace BookAnArtisanMVC.Controllers
 			return View(editUserViewModel);
 		}
 
+		[Authorize]
 		// POST: ApplicationUsers/Edit/5
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -96,7 +105,7 @@ namespace BookAnArtisanMVC.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<ActionResult> Edit([Bind(Include = "FirstName,LastName,PhoneNumber,Address,Email")] EditUserViewModel model)
 		{
-			var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, PhoneNumber = model.PhoneNumber};
+			var user = new ApplicationUser {UserName = model.Email, Email = model.Email, FirstName = model.FirstName, PhoneNumber = model.PhoneNumber};
 			var result = await UserManager.UpdateAsync(user);
 			if (result.Succeeded)
 			{
@@ -106,6 +115,7 @@ namespace BookAnArtisanMVC.Controllers
 			return View(model);
 		}
 
+		[Authorize]
 		// GET: ApplicationUsers/Delete/5
 		public ActionResult Delete(string id)
 		{
@@ -121,6 +131,7 @@ namespace BookAnArtisanMVC.Controllers
 			return View(applicationUser);
 		}
 
+		[Authorize]
 		// POST: ApplicationUsers/Delete/5
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
@@ -129,6 +140,28 @@ namespace BookAnArtisanMVC.Controllers
 			ApplicationUser applicationUser = userManager.FindById(id);
 			var result = await userManager.DeleteAsync(applicationUser);
 			return RedirectToAction("Index");
+		}
+
+		public ActionResult AddRoleToUser(string id)
+		{
+			var roleList = dbcontext.IdentityRoles.ToList();
+			ViewBag.list = roleList;
+			var model = new AddRoleToUserViewModel() {UserId = id};
+			return View(model);
+		}
+
+		[HttpPost]
+		public async Task<ActionResult> AddRoleToUser(AddRoleToUserViewModel model)
+		{
+			var result = await userManager.AddToRoleAsync(model.UserId, model.Role.Name);
+			if (result.Succeeded)
+			{
+				RedirectToAction("Index");
+			}
+			var roleList = dbcontext.IdentityRoles.ToList();
+			ViewBag.list = roleList;
+			ViewBag.ErrorMessage = result.Errors.First();
+			return View(model);
 		}
 	}
 }
