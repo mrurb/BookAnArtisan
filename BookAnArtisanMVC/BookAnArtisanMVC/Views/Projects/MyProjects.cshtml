@@ -15,61 +15,48 @@
             @Html.DisplayNameFor(model => projectList[0].Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => projectList[0].Created)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => projectList[0].Deleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => projectList[0].Modified)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => projectList[0].ProjectDescription)
         </th>
         <th>
-            @Html.DisplayNameFor(model => projectList[0].ProjectStatusId)
+            @Html.DisplayNameFor(model => projectList[0].Contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => projectList[0].StreetName)
         </th>
         <th>
             @Html.DisplayNameFor(model => projectList[0].StartTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => projectList[0].StreetName)
+            @Html.DisplayNameFor(model => projectList[0].ProjectStatusId)
         </th>
-        <th></th>
     </tr>
 
-@foreach (var item in projectList) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Deleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Modified)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProjectDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProjectStatusId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StreetName)
-        </td>
-        <td>
-            @Html.ActionLink("Redigér", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Detaljer", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Slet", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+    @foreach (var item in projectList) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StreetName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectStatusId)
+            </td>
+            <td>
+                @Html.ActionLink("Redigér", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Detaljer", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Slet", "Delete", new { id=item.Id })
+            </td>
+        </tr>
 }
 
 </table>
