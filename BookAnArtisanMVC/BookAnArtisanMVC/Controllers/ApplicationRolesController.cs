@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using BookAnArtisanMVC.Models;
 
@@ -46,7 +42,7 @@ namespace BookAnArtisanMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] ApplicationRole applicationRole)
+        public ActionResult Create([Bind(Include = "Name")] ApplicationRole applicationRole)
         {
             if (ModelState.IsValid)
             {

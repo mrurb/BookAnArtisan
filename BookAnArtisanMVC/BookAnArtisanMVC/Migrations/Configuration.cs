@@ -1,11 +1,8 @@
 namespace BookAnArtisanMVC.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
+	using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<BookAnArtisanMVC.Models.ApplicationDbContext>
+	internal sealed class Configuration : DbMigrationsConfiguration<BookAnArtisanMVC.Models.ApplicationDbContext>
     {
         public Configuration()
         {
