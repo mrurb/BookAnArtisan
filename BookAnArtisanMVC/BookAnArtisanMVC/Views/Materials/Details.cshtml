@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.Name)</h2>
 
 <div>
-    <h4>Material</h4>
+    <h4>Detaljer</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -17,10 +17,17 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Owner.UserName)
+            @Html.DisplayNameFor(model => model.Available)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Available)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Owner)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Owner.UserName)
+            <br /><br />
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Description)
@@ -34,21 +41,9 @@
         <dd>
             @Html.DisplayFor(model => model.Condition)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Available)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Available)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Deleted)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Deleted)
-        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Redigér", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Tilbage til listen", "Index")
 </p>

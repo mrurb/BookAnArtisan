@@ -38,7 +38,7 @@ namespace BookAnArtisanMVC.ServiceReference
 	internal class MaterialMetaData
 	{
 		[Required]
-		[Display(Name = "Navn", Order = -9)]
+		[Display(Name = "Materialenavn", Order = -9)]
 		public string Name { get; set; }
 		[Required]
 		[Display(Name = "Beskrivelse", Order = -8)]
@@ -51,7 +51,7 @@ namespace BookAnArtisanMVC.ServiceReference
 		public string Condition { get; set; }
 		[Display(Name = "Slettet")]
 		public bool Deleted { get; set; }
-		[Display(Name = "Tilgænglig", Order = -5)]
+		[Display(Name = "Tilgængelig", Order = -5)]
 		public bool Available { get; set; }
 
 
@@ -77,8 +77,10 @@ namespace BookAnArtisanMVC.ServiceReference
 		[Display(Name = "Slettet", Order = -7)]
 		public bool Deleted;
 		[Required]
+		[Display(Name = "Lejer")]
 		public User User { get; set; }
 		[Required]
+		[Display(Name = "Materiale")]
 		public Material Item { get; set; }
 
 	}
@@ -97,7 +99,7 @@ namespace BookAnArtisanMVC.ServiceReference
 		public DateTime StartTime { get; set; }
 		[Display(Name = "Forventet sluttid")]
 		public DateTime EndTime { get; set; }
-		[Display(Name = "Møde nummer")]
+		[Display(Name = "Møde-Id")]
 		public int Id { get; set; }
 		[Display(Name = "Slettet")]
 		public bool Deleted { get; set; }

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+    var meetingList = Model.Pager.PageList;
 }
 
 <h2>Alle møder</h2>
@@ -12,51 +13,38 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayName("Kontakt")
+            @Html.DisplayNameFor(model => meetingList[0].Title)
         </th>
         <th>
-            @Html.DisplayName("Oprettet af")
+            @Html.DisplayNameFor(model => meetingList[0].Contact)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Pager.PageList[0].Description)
+            @Html.DisplayNameFor(model => meetingList[0].Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Pager.PageList[0].EndTime)
+            @Html.DisplayNameFor(model => meetingList[0].StartTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Pager.PageList[0].StartTime)
+            @Html.DisplayNameFor(model => meetingList[0].EndTime)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pager.PageList[0].Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pager.PageList[0].Deleted)
-        </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model.Pager.PageList) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Contact.UserName)
+            @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy.UserName)
+            @Html.DisplayFor(modelItem => item.Contact.UserName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EndTime)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.StartTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Deleted)
+            @Html.DisplayFor(modelItem => item.EndTime)
         </td>
         <td>
             @Html.ActionLink("Redigér", "Edit", new { id=item.Id }) |
