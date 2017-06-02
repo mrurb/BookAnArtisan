@@ -130,14 +130,5 @@ namespace BookAnArtisanMVC.Controllers
 			var result = await userManager.DeleteAsync(applicationUser);
 			return RedirectToAction("Index");
 		}
-
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				userManager.Dispose();
-			}
-			base.Dispose(disposing);
-		}
 	}
 }
