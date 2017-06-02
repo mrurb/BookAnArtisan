@@ -59,6 +59,7 @@ namespace BookAnArtisanMVC.Controllers
 		}
 
 		// GET: Material/Create
+		[Authorize]
 		public ActionResult Create()
 		{
 			return View();
@@ -66,6 +67,7 @@ namespace BookAnArtisanMVC.Controllers
 
 		// POST: Material/Create
 		[HttpPost]
+		[Authorize]
 		public ActionResult Create(Material mat)
 		{
 			try
@@ -88,6 +90,7 @@ namespace BookAnArtisanMVC.Controllers
 		}
 
 		// GET: Material/Edit/5
+		[Authorize]
 		public ActionResult Edit(Material mat)
 		{
 			var data = materialServiceClient.ReadMaterial(mat);
@@ -95,6 +98,7 @@ namespace BookAnArtisanMVC.Controllers
 		}
 
 		// POST: Material/Edit/5
+		[Authorize]
 		[HttpPost, ActionName("Edit")]
 		public ActionResult EditConfirmed(Material mat)
 		{
@@ -118,6 +122,7 @@ namespace BookAnArtisanMVC.Controllers
 		}
 
 		// GET: Material/Delete/5
+		[Authorize]
 		public ActionResult Delete(Material mat)
 		{
 			try
@@ -141,6 +146,7 @@ namespace BookAnArtisanMVC.Controllers
 
 		// POST: Material/Delete/5
 		[HttpPost, ActionName("Delete")]
+		[Authorize]
 		public ActionResult DeleteConfirmed(Material mat)
 		{
 			try

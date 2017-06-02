@@ -9,23 +9,11 @@
 
 <div class="row">
     <div class="col-md-10">
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Opret ny", "Create")
     </div>
 </div>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayName("Kontakt")
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => projectList[0].Contact.UserName )
-        </th>
-        <th>
-            @Html.DisplayName("Oprettet af")
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => projectList[0].Modified)
-        </th>
         <th>
             @Html.DisplayNameFor(model => projectList[0].Name)
         </th>
@@ -33,31 +21,21 @@
             @Html.DisplayNameFor(model => projectList[0].ProjectDescription)
         </th>
         <th>
-            @Html.DisplayNameFor(model => projectList[0].ProjectStatusId)
+            @Html.DisplayNameFor(model => projectList[0].Contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => projectList[0].StreetName)
         </th>
         <th>
             @Html.DisplayNameFor(model => projectList[0].StartTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => projectList[0].StreetName)
+            @Html.DisplayNameFor(model => projectList[0].ProjectStatusId)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in projectList) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Contact.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Modified)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
@@ -65,18 +43,21 @@
             @Html.DisplayFor(modelItem => item.ProjectDescription)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ProjectStatusId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
+            @Html.DisplayFor(modelItem => item.Contact.UserName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StreetName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectStatusId)
+        </td>
+        <td>
+            @Html.ActionLink("Redigér", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detaljer", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Slet", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

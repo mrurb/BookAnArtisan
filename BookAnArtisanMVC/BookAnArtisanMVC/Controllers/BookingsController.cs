@@ -57,6 +57,7 @@ namespace BookAnArtisanMVC.Controllers
 		}
 
 		// GET: Booking/Create
+		[Authorize]
 		public ActionResult Create()
 		{
 			return View();
@@ -77,6 +78,7 @@ namespace BookAnArtisanMVC.Controllers
 
 		// POST: Booking/Create
 		[HttpPost]
+		[Authorize]
 		public ActionResult Create(Booking mat)
 		{
 			try
@@ -97,6 +99,7 @@ namespace BookAnArtisanMVC.Controllers
 		}
 
 		// GET: Booking/Edit/5
+		[Authorize]
 		public ActionResult Edit(Booking mat)
 		{
 			try
@@ -117,6 +120,7 @@ namespace BookAnArtisanMVC.Controllers
 		}
 
 		// POST: Booking/Edit/5
+		[Authorize]
 		[HttpPost, ActionName("Edit")]
 		public ActionResult EditConfirmed(Booking mat)
 		{
@@ -138,6 +142,7 @@ namespace BookAnArtisanMVC.Controllers
 		}
 
 		// GET: Booking/Delete/5
+		[Authorize]
 		public ActionResult Delete(Booking mat)
 		{
 			try
@@ -158,6 +163,7 @@ namespace BookAnArtisanMVC.Controllers
 		}
 
 		// POST: Booking/Delete/5
+		[Authorize]
 		[HttpPost, ActionName("Delete")]
 		public ActionResult DeleteConfirmed(Booking mat)
 		{
