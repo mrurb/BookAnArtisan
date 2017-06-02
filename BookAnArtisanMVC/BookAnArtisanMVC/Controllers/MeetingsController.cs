@@ -179,13 +179,15 @@ namespace BookAnArtisanMVC.Controllers
             }
         }
 
-        public ActionResult MyMeetings(User user)
+        public ActionResult MyMeetings(int? page)
         {
             try
             {
-                user.Id = HttpContext.User.Identity.GetUserId();
-                var data = meetingServiceClient.ReadAllForUser(user);
-                return View(data);
+	            var viewModel = new IndexViewModel<Meeting>
+	            {
+					Pager = meetingServiceClient.ReadMeetingPageForUser(HttpContext.User.Identity.GetUserId(),page,null)
+	            };
+                return View(viewModel);
             }
             catch (FaultException e)
             {

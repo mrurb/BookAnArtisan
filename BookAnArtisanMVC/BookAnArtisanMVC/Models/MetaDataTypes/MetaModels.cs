@@ -128,7 +128,7 @@ namespace BookAnArtisanMVC.ServiceReference
         [Display(Name = "Kontakt")]
         public User Contact { get; set; }
         [Display(Name = "Projekt status")]
-        public int ProjectStatusID { get; set; }
+        public int ProjectStatusId { get; set; }
         [Display(Name = "Beskrivelse")]
         public string ProjectDescription { get; set; }
         [Display(Name = "Vej navn")]
