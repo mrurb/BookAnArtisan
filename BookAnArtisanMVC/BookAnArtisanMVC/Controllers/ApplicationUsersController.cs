@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using BookAnArtisanMVC.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace BookAnArtisanMVC.Controllers
 {
 	public class ApplicationUsersController : Controller
 	{
-		private readonly ApplicationDbContext db = new ApplicationDbContext();
 		private ApplicationUserManager userManager;
 
 
@@ -28,9 +28,9 @@ namespace BookAnArtisanMVC.Controllers
 		}
 
 		// GET: ApplicationUsers
-		public ActionResult Index()
+		public async Task<ActionResult> Index()
 		{
-			return View(db.Users.ToList());
+			return View(await userManager.Users.ToListAsync());
 		}
 
 		// GET: ApplicationUsers/Details/5
@@ -40,7 +40,7 @@ namespace BookAnArtisanMVC.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			ApplicationUser applicationUser = db.Users.Find(id);
+			ApplicationUser applicationUser = userManager.FindById(id);
 			if (applicationUser == null)
 			{
 				return HttpNotFound();
@@ -80,12 +80,13 @@ namespace BookAnArtisanMVC.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			ApplicationUser applicationUser = db.Users.Find(id);
+			ApplicationUser applicationUser = userManager.FindById(id);
 			if (applicationUser == null)
 			{
 				return HttpNotFound();
 			}
-			return View(applicationUser);
+			var editUserViewModel = new EditUserViewModel() {Address = applicationUser.Address, Email = applicationUser.Email, FirstName = applicationUser.FirstName, LastName = applicationUser.LastName, PhoneNumber = applicationUser.PhoneNumber};
+			return View(editUserViewModel);
 		}
 
 		// POST: ApplicationUsers/Edit/5
@@ -93,15 +94,16 @@ namespace BookAnArtisanMVC.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit([Bind(Include = "FirstName,LastName,Phone,Address,ApiKey,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
+		public async Task<ActionResult> Edit([Bind(Include = "FirstName,LastName,PhoneNumber,Address,Email")] EditUserViewModel model)
 		{
-			if (ModelState.IsValid)
+			var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, PhoneNumber = model.PhoneNumber};
+			var result = await UserManager.UpdateAsync(user);
+			if (result.Succeeded)
 			{
-				db.Entry(applicationUser).State = EntityState.Modified;
-				db.SaveChanges();
 				return RedirectToAction("Index");
 			}
-			return View(applicationUser);
+
+			return View(model);
 		}
 
 		// GET: ApplicationUsers/Delete/5
@@ -111,7 +113,7 @@ namespace BookAnArtisanMVC.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			ApplicationUser applicationUser = db.Users.Find(id);
+			ApplicationUser applicationUser = UserManager.FindById(id);
 			if (applicationUser == null)
 			{
 				return HttpNotFound();
@@ -122,21 +124,11 @@ namespace BookAnArtisanMVC.Controllers
 		// POST: ApplicationUsers/Delete/5
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
-		public ActionResult DeleteConfirmed(string id)
+		public async Task<ActionResult> DeleteConfirmed(string id)
 		{
-			ApplicationUser applicationUser = db.Users.Find(id);
-			db.Users.Remove(applicationUser);
-			db.SaveChanges();
+			ApplicationUser applicationUser = userManager.FindById(id);
+			var result = await userManager.DeleteAsync(applicationUser);
 			return RedirectToAction("Index");
-		}
-
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				db.Dispose();
-			}
-			base.Dispose(disposing);
 		}
 	}
 }
