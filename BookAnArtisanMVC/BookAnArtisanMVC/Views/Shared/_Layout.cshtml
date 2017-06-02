@@ -52,7 +52,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Udlejning<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Udlejninger<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Alle Udlejninger", "Index", "Bookings")</li>
                             @if (Request.IsAuthenticated)
@@ -78,7 +78,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Book An Artisan</p>
+            <p>Book An Artisan &copy; @DateTime.Now.Year</p>
         </footer>
     </div>
 

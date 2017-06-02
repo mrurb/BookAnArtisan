@@ -2,31 +2,28 @@
 
 @{
     ViewBag.Title = "Index";
+    var bookingList = Model.Pager.PageList;
 }
 
-<h2>Alle bookings</h2>
+<h2>Alle udlejninger</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Opret ny", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Pager.PageList[0].Item.Name)
+            @Html.DisplayNameFor(model => bookingList[0].Item)
         </th>
-
         <th>
-            @Html.DisplayNameFor(model => model.Pager.PageList[0].StartTime)
+            @Html.DisplayNameFor(model => bookingList[0].User)
         </th>
-
         <th>
-            @Html.DisplayNameFor(model => model.Pager.PageList[0].EndTime)
+            @Html.DisplayNameFor(model => bookingList[0].StartTime)
         </th>
-
         <th>
-            @Html.DisplayNameFor(model => model.Pager.PageList[0].User.UserName)
+            @Html.DisplayNameFor(model => bookingList[0].EndTime)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model.Pager.PageList) {
@@ -35,22 +32,18 @@
             @Html.DisplayFor(modelItem => item.Item.Name)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.User.UserName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.StartTime)
         </td>
-
         <td>
             @Html.DisplayFor(modelItem => item.EndTime)
         </td>
-
         <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
-        </td>
-
-
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Redigér", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detaljer", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Slet", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
