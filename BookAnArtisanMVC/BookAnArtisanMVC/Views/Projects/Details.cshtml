@@ -4,95 +4,77 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detaljer for projekt:</h2>
 
 <div>
-    <h4>Project</h4>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Contact.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Contact.UserName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Created)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Created)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedBy.UserName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Deleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Deleted)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Modified)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Modified)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.ProjectDescription)
+            @Html.DisplayNameFor(model => model.Contact)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.ProjectDescription)
+            @Html.DisplayFor(model => model.Contact.UserName)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjectStatusId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProjectStatusId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.StreetName)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.StreetName)
         </dd>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProjectDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectStatusId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProjectStatusId)
+            <br/>
+            <br/>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Modified)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Modified)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Deleted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Deleted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy.UserName)
+        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Redigér", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Tilbage til listen", "Index")
 </p>

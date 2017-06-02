@@ -91,6 +91,7 @@ namespace BookAnArtisanMVC.Controllers
 		}
 
 		// GET: Project/Edit/5
+		[Authorize]
 		public ActionResult Edit(Project project)
 		{
 			try
@@ -115,6 +116,7 @@ namespace BookAnArtisanMVC.Controllers
 
 		// POST: Project/Edit/5
 		[HttpPost, ActionName("Edit")]
+		[Authorize]
 		public ActionResult EditConfirmed(Project project)
 		{
 			try
@@ -137,6 +139,7 @@ namespace BookAnArtisanMVC.Controllers
 		}
 
 		// GET: Project/Delete/5
+		[Authorize]
 		public ActionResult Delete(Project project)
 		{
 			try
@@ -161,6 +164,7 @@ namespace BookAnArtisanMVC.Controllers
 
 		// POST: Project/Delete/5
 		[HttpPost, ActionName("Delete")]
+		[Authorize]
 		public ActionResult DeleteConfirmed(Project project)
 		{
 			try
@@ -187,17 +191,9 @@ namespace BookAnArtisanMVC.Controllers
 			var p = new Project { Name = "a" };
 			var data = projectSearchClient.SearchByProjectAddress(p);
 			return View(data);
-			//return View(projectServiceClient.ReadAllProject());
 		}
 
-		[HttpPost, ActionName("ProjectSearch")]
-		public ActionResult ProjectSearch(Project projects)
-		{
-			var p = new Project { Name = "a" };
-			var data = projectSearchClient.SearchByProjectAddress(p);
-			return View(data);
-		}
-
+		[Authorize]
 		public ActionResult MyProjects(int? page)
 		{
 			try
@@ -220,6 +216,14 @@ namespace BookAnArtisanMVC.Controllers
 				ViewBag.ErrorMessage = e.Message;
 				return View();
 			}
+		}
+
+		[HttpPost, ActionName("ProjectSearch")]
+		public ActionResult ProjectSearch(Project projects)
+		{
+			var p = new Project { Name = "a" };
+			var data = projectSearchClient.SearchByProjectAddress(p);
+			return View(data);
 		}
 	}
 }
