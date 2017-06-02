@@ -56,6 +56,7 @@ namespace BookAnArtisanMVC.Controllers
 			}
 		}
 
+		[Authorize]
 		public ActionResult Create()
 		{
 			return View();
@@ -63,6 +64,7 @@ namespace BookAnArtisanMVC.Controllers
 
 		// POST: Project/Create
 		[HttpPost]
+		[Authorize]
 		public ActionResult Create(Project project)
 		{
 			try
