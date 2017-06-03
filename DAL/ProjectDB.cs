@@ -293,7 +293,7 @@ namespace DAL
 			var totalRows = 0;
 			var rowStart = ((page - 1) * pageSize);
 
-			const string sql = "SELECT Projects.Name, Projects.ID, Projects.Created_by_ID, Projects.Contact_ID, Projects.Project_status_ID, Projects.Project_description, Projects.Street_Name,Projects.Start_time, Projects.Created, Projects.Modified, Projects.Deleted, CreatedBy.UserName CreatedByUserName, Contact.UserName ContactUserName FROM Projects JOIN AspNetUsers CreatedBy ON Projects.Created_by_ID = CreatedBy.Id JOIN AspNetUsers Contact ON Projects.Contact_ID = Contact.Id WHERE Deleted = 0 ORDER BY Projects.ID OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
+			const string sql = "SELECT Projects.Name, Projects.ID, Projects.Created_by_ID, Projects.Contact_ID, Projects.Project_status_ID, Projects.Project_description, Projects.Street_Name,Projects.Start_time, Projects.Created, Projects.Modified, Projects.Deleted, CreatedBy.UserName CreatedByUserName, Contact.UserName ContactUserName, Project_status.Name statusName FROM Projects JOIN AspNetUsers CreatedBy ON Projects.Created_by_ID = CreatedBy.Id JOIN AspNetUsers Contact ON Projects.Contact_ID = Contact.Id LEFT JOIN Project_status ON Project_status.ID = Projects.Project_status_ID WHERE Deleted = 0 ORDER BY Projects.ID OFFSET @page ROWS FETCH NEXT @pageSize ROWS ONLY";
 			const string sql2 = "SELECT COUNT(*) AS total FROM Projects WHERE Deleted = 0 ";
 			SqlParameter[] sqlparams =
 			{
@@ -327,7 +327,7 @@ namespace DAL
 						int deletedCol = reader.GetOrdinal("Deleted");
 						int createdByUserNameCol = reader.GetOrdinal("CreatedByUserName");
 						int contactUserNameCol = reader.GetOrdinal("ContactUserName");
-
+						int statusCol = reader.GetOrdinal("statusName");
 						while (reader.Read())
 						{
 							projects.Add(new Project
@@ -343,6 +343,7 @@ namespace DAL
 								Created = GetDataSafe(reader, createdCol, reader.GetDateTime),
 								Modified = GetDataSafe(reader, modifiedCol, reader.GetDateTime),
 								Deleted = GetDataSafe(reader, deletedCol, reader.GetBoolean),
+								ProjectStatusName = GetDataSafe(reader, statusCol, reader.GetString)
 							});
 						}
 					}

@@ -8,6 +8,8 @@ namespace Model
 	public class Project
 	{
 		[DataMember]
+		public string ProjectStatusName { get; set; }
+		[DataMember]
 		public int Id { get; set; }
 		[DataMember]
 		public string Name { get; set; }
