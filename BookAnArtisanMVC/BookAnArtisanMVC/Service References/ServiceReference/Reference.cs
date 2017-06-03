@@ -915,6 +915,9 @@ namespace BookAnArtisanMVC.ServiceReference {
         private int ProjectStatusIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProjectStatusNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime StartTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1043,6 +1046,19 @@ namespace BookAnArtisanMVC.ServiceReference {
                 if ((this.ProjectStatusIdField.Equals(value) != true)) {
                     this.ProjectStatusIdField = value;
                     this.RaisePropertyChanged("ProjectStatusId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProjectStatusName {
+            get {
+                return this.ProjectStatusNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProjectStatusNameField, value) != true)) {
+                    this.ProjectStatusNameField = value;
+                    this.RaisePropertyChanged("ProjectStatusName");
                 }
             }
         }
