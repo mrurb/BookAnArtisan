@@ -102,6 +102,10 @@ namespace BookAnArtisanMVC.Controllers
 		[Authorize]
 		public ActionResult Edit(Booking mat)
 		{
+			if (mat.Id == 0)
+			{
+				return RedirectToAction("Index");
+			}
 			try
 			{
 				var data = bookingServiceClient.ReadBooking(mat);

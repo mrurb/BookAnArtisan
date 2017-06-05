@@ -93,6 +93,10 @@ namespace BookAnArtisanMVC.Controllers
 		[Authorize]
 		public ActionResult Edit(Material mat)
 		{
+			if (mat.Id == 0)
+			{
+				return RedirectToAction("Index");
+			}
 			var data = materialServiceClient.ReadMaterial(mat);
 			return View(data);
 		}

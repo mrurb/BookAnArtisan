@@ -93,6 +93,10 @@ namespace BookAnArtisanMVC.Controllers
 		[Authorize]
 		public ActionResult Edit(Meeting meeting)
 		{
+			if (meeting.Id == 0)
+			{
+				return RedirectToAction("Index");
+			}
 			try
 			{
 				var data = meetingServiceClient.ReadMeeting(meeting);
