@@ -94,6 +94,10 @@ namespace BookAnArtisanMVC.Controllers
 		[Authorize]
 		public ActionResult Edit(Project project)
 		{
+			if (project.Id == 0)
+			{
+				return RedirectToAction("Index");
+			}
 			try
 			{
 				var data = projectServiceClient.ReadProject(project);
