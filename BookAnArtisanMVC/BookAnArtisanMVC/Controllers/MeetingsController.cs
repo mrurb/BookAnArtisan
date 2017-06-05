@@ -124,6 +124,7 @@ namespace BookAnArtisanMVC.Controllers
 		{
 			try
 			{
+				meeting.CreatedBy = new User() { Id = HttpContext.User.Identity.GetUserId()};
 				meetingServiceClient.UpdateMeeting(meeting);
 				return RedirectToAction("MyMeetings"); 
 			}
