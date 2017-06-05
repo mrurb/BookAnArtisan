@@ -71,7 +71,7 @@ namespace BookAnArtisanMVC.Controllers
 		{
 			try
 			{
-				meeting.CreatedBy.Id = User.Identity.GetUserId();
+				meeting.CreatedBy = new User { Id = HttpContext.User.Identity.GetUserId() };
 				meetingServiceClient.CreateMeeting(meeting);
 				return RedirectToAction("MyMeetings");
 			}
