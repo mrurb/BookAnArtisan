@@ -99,7 +99,7 @@ namespace DAL
 		public Project Update(Project project)
 		{
 			const string sql = "UPDATE Projects SET Name = @Name, Created_by_ID = @Created_by_ID, Contact_ID = @Contact_ID, Project_status_ID = @Project_status_ID, Project_description = @Project_description, Street_Name = @Street_Name, Start_time = @Start_time, Created = @Created, Modified = @Modified, Deleted = @Deleted WHERE ID = @Id";
-
+			//fix fields from MVC TODO
 			SqlParameter[] arrayOfParameters =
 			{
 				new SqlParameter { ParameterName = "@Id", SqlValue = project.Id, SqlDbType = SqlDbType.Int },
