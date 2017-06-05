@@ -118,7 +118,6 @@ namespace DAL
 						int firstNameCol = reader.GetOrdinal("FirstName");
 						int lastNameCol = reader.GetOrdinal("LastName");
 						int addressCol = reader.GetOrdinal("Address");
-						//int apiKeyCol = reader.GetOrdinal("ApiKey");
 
 						if (!reader.Read()) return user;
 						user.Id = GetDataSafe(reader, idCol, reader.GetString);
@@ -136,7 +135,6 @@ namespace DAL
 						user.FirstName = GetDataSafe(reader, firstNameCol, reader.GetString);
 						user.LastName = GetDataSafe(reader, lastNameCol, reader.GetString);
 						user.Address = GetDataSafe(reader, addressCol, reader.GetString);
-						//user.ApiKey = GetDataSafe(reader, apiKeyCol, reader.GetString);
 					}
 				}
 			}
