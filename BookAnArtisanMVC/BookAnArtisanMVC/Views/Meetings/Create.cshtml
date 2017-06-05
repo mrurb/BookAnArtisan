@@ -14,10 +14,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Meeting</h4>
         <hr />
@@ -79,11 +79,11 @@
     @Scripts.Render("~/bundles/Autocomplete")
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/i18n/jquery-ui-timepicker-da.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/i18n/jquery-ui-timepicker-da.js"></script>
     <script type="text/javascript">
-        $( document ).ready(function() {
+        $(document).ready(function() {
             autoc($("#ContactName"), $("#ContactId"), "/Users/SearchByName");
-        })
+        });
         $('#StartTime').datetimepicker({
             controlType: 'select',
             oneLine: true,
@@ -97,6 +97,7 @@
             dateFormat: 'dd/mm/yy'
         });
     </script>
+
 <!--@Scripts.Render("~/bundles/jqueryval")-->
 
 }
