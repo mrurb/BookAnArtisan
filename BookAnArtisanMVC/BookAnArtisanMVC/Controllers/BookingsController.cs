@@ -77,6 +77,7 @@ namespace BookAnArtisanMVC.Controllers
 		}
 
 		// POST: Booking/Create
+		[ValidateAntiForgeryToken]
 		[HttpPost]
 		[Authorize]
 		public ActionResult Create(Booking mat)

@@ -68,6 +68,7 @@ namespace BookAnArtisanMVC.Controllers
 		// POST: Material/Create
 		[HttpPost]
 		[Authorize]
+		[ValidateAntiForgeryToken]
 		public ActionResult Create(Material mat)
 		{
 			try
@@ -104,6 +105,7 @@ namespace BookAnArtisanMVC.Controllers
 		// POST: Material/Edit/5
 		[Authorize]
 		[HttpPost, ActionName("Edit")]
+		[ValidateAntiForgeryToken]
 		public ActionResult EditConfirmed(Material mat)
 		{
 			try
@@ -151,6 +153,7 @@ namespace BookAnArtisanMVC.Controllers
 		// POST: Material/Delete/5
 		[HttpPost, ActionName("Delete")]
 		[Authorize]
+		[ValidateAntiForgeryToken]
 		public ActionResult DeleteConfirmed(Material mat)
 		{
 			try

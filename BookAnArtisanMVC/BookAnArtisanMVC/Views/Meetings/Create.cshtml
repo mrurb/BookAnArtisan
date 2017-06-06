@@ -73,23 +73,9 @@
 @section Scripts {
     @Scripts.Render("~/bundles/Autocomplete")
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/i18n/jquery-ui-timepicker-da.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             autoc($("#username"), $("#UserId"), "/Users/SearchByName");
-        });
-        $('#StartTime').datetimepicker({
-            controlType: 'select',
-            oneLine: true,
-            timeFormat: 'HH:mm',
-            dateFormat: 'dd/mm/yy'
-        });
-        $('#EndTime').datetimepicker({
-            controlType: 'select',
-            oneLine: true,
-            timeFormat: 'HH:mm',
-            dateFormat: 'dd/mm/yy'
         });
     </script>
 <!--@Scripts.Render("~/bundles/jqueryval")-->
