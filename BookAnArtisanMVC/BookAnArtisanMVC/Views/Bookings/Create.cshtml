@@ -6,7 +6,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Opret ny</h2>
 
 
 @using (Html.BeginForm("Create", "Bookings", FormMethod.Post, new {id = "form"}))
@@ -14,12 +14,12 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Booking</h4>
+        <h4>Udlejning</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.LabelFor(model => Model.User.UserName, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => Model.User, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.Editor("username", new { htmlAttributes = new { @class = "form-control" } })
                 @Html.HiddenFor(model => model.User.Id, new {  @class = "form-control", id = "UserId" })
