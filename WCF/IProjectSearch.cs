@@ -8,11 +8,11 @@ using Model;
 
 namespace WCF
 {
-    [ServiceContract]
-    public interface IProjectSearch
-    {
+	[ServiceContract]
+	public interface IProjectSearch
+	{
 
-        [OperationContract]
-        IList<Project> SearchByProjectAddress(Project p);
-    }
+		[OperationContract]
+		IList<Project> SearchByProjectAddress(Project p);
+	}
 }

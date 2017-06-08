@@ -32,11 +32,11 @@ namespace WCF
 		[FaultContract(typeof(ApplicationException))]
 		List<Project> ReadAllProjectsForUser(User user);
 
-	    [OperationContract]
-	    [FaultContract(typeof(ApplicationException))]
-	    Page<Project> ReadProjectPage(int? page, int? pageSize);
-	    [OperationContract]
-	    [FaultContract(typeof(ApplicationException))]
-	    Page<Project> ReadProjectPageForUser(string userId, int? page, int? pageSize);
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
+		Page<Project> ReadProjectPage(int? page, int? pageSize);
+		[OperationContract]
+		[FaultContract(typeof(ApplicationException))]
+		Page<Project> ReadProjectPageForUser(string userId, int? page, int? pageSize);
 	}
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c12ef404-d754-444a-bf0e-4975fd25d292" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8cbd566a-d6c7-4594-91ec-8becf1922b97" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -21,49 +21,49 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8733/WCF/MaterialService/" Protocol="http" SourceId="1" />
-    <MetadataSource Address="http://localhost:8733/WCF/MeetingService/" Protocol="http" SourceId="2" />
-    <MetadataSource Address="http://localhost:8733/WCF/ProjectService/" Protocol="http" SourceId="3" />
-    <MetadataSource Address="http://localhost:8733/WCF/BookingService/" Protocol="http" SourceId="4" />
-    <MetadataSource Address="http://localhost:8733/WCF/UserService/" Protocol="http" SourceId="5" />
-    <MetadataSource Address="http://localhost:8733/WCF/ProjectSearch/" Protocol="http" SourceId="6" />
+    <MetadataSource Address="https://apactawcfv2.aur.dk/MaterialService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="https://apactawcfv2.aur.dk/MeetingService.svc" Protocol="http" SourceId="2" />
+    <MetadataSource Address="https://apactawcfv2.aur.dk/ProjectService.svc" Protocol="http" SourceId="3" />
+    <MetadataSource Address="https://apactawcfv2.aur.dk/BookingService.svc" Protocol="http" SourceId="4" />
+    <MetadataSource Address="https://apactawcfv2.aur.dk/UserService.svc" Protocol="http" SourceId="5" />
+    <MetadataSource Address="https://apactawcfv2.aur.dk/ProjectSearch.svc" Protocol="http" SourceId="6" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item9.xsd" MetadataType="Schema" ID="f64cc1bd-6608-4101-9357-d04c4336acdd" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd2" />
-    <MetadataFile FileName="item3.disco" MetadataType="Disco" ID="17b8385a-1c4f-4ac5-9102-4cf8b7a74ec5" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?disco" />
-    <MetadataFile FileName="item10.xsd" MetadataType="Schema" ID="445b365b-bd5e-42db-be84-a717ba060591" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd1" />
-    <MetadataFile FileName="item11.xsd" MetadataType="Schema" ID="2a9e28ab-5056-41be-80e5-6df6a6b924f6" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd0" />
-    <MetadataFile FileName="item17.xsd" MetadataType="Schema" ID="04bc606c-6c96-4a55-9312-423e985aeb70" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?xsd=xsd3" />
-    <MetadataFile FileName="MaterialService1.wsdl" MetadataType="Wsdl" ID="2651a899-fea6-4c6c-b145-5bfc006f91ef" SourceId="1" SourceUrl="http://localhost:8733/WCF/MaterialService/?wsdl" />
-    <MetadataFile FileName="MeetingService1.wsdl" MetadataType="Wsdl" ID="da8a1902-dbc9-4174-9db2-013119d1cda7" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?wsdl" />
-    <MetadataFile FileName="item7.disco" MetadataType="Disco" ID="dfe5539f-9171-4cfe-9530-19da6eba8045" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?disco" />
-    <MetadataFile FileName="item20.xsd" MetadataType="Schema" ID="5dbde581-5075-4737-ba35-bfb8d18ba5ee" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd0" />
-    <MetadataFile FileName="item21.xsd" MetadataType="Schema" ID="742a47f7-d5ff-4129-b517-4dab79caf28c" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd1" />
-    <MetadataFile FileName="item22.xsd" MetadataType="Schema" ID="6fcd1283-fa66-4bd7-80c4-45f98008b9b2" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd2" />
-    <MetadataFile FileName="item23.xsd" MetadataType="Schema" ID="84555f14-034e-41c1-9b77-f83c9063ca7f" SourceId="2" SourceUrl="http://localhost:8733/WCF/MeetingService/?xsd=xsd3" />
-    <MetadataFile FileName="item8.disco" MetadataType="Disco" ID="8dc61a1a-83dd-4b0d-8a19-75bec4258f6b" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?disco" />
-    <MetadataFile FileName="item24.xsd" MetadataType="Schema" ID="645466fe-2714-40bc-a032-c22cff807fc1" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd1" />
-    <MetadataFile FileName="item25.xsd" MetadataType="Schema" ID="6a264819-7244-48c4-83c4-8fbd8dcac7d0" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd3" />
-    <MetadataFile FileName="item26.xsd" MetadataType="Schema" ID="b156292b-fb09-434a-bbd1-4ec759a7389d" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd0" />
-    <MetadataFile FileName="ProjectService1.wsdl" MetadataType="Wsdl" ID="ac5c6cb7-92bf-4994-b124-97dc4d9453b4" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?wsdl" />
-    <MetadataFile FileName="item27.xsd" MetadataType="Schema" ID="ecab43fb-3131-4d09-a43c-689b750ce7da" SourceId="3" SourceUrl="http://localhost:8733/WCF/ProjectService/?xsd=xsd2" />
-    <MetadataFile FileName="item9.disco" MetadataType="Disco" ID="3a7d7300-3dbd-457d-8de1-2717765b71f1" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?disco" />
-    <MetadataFile FileName="item28.xsd" MetadataType="Schema" ID="7df94d80-6e71-4730-851a-396806f4670a" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?xsd=xsd2" />
-    <MetadataFile FileName="item29.xsd" MetadataType="Schema" ID="79be813e-6caa-4cb7-9f15-a4ad067edc8a" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?xsd=xsd3" />
-    <MetadataFile FileName="item30.xsd" MetadataType="Schema" ID="9f700053-8a89-432f-9622-ae2cb0d6fee3" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?xsd=xsd0" />
-    <MetadataFile FileName="item31.xsd" MetadataType="Schema" ID="770d9aa0-0f26-46a6-ba7e-0642f70c1902" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?xsd=xsd1" />
-    <MetadataFile FileName="BookingService1.wsdl" MetadataType="Wsdl" ID="5fd3e30c-a2bf-4c91-b663-450193b43495" SourceId="4" SourceUrl="http://localhost:8733/WCF/BookingService/?wsdl" />
-    <MetadataFile FileName="item32.xsd" MetadataType="Schema" ID="9254486c-b068-4f88-b69b-4405f6722221" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd1" />
-    <MetadataFile FileName="UserService1.wsdl" MetadataType="Wsdl" ID="92108348-3381-4461-9d29-7147d7a35957" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?wsdl" />
-    <MetadataFile FileName="item33.xsd" MetadataType="Schema" ID="8c3aaca1-de86-474b-8832-515f052f4913" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd2" />
-    <MetadataFile FileName="item34.xsd" MetadataType="Schema" ID="8c8ddcde-c33c-4a9b-8980-a0aa0fa27ff6" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd3" />
-    <MetadataFile FileName="item10.disco" MetadataType="Disco" ID="121dab57-388e-44e4-bc08-a4ef00d578a0" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?disco" />
-    <MetadataFile FileName="item35.xsd" MetadataType="Schema" ID="4a1e2f9e-1925-44d5-abb2-ae1a6038e8d9" SourceId="5" SourceUrl="http://localhost:8733/WCF/UserService/?xsd=xsd0" />
-    <MetadataFile FileName="item36.xsd" MetadataType="Schema" ID="82bf0e04-d220-43de-8fc3-4df2e9dda666" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?xsd=xsd0" />
-    <MetadataFile FileName="ProjectSearch1.wsdl" MetadataType="Wsdl" ID="20a81306-5a3d-4209-a252-59dfb74910f7" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?wsdl" />
-    <MetadataFile FileName="item37.xsd" MetadataType="Schema" ID="e0532b04-8639-4599-a3c9-beb420cc48d9" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?xsd=xsd1" />
-    <MetadataFile FileName="item38.xsd" MetadataType="Schema" ID="686dfa44-bd92-4994-9631-d37fcb782650" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?xsd=xsd2" />
-    <MetadataFile FileName="item11.disco" MetadataType="Disco" ID="bc660044-f910-4caa-9f73-4c3a42dac98e" SourceId="6" SourceUrl="http://localhost:8733/WCF/ProjectSearch/?disco" />
+    <MetadataFile FileName="MaterialService4.xsd" MetadataType="Schema" ID="87d18a52-ba90-4ef7-85d6-3db1dc4ddf21" SourceId="1" SourceUrl="https://apactawcfv2.aur.dk/MaterialService.svc?xsd=xsd1" />
+    <MetadataFile FileName="MaterialService41.xsd" MetadataType="Schema" ID="15bd3153-47c4-4332-9878-13cf032f27ba" SourceId="1" SourceUrl="https://apactawcfv2.aur.dk/MaterialService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MaterialService42.xsd" MetadataType="Schema" ID="1f42e467-db51-4f8f-b65f-226ecb0e4cdd" SourceId="1" SourceUrl="https://apactawcfv2.aur.dk/MaterialService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MaterialService1.disco" MetadataType="Disco" ID="03f0780a-400c-4cb2-bf85-c3b0cd4215cd" SourceId="1" SourceUrl="https://apactawcfv2.aur.dk/MaterialService.svc?disco" />
+    <MetadataFile FileName="MaterialService1.wsdl" MetadataType="Wsdl" ID="81585349-c873-421a-9329-303db19fe864" SourceId="1" SourceUrl="https://apactawcfv2.aur.dk/MaterialService.svc?wsdl" />
+    <MetadataFile FileName="MaterialService43.xsd" MetadataType="Schema" ID="e13e0a2d-3b22-4e71-bdb0-498c3f85c2f1" SourceId="1" SourceUrl="https://apactawcfv2.aur.dk/MaterialService.svc?xsd=xsd3" />
+    <MetadataFile FileName="MeetingService4.xsd" MetadataType="Schema" ID="a558aaa5-cb23-443e-bfef-9b6d25967cb1" SourceId="2" SourceUrl="https://apactawcfv2.aur.dk/MeetingService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MeetingService41.xsd" MetadataType="Schema" ID="25cc20d6-6178-4f40-a014-02a70ba41a5e" SourceId="2" SourceUrl="https://apactawcfv2.aur.dk/MeetingService.svc?xsd=xsd3" />
+    <MetadataFile FileName="MeetingService42.xsd" MetadataType="Schema" ID="b4cd691e-5513-4785-aceb-44c7beb2357d" SourceId="2" SourceUrl="https://apactawcfv2.aur.dk/MeetingService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MeetingService43.xsd" MetadataType="Schema" ID="3c6f494d-f460-49d0-ad37-ddb24bc3cf43" SourceId="2" SourceUrl="https://apactawcfv2.aur.dk/MeetingService.svc?xsd=xsd1" />
+    <MetadataFile FileName="MeetingService1.wsdl" MetadataType="Wsdl" ID="980e66d8-0e1d-4498-ac1a-fb44d94279da" SourceId="2" SourceUrl="https://apactawcfv2.aur.dk/MeetingService.svc?wsdl" />
+    <MetadataFile FileName="MeetingService1.disco" MetadataType="Disco" ID="41815f71-96e3-410b-a4af-8dda59f1f0ac" SourceId="2" SourceUrl="https://apactawcfv2.aur.dk/MeetingService.svc?disco" />
+    <MetadataFile FileName="ProjectService4.xsd" MetadataType="Schema" ID="b6d0f810-4894-4297-88f8-8671dfdc97e5" SourceId="3" SourceUrl="https://apactawcfv2.aur.dk/ProjectService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ProjectService41.xsd" MetadataType="Schema" ID="4cdb6baa-a525-4abf-9b50-90062e16c69a" SourceId="3" SourceUrl="https://apactawcfv2.aur.dk/ProjectService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ProjectService1.disco" MetadataType="Disco" ID="a5d73578-809e-4a2a-8ac2-e8a5451b5024" SourceId="3" SourceUrl="https://apactawcfv2.aur.dk/ProjectService.svc?disco" />
+    <MetadataFile FileName="ProjectService42.xsd" MetadataType="Schema" ID="b8e04cd3-584c-43e9-b235-ede821b95ace" SourceId="3" SourceUrl="https://apactawcfv2.aur.dk/ProjectService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ProjectService1.wsdl" MetadataType="Wsdl" ID="ba34b12d-1975-4351-99f6-786ddf5bec15" SourceId="3" SourceUrl="https://apactawcfv2.aur.dk/ProjectService.svc?wsdl" />
+    <MetadataFile FileName="ProjectService43.xsd" MetadataType="Schema" ID="33ba2bac-18b5-4429-b61d-5d6432e59f8f" SourceId="3" SourceUrl="https://apactawcfv2.aur.dk/ProjectService.svc?xsd=xsd1" />
+    <MetadataFile FileName="BookingService1.wsdl" MetadataType="Wsdl" ID="6597ba42-198f-4375-a138-22ca441a3010" SourceId="4" SourceUrl="https://apactawcfv2.aur.dk/BookingService.svc?wsdl" />
+    <MetadataFile FileName="BookingService1.disco" MetadataType="Disco" ID="2a02b463-908c-4ca4-b8a0-8e2230d94259" SourceId="4" SourceUrl="https://apactawcfv2.aur.dk/BookingService.svc?disco" />
+    <MetadataFile FileName="BookingService4.xsd" MetadataType="Schema" ID="73a46e6f-8255-4a95-ae27-d4385fd641d9" SourceId="4" SourceUrl="https://apactawcfv2.aur.dk/BookingService.svc?xsd=xsd0" />
+    <MetadataFile FileName="BookingService41.xsd" MetadataType="Schema" ID="9703995f-8d33-4cea-b086-6c1a38a27514" SourceId="4" SourceUrl="https://apactawcfv2.aur.dk/BookingService.svc?xsd=xsd1" />
+    <MetadataFile FileName="BookingService42.xsd" MetadataType="Schema" ID="2f7c4ddf-93d4-4d95-bd36-794794861bf1" SourceId="4" SourceUrl="https://apactawcfv2.aur.dk/BookingService.svc?xsd=xsd2" />
+    <MetadataFile FileName="BookingService43.xsd" MetadataType="Schema" ID="d2e903cc-7164-4315-b610-8fa166e6ab9e" SourceId="4" SourceUrl="https://apactawcfv2.aur.dk/BookingService.svc?xsd=xsd3" />
+    <MetadataFile FileName="UserService4.xsd" MetadataType="Schema" ID="ab484f25-bb9a-4f47-a210-1d908ad63a9c" SourceId="5" SourceUrl="https://apactawcfv2.aur.dk/UserService.svc?xsd=xsd1" />
+    <MetadataFile FileName="UserService1.wsdl" MetadataType="Wsdl" ID="b284f774-e85a-48ca-bde7-215df4e177c3" SourceId="5" SourceUrl="https://apactawcfv2.aur.dk/UserService.svc?wsdl" />
+    <MetadataFile FileName="UserService41.xsd" MetadataType="Schema" ID="e93c49ff-674d-4014-b8ca-ee9dc1523803" SourceId="5" SourceUrl="https://apactawcfv2.aur.dk/UserService.svc?xsd=xsd0" />
+    <MetadataFile FileName="UserService1.disco" MetadataType="Disco" ID="7fb2b5c6-0f16-4b07-b213-bd093e1eb79e" SourceId="5" SourceUrl="https://apactawcfv2.aur.dk/UserService.svc?disco" />
+    <MetadataFile FileName="UserService42.xsd" MetadataType="Schema" ID="68dc6170-e44d-4c26-9fa5-7bd8fc7dc962" SourceId="5" SourceUrl="https://apactawcfv2.aur.dk/UserService.svc?xsd=xsd3" />
+    <MetadataFile FileName="UserService43.xsd" MetadataType="Schema" ID="1f0552a1-8a27-476b-9362-66e7bba736c9" SourceId="5" SourceUrl="https://apactawcfv2.aur.dk/UserService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ProjectSearch3.xsd" MetadataType="Schema" ID="ea530f7e-1fa2-4185-ae47-a93ec9626cfb" SourceId="6" SourceUrl="https://apactawcfv2.aur.dk/ProjectSearch.svc?xsd=xsd0" />
+    <MetadataFile FileName="ProjectSearch31.xsd" MetadataType="Schema" ID="b47ba8b3-a3d5-4d3e-a65f-e9debf76dbc9" SourceId="6" SourceUrl="https://apactawcfv2.aur.dk/ProjectSearch.svc?xsd=xsd1" />
+    <MetadataFile FileName="ProjectSearch1.wsdl" MetadataType="Wsdl" ID="06e79bd5-022a-4c2d-812a-4e25273fd0f9" SourceId="6" SourceUrl="https://apactawcfv2.aur.dk/ProjectSearch.svc?wsdl" />
+    <MetadataFile FileName="ProjectSearch1.disco" MetadataType="Disco" ID="1ea459f8-1306-4eef-875a-22567f981435" SourceId="6" SourceUrl="https://apactawcfv2.aur.dk/ProjectSearch.svc?disco" />
+    <MetadataFile FileName="ProjectSearch32.xsd" MetadataType="Schema" ID="19456771-6b31-48b3-94d4-de34073c822a" SourceId="6" SourceUrl="https://apactawcfv2.aur.dk/ProjectSearch.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

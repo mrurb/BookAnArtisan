@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Deploy|AnyCPU'">
+    <OutputPath>bin\Deploy\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ServiceModel" />
@@ -78,7 +81,7 @@
       <Name>Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\WCF\WCF.csproj">
-      <Project>{75762366-0537-4db1-a432-c3c3e83c144b}</Project>
+      <Project>{7b11593e-37ca-4c6a-8bc3-189751ec0adf}</Project>
       <Name>WCF</Name>
     </ProjectReference>
   </ItemGroup>
